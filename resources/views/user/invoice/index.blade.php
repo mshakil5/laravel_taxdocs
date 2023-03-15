@@ -42,7 +42,7 @@
                                       <td style="text-align: center">{{ $key + 1 }}</td>
                                       <td style="text-align: center">{{ $data->invoice_date }}</td>
                                       <td style="text-align: center">{{ $data->invoiceid }}</td>
-                                      <td style="text-align: center">{{ \App\Models\Newuser::where('id',$data->new_user_id)->first()->name }}</td>
+                                      <td style="text-align: center">{{ \App\Models\NewUser::where('id',$data->new_user_id)->first()->name }}</td>
                                       <td style="text-align: center">{{ $data->email }}</td>
                                       <td style="text-align: center">{{ $data->billing_address }}</td>
                                       <td style="text-align: center">{{ $data->message_on_invoice }}</td>
