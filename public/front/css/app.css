@@ -195,6 +195,10 @@ body {
   }
 }
 
+.plan {
+  background-color: #fff7f2;
+}
+
 .bleesed .para {
   font-size: 20px;
   font-family: "Roboto-Regular";

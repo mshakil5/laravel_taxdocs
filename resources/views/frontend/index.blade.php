@@ -78,8 +78,91 @@
     </div>
 </section>
 
-
+{{-- new section start  --}}
 <section class="bleesed default">
+    <div class="container">
+        <div class="row mb-5"> 
+            <div class="title">
+                Our Plan
+            </div> 
+        </div>
+        <br> 
+        <div class="row ">
+            <div class="col-lg-8 mx-auto">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="plan p-5 mb-3 rounded shadow-sm">
+                            <div class="text-center border-bottom">
+                                 <h3 class="txt-primary fw-bold">Self Employed</h3>
+                                 <h4 class="txt-secondary fw-bold">£5.95/Month</h4>
+                            </div>
+                            <div class="planContent pt-4 text-center">
+
+                                @foreach (\App\Models\Option::where('plan','1')->get() as $item)
+                                
+                                <p class="fs-5 mb-1 text-dark fw-bold">
+                                    {{ $item->title }}
+                                </p>
+                                @endforeach
+                                
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-6">
+
+                        <div class="plan p-5 mb-3 rounded shadow-sm">
+                            <div class="text-center border-bottom">
+                                 <h3 class="txt-primary fw-bold">Business</h3>
+                                 <h4 class="txt-secondary fw-bold">£10.95/Month</h4>
+                            </div>
+                            <div class="planContent pt-4 text-center">
+                                
+                                @foreach (\App\Models\Option::where('plan','2')->get() as $item2)
+                                <p class="fs-5 mb-1 text-dark fw-bold">
+                                    {{ $item2->title }}
+                                </p>
+                                @endforeach
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="advertisement default fs-5">
+    <div class="container">
+       <div class="row col-lg-10 mx-auto">
+     <div class="row">
+        <div class="col-lg-4">
+            <h2 class="txt-primary fw-bold mb-4">Download Apps</h2>
+            <a href="#">
+                <img src="{{ asset('front/images/apps.png')}}" class="img-fluid mb-2">
+            </a>
+           <a href="#">
+            <img src="{{ asset('front/images/play.png')}}" class="img-fluid mb-2">
+           </a>
+        </div>
+        <div class="col-lg-8 pt-4">
+            <p class="text-dark mb-1 darkerGrotesque-semibold ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam natus vel dolorem, dicta inventore sed excepturi, harum veniam maxime officiis officia a! Nisi totam magnam incidunt molestiae, eum corporis minus.</p>
+            <div class="d-flex mt-2 txt-primary darkerGrotesque-semibold shadow-sm px-3 py-1">
+                <a href="#" class="me-2 px-0 txt-primary fw-bold" title="link">some</a>
+                <a href="#" class="me-2 px-0 txt-primary fw-bold" title="link">link</a>
+                <a href="#" class="me-2 px-0 txt-primary fw-bold" title="link">goes</a>
+                <a href="#" class="me-2 px-0 txt-primary fw-bold" title="link">here</a>
+            </div>
+        </div>
+     </div>
+       </div>
+    </div>
+</section>
+{{-- new section end --}}
+
+
+<section class="bleesed default" style="display: none">
     <div class="container">
         <div class="row d-flex align-items-center justify-content-center">
             
