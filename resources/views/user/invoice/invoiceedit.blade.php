@@ -77,56 +77,57 @@
 
                             <div class="col-md-4 ">
                                 <label> Invoice Number</label>
-                                <input type="number" id="invoiceid" name="invoiceid" class="form-control" value="{{$newinv}}" readonly>
+                                <input type="number" id="invoiceid" name="invoiceid" class="form-control" value="{{$data->invoiceid}}" readonly>
+                                <input type="hidden" id="dataid" name="dataid" class="form-control" value="{{$data->id}}">
                                 <label> Invoice Date</label>
-                                <input type="date" id="invoice_date" name="invoice_date" class="form-control" value="{{date('Y-m-d')}}">
+                                <input type="date" id="invoice_date" name="invoice_date" class="form-control" value="{{$data->invoice_date}}">
 
                                 <label> Terms</label>
-                                <input type="text" id="terms" name="terms" class="form-control" >
+                                <input type="text" id="terms" name="terms" class="form-control" value="{{$data->terms}}">
 
                                 <label> Invoice To</label>
                                 <select name="user_name" id="user_name" class="form-control select2" >
                                     <option value="">Select</option>
                                     @foreach (\App\Models\NewUser::where('user_id', Auth::user()->id)->get() as $nuser)
-                                    <option value="{{$nuser->id}}">{{$nuser->name}}</option>
+                                    <option value="{{$nuser->id}}" @if ($nuser->id == $data->user_name) selected @endif>{{$nuser->name}}</option>
                                     @endforeach
                                 </select>
 
                                 <label> Email</label>
-                                <input type="email" id="useremail" name="useremail" class="form-control" >
-                                <input type="hidden" id="new_user_id" name="new_user_id" class="form-control" >
+                                <input type="email" id="useremail" name="useremail" class="form-control" value="{{$data->email}}">
+                                <input type="hidden" id="new_user_id" name="new_user_id" class="form-control" value="{{$data->new_user_id}}" >
 
                                 <label>Billing Address </label>
-                                <input type="text" placeholder="Address" id="useraddress" name="useraddress" class="form-control" >
+                                <input type="text" placeholder="Address" id="useraddress" name="useraddress" class="form-control" value="{{$data->billing_address}}" >
                             </div>
                             <div class="col-md-4 ">
 
                                 <label> Select Logo</label>
                                 <input type="file" id="image" name="image" class="form-control" onchange="readURL(this);" />
-                                <img id="blah" src="{{ asset('images/company/'.\App\Models\CompanyDetail::where('id',1)->first()->header_logo)}}" alt="Logo" width="270px" />
+                                <img id="blah" src="{{ asset('images/'.$data->image)}}" alt="Logo" width="270px" />
 
                                 <label> Company Name</label>
-                                <input type="text" id="company_name" name="company_name" class="form-control" value="{{Auth::user()->bname}}">
+                                <input type="text" id="company_name" name="company_name" class="form-control" value="{{$data->company_name}}">
 
                                 <label> Vat no </label>
-                                <input type="text" id="company_vatno" name="company_vatno" class="form-control">
+                                <input type="text" id="company_vatno" name="company_vatno" class="form-control" value="{{$data->company_vatno}}">
 
                                 <label> Tell No</label>
-                                <input type="text" id="company_tell_no" name="company_tell_no" class="form-control" value="{{Auth::user()->phone}}">
+                                <input type="text" id="company_tell_no" name="company_tell_no" class="form-control" value="{{$data->company_tell_no}}">
 
                                 <label>Company Email </label>
-                                <input type="text" id="company_email" name="company_email" class="form-control" value="{{Auth::user()->email}}">
+                                <input type="text" id="company_email" name="company_email" class="form-control" value="{{$data->company_email}}">
                                 
                             </div>
                             <div class="col-md-4 ">
                                 <label> Acct No</label>
-                                <input type="text" id="acct_no" name="acct_no" class="form-control" value="{{$bankinfo->bank_acc_number}}">
+                                <input type="text" id="acct_no" name="acct_no" class="form-control" value="{{$data->acct_no}}">
 
                                 <label> Bank </label>
-                                <input type="text" id="bank" name="bank" class="form-control">
+                                <input type="text" id="bank" name="bank" class="form-control" value="{{$data->bank}}">
 
                                 <label> Sort-Code</label>
-                                <input type="text" id="short_code" name="short_code" class="form-control" value="{{$bankinfo->bank_acc_sort_code}}">
+                                <input type="text" id="short_code" name="short_code" class="form-control" value="{{$data->short_code}}">
 
                             </div>
 
@@ -151,34 +152,33 @@
                                     </thead>
                                     <tbody id="inner">
 
-                                            <tr class="item-row" style="position:realative;">
-                                                <td class="px-1">
-                                                    <div style="color: white;  user-select:none;  padding: 5px;    background: red;    width: 45px;    display: flex;    align-items: center; margin-right:5px;   justify-content: center;    border-radius: 4px;   left: 4px;    top: 8px;" onclick="removeRow(event)" >X</div>
-                                                </td>
-                                                <td class="px-1">
-                                                    <input class="form-control" name="product_name[]" type="text">
-                                                </td>
-                                                <td class="fs-16 txt-secondary px-1">
-                                                    <input class="form-control" name="description[]" type="text">
-                                                </td>
-                                                <td class="fs-16 txt-secondary px-1">
-                                                    <input style="min-width: 50px;"  type="number" name="quantity[]" class="form-control quantity" value="1" min="1">
-                                                </td>
+                                        @foreach ($data->invoicedetail as $invdtl)
+                                        <tr class="item-row" style="position:realative;">
+                                            <td class="px-1">
+                                            </td>
+                                            <td class="px-1">
+                                                <input class="form-control" name="product_name[]" type="text" value="{{$invdtl->product}}">
+                                                <input class="form-control" name="invdtlid[]" type="hidden" value="{{$invdtl->id}}">
+                                            </td>
+                                            <td class="fs-16 txt-secondary px-1">
+                                                <input class="form-control" name="description[]" type="text" value="{{$invdtl->description}}">
+                                            </td>
+                                            <td class="fs-16 txt-secondary px-1">
+                                                <input style="min-width: 50px;"  type="number" name="quantity[]" class="form-control quantity" value="{{$invdtl->quantity}}" min="1">
+                                            </td>
+                                            <td class="fs-16 txt-secondary px-1">
+                                                <input style="min-width: 50px;"  type="number" name="unit_rate[]" class="form-control rate" value="{{$invdtl->unit_rate}}" min="0">
+                                            </td>
+                                            <td class="fs-16 txt-secondary px-1">
+                                                <input style="min-width: 50px;"  type="number" name="amount[]" class="form-control amount" value="{{$invdtl->amount}}" min="0">
+                                            </td>
+                                            <td class="fs-16 txt-secondary px-1">
+                                                <input style="min-width: 50px;"  type="number" name="vat[]" class="form-control vat" value="{{$invdtl->vat}}" min="0">
+                                            </td>
+                                        </tr>
+                                        @endforeach
 
-                                                <td class="fs-16 txt-secondary px-1">
-                                                    <input style="min-width: 50px;"  type="number" name="unit_rate[]" class="form-control rate" value="0" min="0">
-                                                </td>
-
-                                                <td class="fs-16 txt-secondary px-1">
-                                                    <input style="min-width: 50px;"  type="number" name="amount[]" class="form-control amount" value="0" min="0">
-                                                </td>
-
-                                                <td class="fs-16 txt-secondary px-1">
-                                                    <input style="min-width: 50px;"  type="number" name="vat[]" class="form-control vat" value="0" min="0">
-                                                </td>
-
-                                                
-                                            </tr>
+                                            
                                             
 
                                     </tbody>
@@ -200,7 +200,7 @@
 
                             <div class="col-md-4 ">
                                 <label> Message on Invoice</label>
-                                <textarea name="invmessg" id="invmessg" cols="30" rows="5" class="form-control"></textarea>
+                                <textarea name="invmessg" id="invmessg" cols="30" rows="5" class="form-control">{{ $data->message_on_invoice}}</textarea>
                                 
                                 
                                
@@ -214,25 +214,25 @@
                                         <tr>
                                             <td style="text-align: left">Subtotal: </td>
                                             <td style="text-align: left;width: 108px;" class="">
-                                                <input type="text"  name="subtotal" id="subtotal" class="form-control" readonly>
+                                                <input type="text"  name="subtotal" id="subtotal" class="form-control" value="{{$data->subtotal}}" readonly>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="text-align: left">Vat: </td>
                                             <td style="text-align: left;width: 108px;" class="">
-                                                <input type="text"  name="totalvat" id="totalvat" class="form-control" readonly>
+                                                <input type="text"  name="totalvat" id="totalvat" class="form-control" value="{{$data->vat}}" readonly>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="text-align: left">Discount: </td>
                                             <td style="text-align: left;width: 108px;" class="">
-                                                <input type="text"  name="discount" id="discount" value="0" class="form-control">
+                                                <input type="text"  name="discount" id="discount" value="0" class="form-control" value="{{$data->discount}}">
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="text-align: left">Total: </td>
                                             <td style="text-align: left;width: 108px;" class="">
-                                                <input type="text"  name="totalamount" id="totalamount" class="form-control" readonly>
+                                                <input type="text"  name="totalamount" id="totalamount" class="form-control"  value="{{$data->total}}" readonly>
                                             </td>
                                         </tr>
                                         
@@ -254,10 +254,10 @@
                             </div>
                             <div class="col-md-4 ">
                                 
-
+                                <button type="button" class="text-white btn-theme ml-1 btn-block" id="updateBtn">Update </button>
                                 {{-- <button type="button" class="text-white btn-theme ml-1 btn-block " id="">Save as .xlsx </button> --}}
-                                <button type="button" class="text-white btn-theme ml-1 btn-block savePdfBtn" id="savePdfBtn">Save as pdf </button>
-                                <button type="button" class="text-white btn-theme ml-1 btn-block"  id="saveinvBtn">Email as pdf </button>
+                                {{-- <button type="button" class="text-white btn-theme ml-1 btn-block savePdfBtn" id="savePdfBtn">Save as pdf </button> --}}
+                                {{-- <button type="button" class="text-white btn-theme ml-1 btn-block"  id="saveinvBtn">Email as pdf </button> --}}
                                 {{-- <button type="button" class="text-white btn-theme ml-1 btn-block">Add to record </button>
                                 <button type="button" class="text-white btn-theme ml-1 btn-block">Start new Inv </button> --}}
 
@@ -437,14 +437,11 @@
         // unit price calculation end
         
 
-        $(document).on('click', '.savebtn', function () {
-            var useremail = $("#useremail").val();
-            $('#myModal').find('.modal-body #tomail').val(useremail);
-        });
+        
 
 
-        var invoiceurl = "{{URL::to('/user/invoice')}}";
-        $("body").delegate("#saveinvBtn","click",function(event){
+        var upurl = "{{URL::to('/user/invoice-update')}}";
+        $("body").delegate("#updateBtn","click",function(event){
                 event.preventDefault();
 
                 var image = $('#image').prop('files')[0];
@@ -454,6 +451,7 @@
                 
                 var form_data = new FormData();
                 form_data.append('image', image);
+                form_data.append("dataid", $("#dataid").val());
                 form_data.append("user_name", $("#user_name").val());
                 form_data.append("useremail", $("#useremail").val());
                 form_data.append("new_user_id", $("#new_user_id").val());
@@ -481,6 +479,9 @@
                 form_data.append("bank", $("#bank").val());
                 form_data.append("short_code", $("#short_code").val());
 
+                var invdtlid = $("input[name='invdtlid[]']")
+                    .map(function(){return $(this).val();}).get();
+
                 var product_name = $("input[name='product_name[]']")
                     .map(function(){return $(this).val();}).get();
 
@@ -499,6 +500,7 @@
                 var vat = $("input[name='vat[]']")
                     .map(function(){return $(this).val();}).get();
 
+                    form_data.append('invdtlid', invdtlid);
                     form_data.append('product_name', product_name);
                     form_data.append('description', description);
                     form_data.append('quantity', quantity);
@@ -506,10 +508,9 @@
                     form_data.append('amount', amount);
                     form_data.append('vat', vat);
 
-                    console.log(product_name)
 
                 $.ajax({
-                      url: invoiceurl,
+                      url: upurl,
                       method: "POST",
                       contentType: false,
                       processData: false,
@@ -532,94 +533,7 @@
         });
 
 
-        var invoicepdfurl = "{{URL::to('/user/invoice-pdf')}}";
-        $("body").delegate("#savePdfBtn","click",function(event){
-                event.preventDefault();
-
-                var image = $('#image').prop('files')[0];
-                    if(typeof image === 'undefined'){
-                        image = 'null';
-                    }
-                
-                var form_data = new FormData();
-                form_data.append('image', image);
-                form_data.append("user_name", $("#user_name").val());
-                form_data.append("useremail", $("#useremail").val());
-                form_data.append("new_user_id", $("#new_user_id").val());
-                form_data.append("useraddress", $("#useraddress").val());
-                form_data.append("terms", $("#terms").val());
-                form_data.append("invoice_date", $("#invoice_date").val());
-                form_data.append("due_date", $("#due_date").val());
-                form_data.append("invmessg", $("#invmessg").val());
-                form_data.append("appointmentmessg", $("#appointmentmessg").val());
-                form_data.append("tomail", $("#tomail").val());
-                form_data.append("subjectmail", $("#subjectmail").val());
-                form_data.append("mailbody", $("#mailbody").val());
-                form_data.append("subtotal", $("#subtotal").val());
-                form_data.append("totalamount", $("#totalamount").val());
-                form_data.append("balancedue", $("#balancedue").val());
-                form_data.append("invoiceid", $("#invoiceid").val());
-                form_data.append("totalvat", $("#totalvat").val());
-                form_data.append("discount", $("#discount").val());
-
-                form_data.append("company_name", $("#company_name").val());
-                form_data.append("company_vatno", $("#company_vatno").val());
-                form_data.append("company_tell_no", $("#company_tell_no").val());
-                form_data.append("company_email", $("#company_email").val());
-                form_data.append("acct_no", $("#acct_no").val());
-                form_data.append("bank", $("#bank").val());
-                form_data.append("short_code", $("#short_code").val());
-
-                var product_name = $("input[name='product_name[]']")
-                    .map(function(){return $(this).val();}).get();
-
-                var description = $("input[name='description[]']")
-                    .map(function(){return $(this).val();}).get();
-
-                var quantity = $("input[name='quantity[]']")
-                    .map(function(){return $(this).val();}).get();
-
-                var unit_rate = $("input[name='unit_rate[]']")
-                    .map(function(){return $(this).val();}).get();
-
-                var amount = $("input[name='amount[]']")
-                    .map(function(){return $(this).val();}).get();
-                    
-                var vat = $("input[name='vat[]']")
-                    .map(function(){return $(this).val();}).get();
-
-                    form_data.append('product_name', product_name);
-                    form_data.append('description', description);
-                    form_data.append('quantity', quantity);
-                    form_data.append('unit_rate', unit_rate);
-                    form_data.append('amount', amount);
-                    form_data.append('vat', vat);
-
-                    console.log(product_name)
-
-                $.ajax({
-                      url: invoicepdfurl,
-                      method: "POST",
-                      contentType: false,
-                      processData: false,
-                      data:form_data,
-                      success: function (d) {
-                            console.log(d);
-                          if (d.status == 303) {
-                                $(".invermsg").html(d.message);
-                          }else if(d.status == 300){
-                                $(".invermsg").html(d.message);
-                                pagetop();
-                                window.open(`https://www.localhost/laravel/taxdocs/public/user/invoice/${d.id}`, '_blank');
-                                window.setTimeout(function(){location.reload()},2000)
-                          }
-                      },
-                      error: function (d) {
-                          console.log(d);
-                      }
-                  });
-
-        });
+        
 
         
 

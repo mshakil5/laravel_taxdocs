@@ -8,41 +8,6 @@
 
 <div class="dashboard-content">
 
-    
-
-    <section class="profile purchase-status px-4">
-
-        <div class="title-section">
-            <span class="iconify" data-icon="clarity:heart-solid"></span>
-            <div class="mx-2">Add New Image</div>
-        </div>
-
-        <div class="title-section row mt-3">
-            <div class="col-md-12">
-                <div class="ermsg"></div>
-                <div class="col-md-12 text-muted bg-white ">
-                        <div class="row">
-                            <div class="col-md-4 ">
-                                <input type="date" placeholder="Date" id="date" name="date"  class="form-control">
-                            </div>
-                            
-                            <div class="col-md-4 ">
-                                <input type="file" placeholder="Image" id="image" name="image" class="form-control">
-                            </div>
-                            {{-- <div class="col-md-12 my-2">
-                                <input type="text" placeholder="Description" class="form-control">
-                            </div> --}}
-                            <div class="col-md-12 my-2">
-                                <button class="text-white btn-theme ml-1" id="addBtn" type="submit"> Submit </button>
-                            </div>
-                        </div>
-                </div>
-            </div>
-        </div>
-
-    </section>
-
-
 
     <section class=""> 
         <div class="row  my-3 mx-0 "> 
@@ -55,41 +20,23 @@
                                 <thead>
                                     <tr> 
                                         <th style="text-align: center">Sl</th>
-                                        <th style="text-align: center">Date</th>
-                                        <th style="text-align: center;width:50%">Image/PDF</th>
-                                        <th style="text-align: center">Action </th> 
+                                        <th style="text-align: center">Name</th>
+                                        <th style="text-align: center;width:50%">Email</th>
+                                        <th style="text-align: center">Address </th> 
                                     </tr>
                                 </thead>
                                 <tbody>
 
-                                    @foreach (\App\Models\Photo::where('user_id',Auth::user()->id)->orderby('id','DESC')->get() as $key => $data)
+                                    @foreach ($data as $key => $data)
                                     <tr>
                                       <td style="text-align: center">{{ $key + 1 }}</td>
-                                      <td style="text-align: center">{{ $data->date }}</td>
+                                      <td style="text-align: center">{{ $data->name }}</td>
                                       <td style="text-align: center;width:50%">
-                                          @if ($data->image)
-
-                                          @php
-                                            //   $extension = $data->image->getClientOriginalExtension();
-                                              $ext = pathinfo(storage_path().$data->image, PATHINFO_EXTENSION);
-                                          @endphp
-                                            @if ($ext == 'pdf')
-                                                <div class="row justify-content-center">
-                                                    <iframe src="{{asset('images/'.$data->image)}}" width="30%" height="100px">
-                                                            This browser does not support PDFs.Please download the PDF to view it: <a href="{{asset('images/'.$data->image)}}">Download PDF</a>
-                                                    </iframe>
-                                                </div>
-                                            @else
-                                                <img src="{{asset('images/'.$data->image)}}" height="120px" width="220px" alt="">
-                                            @endif
-                                            
-                                          @endif
+                                        {{ $data->email }}
                                       </td>
                                       
                                       <td style="text-align: center">
-                                        @if ($data->status == 0)
-                                            <a id="deleteBtn" rid="{{$data->id}}" class="text-white btn-theme">Delete</a>
-                                        @endif
+                                        {{ $data->address }}
                                       </td>
                                     </tr>
                                     @endforeach

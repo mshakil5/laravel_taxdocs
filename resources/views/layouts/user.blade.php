@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="{{ asset('user/css/swiper-bundle.min.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('user/css/slick.min.css')}}" />
     <link rel="stylesheet" href="{{ asset('user/css/animate.min.css')}}" />
+    {{-- <link rel="stylesheet" href="{{URL::to('user/css/font-awesome.min.css')}}"> --}}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     {{--  datatables --}}
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/dataTables.bootstrap4.min.css">
@@ -59,6 +61,18 @@
                         <a href="{{route('user.invoice')}}">
                             <span class="iconify" data-icon="icon-park-outline:transaction"></span>
                             Invoice
+                        </a>
+                    </li>
+                    <li class="nav-item {{ (request()->is('all-invoice*')) ? 'active' : '' }}">
+                        <a href="{{route('user.allinvoice')}}">
+                            <span class="iconify" data-icon="icon-park-outline:transaction"></span>
+                            All Invoice
+                        </a>
+                    </li>
+                    <li class="nav-item {{ (request()->is('user/new-user*')) ? 'active' : '' }}">
+                        <a href="{{route('user.newuser')}}">
+                            <span class="iconify" data-icon="icon-park-outline:transaction"></span>
+                            All User
                         </a>
                     </li>
                    

@@ -12,4 +12,8 @@ class Invoice extends Model
     public function invoicedetail(){
         return $this->hasMany('App\Models\InvoiceDetail');
     }
+
+    public function newuser(){
+        return $this->belongsTo('App\Models\NewUser');
+    }
 }

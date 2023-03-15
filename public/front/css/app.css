@@ -183,8 +183,7 @@ body {
 }
 
 .bleesed .plan-title {
-  font-size: 80px;
-  text-align: left;
+  font-size: 56px;
   line-height: 0.8;
   color: #003057;
   font-family: "DarkerGrotesque-semibold";
@@ -723,18 +722,21 @@ body::-webkit-scrollbar-thumb {
   }
 }
 .list-theme li {
+  
   font-size: 25px;
   line-height: 1;
   color: #003057;
   margin-bottom: 15px;
   font-family: "DarkerGrotesque-bold";
-  margin: 15px 0;
+  margin: 10px 0;
   background-position: 0px 0px;
   background-size: contain;
   background-repeat: no-repeat;
-  padding-left: 64px;
+  padding-left: 50px;
   list-style: none;
   background-image: url("../images/mark.svg");
+  background-size: 25px!important;
+  background-position: 1% 21%;
 }
 @media (max-width: 768px) {
   .list-theme li {

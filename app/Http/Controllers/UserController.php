@@ -218,6 +218,12 @@ class UserController extends Controller
         }
     }
 
+    public function getNewUser()
+    {
+        $data = NewUser::where('user_id', '=', Auth::user()->id)->get();
+        return view('user.alluser', compact('data'));
+    }
+
     
 
     public function newUserStore(Request $request)
