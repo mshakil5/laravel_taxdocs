@@ -251,4 +251,15 @@ class UserController extends Controller
             return response()->json(['status'=> 300,'username'=>$userDtl->name,'useremail'=>$userDtl->email,'user_id'=>$userDtl->id,'address'=>$userDtl->address]);
         }
     }
+
+    public function newUserDelete($id)
+    {
+
+        if(NewUser::destroy($id)){
+            return response()->json(['success'=>true,'message'=>'Listing Deleted']);
+        }
+        else{
+            return response()->json(['success'=>false,'message'=>'Update Failed']);
+        }
+    }
 }

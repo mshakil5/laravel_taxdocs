@@ -91,6 +91,7 @@ Route::group(['prefix' =>'user/', 'middleware' => ['auth', 'is_user']], function
     Route::get('/new-user', [UserController::class, 'getNewUser'])->name('user.newuser');
     Route::post('/new-user', [UserController::class, 'newUserStore']);
     Route::post('/get-new-users', [UserController::class, 'getUserDetails']);
+    Route::get('/new-user/{id}', [UserController::class, 'newUserDelete']);
 
     
     // invoice
@@ -98,6 +99,10 @@ Route::group(['prefix' =>'user/', 'middleware' => ['auth', 'is_user']], function
     Route::post('/invoice', [InvoiceController::class, 'invoiceStore']);
     Route::post('/invoice-pdf', [InvoiceController::class, 'invoicePdfStore']);
     Route::get('invoice/{id}', [InvoiceController::class, 'invoice_download'])->name('invoice.download');
+
+    //paid invoice
+    Route::get('invoice-paid-status', [InvoiceController::class, 'paidInvoice']);
+    Route::get('/paid-invoice', [InvoiceController::class, 'getPaidInvoice'])->name('user.paidinvoice');
 
     
     Route::get('/invoice-sent-email/{id}', [InvoiceController::class, 'invoiceSendEmail'])->name('user.invoicesendemail');

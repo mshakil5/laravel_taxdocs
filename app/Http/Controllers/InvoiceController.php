@@ -20,13 +20,31 @@ class InvoiceController extends Controller
 
     public function getAllInvoice()
     {
-        $data = Invoice::with('invoicedetail')->where('user_id',Auth::user()->id)->orderby('id','DESC')->get();
+        $data = Invoice::with('invoicedetail')->where('user_id',Auth::user()->id)->where('paid',0)->orderby('id','DESC')->get();
         return view('user.invoice.index', compact('data'));
+    }
+
+    public function getPaidInvoice()
+    {
+        $data = Invoice::with('invoicedetail')->where('user_id',Auth::user()->id)->where('paid',1)->orderby('id','DESC')->get();
+        return view('user.invoice.paidinvoice', compact('data'));
+    }
+
+    public function paidInvoice(Request $request)
+    {
+
+        $data = Invoice::find($request->id);
+        $data->paid = "1";
+        if ($data->save()) {
+            $message ="<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Invoice Paid Successfully.</b></div>";
+            return response()->json(['status'=> 300,'message'=>$message]);
+        }
+
     }
 
     public function getInvoiceDetails($id)
     {
-        $data = InvoiceDetail::where('invoice_id',$id)->get();
+        $data = Invoice::with('invoicedetail')->where('id',$id)->first();
         return view('user.invoice.invoicedetail', compact('data'));
     }
 
@@ -86,6 +104,14 @@ class InvoiceController extends Controller
         $amounts = explode(",",$request->amount);
         $unit_rates = explode(",",$request->unit_rate);
         $vats = explode(",",$request->vat);
+
+        foreach($product_names as $key => $name){
+            if($descriptions[$key] == "" ||  $quantitys[$key] == "" || $amounts[$key] == "" || $unit_rates[$key] == "" ){
+            $message ="<div class='alert alert-danger'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill all field.</b></div>";
+            return response()->json(['status'=> 303,'message'=>$message]);
+            exit();
+            }
+        }
 
         $invdata = new Invoice;
         $invdata->user_name = $request->user_name;
@@ -169,6 +195,12 @@ class InvoiceController extends Controller
 
     public function invoicePdfStore(Request $request)
     {
+        if($request->image == 'null'){
+            $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill \"Image\" field..!</b></div>";
+            return response()->json(['status'=> 303,'message'=>$message]);
+            exit();
+        }
+
         if(empty($request->new_user_id)){
             $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please Select a \"User\" field..!</b></div>";
             return response()->json(['status'=> 303,'message'=>$message]);
@@ -181,6 +213,14 @@ class InvoiceController extends Controller
         $amounts = explode(",",$request->amount);
         $unit_rates = explode(",",$request->unit_rate);
         $vats = explode(",",$request->vat);
+
+        foreach($product_names as $key => $name){
+            if($descriptions[$key] == "" ||  $quantitys[$key] == "" || $amounts[$key] == "" || $unit_rates[$key] == ""  ){
+            $message ="<div class='alert alert-danger'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill all field.</b></div>";
+            return response()->json(['status'=> 303,'message'=>$message]);
+            exit();
+            }
+        }
 
         $data = new Invoice;
         $data->user_name = $request->user_name;
@@ -239,7 +279,7 @@ class InvoiceController extends Controller
 
             //stores the pdf for invoice
             $pdf = PDF::loadView('invoices.invoice', compact('data'));
-
+            
             $message ="<div class='alert alert-success' style='color:white'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Invoice Store Successfully.</b></div>";
             return response()->json(['status'=> 300,'id'=>$data->id,'message'=>$message]);
             // return $pdf->download('order-'.$data->invoiceid .'.pdf');

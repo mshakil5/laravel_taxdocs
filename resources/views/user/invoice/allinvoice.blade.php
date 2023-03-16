@@ -3,11 +3,6 @@
 
 
 <style>
-    .pl25{
-        padding-left: 25px;
-    }
-</style>
-<style>
     article, aside, figure, footer, header, hgroup, 
     menu, nav, section { display: block; }
 </style>
@@ -31,7 +26,7 @@
             <div class="mx-2"> Invoice Information</div>
         </div>
 
-        <button class="text-white btn-theme ml-1 mt-3" id="newBtn"> Add New </button>
+        {{-- <button class="text-white btn-theme ml-1 mt-3" id="newBtn"> Add New </button> --}}
 
     </section>  
 
@@ -84,13 +79,24 @@
                                 <label> Terms</label>
                                 <input type="text" id="terms" name="terms" class="form-control" >
 
-                                <label> Invoice To</label>
-                                <select name="user_name" id="user_name" class="form-control select2" >
-                                    <option value="">Select</option>
-                                    @foreach (\App\Models\NewUser::where('user_id', Auth::user()->id)->get() as $nuser)
-                                    <option value="{{$nuser->id}}">{{$nuser->name}}</option>
-                                    @endforeach
-                                </select>
+                                <div class="row">
+                                    <div class="col-8">
+                                        <label> Invoice To</label>
+                                        <select name="user_name" id="user_name" class="form-control select2" >
+                                            <option value="">Select</option>
+                                            @foreach (\App\Models\NewUser::where('user_id', Auth::user()->id)->get() as $nuser)
+                                            <option value="{{$nuser->id}}">{{$nuser->name}}</option>
+                                            @endforeach
+                                        </select>
+                                        
+                                    </div>
+                                    <div class="col-4">
+                                      
+                                        <button class="text-white btn-theme ml-1 mt-4" id="newBtn"> Add New </button>
+                                    </div>
+                                </div>
+
+                                
 
                                 <label> Email</label>
                                 <input type="email" id="useremail" name="useremail" class="form-control" >
@@ -103,7 +109,7 @@
 
                                 <label> Select Logo</label>
                                 <input type="file" id="image" name="image" class="form-control" onchange="readURL(this);" />
-                                <img id="blah" src="{{ asset('images/company/'.\App\Models\CompanyDetail::where('id',1)->first()->header_logo)}}" alt="Logo" width="270px" />
+                                <img id="blah" src="{{ asset('images/company/'.\App\Models\CompanyDetail::where('id',1)->first()->header_logo)}}" alt="Logo" width="220px" />
 
                                 <label> Company Name</label>
                                 <input type="text" id="company_name" name="company_name" class="form-control" value="{{Auth::user()->bname}}">
@@ -610,8 +616,8 @@
                           }else if(d.status == 300){
                                 $(".invermsg").html(d.message);
                                 pagetop();
-                                window.open(`https://www.taxdocs.co.uk/user/invoice/${d.id}`, '_blank');
-                                // window.setTimeout(function(){location.reload()},2000)
+                                window.open(`https://www.taxdocs.co.uk/user/invoice/${d.id}`);
+                                window.setTimeout(function(){location.reload()},2000)
                           }
                       },
                       error: function (d) {

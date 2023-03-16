@@ -46,6 +46,7 @@ return new class extends Migration
             $table->double('balance_due',10,2)->nullable();
             $table->boolean('admin_notification')->default(0);
             $table->boolean('accfirm_notification')->default(0);
+            $table->boolean('paid')->default(0);
             $table->boolean('status')->default(0);
             $table->string('updated_by')->nullable();
             $table->string('created_by')->nullable();

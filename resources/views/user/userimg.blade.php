@@ -75,12 +75,12 @@
                                           @endphp
                                             @if ($ext == 'pdf')
                                                 <div class="row justify-content-center">
-                                                    <iframe src="{{asset('images/'.$data->image)}}" width="30%" height="100px">
+                                                    <iframe src="{{asset('images/'.$data->image)}}" width="20%" height="100px">
                                                             This browser does not support PDFs.Please download the PDF to view it: <a href="{{asset('images/'.$data->image)}}">Download PDF</a>
                                                     </iframe>
                                                 </div>
                                             @else
-                                                <img src="{{asset('images/'.$data->image)}}" height="120px" width="220px" alt="">
+                                                <img src="{{asset('images/'.$data->image)}}" height="100px" width="200px" alt="">
                                             @endif
                                             
                                           @endif

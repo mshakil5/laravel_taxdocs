@@ -31,8 +31,6 @@
             <div class="mx-2"> Invoice Information</div>
         </div>
 
-        <button class="text-white btn-theme ml-1 mt-3" id="newBtn"> Add New </button>
-
     </section>  
 
     <section class="profile purchase-status px-4" id="addThisFormContainer">
@@ -85,13 +83,24 @@
                                 <label> Terms</label>
                                 <input type="text" id="terms" name="terms" class="form-control" value="{{$data->terms}}">
 
-                                <label> Invoice To</label>
-                                <select name="user_name" id="user_name" class="form-control select2" >
-                                    <option value="">Select</option>
-                                    @foreach (\App\Models\NewUser::where('user_id', Auth::user()->id)->get() as $nuser)
-                                    <option value="{{$nuser->id}}" @if ($nuser->id == $data->user_name) selected @endif>{{$nuser->name}}</option>
-                                    @endforeach
-                                </select>
+                                <div class="row">
+                                    <div class="col-8">
+                                        <label> Invoice To</label>
+                                        <select name="user_name" id="user_name" class="form-control select2" >
+                                            <option value="">Select</option>
+                                            @foreach (\App\Models\NewUser::where('user_id', Auth::user()->id)->get() as $nuser)
+                                            <option value="{{$nuser->id}}" @if ($nuser->id == $data->user_name) selected @endif>{{$nuser->name}}</option>
+                                            @endforeach
+                                        </select>
+                                        
+                                    </div>
+                                    <div class="col-4">
+                                      
+                                        <button class="text-white btn-theme ml-1 mt-4" id="newBtn"> Add New </button>
+                                    </div>
+                                </div>
+
+                                
 
                                 <label> Email</label>
                                 <input type="email" id="useremail" name="useremail" class="form-control" value="{{$data->email}}">
