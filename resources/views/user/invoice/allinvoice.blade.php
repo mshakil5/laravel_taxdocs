@@ -26,8 +26,6 @@
             <div class="mx-2"> Invoice Information</div>
         </div>
 
-        {{-- <button class="text-white btn-theme ml-1 mt-3" id="newBtn"> Add New </button> --}}
-
     </section>  
 
     <section class="profile purchase-status px-4" id="addThisFormContainer">
@@ -251,12 +249,8 @@
                             </div>
                             <div class="col-md-4 ">
                                 
-
-                                {{-- <button type="button" class="text-white btn-theme ml-1 btn-block " id="">Save as .xlsx </button> --}}
                                 <button type="button" class="text-white btn-theme ml-1 btn-block savePdfBtn" id="savePdfBtn">Save as pdf </button>
                                 <button type="button" class="text-white btn-theme ml-1 btn-block"  id="saveinvBtn">Email as pdf </button>
-                                {{-- <button type="button" class="text-white btn-theme ml-1 btn-block">Add to record </button>
-                                <button type="button" class="text-white btn-theme ml-1 btn-block">Start new Inv </button> --}}
 
                             </div>
 
@@ -598,7 +592,6 @@
                           }else if(d.status == 300){
                                 $(".invermsg").html(d.message);
                                 pagetop();
-                                // window.open(`https://www.localhost/laravel/laravel_taxdocs/public/user/invoice/${d.id}`);
                                 window.open(`https://www.taxdocs.co.uk/user/invoice/${d.id}`);
                                 window.setTimeout(function(){location.reload()},2000)
                           }
