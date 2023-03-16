@@ -105,7 +105,8 @@ Route::group(['prefix' =>'user/', 'middleware' => ['auth', 'is_user']], function
     Route::get('/paid-invoice', [InvoiceController::class, 'getPaidInvoice'])->name('user.paidinvoice');
 
     
-    Route::get('/invoice-sent-email', [InvoiceController::class, 'invoiceSendEmail'])->name('user.invoicesendemail');
+    Route::get('/invoice-sent-email/{id}', [InvoiceController::class, 'invoiceSendEmail'])->name('user.invoicesendemail');
+    // Route::get('/invoice-sent-email', [InvoiceController::class, 'invoiceSendEmail'])->name('user.invoicesendemail');
     Route::get('/invoice-edit/{id}', [InvoiceController::class, 'invoiceEdit'])->name('user.invoiceedit');
     
     Route::post('/invoice-update', [InvoiceController::class, 'invoiceUpdate']);
