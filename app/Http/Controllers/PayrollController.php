@@ -99,7 +99,7 @@ class PayrollController extends Controller
         $payrolldtl_ids = $request->payrolldtl_id;
 
         foreach($names as $key => $name){
-            if($frequencys[$key] == "" || $national_insurances == "" || $holiday_hours[$key] == "" || $working_hours[$key] == "" || $pay_rates[$key] == "" || $notes[$key] == "" || $total_paid_hours[$key] == "" || $overtime_hours[$key] == "" || $names[$key] == ""){
+            if($frequencys[$key] == "" || $national_insurances == "" || $holiday_hours[$key] == "" || $working_hours[$key] == "" || $pay_rates[$key] == ""  || $total_paid_hours[$key] == "" || $overtime_hours[$key] == "" || $names[$key] == ""){
             $message ="<div class='alert alert-danger'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill all field.</b></div>";
             return response()->json(['status'=> 303,'message'=>$message]);
             exit();

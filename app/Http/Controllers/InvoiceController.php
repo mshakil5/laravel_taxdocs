@@ -64,11 +64,12 @@ class InvoiceController extends Controller
             file_put_contents(public_path().'/invoice/'.'Invoice#'.$data->invoiceid.'.pdf', $output);
             $array['view'] = 'emails.invoice';
             $array['subject'] = 'Invoice - '.$data->invoiceid;
-            $array['from'] = 'info@taxdocs.com';
+            $array['from'] = 'info@taxdocs.co.uk';
             $array['content'] = 'Hi, Your Invoice form has been placed';
             $array['file'] = public_path().'/invoice/Invoice#'.$data->invoiceid.'.pdf';
             $array['file_name'] = 'Invoice#'.$data->invoiceid.'.pdf';
             $array['subjectsingle'] = 'Invoice Placed - '.$data->invoiceid;
+
             Mail::to($data->email)->queue(new InvoiceMail($array));
             unlink($array['file']);
 
