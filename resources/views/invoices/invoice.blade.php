@@ -59,11 +59,11 @@
                             <thead>
                                 <tr>
                                     <th  style="border: 1px solid #dee2e6!important; padding: 0 15px;">#</th>
-                                    <th  style="border: 1px solid #dee2e6!important; padding: 0 15px;">Product/Service Name</th>
                                     <th  style="border: 1px solid #dee2e6!important; padding: 0 15px;">Description</th>
                                     <th  style="border: 1px solid #dee2e6!important; padding: 0 15px;">Qty</th>
                                     <th  style="border: 1px solid #dee2e6!important; padding: 0 15px;">Price</th>
                                     <th  style="border: 1px solid #dee2e6!important; padding: 0 15px;">Vat Amount</th>
+                                    <th  style="border: 1px solid #dee2e6!important; padding: 0 15px;">Total (Exc VAT)</th>
 
                                 </tr>
                             </thead>
@@ -72,11 +72,11 @@
                                 @foreach ($data->invoicedetail as $key => $invoicedtl)
                                 <tr style="border-bottom:1px solid #dee2e6 ; border-right:1px solid #dee2e6 ; border-left:1px solid #dee2e6 ;">
                                     <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:center">{{ $key + 1 }}</td>
-                                    <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;">{{$invoicedtl->product}} </td>
                                     <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;">{{$invoicedtl->description}}  </td>
                                     <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:center">{{$invoicedtl->quantity}} </td>
                                     <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:right">{{ number_format($invoicedtl->unit_rate, 2) }}</td>
                                     <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:right">{{ number_format($invoicedtl->vat, 2) }}</td>
+                                    <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:right">{{ number_format($invoicedtl->quantity * $invoicedtl->unit_rate, 2) }}</td>
                                 </tr>
                                 @endforeach
                                 

@@ -145,14 +145,13 @@ class InvoiceController extends Controller
             exit();
         }
 
-        $product_names = explode(",",$request->product_name);
         $descriptions = explode(",",$request->description);
         $quantitys = explode(",",$request->quantity);
         $amounts = explode(",",$request->amount);
         $unit_rates = explode(",",$request->unit_rate);
         $vats = explode(",",$request->vat);
 
-        foreach($product_names as $key => $name){
+        foreach($descriptions as $key => $name){
             if($descriptions[$key] == "" ||  $quantitys[$key] == "" || $amounts[$key] == "" || $unit_rates[$key] == "" ){
             $message ="<div class='alert alert-danger'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill all field.</b></div>";
             return response()->json(['status'=> 303,'message'=>$message]);
@@ -197,12 +196,11 @@ class InvoiceController extends Controller
             $invdata->short_code = $request->short_code;
             $invdata->created_by = Auth::user()->id;
             if($invdata->save()){
-                foreach($product_names as $key => $value)
+                foreach($descriptions as $key => $value)
                 {
                     $invdtl = new InvoiceDetail();
                     $invdtl->invoice_id = $invdata->id;
                     $invdtl->user_id = Auth::user()->id;
-                    $invdtl->product = $product_names[$key];
                     $invdtl->description = $descriptions[$key]; 
                     $invdtl->quantity = $quantitys[$key]; 
                     $invdtl->unit_rate = $unit_rates[$key]; 
@@ -218,7 +216,7 @@ class InvoiceController extends Controller
                 file_put_contents(public_path().'/invoice/'.'Invoice#'.$data->invoiceid.'.pdf', $output);
                 $array['view'] = 'emails.invoice';
                 $array['subject'] = 'Invoice - '.$data->invoiceid;
-                $array['from'] = 'info@taxdocs.com';
+                $array['from'] = 'info@taxdocs.co.uk';
                 $array['content'] = 'Hi, Your Invoice form has been placed';
                 $array['file'] = public_path().'/invoice/Invoice#'.$data->invoiceid.'.pdf';
                 $array['file_name'] = 'Invoice#'.$data->invoiceid.'.pdf';
@@ -271,14 +269,13 @@ class InvoiceController extends Controller
             exit();
         }
         
-        $product_names = explode(",",$request->product_name);
         $descriptions = explode(",",$request->description);
         $quantitys = explode(",",$request->quantity);
         $amounts = explode(",",$request->amount);
         $unit_rates = explode(",",$request->unit_rate);
         $vats = explode(",",$request->vat);
 
-        foreach($product_names as $key => $name){
+        foreach($descriptions as $key => $name){
             if($descriptions[$key] == "" ||  $quantitys[$key] == "" || $amounts[$key] == "" || $unit_rates[$key] == ""  ){
             $message ="<div class='alert alert-danger'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill all field.</b></div>";
             return response()->json(['status'=> 303,'message'=>$message]);
@@ -323,12 +320,11 @@ class InvoiceController extends Controller
             $data->short_code = $request->short_code;
             $data->created_by = Auth::user()->id;
             if($data->save()){
-                foreach($product_names as $key => $value)
+                foreach($descriptions as $key => $value)
                 {
                     $invdtl = new InvoiceDetail();
                     $invdtl->invoice_id = $data->id;
                     $invdtl->user_id = Auth::user()->id;
-                    $invdtl->product = $product_names[$key];
                     $invdtl->description = $descriptions[$key]; 
                     $invdtl->quantity = $quantitys[$key]; 
                     $invdtl->unit_rate = $unit_rates[$key]; 

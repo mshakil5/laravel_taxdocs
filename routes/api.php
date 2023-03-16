@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\RegisterController;
 use App\Http\Controllers\Api\ImageController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\PayrollController;
   
 /*
 |--------------------------------------------------------------------------
@@ -47,5 +48,19 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('user/delete-bank-account/{id}', [UserController::class, 'deleteBankAccount']);
     // account active
     Route::post('active-account', [UserController::class, 'activeAccount']);
+
+    // new user
+    Route::get('/new-user', [UserController::class, 'getNewUser'])->name('user.newuser');
+    Route::post('/new-user', [UserController::class, 'newUserStore']);
+    Route::post('/get-new-users', [UserController::class, 'getUserDetails']);
+    Route::get('/new-user/{id}', [UserController::class, 'newUserDelete']);
+
+
+    // payroll
+    Route::get('/payroll', [PayrollController::class, 'index'])->name('user.payroll');
+    Route::get('/payroll-details/{id}', [PayrollController::class, 'payrollDetails'])->name('user.payrolldtl');
+    Route::post('/payroll', [PayrollController::class, 'payrollStore']);
+    Route::post('/payroll-update', [PayrollController::class, 'payrollUpdate']);
+
 });
      

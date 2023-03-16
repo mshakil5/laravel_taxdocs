@@ -319,7 +319,7 @@
         
         $(".add-row").click(function() {
             var markup =
-                '<tr class="item-row" style="position:realative"><td class="px-1"><div style="color:#fff;user-select:none;padding:5px;background:red;width:45px;display:flex;align-items:center;margin-right:5px;justify-content:center;border-radius:4px;left:4px;top:8px" onclick="removeRow(event)">X</div></td><td class="fs-16 txt-secondary px-1"><input class="form-control" name="description[]" type="text"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="quantity[]" class="form-control quantity" value="1" min="1"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="unit_rate[]" class="form-control rate" value="0" min="0"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="vat[]" class="form-control vat" value="0" min="0"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="amount[]" class="form-control amount" value="0" min="0"></td></tr>';
+                '<tr class="item-row" style="position:realative"><td class="px-1"><div style="color:#fff;user-select:none;padding:5px;background:red;width:45px;display:flex;align-items:center;margin-right:5px;justify-content:center;border-radius:4px;left:4px;top:8px" onclick="removeRow(event)">X</div></td><td class="px-1"><input class="form-control" name="product_name[]" type="text"></td><td class="fs-16 txt-secondary px-1"><input class="form-control" name="description[]"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="quantity[]" class="form-control quantity" value="1" min="1"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="unit_rate[]" class="form-control rate" value="0" min="0"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="amount[]" class="form-control amount" value="0" min="0"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="vat[]" class="form-control vat" value="0" min="0"></td></tr>';
 
             $("table #inner").append(markup);
         });
@@ -478,6 +478,8 @@
                 form_data.append("bank", $("#bank").val());
                 form_data.append("short_code", $("#short_code").val());
 
+                var product_name = $("input[name='product_name[]']")
+                    .map(function(){return $(this).val();}).get();
 
                 var description = $("input[name='description[]']")
                     .map(function(){return $(this).val();}).get();
@@ -494,12 +496,14 @@
                 var vat = $("input[name='vat[]']")
                     .map(function(){return $(this).val();}).get();
 
+                    form_data.append('product_name', product_name);
                     form_data.append('description', description);
                     form_data.append('quantity', quantity);
                     form_data.append('unit_rate', unit_rate);
                     form_data.append('amount', amount);
                     form_data.append('vat', vat);
 
+                    console.log(product_name)
 
                 $.ajax({
                       url: invoiceurl,
@@ -563,6 +567,8 @@
                 form_data.append("bank", $("#bank").val());
                 form_data.append("short_code", $("#short_code").val());
 
+                var product_name = $("input[name='product_name[]']")
+                    .map(function(){return $(this).val();}).get();
 
                 var description = $("input[name='description[]']")
                     .map(function(){return $(this).val();}).get();
@@ -579,11 +585,14 @@
                 var vat = $("input[name='vat[]']")
                     .map(function(){return $(this).val();}).get();
 
+                    form_data.append('product_name', product_name);
                     form_data.append('description', description);
                     form_data.append('quantity', quantity);
                     form_data.append('unit_rate', unit_rate);
                     form_data.append('amount', amount);
                     form_data.append('vat', vat);
+
+                    console.log(product_name)
 
                 $.ajax({
                       url: invoicepdfurl,
@@ -598,7 +607,6 @@
                           }else if(d.status == 300){
                                 $(".invermsg").html(d.message);
                                 pagetop();
-                                // window.open(`https://www.localhost/laravel/laravel_taxdocs/public/user/invoice/${d.id}`);
                                 window.open(`https://www.taxdocs.co.uk/user/invoice/${d.id}`);
                                 window.setTimeout(function(){location.reload()},2000)
                           }

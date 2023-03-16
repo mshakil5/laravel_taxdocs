@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
 use App\Models\User;
-use App\Models\Role;
+use App\Models\NewUser;
 use App\Models\BankAccountDetail;
 Use Image;
 use Illuminate\Support\Facades\Auth;
@@ -240,5 +240,51 @@ class UserController extends BaseController
                 return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
             }
         
+    }
+
+    public function getNewUser()
+    {
+        $data = NewUser::where('user_id', '=', Auth::user()->id)->get();
+        
+        if($data ==null){
+            $data = 'Data Not Found';
+        }
+        $responseArray = [
+            'status'=>'ok',
+            'data'=>$data
+        ]; 
+        return response()->json($responseArray,200);
+    }
+
+    public function newUserStore(Request $request)
+    {
+        $data = new NewUser;
+        $data->user_id = Auth::user()->id;
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->address = $request->address;
+        if ($data->save())
+            {
+                $responseArray = [
+                    'status'=>'User Create Successfully.',
+                    'data'=>$data
+                ];
+                return response()->json(['success'=>true,'response'=> $responseArray], 200);
+            }
+            else{
+                return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
+            }
+    }
+
+    public function newUserDelete($id)
+    {
+        if(NewUser::destroy($id)){
+            $responseArray = [
+                'status'=>'Data Deleted Successfully.'
+            ]; 
+            return response()->json($responseArray,200);
+        }else{
+            return response()->json(['success'=>false,'message'=>'Server Failed']);
+        }
     }
 }

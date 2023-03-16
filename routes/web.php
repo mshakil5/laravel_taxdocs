@@ -107,10 +107,8 @@ Route::group(['prefix' =>'user/', 'middleware' => ['auth', 'is_user']], function
     
     Route::post('/invoice-sent-email', [InvoiceController::class, 'invoiceSendEmail'])->name('user.invoicesendemail');
     Route::get('/invoice-edit/{id}', [InvoiceController::class, 'invoiceEdit'])->name('user.invoiceedit');
-    
     Route::post('/invoice-update', [InvoiceController::class, 'invoiceUpdate']);
     Route::get('/invoice-delete/{id}', [InvoiceController::class, 'delete']);
-
     
     Route::get('/all-invoice', [InvoiceController::class, 'getAllInvoice'])->name('user.allinvoice');
     Route::get('/invoice-details/{id}', [InvoiceController::class, 'getInvoiceDetails'])->name('user.invoicedtl');
