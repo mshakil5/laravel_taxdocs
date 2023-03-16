@@ -54,23 +54,33 @@ class InvoiceController extends Controller
         return view('user.invoice.invoiceedit', compact('data'));
     }
 
-    public function invoiceSendEmail($id)
+    public function invoiceSendEmail(Request $request)
     {
-        $data = Invoice::with('invoicedetail')->where('id',$id)->first();
+        try{
+        
+            $data = Invoice::with('invoicedetail')->where('id',$request->id)->first();
+            $pdf = PDF::loadView('invoices.invoice', compact('data'));
+            $output = $pdf->output();
+            file_put_contents(public_path().'/invoice/'.'Invoice#'.$data->invoiceid.'.pdf', $output);
+            $array['view'] = 'emails.invoice';
+            $array['subject'] = 'Invoice - '.$data->invoiceid;
+            $array['from'] = 'info@taxdocs.com';
+            $array['content'] = 'Hi, Your Invoice form has been placed';
+            $array['file'] = public_path().'/invoice/Invoice#'.$data->invoiceid.'.pdf';
+            $array['file_name'] = 'Invoice#'.$data->invoiceid.'.pdf';
+            $array['subjectsingle'] = 'Invoice Placed - '.$data->invoiceid;
+            Mail::to($data->email)->queue(new InvoiceMail($array));
+            unlink($array['file']);
 
-        $pdf = PDF::loadView('invoices.invoice', compact('data'));
-        $output = $pdf->output();
-        file_put_contents(public_path().'/invoice/'.'Invoice#'.$data->invoiceid.'.pdf', $output);
-        $array['view'] = 'emails.invoice';
-        $array['subject'] = 'Invoice - '.$data->invoiceid;
-        $array['from'] = 'info@taxdocs.com';
-        $array['content'] = 'Hi, Your Invoice form has been placed';
-        $array['file'] = public_path().'/invoice/Invoice#'.$data->invoiceid.'.pdf';
-        $array['file_name'] = 'Invoice#'.$data->invoiceid.'.pdf';
-        $array['subjectsingle'] = 'Invoice Placed - '.$data->invoiceid;
-        Mail::to($data->email)->queue(new InvoiceMail($array));
-        unlink($array['file']);
-        return redirect()->route('user.allinvoice');
+            $message ="<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Mail Send Successfully.</b></div>";
+            return response()->json(['status'=> 300,'message'=>$message]);
+
+        }catch (\Exception $e){
+            return response()->json(['status'=> 303,'message'=>'Server Error!!']);
+        }
+
+
+        
     }
 
     public function invoice_download($id)

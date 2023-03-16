@@ -50,7 +50,7 @@
                                       <td style="text-align: center">
 
                                         
-                                        <a class="text-decoration-none bg-success text-white py-1 px-3 rounded mb-1 d-block text-center" href="{{ route('user.invoicesendemail',$data->id)}}">
+                                        <a class="text-decoration-none bg-success text-white py-1 px-3 rounded mb-1 d-block text-center invoice-send-mail" href="#"  data-id="{{$data->id}}">
                                          <small>Send Email</small> </a>
                                          <a class="text-decoration-none bg-dark text-white py-1 px-3 rounded mb-1 d-block text-center invoice-paid-status" data-id="{{$data->id}}" href="#">
                                             <small>Paid</small> </a>
@@ -86,6 +86,35 @@
       $('.invoice-paid-status').click(function() {
         // var activeurl = "{{URL::to('/user/active-account')}}";
         var activeurl = "{{URL::to('/user/invoice-paid-status')}}";
+          var id = $(this).data('id');
+           console.log(id);
+          $.ajax({
+              type: "GET",
+              dataType: "json",
+              url: activeurl,
+              data: {'id': id},
+              success: function(d){
+                // console.log(data.success)
+                if (d.status == 303) {
+                            $(".ermsg").html(d.message);
+                    }else if(d.status == 300){
+                            $(".ermsg").html(d.message);
+                        window.setTimeout(function(){location.reload()},2000)
+                    }
+                },
+                error: function (d) {
+                    console.log(d);
+                }
+          });
+      })
+    })
+</script>
+
+<script>
+    $(function() {
+      $('.invoice-send-mail').click(function() {
+        // var activeurl = "{{URL::to('/user/active-account')}}"; {{ route('user.invoicesendemail',$data->id)}}
+        var activeurl = "{{URL::to('/user/invoice-sent-email')}}";
           var id = $(this).data('id');
            console.log(id);
           $.ajax({
