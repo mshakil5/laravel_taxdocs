@@ -70,8 +70,6 @@ class InvoiceController extends Controller
         $array['subjectsingle'] = 'Invoice Placed - '.$data->invoiceid;
         Mail::to($data->email)->queue(new InvoiceMail($array));
         unlink($array['file']);
-
-
         return redirect()->route('user.allinvoice');
     }
 
