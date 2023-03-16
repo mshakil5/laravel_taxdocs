@@ -50,11 +50,11 @@
                                       <td style="text-align: center">
 
                                         
-                                        <a class="text-decoration-none bg-success text-white py-1 px-3 rounded mb-1 d-block text-center invoice-send-mail" href="{{ route('user.invoicesendemail',$data->id)}}" data-id="{{$data->id}}">
-                                         <small>Send Email</small> </a>
+                                        {{-- <a class="text-decoration-none bg-success text-white py-1 px-3 rounded mb-1 d-block text-center invoice-send-mail" href="{{ route('user.invoicesendemail',$data->id)}}" data-id="{{$data->id}}">
+                                         <small>Send Email</small> </a> --}}
 
-                                         {{-- <button class="text-decoration-none bg-success text-white py-1 px-3 rounded mb-1 d-block text-center invoice-send-mail"  data-id="{{$data->id}}">
-                                            <small>Send Email</small> </button> --}}
+                                         <button class="text-decoration-none bg-success text-white py-1 px-3 rounded mb-1 d-block text-center invoice-send-mail"  data-id="{{$data->id}}">
+                                            <small>Send Email</small> </button>
 
 
                                          <a class="text-decoration-none bg-dark text-white py-1 px-3 rounded mb-1 d-block text-center invoice-paid-status" data-id="{{$data->id}}" href="#">
@@ -116,19 +116,22 @@
 </script>
 
 <script>
-    $(function() {
+    $(document).ready(function () {
+
+     //header for csrf-token is must in laravel
+     $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
+        //
+
       $('.invoice-send-mail').click(function() {
         // var activeurl = "{{URL::to('/user/active-account')}}"; {{ route('user.invoicesendemail',$data->id)}}
         var activeurl = "{{URL::to('/user/invoice-sent-email')}}";
           var id = $(this).data('id');
            console.log(id);
           $.ajax({
-              type: "GET",
-              dataType: "json",
               url: activeurl,
+              method: "POST",
               data: {'id': id},
               success: function(d){
-                // console.log(data.success)
                 if (d.status == 303) {
                             $(".ermsg").html(d.message);
                     }else if(d.status == 300){
@@ -141,7 +144,7 @@
                 }
           });
       })
-    })
+    });
 </script>
 
 <script>

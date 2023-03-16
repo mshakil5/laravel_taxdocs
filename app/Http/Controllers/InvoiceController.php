@@ -54,10 +54,10 @@ class InvoiceController extends Controller
         return view('user.invoice.invoiceedit', compact('data'));
     }
 
-    public function invoiceSendEmail($id)
+    public function invoiceSendEmail(Request $request)
     {
         
-        $data = Invoice::with('invoicedetail')->where('id',$id)->first();
+        $data = Invoice::with('invoicedetail')->where('id',$request->id)->first();
         $pdf = PDF::loadView('invoices.invoice', compact('data'));
         $output = $pdf->output();
         file_put_contents(public_path().'/invoice/'.'Invoice#'.$data->invoiceid.'.pdf', $output);
@@ -72,7 +72,8 @@ class InvoiceController extends Controller
         Mail::to($data->email)->queue(new InvoiceMail($array));
         unlink($array['file']);
 
-        return redirect()->route('user.allinvoice');
+        $message ="<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Mail Send Successfully.</b></div>";
+        return response()->json(['status'=> 300,'message'=>$message]);
         
     }
 
