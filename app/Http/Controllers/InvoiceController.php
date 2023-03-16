@@ -21,6 +21,7 @@ class InvoiceController extends Controller
     public function getAllInvoice()
     {
         $data = Invoice::with('invoicedetail')->where('user_id',Auth::user()->id)->where('paid',0)->orderby('id','DESC')->get();
+        // dd($data);
         return view('user.invoice.index', compact('data'));
     }
 

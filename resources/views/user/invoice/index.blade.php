@@ -89,10 +89,8 @@
 <script>
     $(function() {
       $('.invoice-paid-status').click(function() {
-        // var activeurl = "{{URL::to('/user/active-account')}}";
         var activeurl = "{{URL::to('/user/invoice-paid-status')}}";
           var id = $(this).data('id');
-           console.log(id);
           $.ajax({
               type: "GET",
               dataType: "json",
@@ -123,10 +121,8 @@
         //
 
       $('.invoice-send-mail').click(function() {
-        // var activeurl = "{{URL::to('/user/active-account')}}"; {{ route('user.invoicesendemail',$data->id)}}
         var activeurl = "{{URL::to('/user/invoice-sent-email')}}";
           var id = $(this).data('id');
-           console.log(id);
           $.ajax({
               url: activeurl,
               method: "POST",
