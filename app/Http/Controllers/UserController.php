@@ -241,6 +241,21 @@ class UserController extends Controller
             return response()->json(['status'=> 303,'message'=>'Server Error!!']);
         }
     }
+    public function newUserUpdate(Request $request)
+    {
+        $data =  NewUser::find($request->uid);
+        $data->user_id = Auth::user()->id;
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->address = $request->address;
+        if ($data->save()) {
+            $message ="<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Data Updated Successfully.</b></div>";
+            return response()->json(['status'=> 300,'message'=>$message,'data'=>$data]);
+        }
+        else{
+            return response()->json(['status'=> 303,'message'=>'Server Error!!']);
+        }
+    }
 
     public function getUserDetails(Request $request)
     {

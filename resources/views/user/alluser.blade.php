@@ -32,7 +32,8 @@
                         <div class="row">
                             <div class="col-md-12 my-2">
                                 <button class="text-white btn-theme ml-1" id="adduserBtn" type="submit"> Submit </button>
-                                <button class="text-white btn btn-warning ml-1" id="FormCloseBtn"> Close </button>
+                                <button class="text-white btn-theme ml-1" id="updateuserBtn" type="submit"> Update </button>
+                                <button class="text-white btn btn-sm btn-warning ml-1" id="FormCloseBtn"> Close </button>
                             </div>
                         </div>
                 </div>
@@ -100,6 +101,7 @@
 
 <script>
     $(document).ready(function () {
+        $("#updateuserBtn").hide();
         $("#addThisFormContainer").hide();
         $("#newBtn").click(function(){
             $("#newBtn").hide(100);
@@ -147,6 +149,41 @@
 
             });
 
+
+            var upurl = "{{URL::to('/user/new-user-update')}}";
+        // console.log(url);
+
+            $("body").delegate("#updateuserBtn","click",function(event){
+                event.preventDefault();
+
+                var name = $("#name").val();
+                var email = $("#email").val();
+                var address = $("#address").val();
+                var uid = $("#uid").val();
+                
+
+                $.ajax({
+                    url: upurl,
+                    method: "POST",
+                    data: {name,email,address,uid},
+
+                    success: function (d) {
+                        if (d.status == 303) {
+                            $(".ermsg").html(d.message);
+                            pagetop();
+                        }else if(d.status == 300){
+                            $(".ermsg").html(d.message);
+                            pagetop();
+                            window.setTimeout(function(){location.reload()},2000)
+                            
+                        }
+                    },
+                    error: function (d) {
+                        console.log(d);
+                    }
+                });
+
+            });
          
             //Delete
             $(".contentContainer").on('click','#deleteBtn', function(){
@@ -180,9 +217,16 @@
                 uemail = $(this).attr('uemail');
                 uaddress = $(this).attr('uaddress');
                 
+                $("#newBtn").hide(100);
                 $("#addThisFormContainer").show(300);  
                 pagetop();
 
+                $("#uid").val(uid);
+                $("#name").val(uname);
+                $("#email").val(uemail);
+                $("#address").val(uaddress);
+                $("#adduserBtn").hide(100);
+                $("#updateuserBtn").show(100);
 
 
                 
