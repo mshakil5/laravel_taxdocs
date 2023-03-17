@@ -180,7 +180,7 @@ class PayrollController extends Controller
     public function showPayroll($id)
     {
         $id = decrypt($id);
-        $data = Payroll::with('payrolldetail')->orderby('id','ASC')->where('user_id',$id)->first();
+        $data = Payroll::with('payrolldetail')->orderby('id','ASC')->where('user_id',$id)->get();
         return view('admin.payroll.index',compact('data'));
     }
 

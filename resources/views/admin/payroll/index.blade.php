@@ -50,20 +50,19 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($data as $key => $data)
-                                                <tr>
-                                                    <td style="text-align: center">{{ $key + 1 }}</td>
-                                                    <td style="text-align: center">{{ $data->date }}</td>
-                                                    <td style="text-align: center">{{ $data->company_name }}</td>
-                                                    <td style="text-align: center">{{ $data->payroll_period }}</td>
-                                                    <td>
-                                                        <a href="{{ route('admin.payrolldtl', encrypt($data->id) )}}"><span class="badge badge-primary">show</span></a>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-
-                                           
-                                            
+                                            @if (isset($data))
+                                                @foreach ($data as $key => $data)
+                                                    <tr>
+                                                        <td style="text-align: center">{{ $key + 1 }}</td>
+                                                        <td style="text-align: center">{{ $data->date }}</td>
+                                                        <td style="text-align: center">{{ $data->company_name }}</td>
+                                                        <td style="text-align: center">{{ $data->payroll_period }}</td>
+                                                        <td>
+                                                            <a href="{{ route('admin.payrolldtl', encrypt($data->id) )}}"><span class="badge badge-primary">show</span></a>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            @endif
                                         </tbody>
                                     </table>
                                 </div>

@@ -93,14 +93,14 @@
                     <div class="col-lg-6">
                         <div class="plan p-5 mb-3 rounded shadow-sm">
                             <div class="text-center border-bottom">
-                                 <h3 class="txt-primary fw-bold">Self Employed</h3>
+                                 <h3 class="txt-primary fw-bold" style="font-size: 40px">Self Employed</h3>
                                  <h4 class="txt-secondary fw-bold">£5.95/Month</h4>
                             </div>
-                            <div class="planContent pt-4 text-center">
+                            <div class="planContent pt-4 text-left">
 
                                 @foreach (\App\Models\Option::where('plan','1')->get() as $item)
                                 
-                                <p class="fs-5 mb-1 text-dark fw-bold">
+                                <p class="fs-5 mb-1 text-dark fw-bold" style="font-family: Roboto-Regular;">
                                     {{ $item->title }}
                                 </p>
                                 @endforeach
@@ -113,13 +113,13 @@
 
                         <div class="plan p-5 mb-3 rounded shadow-sm">
                             <div class="text-center border-bottom">
-                                 <h3 class="txt-primary fw-bold">Business</h3>
+                                 <h3 class="txt-primary fw-bold" style="font-size: 40px">Business</h3>
                                  <h4 class="txt-secondary fw-bold">£10.95/Month</h4>
                             </div>
-                            <div class="planContent pt-4 text-center">
+                            <div class="planContent pt-4 text-left">
                                 
                                 @foreach (\App\Models\Option::where('plan','2')->get() as $item2)
-                                <p class="fs-5 mb-1 text-dark fw-bold">
+                                <p class="fs-5 mb-1 text-dark fw-bold" style="font-family: Roboto-Regular;">
                                     {{ $item2->title }}
                                 </p>
                                 @endforeach
