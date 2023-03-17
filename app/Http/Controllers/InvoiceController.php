@@ -45,7 +45,7 @@ class InvoiceController extends Controller
 
     public function getInvoiceDetails($id)
     {
-        $data = Invoice::with('invoicedetail')->where('id',$id)->first();
+        $data = Invoice::with('invoicedetail')->where('id',decrypt($id))->first();
         return view('user.invoice.invoicedetail', compact('data'));
     }
 
@@ -111,6 +111,20 @@ class InvoiceController extends Controller
         $data = Invoice::with('invoicedetail')->where('id',$id)->first();
         $pdf = PDF::loadView('invoices.invoice', compact('data'));
         return $pdf->download('invoice-'.$data->invoiceid.'.pdf');
+    }
+
+    public function invoice_print($id)
+    {
+        $data = Invoice::with('invoicedetail')->where('id',$id)->first();
+        $pdf = PDF::loadView('invoices.invoice', compact('data'));
+        return view('invoices.print', compact('data'));
+    }
+
+    public function invoiceShow($id)
+    {
+        $data = Invoice::with('invoicedetail')->where('id',$id)->first();
+        // $pdf = PDF::loadView('invoices.invoice', compact('data'));
+        return view('user.invoice.download', compact('data'));
     }
 
     public function invoiceStore(Request $request)
@@ -336,8 +350,10 @@ class InvoiceController extends Controller
                 }
                 //stores the pdf for invoice
                 $pdf = PDF::loadView('invoices.invoice', compact('data'));
+                
                 $message ="<div class='alert alert-success' style='color:white'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Invoice Store Successfully.</b></div>";
                 return response()->json(['status'=> 300,'id'=>$data->id,'message'=>$message]);
+                
             }
 
         }catch (\Exception $e){

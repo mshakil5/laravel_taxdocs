@@ -100,6 +100,10 @@ Route::group(['prefix' =>'user/', 'middleware' => ['auth', 'is_user']], function
     Route::post('/invoice', [InvoiceController::class, 'invoiceStore']);
     Route::post('/invoice-pdf', [InvoiceController::class, 'invoicePdfStore']);
     Route::get('invoice/{id}', [InvoiceController::class, 'invoice_download'])->name('invoice.download');
+    Route::get('invoice-print/{id}', [InvoiceController::class, 'invoice_print'])->name('invoice.print');
+
+    // new url for test
+    Route::get('invoice-show/{id}', [InvoiceController::class, 'invoiceShow'])->name('invoice.show');
 
     //paid invoice
     Route::get('invoice-paid-status', [InvoiceController::class, 'paidInvoice']);

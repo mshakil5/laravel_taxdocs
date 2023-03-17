@@ -25,13 +25,10 @@
 <div class="dashboard-content">
 
     <section class="profile purchase-status px-4">
-
         <div class="title-section">
             <span class="iconify" data-icon="clarity:heart-solid"></span>
             <div class="mx-2"> Invoice Information</div>
         </div>
-
-
     </section>  
 
 
