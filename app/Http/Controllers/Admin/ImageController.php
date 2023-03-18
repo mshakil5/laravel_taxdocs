@@ -30,6 +30,7 @@ class ImageController extends Controller
             $imageName = time(). $rand .'.'.$request->image->extension();
             $request->image->move(public_path('images'), $imageName);
             $data->image= $imageName;
+            $data->link = "/images/".$imageName;
         }
         // end
 
@@ -65,6 +66,7 @@ class ImageController extends Controller
             $imageName = time(). $rand .'.'.$request->image->extension();
             $request->image->move(public_path('images'), $imageName);
             $data->image= $imageName;
+            $data->link = "/images/".$imageName;
         }
             $data->title = $request->title;
             $data->status = "0";
