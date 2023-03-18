@@ -60,7 +60,7 @@ class InvoiceMail extends Mailable
 
     public function build()
     {
-        return $this->from('info@taxdocs.co.uk', 'Taxdocs')
+        return $this->from('info@eminentint.com', 'Taxdocs')
         ->subject('Taxdocs Ltd')
         ->attach($this->array['file'],['as'=>$this->array['file_name'], 'mime'=>'application/pdf'])
         ->markdown('emails.invoice');
