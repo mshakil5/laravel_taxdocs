@@ -4,17 +4,37 @@
     .pl25{
         padding-left: 25px;
     }
+    
+    /*loader css*/
+    #loading {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.7;
+    background-color: #fff;
+    z-index: 99;
+    }
+
+    #loading-image {
+    z-index: 100;
+    }
+
 </style>
 
 <div class="dashboard-content">
 
-    
+    <!-- Image loader -->
+    <div id='loading' style='display:none ;'>
+        <img src="{{ asset('images/company/loader.gif') }}" id="loading-image" alt="Loading..." />
+   </div>
+ <!-- Image loader -->
 
-
-
-
-
-    <section class=""> 
+       <section class=""> 
         <div class="row  my-3 mx-0 "> 
             <div class="col-md-12">
                 <div class="row my-2">
@@ -90,6 +110,7 @@
 <script>
     $(function() {
       $('.invoice-paid-status').click(function() {
+        $("#loading").show();
         var activeurl = "{{URL::to('/user/invoice-paid-status')}}";
           var id = $(this).data('id');
           $.ajax({
@@ -106,6 +127,9 @@
                         window.setTimeout(function(){location.reload()},2000)
                     }
                 },
+                complete:function(d){
+                        $("#loading").hide();
+                    },
                 error: function (d) {
                     console.log(d);
                 }
@@ -122,6 +146,7 @@
         //
 
       $('.invoice-send-mail').click(function() {
+        $("#loading").show();
         var activeurl = "{{URL::to('/user/invoice-sent-email')}}";
           var id = $(this).data('id');
           $.ajax({
@@ -136,6 +161,9 @@
                         window.setTimeout(function(){location.reload()},2000)
                     }
                 },
+                complete:function(d){
+                        $("#loading").hide();
+                    },
                 error: function (d) {
                     console.log(d);
                 }
