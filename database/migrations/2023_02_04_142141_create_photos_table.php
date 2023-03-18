@@ -17,7 +17,10 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->bigInteger('firm_id')->unsigned()->nullable();
+            $table->foreign('firm_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('title',191)->nullable();
+            $table->string('date',191)->nullable();
             $table->string('image',191)->nullable();
             $table->string('link',191)->nullable();
             $table->longText('caption')->nullable();

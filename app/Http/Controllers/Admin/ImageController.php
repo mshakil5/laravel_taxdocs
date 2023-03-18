@@ -92,6 +92,7 @@ class ImageController extends Controller
         $id = decrypt($id);
         $data = Photo::with('account')->where('user_id',$id)->orderby('id','DESC')->get();
 
+        // dd($id);
         return view('admin.photo.userimg',compact('data','id'));
     }
 
@@ -102,9 +103,10 @@ class ImageController extends Controller
     }
 
     public function userImageStore(Request $request)
-    {
+    { 
         $data = new Photo();
         $data->user_id = Auth::user()->id;
+        $data->firm_id = Auth::user()->firm_id;
         $data->date = $request->date;
 
         // intervention
@@ -116,9 +118,9 @@ class ImageController extends Controller
             $imageName = time(). $rand .'.'.$request->image->extension();
             $request->image->move(public_path('images'), $imageName);
             $data->image= $imageName;
+            $data->link = "/images/".$imageName;
         }
         // end
-        
 
         $data->status = "0";
         $data->created_by = Auth::user()->id;

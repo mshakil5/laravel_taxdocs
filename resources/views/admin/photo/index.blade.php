@@ -96,12 +96,19 @@
                                         </td>
                                         <td style="text-align: center">
                                             @if ($data->image)
-                                            <div class="row justify-content-center">
-                                                <iframe src="{{asset('images/'.$data->image)}}" width="100%" height="300px">
-                                                        This browser does not support PDFs.Please download the PDF to view it: <a href="{{asset('images/'.$data->image)}}">Download PDF</a>
-                                                </iframe>
-                                            </div>
-                                            {{-- <img src="{{asset('images/thumbnail/'.$data->image)}}" height="120px" width="220px" alt=""> --}}
+                                            @php
+                                                $ext = pathinfo(storage_path().$data->image, PATHINFO_EXTENSION);
+                                            @endphp
+                                              @if ($ext == 'pdf')
+                                                  <div class="row justify-content-center">
+                                                      <iframe src="{{asset('images/'.$data->image)}}" width="20%" height="100px">
+                                                              This browser does not support PDFs.Please download the PDF to view it: <a href="{{asset('images/'.$data->image)}}">Download PDF</a>
+                                                      </iframe>
+                                                  </div>
+                                              @else
+                                                  <img src="{{asset('images/'.$data->image)}}" height="100px" width="200px" alt="">
+                                              @endif
+                                              
                                             @endif
                                         </td>
                                         

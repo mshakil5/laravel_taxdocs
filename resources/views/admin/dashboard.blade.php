@@ -61,7 +61,7 @@
           @endif
 
           @if (Auth::user()->is_type == 2)
-            @foreach (\App\Models\User::where('agent_assign','=', 1)->where('agent_notify','=', 0)->where('is_type','0')->get() as $user)
+            @foreach (\App\Models\User::where('agent_assign','=', 1)->where('firm_id','=', Auth::user()->id)->where('agent_notify','=', 0)->where('is_type','0')->get() as $user)
             <div class="bs-component">
               <div class="alert alert-dismissible alert-success">
                 <a id="newusernotiBtn" user_id="{{$user->id}}"><button class="close" type="button" data-dismiss="alert">×</button></a>
@@ -78,14 +78,32 @@
         </div>
       </div>
 
-      {{-- <div class="col-md-6">
+      <div class="col-md-6">
         <div class="tile">
           <h3 class="tile-title">Support Requests</h3>
           <div class="embed-responsive embed-responsive-16by9">
-            <canvas class="embed-responsive-item" id="pieChartDemo"></canvas>
+
+
+            {{-- @if (Auth::user()->is_type == 2)
+            @foreach (\App\Models\Photo::where('accfirm_notification','=', 0)->where('firm_id','=', Auth::user()->id)->where('agent_notify','=', 0)->where('is_type','0')->get() as $user)
+            <div class="bs-component">
+              <div class="alert alert-dismissible alert-success">
+                <a id="newusernotiBtn" user_id="{{$user->id}}"><button class="close" type="button" data-dismiss="alert">×</button></a>
+                <strong>New Customer!!</strong> New Customer added. <a class="alert-link" href="{{ route('alluser')}}">See More</a>.
+              </div>
+            </div>
+            @endforeach
+          @endif --}}
+
+
+
           </div>
         </div>
-      </div> --}}
+      </div>
+
+
+
+
 
     </div>
   </main>

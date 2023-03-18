@@ -34,7 +34,7 @@ class UserController extends Controller
     public function getNotAssignCustomer()
     {
         if (Auth::user()->is_type == 1) {
-            $accounts = User::where('is_type','=', '0')->where('agent_assign','0')->get();
+            $accounts = User::where('is_type','=', '0')->where('agent_assign','0')->orderby('id','DESC')->get();
         }
         return view('admin.register.newuser',compact('accounts'));
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Photo;
 use App\Models\Account;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 Use Image;
 use Illuminate\support\Facades\Auth;
@@ -141,23 +142,26 @@ class AccountController extends Controller
         //     exit();
         // }
 
+        $firmid = User::where('id',$request->uid)->first();
+
 
         $data = new Photo();
         $data->user_id = $request->uid;
+        $data->firm_id = $firmid->firm_id;
+        $data->date = $request->date;
         // intervention
         if ($request->image != 'null') {
-            $originalImage = $request->file('image');
-            $thumbnailImage = Image::make($originalImage);
-            $thumbnailPath = public_path().'/images/thumbnail/';
-            $originalPath = public_path().'/images/';
-            $time = time();
-            $thumbnailImage->save($originalPath.$time.$originalImage->getClientOriginalName());
-            $thumbnailImage->resize(150,150);
-            $thumbnailImage->save($thumbnailPath.$time.$originalImage->getClientOriginalName());
-            $data->image = $time.$originalImage->getClientOriginalName();
-            $data->link = "/images/thumbnail/".$time.$originalImage->getClientOriginalName();
+            $request->validate([
+                'image' => 'required|mimes:jpeg,png,jpg,gif,svg,pdf|max:8048',
+            ]);
+            $rand = mt_rand(100000, 999999);
+            $imageName = time(). $rand .'.'.$request->image->extension();
+            $request->image->move(public_path('images'), $imageName);
+            $data->image= $imageName;
+            $data->link = "/images/".$imageName;
         }
         // end
+
         $data->status = "1";
         $data->created_by = Auth::user()->id;
         if ($data->save()) {
