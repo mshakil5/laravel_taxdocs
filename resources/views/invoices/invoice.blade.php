@@ -25,13 +25,13 @@
                                         </div>
                                     </td>
 
-                                    <td colspan="2" class="" style="border :0px solid #dee2e6 ;width:80%;"></td>
-                                    <td colspan="2" class="" style="border :0px solid #dee2e6 ;">
-                                        <div class="col-lg-2 text-end" style="flex: 2; text-align: right;">
-                                            <img src="{{ asset('images/'.$data->image)}}" alt="{{ $data->company_name}}" width="220px" />
-                                        </div>
-                                    </td>
-                                </tr>
+                            <td colspan="2" class="" style="border :0px solid #dee2e6 ;width:80%;"></td>
+                            <td colspan="2" class="" style="border :0px solid #dee2e6 ;">
+                                <div class="col-lg-2 text-end" style="flex: 2; text-align: right;">
+                                    <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('images/'.$data->image))) }}" width="120px" style="display:inline-block;"/>
+                                </div>
+                            </td>
+                        </tr>
 
 
                                 <tr>
