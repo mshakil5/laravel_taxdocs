@@ -64,7 +64,7 @@ class InvoiceController extends Controller
         file_put_contents(public_path().'/invoice/'.'Invoice#'.$data->invoiceid.'.pdf', $output);
         $array['view'] = 'emails.invoice';
         $array['subject'] = 'Invoice - '.$data->invoiceid;
-        $array['from'] = 'info@taxdocs.co.uk';
+        $array['from'] = 'info@eminentint.com';
         $array['content'] = 'Hi, Your Invoice form has been placed';
         $array['file'] = public_path().'/invoice/Invoice#'.$data->invoiceid.'.pdf';
         $array['file_name'] = 'Invoice#'.$data->invoiceid.'.pdf';
@@ -231,7 +231,7 @@ class InvoiceController extends Controller
                 file_put_contents(public_path().'/invoice/'.'Invoice#'.$data->invoiceid.'.pdf', $output);
                 $array['view'] = 'emails.invoice';
                 $array['subject'] = 'Invoice - '.$data->invoiceid;
-                $array['from'] = 'info@taxdocs.co.uk';
+                $array['from'] = 'info@eminentint.com';
                 $array['content'] = 'Hi, Your Invoice form has been placed';
                 $array['file'] = public_path().'/invoice/Invoice#'.$data->invoiceid.'.pdf';
                 $array['file_name'] = 'Invoice#'.$data->invoiceid.'.pdf';
