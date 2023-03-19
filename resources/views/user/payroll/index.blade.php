@@ -24,7 +24,7 @@
                         <div class="row mb-3">
                             <div class="col-md-4 ">
                                 <label> Date<span style="color: red">*</span></label>
-                                <input type="date" placeholder="Date" id="date" name="date"  class="form-control" value="@if(isset($data->date)){{ $data->date }}@endif">
+                                <input type="date" placeholder="Date" id="date" name="date"  class="form-control" value="@if(isset($data->date)){{$data->date}}@else{{date('Y-m-d')}}@endif">
                                 <input type="hidden"  id="payroll_id" name="payroll_id"  class="form-control" value="@if(isset($data->id)){{ $data->id }}@endif">
                             </div>
                             

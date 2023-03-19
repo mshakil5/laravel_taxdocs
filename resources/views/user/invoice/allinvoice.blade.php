@@ -108,10 +108,14 @@
                                 @if (isset(Auth::user()->invoice_image))
                                     <input type="hidden" id="invoice_image" name="invoice_image" value="{{Auth::user()->invoice_image}}" />
                                     <input type="file" id="image" name="image" class="form-control" hidden />
+                                    <img id="blah" src="{{ asset('images/'.Auth::user()->invoice_image)}}" alt="Logo" width="220px" />
                                 @else
                                 <label> Select Logo</label>
                                 <input type="file" id="image" name="image" class="form-control" onchange="readURL(this);" />
-                                <img id="blah" src="{{ asset('images/company/'.\App\Models\CompanyDetail::where('id',1)->first()->header_logo)}}" alt="Logo" width="220px" />
+                                <div style="display: none">
+                                    <img id="blah" src="{{ asset('images/company/'.\App\Models\CompanyDetail::where('id',1)->first()->header_logo)}}" alt="Logo" width="220px" />
+                                </div>
+                               
                                 @endif
 
                                 
