@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 use App\Models\Invoice;
 use App\Models\InvoiceDetail;
 use PDF;
@@ -13,6 +14,13 @@ use App\Mail\InvoiceMail;
 
 class InvoiceController extends Controller
 {
+
+    public function getPaidInvoiceByAdmin($id)
+    {
+        $data = Invoice::with('invoicedetail')->where('user_id',decrypt($id))->where('paid',1)->orderby('id','DESC')->get();
+        return view('admin.invoice.paidinvoice', compact('data'));
+    }
+
     public function getInvoice()
     {
         return view('user.invoice.allinvoice');
@@ -47,6 +55,12 @@ class InvoiceController extends Controller
     {
         $data = Invoice::with('invoicedetail')->where('id',decrypt($id))->first();
         return view('user.invoice.invoicedetail', compact('data'));
+    }
+
+    public function getInvoiceDetailsByAdmin($id)
+    {
+        $data = Invoice::with('invoicedetail')->where('id',decrypt($id))->first();
+        return view('admin.invoice.invoicedetail', compact('data'));
     }
 
     public function invoiceEdit($id)
@@ -174,21 +188,31 @@ class InvoiceController extends Controller
             }
         }
 
+        
+        // image
+        if ($request->image != 'null') {
+            $userupdate = User::find(Auth::user()->id);
+            $request->validate([
+                'image' => 'mimes:jpeg,png,jpg,gif,svg,pdf|max:8048',
+            ]);
+            $rand = mt_rand(100000, 999999);
+            $imageName = time(). $rand .'.'.$request->image->extension();
+            $request->image->move(public_path('images'), $imageName);
+            $userupdate->invoice_image = $imageName;
+            $userupdate->save();
+        }
+        // end
+
         try{
         
             $invdata = new Invoice;
             $invdata->user_name = $request->user_name;
-            // image
             if ($request->image != 'null') {
-                $request->validate([
-                    'image' => 'mimes:jpeg,png,jpg,gif,svg,pdf|max:8048',
-                ]);
-                $rand = mt_rand(100000, 999999);
-                $imageName = time(). $rand .'.'.$request->image->extension();
-                $request->image->move(public_path('images'), $imageName);
-                $invdata->image= $imageName;
+                $invdata->image = $imageName;
+            } else {
+                $invdata->image = $request->invoice_image;
             }
-            // end
+            
             $invdata->user_id = Auth::user()->id;
             $invdata->email = $request->useremail;
             $invdata->new_user_id = $request->new_user_id;
@@ -254,11 +278,6 @@ class InvoiceController extends Controller
 
     public function invoicePdfStore(Request $request)
     {
-        // if($request->image == 'null'){
-        //     $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill \"Image\" field..!</b></div>";
-        //     return response()->json(['status'=> 303,'message'=>$message]);
-        //     exit();
-        // }
 
         if(empty($request->new_user_id)){
             $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please Select a \"User\" field..!</b></div>";
@@ -298,21 +317,31 @@ class InvoiceController extends Controller
             }
         }
 
+        // image
+        if ($request->image != 'null') {
+            $userupdate = User::find(Auth::user()->id);
+            $request->validate([
+                'image' => 'mimes:jpeg,png,jpg,gif,svg,pdf|max:8048',
+            ]);
+            $rand = mt_rand(100000, 999999);
+            $imageName = time(). $rand .'.'.$request->image->extension();
+            $request->image->move(public_path('images'), $imageName);
+            $userupdate->invoice_image = $imageName;
+            $userupdate->save();
+        }
+        // end
+
         try{
         
             $data = new Invoice;
             $data->user_name = $request->user_name;
-            // intervention
+
             if ($request->image != 'null') {
-                $request->validate([
-                    'image' => 'mimes:jpeg,png,jpg,gif,svg,pdf|max:8048',
-                ]);
-                $rand = mt_rand(100000, 999999);
-                $imageName = time(). $rand .'.'.$request->image->extension();
-                $request->image->move(public_path('images'), $imageName);
-                $data->image= $imageName;
+                $data->image = $imageName;
+            } else {
+                $data->image = $request->invoice_image;
             }
-            // end
+            
             $data->user_id = Auth::user()->id;
             $data->email = $request->useremail;
             $data->new_user_id = $request->new_user_id;

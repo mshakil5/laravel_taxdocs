@@ -105,9 +105,16 @@
                             </div>
                             <div class="col-md-4 ">
 
+                                @if (isset(Auth::user()->invoice_image))
+                                    <input type="hidden" id="invoice_image" name="invoice_image" value="{{Auth::user()->invoice_image}}" />
+                                    <input type="file" id="image" name="image" class="form-control" hidden />
+                                @else
                                 <label> Select Logo</label>
                                 <input type="file" id="image" name="image" class="form-control" onchange="readURL(this);" />
                                 <img id="blah" src="{{ asset('images/company/'.\App\Models\CompanyDetail::where('id',1)->first()->header_logo)}}" alt="Logo" width="220px" />
+                                @endif
+
+                                
 
                                 <label> Company Name</label>
                                 <input type="text" id="company_name" name="company_name" class="form-control" value="{{Auth::user()->bname}}">
@@ -471,6 +478,7 @@
                 form_data.append("acct_no", $("#acct_no").val());
                 form_data.append("bank", $("#bank").val());
                 form_data.append("short_code", $("#short_code").val());
+                form_data.append("invoice_image", $("#invoice_image").val());
 
 
                 var description = $("input[name='description[]']")
@@ -556,6 +564,7 @@
                 form_data.append("acct_no", $("#acct_no").val());
                 form_data.append("bank", $("#bank").val());
                 form_data.append("short_code", $("#short_code").val());
+                form_data.append("invoice_image", $("#invoice_image").val());
 
 
                 var description = $("input[name='description[]']")
@@ -592,7 +601,7 @@
                           }else if(d.status == 300){
                                 $(".invermsg").html(d.message);
                                 pagetop();
-                                window.open(`https://www.taxdocs.co.uk/user/invoice-print/${d.id}`);
+                                window.open(`https://www.localhost/laravel/laravel_taxdocs/public/user/invoice-print/${d.id}`);
                                 window.setTimeout(function(){location.reload()},2000)
                           }
                       },

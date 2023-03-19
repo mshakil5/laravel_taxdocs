@@ -6,6 +6,7 @@
     }
 </style>
 
+<meta name="csrf-token" content="{{ csrf_token() }}"/>
 <div class="dashboard-content">
 
 
@@ -49,7 +50,7 @@
                                          <small>Send Email</small> </a>
                                          
                                         <div class="py-1 text-center">
-                                        <a href="{{ route('user.invoicedtl',$data->id)}}"><i class="fa fa-eye" style="color: #09a311;font-size:16px;"></i></a>
+                                        <a href="{{ route('user.invoicedtl',encrypt($data->id))}}"><i class="fa fa-eye" style="color: #09a311;font-size:16px;"></i></a>
                                         {{-- <a href="{{ route('user.invoiceedit',$data->id)}}"><i class="fa fa-edit" style="color: #2094f3;font-size:16px;"></i></a>
                                         <a id="deleteBtn" rid="{{$data->id}}"><i class="fa fa-trash-o" style="color: red;font-size:16px;"></i></a> --}}
                                         </div>
@@ -81,30 +82,6 @@
         $('#example').DataTable();
     });
 
-    var url = "{{URL::to('/user/invoice-delete')}}";
-    //Delete
-    $(".contentContainer").on('click','#deleteBtn', function(){
-                if(!confirm('Sure?')) return;
-                codeid = $(this).attr('rid');
-                info_url = url + '/'+codeid;
-                $.ajax({
-                    url:info_url,
-                    method: "GET",
-                    type: "DELETE",
-                    data:{
-                    },
-                    success: function(d){
-                        if(d.success) {
-                            alert(d.message);
-                            location.reload();
-                        }
-                    },
-                    error:function(d){
-                        console.log(d);
-                    }
-                });
-            });
-            //Delete
 
 </script>
 

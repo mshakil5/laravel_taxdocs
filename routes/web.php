@@ -130,7 +130,8 @@ Route::group(['prefix' =>'agent/', 'middleware' => ['auth', 'is_agent']], functi
   
     Route::get('agent-dashboard', [HomeController::class, 'agentHome'])->name('agent.dashboard');
     // notification
-    Route::post('newusernoti', [DashboardController::class, 'closeNewNotification']);
+    Route::post('newusernoti', [DashboardController::class, 'closeNewNotificationbyAgent']);
+    Route::post('newimage-notification', [DashboardController::class, 'closeNewImageNotificationbyAgent']);
 });
   
 /*------------------------------------------

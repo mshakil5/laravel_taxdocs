@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Agent\AgentController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\WorkController;
 use App\Http\Controllers\OptionController;
@@ -61,7 +62,8 @@ Route::group(['prefix' =>'admin/', 'middleware' => ['auth', 'is_admin']], functi
     
     Route::get('new-customer', [UserController::class, 'getNotAssignCustomer'])->name('notassigncustomer');
     // notification
-    Route::post('newusernoti', [DashboardController::class, 'closeNewUserNotif']);
+    Route::post('newusernoti', [DashboardController::class, 'closeNewUserNotificationbyAdmin']);
+    Route::post('newimage-notification', [DashboardController::class, 'closeNewImageNotificationbyAdmin']);
 
     // work
     Route::get('/work', [WorkController::class, 'index'])->name('admin.work');
@@ -83,5 +85,9 @@ Route::group(['prefix' =>'admin/', 'middleware' => ['auth', 'is_admin']], functi
     Route::get('/master/{id}/edit', [MasterController::class, 'edit']);
     Route::put('/master/{id}', [MasterController::class, 'update']);
     Route::get('/master/{id}', [MasterController::class, 'delete']);
+
+    
+    Route::get('/paid-invoice/{id}', [InvoiceController::class, 'getPaidInvoiceByAdmin'])->name('admin.paidinvoice');
+    Route::get('/invoices-details/{id}', [InvoiceController::class, 'getInvoiceDetailsByAdmin'])->name('admin.invoicedtl');
 });
 //admin part end

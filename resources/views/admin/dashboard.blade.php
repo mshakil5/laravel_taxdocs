@@ -78,26 +78,35 @@
         </div>
       </div>
 
-      <div class="col-md-6">
+      <div class="col-md-6" id="contentContainer2">
         <div class="tile">
-          <h3 class="tile-title">Support Requests</h3>
-          <div class="embed-responsive embed-responsive-16by9">
+          <h3 class="tile-title">User Image Notification</h3>
 
-
-            {{-- @if (Auth::user()->is_type == 2)
-            @foreach (\App\Models\Photo::where('accfirm_notification','=', 0)->where('firm_id','=', Auth::user()->id)->where('agent_notify','=', 0)->where('is_type','0')->get() as $user)
+          @if (Auth::user()->is_type == 1)
+            @foreach (\App\Models\Photo::where('admin_notification','=', 0)->orderby('id','DESC')->get() as $img)
             <div class="bs-component">
               <div class="alert alert-dismissible alert-success">
-                <a id="newusernotiBtn" user_id="{{$user->id}}"><button class="close" type="button" data-dismiss="alert">×</button></a>
-                <strong>New Customer!!</strong> New Customer added. <a class="alert-link" href="{{ route('alluser')}}">See More</a>.
+                <a id="newimgnotiAdminBtn" imgid="{{$img->id}}"><button class="close" type="button" data-dismiss="alert">×</button></a>
+                <strong>New Image!!</strong> New Image added. <a class="alert-link" href="{{ route('showimg', encrypt($img->user_id))}}">See More</a>.
               </div>
             </div>
             @endforeach
-          @endif --}}
+          @endif
+
+
+            @if (Auth::user()->is_type == 2)
+            @foreach (\App\Models\Photo::where('accfirm_notification','=', 0)->orderby('id','DESC')->where('firm_id','=', Auth::user()->id)->get() as $img)
+            <div class="bs-component">
+              <div class="alert alert-dismissible alert-success">
+                <a id="newimgnotiAgentBtn" imgid="{{$img->id}}"><button class="close" type="button" data-dismiss="alert">×</button></a>
+                <strong>New Image!!</strong> New Image added. <a class="alert-link" href="{{ route('showimg', encrypt($img->user_id))}}">See More</a>.
+              </div>
+            </div>
+            @endforeach
+          @endif
 
 
 
-          </div>
         </div>
       </div>
 
@@ -118,7 +127,7 @@
   //
 
 
-      //  donor notification
+      //  new user notification
       var url = "{{URL::to('/admin/newusernoti')}}";
       $("#contentContainer").on('click','#newusernBtn', function(){
 
@@ -143,7 +152,7 @@
 
       });
 
-      //  donor notification
+      //  new user notification
       var agenturl = "{{URL::to('/agent/newusernoti')}}";
       $("#contentContainer").on('click','#newusernotiBtn', function(){
 
@@ -153,6 +162,55 @@
               url: agenturl,
               method: "POST",
               data: {userid},
+              success: function (d) {
+                  if (d.status == 303) {
+                      $(".ermsg").html(d.message);
+                  }else if(d.status == 300){
+                      $(".ermsg").html(d.message);
+                      window.setTimeout(function(){location.reload()},2000)
+                  }
+              },
+              error: function (d) {
+                  console.log(d);
+              }
+          });
+
+      });
+
+
+      var adminimgurl = "{{URL::to('/admin/newimage-notification')}}";
+      $("#contentContainer2").on('click','#newimgnotiAdminBtn', function(){
+
+          var imgid= $(this).attr('imgid');
+
+          $.ajax({
+              url: adminimgurl,
+              method: "POST",
+              data: {imgid},
+              success: function (d) {
+                  if (d.status == 303) {
+                      $(".ermsg").html(d.message);
+                  }else if(d.status == 300){
+                      $(".ermsg").html(d.message);
+                      window.setTimeout(function(){location.reload()},2000)
+                  }
+              },
+              error: function (d) {
+                  console.log(d);
+              }
+          });
+
+      });
+
+      var agentimgurl = "{{URL::to('/agent/newimage-notification')}}";
+      $("#contentContainer2").on('click','#newimgnotiAgentBtn', function(){
+
+          var imgid= $(this).attr('imgid');
+
+          $.ajax({
+              url: agentimgurl,
+              method: "POST",
+              data: {imgid},
               success: function (d) {
                   if (d.status == 303) {
                       $(".ermsg").html(d.message);
