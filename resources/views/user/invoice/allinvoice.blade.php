@@ -124,7 +124,7 @@
                                 <input type="text" id="company_name" name="company_name" class="form-control" value="{{Auth::user()->bname}}">
 
                                 <label> Vat no </label>
-                                <input type="text" id="company_vatno" name="company_vatno" class="form-control">
+                                <input type="text" id="company_vatno" name="company_vatno" class="form-control" value="{{Auth::user()->vat_number}}">
 
                                 <label> Tell No</label>
                                 <input type="text" id="company_tell_no" name="company_tell_no" class="form-control" value="{{Auth::user()->phone}}">
@@ -135,13 +135,13 @@
                             </div>
                             <div class="col-md-4 ">
                                 <label> Acct No</label>
-                                <input type="text" id="acct_no" name="acct_no" class="form-control" value="{{$bankinfo->bank_acc_number}}">
+                                <input type="text" id="acct_no" name="acct_no" class="form-control" value="{{Auth::user()->bank_acc_number}}">
 
                                 <label> Bank </label>
-                                <input type="text" id="bank" name="bank" class="form-control">
+                                <input type="text" id="bank" name="bank" class="form-control" value="{{Auth::user()->bank_name}}">
 
                                 <label> Sort-Code</label>
-                                <input type="text" id="short_code" name="short_code" class="form-control" value="{{$bankinfo->bank_acc_sort_code}}">
+                                <input type="text" id="short_code" name="short_code" class="form-control" value="{{Auth::user()->bank_acc_sort_code}}">
 
                             </div>
 

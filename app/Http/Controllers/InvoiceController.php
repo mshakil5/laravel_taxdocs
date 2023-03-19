@@ -191,17 +191,21 @@ class InvoiceController extends Controller
 
         
         // image
-        if ($request->image != 'null') {
             $userupdate = User::find(Auth::user()->id);
-            $request->validate([
-                'image' => 'mimes:jpeg,png,jpg,gif,svg,pdf|max:8048',
-            ]);
-            $rand = mt_rand(100000, 999999);
-            $imageName = time(). $rand .'.'.$request->image->extension();
-            $request->image->move(public_path('images'), $imageName);
-            $userupdate->invoice_image = $imageName;
+            if ($request->image != 'null') {
+                $request->validate([
+                    'image' => 'mimes:jpeg,png,jpg,gif,svg,pdf|max:8048',
+                ]);
+                $rand = mt_rand(100000, 999999);
+                $imageName = time(). $rand .'.'.$request->image->extension();
+                $request->image->move(public_path('images'), $imageName);
+                $userupdate->invoice_image = $imageName;
+            }
+            $userupdate->bank_acc_number = $request->acct_no;
+            $userupdate->bank_acc_sort_code = $request->short_code;
+            $userupdate->bank_name = $request->bank;
+            $userupdate->vat_number = $request->company_vatno;
             $userupdate->save();
-        }
         // end
 
         try{
@@ -319,17 +323,21 @@ class InvoiceController extends Controller
         }
 
         // image
-        if ($request->image != 'null') {
             $userupdate = User::find(Auth::user()->id);
-            $request->validate([
-                'image' => 'mimes:jpeg,png,jpg,gif,svg,pdf|max:8048',
-            ]);
-            $rand = mt_rand(100000, 999999);
-            $imageName = time(). $rand .'.'.$request->image->extension();
-            $request->image->move(public_path('images'), $imageName);
-            $userupdate->invoice_image = $imageName;
+            if ($request->image != 'null') {
+                $request->validate([
+                    'image' => 'mimes:jpeg,png,jpg,gif,svg,pdf|max:8048',
+                ]);
+                $rand = mt_rand(100000, 999999);
+                $imageName = time(). $rand .'.'.$request->image->extension();
+                $request->image->move(public_path('images'), $imageName);
+                $userupdate->invoice_image = $imageName;
+            }
+            $userupdate->bank_acc_number = $request->acct_no;
+            $userupdate->bank_acc_sort_code = $request->short_code;
+            $userupdate->bank_name = $request->bank;
+            $userupdate->vat_number = $request->company_vatno;
             $userupdate->save();
-        }
         // end
 
         try{
