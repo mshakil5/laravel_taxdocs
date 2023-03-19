@@ -20,7 +20,7 @@
                                     <td colspan="2" class="" style="border :0px solid #dee2e6 ;width:80%;">
                                         <div class="col-lg-2 text-end" style="flex: 2; text-align: right;">
                                             <h5 style="font-size: .90rem; margin : 5px;text-align: left;">Invoice No: {{ $data->invoiceid}}</h5>
-                                            <h5 style="font-size: .90rem; margin : 5px;text-align: left;">Date: {{ $data->date}}</h5>
+                                            <h5 style="font-size: .90rem; margin : 5px;text-align: left;">Date: {{ $data->invoice_date}}</h5>
                                             <h5 style="font-size: .90rem; margin : 5px;text-align: left;">Terms: {{ $data->terms}}</h5>
                                         </div>
                                     </td>

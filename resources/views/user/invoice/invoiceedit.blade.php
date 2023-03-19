@@ -150,12 +150,11 @@
                                     <thead>
                                         <tr>
                                             <th scope="col"></th>
-                                            <th scope="col">Product/Services</th>
                                             <th scope="col">Description</th>
                                             <th scope="col">Qty</th>
                                             <th scope="col">Price</th>
-                                            <th scope="col">Amount</th>
                                             <th scope="col">Vat</th>
+                                            <th scope="col">Total (exc VAT)</th>
 
                                         </tr>
                                     </thead>
@@ -165,12 +164,12 @@
                                         <tr class="item-row" style="position:realative;">
                                             <td class="px-1">
                                             </td>
-                                            <td class="px-1">
+                                            <td class="px-1" style="display: none">
                                                 <input class="form-control" name="product_name[]" type="text" value="{{$invdtl->product}}">
-                                                <input class="form-control" name="invdtlid[]" type="hidden" value="{{$invdtl->id}}">
                                             </td>
                                             <td class="fs-16 txt-secondary px-1">
                                                 <input class="form-control" name="description[]" type="text" value="{{$invdtl->description}}">
+                                                <input class="form-control" name="invdtlid[]" type="hidden" value="{{$invdtl->id}}">
                                             </td>
                                             <td class="fs-16 txt-secondary px-1">
                                                 <input style="min-width: 50px;"  type="number" name="quantity[]" class="form-control quantity" value="{{$invdtl->quantity}}" min="1">
@@ -179,10 +178,10 @@
                                                 <input style="min-width: 50px;"  type="number" name="unit_rate[]" class="form-control rate" value="{{$invdtl->unit_rate}}" min="0">
                                             </td>
                                             <td class="fs-16 txt-secondary px-1">
-                                                <input style="min-width: 50px;"  type="number" name="amount[]" class="form-control amount" value="{{$invdtl->amount}}" min="0">
+                                                <input style="min-width: 50px;"  type="number" name="vat[]" class="form-control vat" value="{{$invdtl->vat}}" min="0">
                                             </td>
                                             <td class="fs-16 txt-secondary px-1">
-                                                <input style="min-width: 50px;"  type="number" name="vat[]" class="form-control vat" value="{{$invdtl->vat}}" min="0">
+                                                <input style="min-width: 50px;"  type="number" name="amount[]" class="form-control amount" value="{{$invdtl->amount}}" min="0">
                                             </td>
                                         </tr>
                                         @endforeach
@@ -331,7 +330,7 @@
         
         $(".add-row").click(function() {
             var markup =
-                '<tr class="item-row" style="position:realative"><td class="px-1"><div style="color:#fff;user-select:none;padding:5px;background:red;width:45px;display:flex;align-items:center;margin-right:5px;justify-content:center;border-radius:4px;left:4px;top:8px" onclick="removeRow(event)">X</div></td><td class="px-1"><input class="form-control" name="product_name[]" type="text"></td><td class="fs-16 txt-secondary px-1"><input class="form-control" name="description[]"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="quantity[]" class="form-control quantity" value="1" min="1"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="unit_rate[]" class="form-control rate" value="0" min="0"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="amount[]" class="form-control amount" value="0" min="0"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="vat[]" class="form-control vat" value="0" min="0"></td></tr>';
+                '<tr class="item-row" style="position:realative"><td class="px-1"><div style="color:#fff;user-select:none;padding:5px;background:red;width:45px;display:flex;align-items:center;margin-right:5px;justify-content:center;border-radius:4px;left:4px;top:8px" onclick="removeRow(event)">X</div></td><td class="px-1" style="display:none"><input class="form-control" name="product_name[]" type="text"></td><td class="fs-16 txt-secondary px-1"><input class="form-control" name="description[]"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="quantity[]" class="form-control quantity" value="1" min="1"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="unit_rate[]" class="form-control rate" value="0" min="0"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="vat[]" class="form-control vat" value="0" min="0"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="amount[]" class="form-control amount" value="0" min="0"></td></tr>';
 
             $("table #inner").append(markup);
         });

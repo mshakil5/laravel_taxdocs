@@ -68,7 +68,6 @@
                             <div class="col-md-4 ">
 
                                 <label> Select Logo</label>
-                                <input type="file" id="image" name="image" class="form-control" onchange="readURL(this);" />
                                 <img id="blah" src="{{ asset('images/'.$data->image)}}" alt="Logo" width="270px" />
 
                                 <label> Company Name</label>
@@ -106,12 +105,11 @@
                                     <thead>
                                         <tr>
                                             <th scope="col"></th>
-                                            <th scope="col">Product/Services</th>
                                             <th scope="col">Description</th>
                                             <th scope="col">Qty</th>
                                             <th scope="col">Price</th>
-                                            <th scope="col">Amount</th>
                                             <th scope="col">Vat</th>
+                                            <th scope="col">Total (exc VAT)</th>
 
                                         </tr>
                                     </thead>
@@ -120,10 +118,6 @@
                                         @foreach ($data->invoicedetail as $invdtl)
                                         <tr class="item-row" style="position:realative;">
                                             <td class="px-1">
-                                            </td>
-                                            <td class="px-1">
-                                                <input class="form-control" name="product_name[]" type="text" value="{{$invdtl->product}}">
-                                                <input class="form-control" name="invdtlid[]" type="hidden" value="{{$invdtl->id}}">
                                             </td>
                                             <td class="fs-16 txt-secondary px-1">
                                                 <input class="form-control" name="description[]" type="text" value="{{$invdtl->description}}">
@@ -135,10 +129,10 @@
                                                 <input style="min-width: 50px;"  type="number" name="unit_rate[]" class="form-control rate" value="{{$invdtl->unit_rate}}" min="0">
                                             </td>
                                             <td class="fs-16 txt-secondary px-1">
-                                                <input style="min-width: 50px;"  type="number" name="amount[]" class="form-control amount" value="{{$invdtl->amount}}" min="0">
+                                                <input style="min-width: 50px;"  type="number" name="vat[]" class="form-control vat" value="{{$invdtl->vat}}" min="0">
                                             </td>
                                             <td class="fs-16 txt-secondary px-1">
-                                                <input style="min-width: 50px;"  type="number" name="vat[]" class="form-control vat" value="{{$invdtl->vat}}" min="0">
+                                                <input style="min-width: 50px;"  type="number" name="amount[]" class="form-control amount" value="{{$invdtl->amount}}" min="0">
                                             </td>
                                         </tr>
                                         @endforeach
@@ -148,11 +142,7 @@
 
                                     </tbody>
                                     <tfoot>
-                                        <tr>
-                                            <td colspan="10">
-                                                <span class="fs16 txt-primary add-row" type="submit" >Add +</span>
-                                            </td>
-                                        </tr>
+                                       
                                     </tfoot>
                                 </table>
                             </div>

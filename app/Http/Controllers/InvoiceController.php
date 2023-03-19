@@ -125,6 +125,7 @@ class InvoiceController extends Controller
         $data = Invoice::with('invoicedetail')->where('id',$id)->first();
         $pdf = PDF::loadView('invoices.invoice', compact('data'));
         return $pdf->download('invoice-'.$data->invoiceid.'.pdf');
+        
     }
 
     public function invoice_print($id)
