@@ -103,6 +103,9 @@ class UserController extends Controller
         $userdata->bweb = $request->bweb;
         $userdata->reg_number = $request->reg_number;
         $userdata->note = $request->note;
+        $userdata->bank_acc_sort_code = $request->bank_acc_sort_code;
+        $userdata->bank_acc_number = $request->bank_acc_number;
+        $userdata->bank_name = $request->bank_name;
         $userdata->updated_by = Auth::user()->id;
 
         if ($userdata->save()) {
@@ -172,6 +175,7 @@ class UserController extends Controller
     {
         $bankdlt = new BankAccountDetail;
         $bankdlt->user_id = Auth::user()->id;
+        $bankdlt->bank_name = $request->bank_name;
         $bankdlt->bank_acc_number = $request->bank_acc_number;
         $bankdlt->bank_acc_sort_code = $request->bank_acc_sort_code;
         if ($bankdlt->save()) {

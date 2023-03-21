@@ -46,9 +46,9 @@
                     <div class="row my-2">
                         
                         <div class="col-md-12 ">
+                            <div class="udtlermsg"></div>
                             <div class="row mx-auto">
-                                <div class="col-md-6 border-right">
-                                    <div class="udtlermsg"></div>
+                                <div class="col-md-6">
                                     <div class="p-3 py-4 text-muted">
 
                                         <div class="row mt-2">
@@ -61,16 +61,8 @@
                                                 <input type="text" class="form-control" id="usurname" name="usurname" placeholder="surname" value="{{ Auth::user()->surname }}">
                                             </div>
                                         </div>
-                                        <div class="row mt-2">
-                                            <div class="col-md-6">
-                                                <label><small>Email</small></label>
-                                                <input type="email" class="form-control" id="usremail" name="uemail" placeholder="Email" value="{{ Auth::user()->email }}">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label><small>Contact Number</small></label>
-                                                <input type="text" class="form-control" id="ucnumber" name="ucnumber" maxlength="12" placeholder="Contact Number" value="{{ Auth::user()->phone }}">
-                                            </div>
-                                        </div>
+
+
                                         <div class="row mt-2">
                                             <div class="col-md-6">
                                                 <label><small>Business Name</small></label>
@@ -79,16 +71,6 @@
                                             <div class="col-md-6">
                                                 <label><small>Business Address</small></label>
                                                 <input type="text" class="form-control" id="ubaddress" name="ubaddress" value="{{ Auth::user()->baddress }}" placeholder="Business Address">
-                                            </div>
-                                        </div>
-                                        <div class="row mt-2">
-                                            <div class="col-md-6">
-                                                <label><small>House Number</small></label>
-                                                <input type="text" class="form-control" id="uhousenumber" name="uhousenumber" placeholder="House Number" value="{{ Auth::user()->house_number }}">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label><small>Street Name</small></label>
-                                                <input type="text" class="form-control" id="ustreetname" name="ustreetname" value="{{ Auth::user()->street_name }}" placeholder="Street Name">
                                             </div>
                                         </div>
                                         <div class="row mt-2">
@@ -103,22 +85,73 @@
                                         </div>
                                         <div class="row mt-2">
                                             <div class="col-md-6">
-                                                <label><small>Contact Person</small></label>
-                                                <input type="text" class="form-control" id="contact_person" name="contact_person" placeholder="Contact Person" value="{{ Auth::user()->contact_person }}">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label><small>Website</small></label>
-                                                <input type="text" class="form-control" id="bweb" name="bweb" value="{{ Auth::user()->bweb }}" placeholder="Website">
-                                            </div>
-                                        </div>
-                                        <div class="row mt-2">
-                                            <div class="col-md-6">
                                                 <label><small>Vat Registration Number</small></label>
                                                 <input type="text" class="form-control" id="reg_number" name="reg_number" placeholder="Registration Number" value="{{ Auth::user()->reg_number }}">
                                             </div>
                                             <div class="col-md-6">
                                                 <label><small>Note</small></label>
                                                 <input type="text" class="form-control" id="note" name="note" value="{{ Auth::user()->note }}" placeholder="Note">
+                                            </div>
+                                        </div>
+
+                                        {{-- @php
+                                            $accnumber = \App\Models\BankAccountDetail::where('user_id', Auth::user()->id)->where('status','1')->first();
+                                        @endphp --}}
+
+                                        <div class="row mt-2">
+                                            <div class="col-md-6">
+                                                <label><small>Bank Name</small></label>
+                                                <input type="text" class="form-control" id="bank_name" name="bank_name" value="{{ Auth::user()->bank_name }}">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label><small>Bank Account Number</small></label>
+                                                <input type="text" class="form-control" id="bank_acc_number" name="bank_acc_number" value="{{ Auth::user()->bank_acc_number }}">
+                                            </div>
+                                        </div>
+
+                                        
+
+                                        
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="p-3 py-4 text-muted">
+
+
+                                        <div class="row mt-2">
+                                            <div class="col-md-6">
+                                                <label><small>Email</small></label>
+                                                <input type="email" class="form-control" id="usremail" name="uemail" placeholder="Email" value="{{ Auth::user()->email }}">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label><small>Contact Number</small></label>
+                                                <input type="text" class="form-control" id="ucnumber" name="ucnumber" maxlength="12" placeholder="Contact Number" value="{{ Auth::user()->phone }}">
+                                            </div>
+                                        </div>
+
+                                        
+                                        <div class="row mt-2">
+                                            <div class="col-md-6">
+                                                <label><small>House Number</small></label>
+                                                <input type="text" class="form-control" id="uhousenumber" name="uhousenumber" placeholder="House Number" value="{{ Auth::user()->house_number }}">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label><small>Street Name</small></label>
+                                                <input type="text" class="form-control" id="ustreetname" name="ustreetname" value="{{ Auth::user()->street_name }}" placeholder="Street Name">
+                                            </div>
+                                        </div>
+
+                                        
+                                        <div class="row mt-2">
+                                            <div class="col-md-6">
+                                                <label><small>Contact Person</small></label>
+                                                <input type="text" class="form-control" id="contact_person" name="contact_person" placeholder="Contact Person" value="{{ Auth::user()->contact_person }}">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label><small>Website</small></label>
+                                                <input type="text" class="form-control" id="bweb" name="bweb" value="{{ Auth::user()->bweb }}" placeholder="Website">
                                             </div>
                                         </div>
 
@@ -129,31 +162,37 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <label><small>Subscription Plan</small></label>
-                                                <input type="text" class="form-control" id="sub_plan" name="sub_plan" value="@if (Auth::user()->subscription_plan == 1) Individual Plan £5.95 @endif @if (Auth::user()->subscription_plan == 2) Business Plan £10.95 @endif">
+                                                <input type="text" class="form-control" id="sub_plan" name="sub_plan" value="@if(Auth::user()->subscription_plan == 1) Individual Plan £5.95 @endif @if (Auth::user()->subscription_plan == 2) Business Plan £10.95 @endif">
                                             </div>
                                         </div>
-
-                                        @php
-                                            $accnumber = \App\Models\BankAccountDetail::where('user_id', Auth::user()->id)->where('status','1')->first();
-                                        @endphp
 
                                         <div class="row mt-2">
-                                            <div class="col-md-6">
-                                                <label><small>Bank Account Number</small></label>
-                                                <input type="text" class="form-control" id="bank_acc_number" name="bank_acc_number" value="{{ $accnumber->bank_acc_number }}" readonly>
-                                            </div>
+                                            
                                             <div class="col-md-6">
                                                 <label><small>Bank Account Code</small></label>
-                                                <input type="text" class="form-control" id="bank_acc_sort_code" name="bank_acc_sort_code" value="{{ $accnumber->bank_acc_sort_code }}" readonly>
+                                                <input type="text" class="form-control" id="bank_acc_sort_code" name="bank_acc_sort_code" value="{{ Auth::user()->bank_acc_sort_code }}">
                                             </div>
+                                            
                                         </div>
+
+
+
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <div class="p-3 py-4 text-muted">
 
                                         <div class="mt-3">
                                             <button class="btn-theme text-white userdetailsBtn" type="button">Update Profile</button>
                                         </div>
-
                                     </div>
                                 </div>
+
+
+
+
                             </div>
                         </div>
 
@@ -207,18 +246,22 @@
                       <div class="col-md-12 ">
                           <div class="row mx-auto">
 
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="bankermsg"></div>
                                 <div class="form-custom"> 
                                     @csrf
                                     <div class="row mt-2">
-                                        <div class="col-md-6">
-                                            <label> Bank Account Number </label>
-                                            <input type="text" class="form-control" id="bank_acc_number" name="bank_acc_number">
+                                        <div class="col-md-4">
+                                            <label> Bank Name</label>
+                                            <input type="text" class="form-control" id="bank_name2" name="bank_name">
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
+                                            <label> Bank Account Number </label>
+                                            <input type="text" class="form-control" id="bank_acc_number2" name="bank_acc_number">
+                                        </div>
+                                        <div class="col-md-4">
                                             <label> Bank Account Code </label>
-                                            <input type="text" class="form-control" id="bank_acc_sort_code" name="bank_acc_sort_code">
+                                            <input type="text" class="form-control" id="bank_acc_sort_code2" name="bank_acc_sort_code">
                                         </div>
                                     </div>
                                     <div class="form-group mt-2">
@@ -236,6 +279,7 @@
                                             <thead>
                                                 <tr>
                                                     <th scope="col">Date</th>
+                                                    <th scope="col">Bank Name</th>
                                                     <th scope="col">Bank Account Number</th>
                                                     <th scope="col">Bank Account Code </th>
                                                     <th scope="col">Status</th>
@@ -246,7 +290,10 @@
 
                                                 @foreach (\App\Models\BankAccountDetail::where('user_id',Auth::user()->id)->get() as $bank)
                                                 <tr>
-                                                    <td class="fs-20 txt-secondary fw-bold">{{ $bank->created_at }}</td>
+                                                    <td class="fs-20 txt-secondary fw-bold">
+                                                        {{ $bank->created_at->format('d/m/Y') }}
+                                                    </td>
+                                                    <td><span class="fs-16 txt-secondary">{{ $bank->bank_name }}</span></td>
                                                     <td><span class="fs-16 txt-secondary">{{ $bank->bank_acc_number }}</span></td>
                                                     <td class="fs-16 txt-secondary">{{ $bank->bank_acc_sort_code }}</td>
                                                     <td class="fs-16 txt-secondary">
@@ -352,6 +399,9 @@
         form_data.append("bweb", $("#bweb").val());
         form_data.append("reg_number", $("#reg_number").val());
         form_data.append("note", $("#note").val());
+        form_data.append("bank_acc_sort_code", $("#bank_acc_sort_code").val());
+        form_data.append("bank_name", $("#bank_name").val());
+        form_data.append("bank_acc_number", $("#bank_acc_number").val());
 
         //   console.log(email);
             $.ajax({
@@ -443,8 +493,9 @@
             // alert('work');
 
         var form_data = new FormData();
-        form_data.append("bank_acc_number", $("#bank_acc_number").val());
-        form_data.append("bank_acc_sort_code", $("#bank_acc_sort_code").val());
+        form_data.append("bank_name", $("#bank_name2").val());
+        form_data.append("bank_acc_number", $("#bank_acc_number2").val());
+        form_data.append("bank_acc_sort_code", $("#bank_acc_sort_code2").val());
 
             $.ajax({
                     url:bankurl,

@@ -91,9 +91,7 @@
                                 <label> Invoice Date</label>
                                 <input type="date" id="invoice_date" name="invoice_date" class="form-control" value="{{date('Y-m-d')}}">
 
-                                <label> Email</label>
-                                <input type="email" id="useremail" name="useremail" class="form-control" >
-                                <input type="hidden" id="new_user_id" name="new_user_id" class="form-control" >
+                                
 
                                 
 
@@ -118,21 +116,14 @@
                                     </div>
                                 </div>
 
-                                
-
-                                <label>Billing Address </label>
-                                <input type="text" placeholder="Address" id="useraddress" name="useraddress" class="form-control" >
+                                {{-- <label>Billing Address </label>
+                                <input type="text" placeholder="Address" id="useraddress" name="useraddress" class="form-control" > --}}
                                 
                             </div>
                             <div class="col-md-4 ">
-                                <label> Acct No</label>
-                                <input type="text" id="acct_no" name="acct_no" class="form-control" value="{{Auth::user()->bank_acc_number}}">
-
-                                <label> Bank </label>
-                                <input type="text" id="bank" name="bank" class="form-control" value="{{Auth::user()->bank_name}}">
-
-                                <label> Sort-Code</label>
-                                <input type="text" id="short_code" name="short_code" class="form-control" value="{{Auth::user()->bank_acc_sort_code}}">
+                                <label> Email</label>
+                                <input type="email" id="useremail" name="useremail" class="form-control" >
+                                <input type="hidden" id="new_user_id" name="new_user_id" class="form-control" >
 
                             </div>
 

@@ -17,6 +17,10 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->bigInteger('invoice_id')->unsigned()->nullable();
+            $table->foreign('invoice_id')->references('id')->on('invoices')->onDelete('cascade');
+            $table->bigInteger('payroll_id')->unsigned()->nullable();
+            $table->foreign('payroll_id')->references('id')->on('payrolls')->onDelete('cascade');
             $table->string('date')->nullable();
             $table->double('expense',10,2)->nullable();
             $table->double('income',10,2)->nullable();

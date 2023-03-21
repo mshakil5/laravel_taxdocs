@@ -44,6 +44,7 @@
                                     <option value>Select Frequency</option>
                                     <option value="7" @if(isset($data->frequency)) @if ($data->frequency == 7) selected @endif @endif>Weekly</option>
                                     <option value="30" @if(isset($data->frequency)) @if ($data->frequency == 30) selected @endif @endif>Monthly</option>
+                                    <option value="28" @if(isset($data->frequency)) @if ($data->frequency == 28) selected @endif @endif>Forth Weekly</option>
                                 </select>
                             </div>
                         </div>

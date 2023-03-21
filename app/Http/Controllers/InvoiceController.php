@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\NewUser;
 use App\Models\User;
 use App\Models\Invoice;
 use App\Models\InvoiceDetail;
@@ -157,24 +158,6 @@ class InvoiceController extends Controller
             exit();
         }
 
-        if(empty($request->acct_no)){
-            $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please Select a \"Bank Account Number\" field..!</b></div>";
-            return response()->json(['status'=> 303,'message'=>$message]);
-            exit();
-        }
-
-        if(empty($request->bank)){
-            $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please Select a \"Bank Name\" field..!</b></div>";
-            return response()->json(['status'=> 303,'message'=>$message]);
-            exit();
-        }
-
-        if(empty($request->short_code)){
-            $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please Select a \"Bank Sort Code\" field..!</b></div>";
-            return response()->json(['status'=> 303,'message'=>$message]);
-            exit();
-        }
-
         $descriptions = explode(",",$request->description);
         $quantitys = explode(",",$request->quantity);
         $amounts = explode(",",$request->amount);
@@ -189,35 +172,12 @@ class InvoiceController extends Controller
             }
         }
 
-        
-        // image
-            $userupdate = User::find(Auth::user()->id);
-            if ($request->image != 'null') {
-                $request->validate([
-                    'image' => 'mimes:jpeg,png,jpg,gif,svg,pdf|max:8048',
-                ]);
-                $rand = mt_rand(100000, 999999);
-                $imageName = time(). $rand .'.'.$request->image->extension();
-                $request->image->move(public_path('images'), $imageName);
-                $userupdate->invoice_image = $imageName;
-            }
-            $userupdate->bank_acc_number = $request->acct_no;
-            $userupdate->bank_acc_sort_code = $request->short_code;
-            $userupdate->bank_name = $request->bank;
-            $userupdate->vat_number = $request->company_vatno;
-            $userupdate->save();
-        // end
 
         try{
         
             $invdata = new Invoice;
             $invdata->user_name = $request->user_name;
-            if ($request->image != 'null') {
-                $invdata->image = $imageName;
-            } else {
-                $invdata->image = $request->invoice_image;
-            }
-            
+            $invdata->image = Auth::user()->photo;
             $invdata->user_id = Auth::user()->id;
             $invdata->firm_id = Auth::user()->firm_id;
             $invdata->email = $request->useremail;
@@ -232,13 +192,13 @@ class InvoiceController extends Controller
             $invdata->vat = $request->totalvat;
             $invdata->discount = $request->discount;
             $invdata->invoiceid = $request->invoiceid;
-            $invdata->company_name = $request->company_name;
-            $invdata->company_vatno = $request->company_vatno;
-            $invdata->company_email = $request->company_email;
-            $invdata->company_tell_no = $request->company_tell_no;
-            $invdata->acct_no = $request->acct_no;
-            $invdata->bank = $request->bank;
-            $invdata->short_code = $request->short_code;
+            $invdata->company_name = Auth::user()->bname;
+            $invdata->company_vatno = Auth::user()->reg_number;
+            $invdata->company_email = Auth::user()->email;
+            $invdata->company_tell_no = Auth::user()->phone;
+            $invdata->acct_no = Auth::user()->bank_acc_number;
+            $invdata->bank = Auth::user()->bank_name;
+            $invdata->short_code = Auth::user()->bank_acc_sort_code;
             $invdata->created_by = Auth::user()->id;
             if($invdata->save()){
                 foreach($descriptions as $key => $value)
@@ -291,23 +251,6 @@ class InvoiceController extends Controller
             exit();
         }
 
-        if(empty($request->acct_no)){
-            $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please Select a \"Bank Account Number\" field..!</b></div>";
-            return response()->json(['status'=> 303,'message'=>$message]);
-            exit();
-        }
-
-        if(empty($request->bank)){
-            $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please Select a \"Bank Name\" field..!</b></div>";
-            return response()->json(['status'=> 303,'message'=>$message]);
-            exit();
-        }
-
-        if(empty($request->short_code)){
-            $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please Select a \"Bank Sort Code\" field..!</b></div>";
-            return response()->json(['status'=> 303,'message'=>$message]);
-            exit();
-        }
         
         $descriptions = explode(",",$request->description);
         $quantitys = explode(",",$request->quantity);
@@ -323,14 +266,7 @@ class InvoiceController extends Controller
             }
         }
 
-        // image
-            $userupdate = User::find(Auth::user()->id);
-            $userupdate->bank_acc_number = $request->acct_no;
-            $userupdate->bank_acc_sort_code = $request->short_code;
-            $userupdate->bank_name = $request->bank;
-            $userupdate->vat_number = $request->company_vatno;
-            $userupdate->save();
-        // end
+        $newuserinfo = NewUser::where('id',$request->new_user_id)->first();
 
         try{
         
@@ -339,9 +275,9 @@ class InvoiceController extends Controller
             $data->image = Auth::user()->photo;
             $data->user_id = Auth::user()->id;
             $data->firm_id = Auth::user()->firm_id;
-            $data->email = $request->useremail;
+            $data->email = $newuserinfo->email;
             $data->new_user_id = $request->new_user_id;
-            $data->billing_address = $request->useraddress;
+            $data->billing_address = $newuserinfo->address;
             $data->invoice_date = $request->invoice_date;
             $data->message_on_invoice = $request->invmessg;
             $data->subtotal = $request->subtotal;
@@ -353,9 +289,9 @@ class InvoiceController extends Controller
             $data->company_vatno = Auth::user()->reg_number;
             $data->company_email = Auth::user()->email;
             $data->company_tell_no = Auth::user()->phone;
-            $data->acct_no = $request->acct_no;
-            $data->bank = $request->bank;
-            $data->short_code = $request->short_code;
+            $data->acct_no = $request->bank_acc_number;
+            $data->bank = $request->bank_name;
+            $data->short_code = $request->bank_acc_sort_code;
             $data->created_by = Auth::user()->id;
             if($data->save()){
                 foreach($descriptions as $key => $value)

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('bank_name',191)->nullable();
             $table->string('bank_acc_number',191)->nullable();
             $table->string('bank_acc_sort_code',191)->nullable();
             $table->boolean('status')->default(0);
