@@ -107,6 +107,13 @@ class ImageController extends Controller
 
     public function userImageStore(Request $request)
     { 
+        if($request->image == 'null'){
+            $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill \"Image\" field..!</b></div>";
+            return response()->json(['status'=> 303,'message'=>$message]);
+            exit();
+        }
+
+
         $data = new Photo();
         $data->user_id = Auth::user()->id;
         $data->firm_id = Auth::user()->firm_id;

@@ -102,7 +102,7 @@
                                         
                                         <div>
                                             <label for="date">Date</label>
-                                            <input type="date" id="date" name="date" class="form-control">
+                                            <input type="date" id="date" name="date" class="form-control" value="{{date('Y-m-d')}}">
                                             <input type="hidden" id="dataid" name="dataid" class="form-control">
                                             <input type="hidden" id="uid" name="uid" class="form-control">
                                         </div>
@@ -354,7 +354,7 @@
     $(document).ready(function() {
         var table = $('#example').DataTable( {
             lengthChange: false,
-            buttons: [ 'copy', 'excel', 'pdf', 'colvis' ]
+            buttons: [ 'excel', 'pdf', 'colvis' ]
         } );
      
         table.buttons().container()

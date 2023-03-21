@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Payroll;
 use App\Models\PayrollDetail;
 use Illuminate\support\Facades\Auth;
@@ -176,8 +177,9 @@ class PayrollController extends Controller
     public function showPayroll($id)
     {
         $id = decrypt($id);
+        $user = User::where('id',$id)->first();
         $data = Payroll::with('payrolldetail')->orderby('id','ASC')->where('user_id',$id)->get();
-        return view('admin.payroll.index',compact('data'));
+        return view('admin.payroll.index',compact('data','user'));
     }
 
     public function showPayrollDetails($id)

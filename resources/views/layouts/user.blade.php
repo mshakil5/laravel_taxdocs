@@ -94,7 +94,12 @@
                     <div class="dropdown">
                         <a href="#" class="btn dropdown-toggle profile-manage" role="button" id="dropdownMenuButton1"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="{{ asset('user/images/profile.png')}}">
+                            
+                            @if (isset(Auth::user()->photo))
+                                <img src="{{asset('images/'.Auth::user()->photo)}}">
+                                @else
+                                <img class="rounded-circle" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                            @endif
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <a class="dropdown-item" href="{{ route('user.profile') }}"><span class="iconify" data-icon="carbon:user-avatar"></span> Profile</a>

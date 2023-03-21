@@ -41,8 +41,9 @@
                                 <label> Frequency<span style="color: red">*</span></label>
                                 <select name="frequency" max-width="100px" id="frequency" class="form-control" aria-placeholder="Frequency">
                                     <option value>Select Frequency</option>
-                                    <option value="7">Weekly</option>
-                                    <option value="30">Monthly</option>
+                                    <option value="7" @if(isset($data->frequency)) @if ($data->frequency == 7) selected @endif @endif>Weekly</option>
+                                    <option value="30" @if(isset($data->frequency)) @if ($data->frequency == 30) selected @endif @endif>Monthly</option>
+                                    <option value="28" @if(isset($data->frequency)) @if ($data->frequency == 28) selected @endif @endif>Forth Weekly</option>
                                 </select>
                             </div>
                         </div>

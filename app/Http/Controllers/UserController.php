@@ -51,15 +51,13 @@ class UserController extends Controller
         $user = User::find(Auth::user()->id);
 
         if ($request->image != 'null') {
-            $originalImage= $request->file('image');
-            $thumbnailImage = Image::make($originalImage);
-            $thumbnailPath = public_path().'/images/thumbnail/';
-            $originalPath = public_path().'/images/';
-            $time = time();
-            $thumbnailImage->save($originalPath.$time.$originalImage->getClientOriginalName());
-            $thumbnailImage->resize(500,500);
-            $thumbnailImage->save($thumbnailPath.$time.$originalImage->getClientOriginalName());
-            $user->photo= $time.$originalImage->getClientOriginalName();
+            $request->validate([
+                'image' => 'required|mimes:jpeg,png,jpg,gif,svg,pdf|max:8048',
+            ]);
+            $rand = mt_rand(100000, 999999);
+            $imageName = time(). $rand .'.'.$request->image->extension();
+            $request->image->move(public_path('images'), $imageName);
+            $user->photo= $imageName;
         }
 
 

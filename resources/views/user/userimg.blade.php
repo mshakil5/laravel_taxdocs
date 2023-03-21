@@ -174,7 +174,8 @@
                           $(".ermsg").html(d.message);
                       }else if(d.status == 300){
                           $(".ermsg").html(d.message);
-                            window.setTimeout(function(){location.reload()},2000)
+                          $('#image').val('');
+                        window.setTimeout(function(){location.reload()},2000)
                       }
                   },
                     complete:function(d){

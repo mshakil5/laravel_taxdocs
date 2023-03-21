@@ -27,7 +27,7 @@
         </div>
      
 
-        <div id="contentContainer">
+        <div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
@@ -52,7 +52,7 @@
                                                     <td style="text-align: center">{{ $payroll->date }}</td>
                                                     <td style="text-align: center">{{ $payroll->company_name }}</td>
                                                     <td style="text-align: center">{{ $payroll->payroll_period }}</td>
-                                                    <td style="text-align: center">{{ $payroll->frequency }}</td>
+                                                    <td style="text-align: center"> @if ($payroll->frequency == 7) Weekly @elseif ($payroll->frequency == 30)  Monthly @else Forth Weekly @endif</td>
                                                 </tr>
                                             @endif
                                         </tbody>
