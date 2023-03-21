@@ -26,30 +26,38 @@
                       @csrf
 
                       <div class="row">
-                        <div class="col-lg-6">
 
+                        <div class="col-lg-6">
                           <div class="form-group">
                               <input class="form-control" type="text" id="name" name="name" placeholder="First Name" value="{{ old('name') }}" required> 
                           </div>
-                          <div class="form-group">
-                              <input class="form-control" type="number" id="phone" name="phone" placeholder="Contact number" value="{{ old('phone') }}" required> 
-                          </div>
-                          <div class="form-group">
-                              <input class="form-control" type="text" id="bname" name="bname" placeholder="Business name" value="{{ old('bname') }}" required> 
-                          </div>
-                          <div class="form-group">
-                            <input class="form-control" type="test" id="bank_account_number" name="bank_account_number"  value="{{ old('bank_account_number') }}" placeholder="Bank account number" required> 
-                          </div>
-
                         </div>
-                        <div class="col-lg-6">
 
+                        <div class="col-lg-6">
                           <div class="form-group">
                             <input class="form-control" type="text" id="surname" name="surname" placeholder="Surname"  value="{{ old('surname') }}" required> 
                           </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                          <div class="form-group">
+                            <input class="form-control" type="number" id="phone" name="phone" placeholder="Contact number" value="{{ old('phone') }}" required> 
+                          </div>
+                        </div>
+
+                        <div class="col-lg-6">
                           <div class="form-group">
                             <input class="form-control" type="text"  name="accountant_name" id="accountant_name"  placeholder="Accountant Name" value="{{ old('accountant_name') }}"> 
                           </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                          <div class="form-group">
+                            <input class="form-control" type="text" id="bname" name="bname" placeholder="Business name" value="{{ old('bname') }}" required> 
+                          </div>
+                        </div>
+
+                        <div class="col-lg-6">
                           <div class="form-group">
                             <select name="sub_plan" id="sub_plan" class="form-control" required>
                               <option value="">Subscription Plan</option>
@@ -57,11 +65,19 @@
                               <option value="2">Business Plan £10.95</option>
                             </select>
                           </div>
+                        </div>
+                        <div class="col-lg-6">
+                          
+                          <div class="form-group">
+                            <input class="form-control" type="test" id="bank_account_number" name="bank_account_number"  value="{{ old('bank_account_number') }}" placeholder="Bank account number" required> 
+                          </div>
+                        </div>
+                        <div class="col-lg-6">
                           <div class="form-group">
                             <input class="form-control" type="text" id="bank_account_code" name="bank_account_code" placeholder="Bank account sort-code"   value="{{ old('bank_account_code') }}" required> 
                           </div>
-
                         </div>
+
                       </div>
                       <div class="title">Address</div><hr>
                       <div class="row">

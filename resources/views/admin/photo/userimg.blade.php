@@ -410,7 +410,6 @@
             var upurl = "{{URL::to('/admin/account-update')}}";
             // console.log(url);
             $("#addImgDtlBtn").click(function(){
-                //   alert("#addBtn");
                 if($(this).val() == 'Create') {
                     
                     var form_data = new FormData();
@@ -497,11 +496,11 @@
             //Edit  end
             // Add 
             $("#contentContainer").on('click','#addBtn', function(){
-                //alert("btn work");
+                
                 codeid = $(this).attr('rid');
                 uid = $(this).attr('uid');
                 img = $(this).attr('img');
-                // console.log(codeid,uid);
+                
                 $(".showimg").html(img);
                 $("#dataid").val(codeid);
                 $("#uid").val(uid);
@@ -509,7 +508,6 @@
                 $("#backBtn").hide(300);
                 $("#newBtn").hide(300);
                     pagetop();
-                console.log(img);
             });
             // Add end
             //Delete 

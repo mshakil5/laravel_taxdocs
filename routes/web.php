@@ -53,6 +53,9 @@ Route::get('/terms', [FrontendController::class, 'terms'])->name('frontend.terms
 Route::get('/contact', [FrontendController::class, 'contact'])->name('frontend.contact');
 Route::get('/how-we-work/{id}', [FrontendController::class, 'getWorkDetails'])->name('frontend.workDetails');
 
+Route::get('/user/invoice-print/{id}', [InvoiceController::class, 'invoice_print'])->name('invoice.print');
+Route::get('/user/invoice/{id}', [InvoiceController::class, 'invoice_download'])->name('invoice.download');
+
 /*------------------------------------------
 --------------------------------------------
 All Normal Users Routes List
@@ -99,8 +102,6 @@ Route::group(['prefix' =>'user/', 'middleware' => ['auth', 'is_user']], function
     Route::get('/invoice', [InvoiceController::class, 'getInvoice'])->name('user.invoice');
     Route::post('/invoice', [InvoiceController::class, 'invoiceStore']);
     Route::post('/invoice-pdf', [InvoiceController::class, 'invoicePdfStore']);
-    Route::get('invoice/{id}', [InvoiceController::class, 'invoice_download'])->name('invoice.download');
-    Route::get('invoice-print/{id}', [InvoiceController::class, 'invoice_print'])->name('invoice.print');
 
     // new url for test
     Route::get('invoice-show/{id}', [InvoiceController::class, 'invoiceShow'])->name('invoice.show');
@@ -171,6 +172,11 @@ Route::group(['middleware' => ['auth', 'adminagentaccess']], function(){
     Route::post('admin/account-update', [AccountController::class, 'update']);
     Route::get('admin/account/{id}', [AccountController::class, 'delete']);
     //accounts end
+
+    // INVOICE ACCOUNT
+    Route::post('admin/invoice-account', [AccountController::class, 'invoiceAccountStore']);
+    Route::get('admin/invoice-account/{id}/edit', [AccountController::class, 'invoiceAccountEdit'])->name('admin.invoiceaccedit');
+    Route::post('admin/invoice-account/update', [AccountController::class, 'invoiceAccountUpdate']);
 
     Route::get('admin/paid-invoice/{id}', [InvoiceController::class, 'getPaidInvoiceByAdmin'])->name('admin.paidinvoice');
     Route::get('admin/invoices-details/{id}', [InvoiceController::class, 'getInvoiceDetailsByAdmin'])->name('admin.invoicedtl');

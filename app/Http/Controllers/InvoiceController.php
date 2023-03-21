@@ -19,7 +19,8 @@ class InvoiceController extends Controller
     public function getPaidInvoiceByAdmin($id)
     {
         $data = Invoice::with('invoicedetail')->where('user_id',decrypt($id))->where('paid',1)->orderby('id','DESC')->get();
-        return view('admin.invoice.paidinvoice', compact('data'));
+        $user = User::where('id',decrypt($id))->first();
+        return view('admin.invoice.paidinvoice', compact('data','user'));
     }
 
     public function getInvoice()
@@ -289,9 +290,9 @@ class InvoiceController extends Controller
             $data->company_vatno = Auth::user()->reg_number;
             $data->company_email = Auth::user()->email;
             $data->company_tell_no = Auth::user()->phone;
-            $data->acct_no = $request->bank_acc_number;
-            $data->bank = $request->bank_name;
-            $data->short_code = $request->bank_acc_sort_code;
+            $data->acct_no = Auth::user()->bank_acc_number;
+            $data->bank = Auth::user()->bank_name;
+            $data->short_code = Auth::user()->bank_acc_sort_code;
             $data->created_by = Auth::user()->id;
             if($data->save()){
                 foreach($descriptions as $key => $value)

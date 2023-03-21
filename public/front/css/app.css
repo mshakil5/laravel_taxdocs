@@ -588,8 +588,7 @@ body::-webkit-scrollbar-thumb {
   background-color: #fff;
   font-family: "DarkerGrotesque-semibold";
   border-radius: 7px;
-  margin: 15px 0;
-  min-height: 43px;
+  margin: 4px 0;
   border: 0;
   font-size: 19px;
   color: #003057;

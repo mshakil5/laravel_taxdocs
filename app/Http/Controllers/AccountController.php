@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Photo;
 use App\Models\Account;
+use App\Models\Invoice;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 Use Image;
@@ -31,12 +32,6 @@ class AccountController extends Controller
             return response()->json(['status'=> 303,'message'=>$message]);
             exit();
         }
-
-        // if(empty($request->expense) && empty($request->income)){
-        //     $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill \"Income or Expense \" field..!</b></div>";
-        //     return response()->json(['status'=> 303,'message'=>$message]);
-        //     exit();
-        // }
 
 
         $data = new Account();
@@ -196,6 +191,93 @@ class AccountController extends Controller
             return response()->json(['success'=>false,'message'=>'Delete Failed']);
         }
     }
+
+    public function invoiceAccountStore(Request $request)
+    {
+        if(empty($request->date)){
+            $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill \"Date \" field..!</b></div>";
+            return response()->json(['status'=> 303,'message'=>$message]);
+            exit();
+        }
+
+        if(empty($request->amount)){
+            $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill \"Amount \" field..!</b></div>";
+            return response()->json(['status'=> 303,'message'=>$message]);
+            exit();
+        }
+
+        if ($request->image == 'null') {
+            $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill \"Image \" field..!</b></div>";
+            return response()->json(['status'=> 303,'message'=>$message]);
+            exit();
+        }
+
+
+        $data = new Account();
+        $data->user_id = $request->uid;
+        $data->invoice_id = $request->dataid;
+        $data->date = $request->date;
+        $data->particular = $request->particular;
+        $data->category = $request->category;
+        $data->amount = $request->amount;
+        $data->vat = $request->vat;
+        $data->expense = $request->expense;
+        $data->income = $request->income;
+        $data->others = $request->others;
+        $data->net = $request->net;
+        $data->status = "0";
+        $data->created_by = Auth::user()->id;
+        if ($data->save()) {
+
+            $imgupdate = Invoice::find($request->dataid);
+            $imgupdate->status = "1";
+            $imgupdate->save();
+            $message ="<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Data Created Successfully.</b></div>";
+            return response()->json(['status'=> 300,'message'=>$message]);
+        } else {
+            return response()->json(['status'=> 303,'message'=>'Server Error!!']);
+        }
+    }
+
+    public function invoiceAccountEdit($id)
+    {
+        $account = Account::where('invoice_id',$id)->first();
+        $data = Invoice::with('invoicedetail')->where('id',$id)->first();
+        return view('admin.invoice.edit', compact('data','account'));
+    }
+
+    public function invoiceAccountUpdate(Request $request)
+    {
+
+        if(empty($request->date)){
+            $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill \"Date \" field..!</b></div>";
+            return response()->json(['status'=> 303,'message'=>$message]);
+            exit();
+        }
+
+        if(empty($request->amount)){
+            $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill \"Amount \" field..!</b></div>";
+            return response()->json(['status'=> 303,'message'=>$message]);
+            exit();
+        }
+
+        $data = Account::find($request->dataid);
+        $data->date = $request->date;
+        $data->particular = $request->particular;
+        $data->category = $request->category;
+        $data->amount = $request->amount;
+        $data->vat = $request->vat;
+        $data->net = $request->net;
+        $data->updated_by = Auth::user()->id;
+        if ($data->save()) {
+
+            $message ="<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Data Updated Successfully.</b></div>";
+            return response()->json(['status'=> 300,'message'=>$message]);
+        } else {
+            return response()->json(['status'=> 303,'message'=>'Server Error!!']);
+        }
+    }
+
 
 
 }
