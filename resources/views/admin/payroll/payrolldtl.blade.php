@@ -28,7 +28,41 @@
      
 
         <div id="contentContainer">
-
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3> User Payroll</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="container">
+                                    <table class="table table-bordered table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th style="text-align: center; width:20%">Date</th>
+                                            <th style="text-align: center; width:20%">Company Name</th>
+                                            <th style="text-align: center; width:20%">Payroll Period</th>
+                                            <th style="text-align: center; width:20%">Frequency </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (isset($payroll))
+                                                <tr>
+                                                    <td style="text-align: center">{{ $payroll->date }}</td>
+                                                    <td style="text-align: center">{{ $payroll->company_name }}</td>
+                                                    <td style="text-align: center">{{ $payroll->payroll_period }}</td>
+                                                    <td style="text-align: center">{{ $payroll->frequency }}</td>
+                                                </tr>
+                                            @endif
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="row">
                 <div class="col-md-12">
@@ -95,11 +129,9 @@ $(document).ready(function() {
     var table = $('#example').DataTable( {
         responsive: true,
         lengthChange: true,
-        buttons: [ 'copy', 'excel', 'pdf', 'colvis' ]
+        buttons: [ 'excel', 'pdf', 'colvis' ]
     } );
 
-    
- 
     table.buttons().container()
         .appendTo( '#example_wrapper .col-md-6:eq(0)' );
 });

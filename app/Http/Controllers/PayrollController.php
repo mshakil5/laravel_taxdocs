@@ -184,7 +184,8 @@ class PayrollController extends Controller
     {
         $id = decrypt($id);
         $data = PayrollDetail::orderby('id','DESC')->where('payroll_id',$id)->get();
-        return view('admin.payroll.payrolldtl',compact('data'));
+        $payroll = Payroll::with('payrolldetail')->where('id',$id)->first();
+        return view('admin.payroll.payrolldtl',compact('data','payroll'));
     }
 
 }
