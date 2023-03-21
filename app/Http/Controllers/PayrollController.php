@@ -11,7 +11,7 @@ class PayrollController extends Controller
 {
     public function index()
     {
-        $data = Payroll::with('payrolldetail')->orderby('id','ASC')->where('user_id',Auth::user()->id)->first();
+        $data = Payroll::with('payrolldetail')->orderby('id','DESC')->where('user_id',Auth::user()->id)->first();
         return view('user.payroll.index',compact('data'));
     }
     
@@ -37,16 +37,14 @@ class PayrollController extends Controller
             exit();
         }
 
-
-
-
-
             try{
                 $payroll = new Payroll();
                 $payroll->date = $request->date;
                 $payroll->payroll_period = $request->payroll_period;
                 $payroll->company_name = $request->company_name;
+                $payroll->frequency = $request->frequency;
                 $payroll->user_id = Auth::user()->id;
+                $payroll->firm_id = Auth::user()->firm_id;
                 $payroll->created_by= Auth::user()->id;
             if ($payroll->save()) {
                 
@@ -58,7 +56,6 @@ class PayrollController extends Controller
                         $payrolldtl->user_id = Auth::user()->id;
                         $payrolldtl->name = $request->get('name')[$key];
                         $payrolldtl->national_insurance = $request->get('national_insurance')[$key]; 
-                        $payrolldtl->frequency = $request->get('frequency')[$key]; 
                         $payrolldtl->pay_rate = $request->get('pay_rate')[$key]; 
                         $payrolldtl->working_hour = $request->get('working_hour')[$key]; 
                         $payrolldtl->holiday_hour = $request->get('holiday_hour')[$key]; 
@@ -110,6 +107,7 @@ class PayrollController extends Controller
         $pdata->date = $request->date;
         $pdata->payroll_period = $request->payroll_period;
         $pdata->company_name = $request->company_name;
+        $pdata->frequency = $request->frequency;
         $pdata->updated_by = Auth::user()->id;
 
         
@@ -123,7 +121,6 @@ class PayrollController extends Controller
             $data->national_insurance = $national_insurances[$key];
             $data->name = $name;
             $data->holiday_hour = $holiday_hours[$key];
-            $data->frequency = $frequencys[$key];
             $data->working_hour = $working_hours[$key];
             $data->pay_rate = $pay_rates[$key];
             $data->note = $notes[$key];
@@ -140,7 +137,6 @@ class PayrollController extends Controller
             $data->payroll_id = $pdata->id;
             $data->name = $name;
             $data->holiday_hour = $holiday_hours[$key];
-            $data->frequency = $frequencys[$key];
             $data->working_hour = $working_hours[$key];
             $data->pay_rate = $pay_rates[$key];
             $data->note = $notes[$key];
@@ -173,7 +169,7 @@ class PayrollController extends Controller
 
     public function payrollDetails($id)
     {
-        $data = PayrollDetail::where('payroll_id', $id)->orderby('id','DESC')->get();
+        $data = Payroll::with('payrolldetail')->where('id',decrypt($id))->first();
         return view('user.payroll.payrolldtl',compact('data'));
     }
 

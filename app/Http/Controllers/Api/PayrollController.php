@@ -15,7 +15,7 @@ class PayrollController extends BaseController
 {
     public function index()
     {
-        $data = Payroll::with('payrolldetail')->orderby('id','ASC')->where('user_id',Auth::user()->id)->first();
+        $data = Payroll::with('payrolldetail')->orderby('id','DESC')->where('user_id',Auth::user()->id)->limit(1)->first();
         if($data == null){
             $data = 'Data Not Found';
         }
@@ -72,7 +72,9 @@ class PayrollController extends BaseController
             $payroll->date = $request->date;
             $payroll->payroll_period = $request->payroll_period;
             $payroll->company_name = $request->company_name;
+            $payroll->frequency = $request->frequency;
             $payroll->user_id = Auth::user()->id;
+            $payroll->firm_id = Auth::user()->firm_id;
             $payroll->created_by= Auth::user()->id;
             if ($payroll->save()) {
 
@@ -84,7 +86,6 @@ class PayrollController extends BaseController
                     $payrolldtl['user_id'] = Auth::user()->id;
                     $payrolldtl['name'] = $item['name'];
                     $payrolldtl['national_insurance'] = $item['national_insurance'];
-                    $payrolldtl['frequency'] = $item['frequency'];
                     $payrolldtl['pay_rate'] = $item['pay_rate'];
                     $payrolldtl['working_hour'] = $item['working_hour'];
                     $payrolldtl['holiday_hour'] = $item['holiday_hour'];

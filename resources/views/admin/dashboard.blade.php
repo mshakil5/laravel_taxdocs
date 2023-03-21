@@ -12,23 +12,30 @@
       </ul>
     </div>
     <div class="row">
+
+      @if (Auth::user()->is_type == 2)
       <div class="col-md-6 col-lg-3">
         <div class="widget-small primary coloured-icon"><i class="icon fa fa-users fa-3x"></i>
           <div class="info">
             <h4>Users</h4>
-            <p><b>5</b></p>
+            <p><b>{{\App\Models\User::where('firm_id','=', Auth::user()->id)->where('is_type','0')->count()}}</b></p>
           </div>
         </div>
       </div>
+      @endif
+
+      @if (Auth::user()->is_type == 2)
       <div class="col-md-6 col-lg-3">
         <div class="widget-small info coloured-icon"><i class="icon fa fa-thumbs-o-up fa-3x"></i>
           <div class="info">
-            <h4>Likes</h4>
-            <p><b>25</b></p>
+            <h4>Documents</h4>
+            <p><b>{{\App\Models\Photo::where('firm_id','=', Auth::user()->id)->count()}}</b></p>
           </div>
         </div>
       </div>
-      <div class="col-md-6 col-lg-3">
+      @endif
+
+      {{-- <div class="col-md-6 col-lg-3">
         <div class="widget-small warning coloured-icon"><i class="icon fa fa-files-o fa-3x"></i>
           <div class="info">
             <h4>Uploades</h4>
@@ -36,6 +43,8 @@
           </div>
         </div>
       </div>
+
+
       <div class="col-md-6 col-lg-3">
         <div class="widget-small danger coloured-icon"><i class="icon fa fa-star fa-3x"></i>
           <div class="info">
@@ -43,7 +52,9 @@
             <p><b>500</b></p>
           </div>
         </div>
-      </div>
+      </div> --}}
+
+
     </div>
     <div class="row">
       <div class="col-md-6" id="contentContainer">
@@ -70,10 +81,6 @@
             </div>
             @endforeach
           @endif
-
-          
-
-          
 
         </div>
       </div>

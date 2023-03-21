@@ -73,8 +73,7 @@
                                         {{-- <a class="text-decoration-none bg-success text-white py-1 px-3 rounded mb-1 d-block text-center invoice-send-mail" href="{{ route('user.invoicesendemail',$data->id)}}" data-id="{{$data->id}}">
                                          <small>Send Email</small> </a> --}}
 
-                                         <button class="text-decoration-none bg-success text-white py-1 px-3 rounded mb-1 d-block text-center invoice-send-mail"  data-id="{{$data->id}}">
-                                            <small>Send Email</small> </button>
+                                         <button class="text-decoration-none bg-success text-white py-1 px-3 rounded mb-1 d-block text-center invoice-send-mail"  data-id="{{$data->id}}"> <small>Send Email</small> </button>
 
 
                                          <a class="text-decoration-none bg-dark text-white py-1 px-3 rounded mb-1 d-block text-center invoice-paid-status" data-id="{{$data->id}}" href="#">

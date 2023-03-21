@@ -111,16 +111,20 @@
                                     <td>Vat</td>
                                     <td style="text-align:right">{{ $data->vat}}</td>
                                 </tr>
-
+                                @if ($data->discount > 0)
                                 <tr>
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
                                     <td>Discount</td>
                                     <td style="text-align:right">{{ $data->discount}}</td>
                                 </tr>
+                                    
+                                @endif
+
                                 <tr>
+                                    @if ($data->discount > 0)
                                     <td></td>
-                                    <td></td>
+                                    <td></td>@endif
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
                                     <td>Total</td>
@@ -130,13 +134,6 @@
                             </tbody>
                             <tfoot  style="border :1px solid #dee2e6 ; width: 100%; ">
                                 
-
-                               
-
-                                
-
-
-
                             </tfoot>
                         </table>
                     </div><br><br>
@@ -146,8 +143,6 @@
                             
                             <tbody>
                                 
-                                
-
                                 <tr>
                                     <td>Company Name:</td>
                                     <td>{{ $data->company_name}}</td>

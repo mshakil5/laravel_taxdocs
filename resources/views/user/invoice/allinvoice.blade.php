@@ -5,20 +5,33 @@
 <style>
     article, aside, figure, footer, header, hgroup, 
     menu, nav, section { display: block; }
-</style>
-@php
-    $invnumber = \App\Models\Invoice::orderby('id','DESC')->limit(1)->first();
-    if (isset($invnumber)) {
-        $newinv = 1001 + $invnumber->id;
-    } else {
-        $newinv = 1000 + 1;
+
+    /*loader css*/
+    #loading {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.7;
+    background-color: #fff;
+    z-index: 99;
     }
 
-    $bankinfo = \App\Models\BankAccountDetail::where('user_id',Auth::user()->id)->where('status',1)->first();
+    #loading-image {
+    z-index: 100;
+    }
+</style>
 
-@endphp
 <div class="dashboard-content">
-
+    <!-- Image loader -->
+    <div id='loading' style='display:none ;'>
+        <img src="{{ asset('images/company/loader.gif') }}" id="loading-image" alt="Loading..." />
+   </div>
+ <!-- Image loader -->
     <section class="profile purchase-status px-4">
 
         <div class="title-section">
@@ -44,15 +57,20 @@
                                 <input type="email" id="email" name="email" class="form-control" >
                             </div>
 
-                            <div class="col-md-12 ">
+                            <div class="col-md-6 ">
                                 <label> Address <span style="color: red">*</span></label>
                                 <input type="text" placeholder="Address" id="address" name="address" class="form-control" >
+                            </div>
+
+                            <div class="col-md-6 ">
+                                <label> Post Code <span style="color: red">*</span></label>
+                                <input type="text" placeholder="Post code" id="post_code" name="post_code" class="form-control" >
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12 my-2">
                                 <button class="text-white btn-theme ml-1" id="adduserBtn" type="submit"> Submit </button>
-                                <button class="text-white btn btn-warning ml-1" id="FormCloseBtn"> Close </button>
+                                <button class="text-white btn btn-sm btn-warning ml-1" id="FormCloseBtn"> Close </button>
                             </div>
                         </div>
                 </div>
@@ -69,13 +87,19 @@
                         <div class="row mb-3">
 
                             <div class="col-md-4 ">
-                                <label> Invoice Number</label>
-                                <input type="number" id="invoiceid" name="invoiceid" class="form-control" value="{{$newinv}}" readonly>
+                                
                                 <label> Invoice Date</label>
                                 <input type="date" id="invoice_date" name="invoice_date" class="form-control" value="{{date('Y-m-d')}}">
 
-                                <label> Terms</label>
-                                <input type="text" id="terms" name="terms" class="form-control" >
+                                <label> Email</label>
+                                <input type="email" id="useremail" name="useremail" class="form-control" >
+                                <input type="hidden" id="new_user_id" name="new_user_id" class="form-control" >
+
+                                
+
+                                
+                            </div>
+                            <div class="col-md-4 ">
 
                                 <div class="row">
                                     <div class="col-8">
@@ -96,41 +120,8 @@
 
                                 
 
-                                <label> Email</label>
-                                <input type="email" id="useremail" name="useremail" class="form-control" >
-                                <input type="hidden" id="new_user_id" name="new_user_id" class="form-control" >
-
                                 <label>Billing Address </label>
                                 <input type="text" placeholder="Address" id="useraddress" name="useraddress" class="form-control" >
-                            </div>
-                            <div class="col-md-4 ">
-
-                                @if (isset(Auth::user()->invoice_image))
-                                    <input type="hidden" id="invoice_image" name="invoice_image" value="{{Auth::user()->invoice_image}}" />
-                                    <input type="file" id="image" name="image" class="form-control" hidden />
-                                    <img id="blah" src="{{ asset('images/'.Auth::user()->invoice_image)}}" alt="Logo" width="220px" />
-                                @else
-                                <label> Select Logo</label>
-                                <input type="file" id="image" name="image" class="form-control" onchange="readURL(this);" />
-                                <div style="display: none">
-                                    <img id="blah" src="{{ asset('images/company/'.\App\Models\CompanyDetail::where('id',1)->first()->header_logo)}}" alt="Logo" width="220px" />
-                                </div>
-                               
-                                @endif
-
-                                
-
-                                <label> Company Name</label>
-                                <input type="text" id="company_name" name="company_name" class="form-control" value="{{Auth::user()->bname}}">
-
-                                <label> Vat no </label>
-                                <input type="text" id="company_vatno" name="company_vatno" class="form-control" value="{{Auth::user()->vat_number}}">
-
-                                <label> Tell No</label>
-                                <input type="text" id="company_tell_no" name="company_tell_no" class="form-control" value="{{Auth::user()->phone}}">
-
-                                <label>Company Email </label>
-                                <input type="text" id="company_email" name="company_email" class="form-control" value="{{Auth::user()->email}}">
                                 
                             </div>
                             <div class="col-md-4 ">
@@ -261,7 +252,7 @@
                             <div class="col-md-4 ">
                                 
                                 <button type="button" class="text-white btn-theme ml-1 btn-block savePdfBtn" id="savePdfBtn">Save as pdf </button>
-                                <button type="button" class="text-white btn-theme ml-1 btn-block"  id="saveinvBtn">Email as pdf </button>
+                                {{-- <button type="button" class="text-white btn-theme ml-1 btn-block"  id="saveinvBtn">Email as pdf </button> --}}
 
                             </div>
 
@@ -351,12 +342,13 @@
                 var name = $("#name").val();
                 var email = $("#email").val();
                 var address = $("#address").val();
+                var post_code = $("#post_code").val();
                 
 
                 $.ajax({
                     url: newuserurl,
                     method: "POST",
-                    data: {name,email,address},
+                    data: {name,email,address,post_code},
 
                     success: function (d) {
                         if (d.status == 303) {
@@ -534,42 +526,23 @@
         var invoicepdfurl = "{{URL::to('/user/invoice-pdf')}}";
         $("body").delegate("#savePdfBtn","click",function(event){
                 event.preventDefault();
+                $("#loading").show();
 
-                var image = $('#image').prop('files')[0];
-                    if(typeof image === 'undefined'){
-                        image = 'null';
-                    }
-                
                 var form_data = new FormData();
-                form_data.append('image', image);
                 form_data.append("user_name", $("#user_name").val());
                 form_data.append("useremail", $("#useremail").val());
                 form_data.append("new_user_id", $("#new_user_id").val());
                 form_data.append("useraddress", $("#useraddress").val());
-                form_data.append("terms", $("#terms").val());
                 form_data.append("invoice_date", $("#invoice_date").val());
-                form_data.append("due_date", $("#due_date").val());
                 form_data.append("invmessg", $("#invmessg").val());
-                form_data.append("appointmentmessg", $("#appointmentmessg").val());
-                form_data.append("tomail", $("#tomail").val());
-                form_data.append("subjectmail", $("#subjectmail").val());
-                form_data.append("mailbody", $("#mailbody").val());
                 form_data.append("subtotal", $("#subtotal").val());
                 form_data.append("totalamount", $("#totalamount").val());
                 form_data.append("balancedue", $("#balancedue").val());
-                form_data.append("invoiceid", $("#invoiceid").val());
                 form_data.append("totalvat", $("#totalvat").val());
                 form_data.append("discount", $("#discount").val());
-
-                form_data.append("company_name", $("#company_name").val());
-                form_data.append("company_vatno", $("#company_vatno").val());
-                form_data.append("company_tell_no", $("#company_tell_no").val());
-                form_data.append("company_email", $("#company_email").val());
                 form_data.append("acct_no", $("#acct_no").val());
                 form_data.append("bank", $("#bank").val());
                 form_data.append("short_code", $("#short_code").val());
-                form_data.append("invoice_image", $("#invoice_image").val());
-
 
                 var description = $("input[name='description[]']")
                     .map(function(){return $(this).val();}).get();
@@ -609,6 +582,9 @@
                                 window.setTimeout(function(){location.reload()},2000)
                           }
                       },
+                      complete:function(d){
+                            $("#loading").hide();
+                        },
                       error: function (d) {
                           console.log(d);
                       }

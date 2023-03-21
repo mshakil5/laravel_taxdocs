@@ -4,10 +4,33 @@
     .pl25{
         padding-left: 25px;
     }
+    /*loader css*/
+    #loading {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.7;
+    background-color: #fff;
+    z-index: 99;
+    }
+
+    #loading-image {
+    z-index: 100;
+    }
 </style>
 
 <div class="dashboard-content">
 
+        <!-- Image loader -->
+        <div id='loading' style='display:none ;'>
+            <img src="{{ asset('images/company/loader.gif') }}" id="loading-image" alt="Loading..." />
+       </div>
+     <!-- Image loader -->
     
 
     <section class="profile purchase-status px-4">
@@ -130,6 +153,8 @@
         var url = "{{URL::to('/user/photo')}}";
         // console.log(url);
         $("#addBtn").click(function(){
+                $("#loading").show();
+
                 var file_data = $('#image').prop('files')[0];
                 if(typeof file_data === 'undefined'){
                     file_data = 'null';
@@ -152,6 +177,9 @@
                             window.setTimeout(function(){location.reload()},2000)
                       }
                   },
+                    complete:function(d){
+                        $("#loading").hide();
+                    },
                   error: function (d) {
                       console.log(d);
                   }

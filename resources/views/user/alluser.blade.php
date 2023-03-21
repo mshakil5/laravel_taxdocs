@@ -24,9 +24,13 @@
                                 <input type="email" id="email" name="email" class="form-control" >
                             </div>
 
-                            <div class="col-md-12 ">
+                            <div class="col-md-6 ">
                                 <label> Address <span style="color: red">*</span></label>
                                 <input type="text" placeholder="Address" id="address" name="address" class="form-control" >
+                            </div>
+                            <div class="col-md-6 ">
+                                <label> Post Code <span style="color: red">*</span></label>
+                                <input type="text" placeholder="Post code" id="post_code" name="post_code" class="form-control" >
                             </div>
                         </div>
                         <div class="row">
@@ -57,6 +61,7 @@
                                         <th style="text-align: center">Sl</th>
                                         <th style="text-align: center">Name</th>
                                         <th style="text-align: center;width:50%">Email</th>
+                                        <th style="text-align: center">Post Code </th> 
                                         <th style="text-align: center">Address </th> 
                                         <th style="text-align: center">Action </th> 
                                     </tr>
@@ -70,6 +75,7 @@
                                       <td style="text-align: center;width:50%">
                                         {{ $data->email }}
                                       </td>
+                                      <td style="text-align: center">{{ $data->post_code }}</td>
                                       <td style="text-align: center">
                                         {{ $data->address }}
                                       </td>
@@ -124,12 +130,13 @@
                 var name = $("#name").val();
                 var email = $("#email").val();
                 var address = $("#address").val();
+                var post_code = $("#post_code").val();
                 
 
                 $.ajax({
                     url: url,
                     method: "POST",
-                    data: {name,email,address},
+                    data: {name,email,address,post_code},
 
                     success: function (d) {
                         if (d.status == 303) {
@@ -159,13 +166,14 @@
                 var name = $("#name").val();
                 var email = $("#email").val();
                 var address = $("#address").val();
+                var post_code = $("#post_code").val();
                 var uid = $("#uid").val();
                 
 
                 $.ajax({
                     url: upurl,
                     method: "POST",
-                    data: {name,email,address,uid},
+                    data: {name,email,address,uid,post_code},
 
                     success: function (d) {
                         if (d.status == 303) {
@@ -216,6 +224,7 @@
                 uname = $(this).attr('uname');
                 uemail = $(this).attr('uemail');
                 uaddress = $(this).attr('uaddress');
+                upost_code = $(this).attr('upost_code');
                 
                 $("#newBtn").hide(100);
                 $("#addThisFormContainer").show(300);  
@@ -225,6 +234,7 @@
                 $("#name").val(uname);
                 $("#email").val(uemail);
                 $("#address").val(uaddress);
+                $("#post_code").val(upost_code);
                 $("#adduserBtn").hide(100);
                 $("#updateuserBtn").show(100);
 

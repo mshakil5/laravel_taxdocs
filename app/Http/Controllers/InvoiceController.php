@@ -219,6 +219,7 @@ class InvoiceController extends Controller
             }
             
             $invdata->user_id = Auth::user()->id;
+            $invdata->firm_id = Auth::user()->firm_id;
             $invdata->email = $request->useremail;
             $invdata->new_user_id = $request->new_user_id;
             $invdata->billing_address = $request->useraddress;
@@ -324,15 +325,6 @@ class InvoiceController extends Controller
 
         // image
             $userupdate = User::find(Auth::user()->id);
-            if ($request->image != 'null') {
-                $request->validate([
-                    'image' => 'mimes:jpeg,png,jpg,gif,svg,pdf|max:8048',
-                ]);
-                $rand = mt_rand(100000, 999999);
-                $imageName = time(). $rand .'.'.$request->image->extension();
-                $request->image->move(public_path('images'), $imageName);
-                $userupdate->invoice_image = $imageName;
-            }
             $userupdate->bank_acc_number = $request->acct_no;
             $userupdate->bank_acc_sort_code = $request->short_code;
             $userupdate->bank_name = $request->bank;
@@ -343,31 +335,24 @@ class InvoiceController extends Controller
         try{
         
             $data = new Invoice;
-            $data->user_name = $request->user_name;
-
-            if ($request->image != 'null') {
-                $data->image = $imageName;
-            } else {
-                $data->image = $request->invoice_image;
-            }
-            
+            $data->user_name = $request->new_user_id;
+            $data->image = Auth::user()->photo;
             $data->user_id = Auth::user()->id;
+            $data->firm_id = Auth::user()->firm_id;
             $data->email = $request->useremail;
             $data->new_user_id = $request->new_user_id;
             $data->billing_address = $request->useraddress;
-            $data->terms = $request->terms;
             $data->invoice_date = $request->invoice_date;
-            $data->due_date = $request->due_date;
             $data->message_on_invoice = $request->invmessg;
             $data->subtotal = $request->subtotal;
             $data->total = $request->totalamount;
             $data->vat = $request->totalvat;
             $data->discount = $request->discount;
-            $data->invoiceid = $request->invoiceid;
-            $data->company_name = $request->company_name;
-            $data->company_vatno = $request->company_vatno;
-            $data->company_email = $request->company_email;
-            $data->company_tell_no = $request->company_tell_no;
+            $data->invoiceid = date('Ymd-his');
+            $data->company_name = Auth::user()->bname;
+            $data->company_vatno = Auth::user()->reg_number;
+            $data->company_email = Auth::user()->email;
+            $data->company_tell_no = Auth::user()->phone;
             $data->acct_no = $request->acct_no;
             $data->bank = $request->bank;
             $data->short_code = $request->short_code;

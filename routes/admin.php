@@ -87,7 +87,6 @@ Route::group(['prefix' =>'admin/', 'middleware' => ['auth', 'is_admin']], functi
     Route::get('/master/{id}', [MasterController::class, 'delete']);
 
     
-    Route::get('/paid-invoice/{id}', [InvoiceController::class, 'getPaidInvoiceByAdmin'])->name('admin.paidinvoice');
-    Route::get('/invoices-details/{id}', [InvoiceController::class, 'getInvoiceDetailsByAdmin'])->name('admin.invoicedtl');
+
 });
 //admin part end

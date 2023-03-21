@@ -263,6 +263,7 @@ class UserController extends BaseController
         $data->name = $request->name;
         $data->email = $request->email;
         $data->address = $request->address;
+        $data->post_code = $request->post_code;
         if ($data->save())
             {
                 $responseArray = [

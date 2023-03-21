@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\RegisterController;
 use App\Http\Controllers\Api\ImageController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\PayrollController;
+use App\Http\Controllers\Api\InvoiceController;
   
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +62,16 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/payroll-details/{id}', [PayrollController::class, 'payrollDetails'])->name('user.payrolldtl');
     Route::post('/payroll', [PayrollController::class, 'payrollStore']);
     Route::post('/payroll-update', [PayrollController::class, 'payrollUpdate']);
+
+    // invoice
+    Route::get('/all-invoice', [InvoiceController::class, 'getAllInvoice'])->name('user.allinvoice');
+    Route::get('/paid-invoice', [InvoiceController::class, 'getPaidInvoice'])->name('user.paidinvoice');
+    Route::get('/invoice-delete/{id}', [InvoiceController::class, 'delete']);
+    Route::post('/invoice-paid-status', [InvoiceController::class, 'paidInvoice']);
+    Route::post('/invoice-sent-email', [InvoiceController::class, 'invoiceSendEmail'])->name('user.invoicesendemail');
+
+    
+    Route::post('/invoice-email-as-pdf', [InvoiceController::class, 'invoiceStore']);
 
 });
      

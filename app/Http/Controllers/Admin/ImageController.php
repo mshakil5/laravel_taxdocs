@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Photo;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 Use Image;
 use Illuminate\Http\Request;
@@ -93,9 +94,9 @@ class ImageController extends Controller
     {
         $id = decrypt($id);
         $data = Photo::with('account')->where('user_id',$id)->orderby('id','DESC')->get();
-
-        // dd($id);
-        return view('admin.photo.userimg',compact('data','id'));
+        $user = User::where('id',$id)->first();
+        // dd($data);
+        return view('admin.photo.userimg',compact('data','id','user'));
     }
 
     public function getUserImage()

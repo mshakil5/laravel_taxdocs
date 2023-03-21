@@ -17,9 +17,12 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->bigInteger('firm_id')->unsigned()->nullable();
+            $table->foreign('firm_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('date',191)->nullable();
             $table->string('payroll_period')->nullable();
             $table->longText('company_name')->nullable();
+            $table->string('frequency',191)->nullable();
             $table->boolean('admin_notification')->default(0);
             $table->boolean('accfirm_notification')->default(0);
             $table->boolean('status')->default(0);

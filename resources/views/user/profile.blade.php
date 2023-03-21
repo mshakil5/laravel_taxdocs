@@ -8,7 +8,7 @@
         <div class="col-md-12 ">
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                  <button class="nav-link active" id="transactionOut-tab" data-bs-toggle="tab" data-bs-target="#nav-transactionOut" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Image</button>
+                  <button class="nav-link active" id="transactionOut-tab" data-bs-toggle="tab" data-bs-target="#nav-transactionOut" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Business Logo</button>
                   <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-transcationIn" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Details</button>
                   <button class="nav-link" id="nav-password-tab" data-bs-toggle="tab" data-bs-target="#nav-password" type="button" role="tab" aria-controls="nav-password" aria-selected="false">Change Password</button>
                   <button class="nav-link" id="nav-bank-tab" data-bs-toggle="tab" data-bs-target="#nav-bank" type="button" role="tab" aria-controls="nav-password" aria-selected="false">Bank Details</button>
@@ -33,7 +33,7 @@
                                     @endif
 
                                     <span class="font-weight-bold"><input type="file" id="pimage" name="pimage" class="form-control"></span>
-                                    <span class="mt-3"><button class="btn-theme text-white imgBtn" type="button">Upload Image</button></span>
+                                    <span class="mt-3"><button class="btn-theme text-white imgBtn" type="button">Upload Logo</button></span>
                                 </div>
                             </div>
 
@@ -113,7 +113,7 @@
                                         </div>
                                         <div class="row mt-2">
                                             <div class="col-md-6">
-                                                <label><small>Registration Number</small></label>
+                                                <label><small>Vat Registration Number</small></label>
                                                 <input type="text" class="form-control" id="reg_number" name="reg_number" placeholder="Registration Number" value="{{ Auth::user()->reg_number }}">
                                             </div>
                                             <div class="col-md-6">

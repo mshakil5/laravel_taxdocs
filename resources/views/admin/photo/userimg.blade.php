@@ -12,11 +12,59 @@
         padding: 8px;
     }
     tr:nth-child(even){background-color: #f2f2f2}
+
+    .popup{
+    width: 240px;
+    margin: auto;
+    text-align: center
+    }
+    .popup img{
+        width: 100px;
+        height: 100px;
+        cursor: pointer
+    }
+    .show{
+        z-index: 999;
+        display: none;
+    }
+    .show .overlay{
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,.66);
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .show .img-show{
+        width: 600px;
+        height: 400px;
+        background: #FFF;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        overflow: hidden
+    }
+    .img-show span{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 99;
+        cursor: pointer;
+    }
+    .img-show img{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    /*End style*/
 </style>
     <main class="app-content">
         <div class="app-title">
             <div>
-                <h1><i class="fa fa-dashboard"></i> Category</h1>
+                <h1><i class="fa fa-dashboard"></i> {{$user->bname}} All Documents</h1>
             </div>
             <ul class="app-breadcrumb breadcrumb">
                 <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
@@ -122,7 +170,7 @@
                                         
                                         <div>
                                             <label for="date">Date</label>
-                                            <input type="date" id="newdate" name="date" class="form-control">
+                                            <input type="date" id="newdate" name="date" class="form-control" value="{{date('Y-m-d')}}">
                                             <input type="hidden" id="newuid" name="uid" class="form-control" value="{{$id}}">
                                         </div>
 
@@ -192,7 +240,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3> All Image</h3>
+                            <h3> All Documents</h3>
                         </div>
                         <div class="card-body">
                             <table class="table table-bordered table-hover" id="example">
@@ -213,25 +261,25 @@
                                     @foreach ($data as $key => $data)
                                         @if ($data->status == 0)
                                             <tr>
-                                                <td style="text-align: center">{{ $key + 1 }}</td>
+                                                <td style="text-align: center">{{ $data->id }}</td>
                                                 <td style="text-align: center"></td>
                                                 <td style="text-align: center">
                                                     @if ($data->image)
-
                                                         @php
                                                             $ext = pathinfo(storage_path().$data->image, PATHINFO_EXTENSION);
                                                         @endphp
-                                                            @if ($ext == 'pdf')
-                                                                <div class="row justify-content-center">
-                                                                    <iframe src="{{asset('images/'.$data->image)}}" width="20%" height="100px">
-                                                                            This browser does not support PDFs.Please download the PDF to view it: <a href="{{asset('images/'.$data->image)}}">Download PDF</a>
-                                                                    </iframe>
-                                                                </div>
-                                                            @else
-                                                                <img src="{{asset('images/'.$data->image)}}" height="100px" width="200px" alt="">
-                                                            @endif
-                                                            
+                                                        @if ($ext == 'pdf')
+                                                            <div class="row justify-content-center">
+                                                                <iframe src="{{asset('images/'.$data->image)}}" width="20%" height="100px">
+                                                                        This browser does not support PDFs.Please download the PDF to view it: <a href="{{asset('images/'.$data->image)}}">Download PDF</a>
+                                                                </iframe>
+                                                            </div>
+                                                        @else
+                                                        <div class="popup">
+                                                            <img src="{{asset('images/'.$data->image)}}" height="100px" width="200px" alt="">
+                                                        </div>
                                                         @endif
+                                                    @endif
                                                 </td>
                                                 <td style="text-align: center"></td>
                                                 <td style="text-align: center"></td>
@@ -245,7 +293,7 @@
                                             </tr>
                                         @else
                                             <tr>
-                                                <td style="text-align: center">{{ $key + 1 }}</td>
+                                                <td style="text-align: center">{{ $data->id }}</td>
                                                 <td style="text-align: center">{{$data->account->date}}</td>
                                                 <td style="text-align: center">
                                                     @if ($data->image)
@@ -260,7 +308,9 @@
                                                                     </iframe>
                                                                 </div>
                                                             @else
+                                                            <div class="popup">
                                                                 <img src="{{asset('images/'.$data->image)}}" height="100px" width="200px" alt="">
+                                                            </div>
                                                             @endif
                                                             
                                                         @endif
@@ -288,6 +338,15 @@
                 </div>
             </div>
         </div>
+
+        {{-- image popup show  --}}
+        <div class="show">
+            <div class="overlay"></div>
+            <div class="img-show">
+              <span>X</span>
+              <img src="">
+            </div>
+        </div>
     </main>
 @endsection
 @section('script')
@@ -301,6 +360,20 @@
         table.buttons().container()
             .appendTo( '#example_wrapper .col-md-6:eq(0)' );
     } );
+    $(function () {
+    "use strict";
+    
+        $(".popup img").click(function () {
+            var $src = $(this).attr("src");
+            $(".show").fadeIn();
+            $(".img-show img").attr("src", $src);
+        });
+        
+        $("span, .overlay").click(function () {
+            $(".show").fadeOut();
+        });
+        
+    });
     </script>
     <script>
         $(document).ready(function () {

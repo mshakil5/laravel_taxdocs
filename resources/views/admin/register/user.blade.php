@@ -182,6 +182,7 @@
                                             <th>Sl</th>
                                             <th>Date</th>
                                             <th>Name</th>
+                                            <th>Business Name</th>
                                             <th>Email</th>
                                             <th>Mobile</th>
                                             <th>Number of Image</th>
@@ -202,6 +203,7 @@
                                                     <td>{{$key++}}</td>
                                                     <td>{{$account->created_at->format("m/d/Y")}}</td>
                                                     <td>{{$account->name}}</td>
+                                                    <td>{{$account->bname}}</td>
                                                     <td>{{$account->email}}</td>
                                                     <td>{{$account->phone}}</td>
                                                     <td>{{$imgcount}}</td>
@@ -218,9 +220,7 @@
                                                         <a class="btn btn-info btn-sm text-white" href="{{route('show.userdtl',encrypt($account->id))}}"> View</a>
                                                     </td>
                                                     <td class="text-center">
-                                                        @if (Auth::user()->is_type == 1)
                                                         <a href="{{ route('admin.paidinvoice', encrypt($account->id) )}}"><span class="badge badge-success">Paid Invoice</span></a><br>
-                                                        @endif
                                                         <a href="{{ route('payroll', encrypt($account->id) )}}"><span class="badge badge-primary">Payroll</span></a><br>
                                                         <a href="{{ route('showimg', encrypt($account->id) )}}"><i class="fa fa-eye" style="color: #3ddf52;font-size:16px;"></i></a>
                                                         <a id="EditBtn" rid="{{$account->id}}"><i class="fa fa-edit" style="color: #2196f3;font-size:16px;"></i></a>
@@ -250,7 +250,7 @@ $(document).ready(function() {
     var table = $('#example').DataTable( {
         responsive: true,
         lengthChange: false,
-        buttons: [ 'copy', 'excel', 'pdf', 'colvis' ]
+        buttons: ['excel', 'pdf', 'colvis' ]
     } );
 
     

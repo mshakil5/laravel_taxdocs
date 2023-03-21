@@ -5,7 +5,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Admin</title>
+    <title>Taxdocs</title>
     <!-- Twitter meta-->
     <meta property="twitter:card" content="hasibuzzaman">
     <meta property="twitter:site" content="@hasibuzzaman">
@@ -61,7 +61,6 @@
       <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="@if(Auth::User()->photo){{ asset('images') }}/{{Auth::User()->photo}}@else{{ asset('1.png') }}@endif"  height="50px" width="50px" alt="User Image">
         <div>
           <p class="app-sidebar__user-name">{{Auth::User()->name}}</p>
-          <p class="app-sidebar__user-designation">Frontend Developer</p>
         </div>
       </div>
       <ul class="app-menu">

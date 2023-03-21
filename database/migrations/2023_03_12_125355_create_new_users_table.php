@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('name',191)->nullable();
             $table->string('email',191)->nullable();
             $table->longText('address')->nullable();
+            $table->string('post_code',191)->nullable();
             $table->longText('company_name')->nullable();
             $table->boolean('admin_notification')->default(0);
             $table->boolean('accfirm_notification')->default(0);

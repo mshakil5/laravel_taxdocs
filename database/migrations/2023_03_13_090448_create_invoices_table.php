@@ -19,6 +19,8 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->bigInteger('new_user_id')->unsigned()->nullable();
             $table->foreign('new_user_id')->references('id')->on('new_users')->onDelete('cascade');
+            $table->bigInteger('firm_id')->unsigned()->nullable();
+            $table->foreign('firm_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('image',191)->nullable();
             $table->string('user_name',191)->nullable();
             $table->string('email',191)->nullable();
