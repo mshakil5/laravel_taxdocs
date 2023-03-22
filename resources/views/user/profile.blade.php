@@ -1,7 +1,35 @@
 @extends('layouts.user')
 @section('content')
+<style>
+    .pl25{
+        padding-left: 25px;
+    }
+    
+    /*loader css*/
+    #loading {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.7;
+    background-color: #fff;
+    z-index: 99;
+    }
 
+    #loading-image {
+    z-index: 100;
+    }
 
+</style>
+<!-- Image loader -->
+<div id='loading' style='display:none ;'>
+    <img src="{{ asset('images/company/loader.gif') }}" id="loading-image" alt="Loading..." style="height: 225px;"/>
+</div>
+<!-- Image loader -->
 <div class="dashboard-content">
   <section class=""> 
     <div class="row  my-3 mx-0 "> 
@@ -238,37 +266,8 @@
                 
                 <div class="tab-pane fade" id="nav-bank" role="tabpanel" aria-labelledby="nav-bank-tab">
                     <div class="row my-2">
-                        <div class="title-section">
-                            <span class="iconify" data-icon="clarity:heart-solid"></span>
-                            <div class="mx-2">Bank Account Details</div>
-                        </div>
-                        
                       <div class="col-md-12 ">
                           <div class="row mx-auto">
-
-                            <div class="col-md-12">
-                                <div class="bankermsg"></div>
-                                <div class="form-custom"> 
-                                    @csrf
-                                    <div class="row mt-2">
-                                        <div class="col-md-4">
-                                            <label> Bank Name</label>
-                                            <input type="text" class="form-control" id="bank_name2" name="bank_name">
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label> Bank Account Number </label>
-                                            <input type="text" class="form-control" id="bank_acc_number2" name="bank_acc_number">
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label> Bank Account Code </label>
-                                            <input type="text" class="form-control" id="bank_acc_sort_code2" name="bank_acc_sort_code">
-                                        </div>
-                                    </div>
-                                    <div class="form-group mt-2">
-                                        <button type="submit" class="btn-theme bg-primary d-block text-center mx-0 text-white" id="saveBankBtn">Save</button>
-                                    </div>
-                                </div>
-                            </div>
 
                             <div class="col-md-10" id="contentContainer">
                                 <div class="bankmsg"></div>
@@ -327,6 +326,36 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="col-md-12">
+                                <div class="title-section">
+                                    <span class="iconify" data-icon="clarity:heart-solid"></span>
+                                    <div class="mx-2">Change Bank Details</div>
+                                </div>
+                                <div class="bankermsg"></div>
+                                <div class="form-custom"> 
+                                    @csrf
+                                    <div class="row mt-2">
+                                        <div class="col-md-4">
+                                            <label> Bank Name</label>
+                                            <input type="text" class="form-control" id="bank_name2" name="bank_name">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label> Bank Account Number </label>
+                                            <input type="text" class="form-control" id="bank_acc_number2" name="bank_acc_number">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label> Bank Account Code </label>
+                                            <input type="text" class="form-control" id="bank_acc_sort_code2" name="bank_acc_sort_code">
+                                        </div>
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <button type="submit" class="btn-theme bg-primary d-block text-center mx-0 text-white" id="saveBankBtn">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </div>
                       </div>
                     </div>
@@ -456,6 +485,8 @@
 
             var imgurl = "{{URL::to('/user/image')}}";
             $(".imgBtn").click(function(){
+                
+                $("#loading").show();
               var file_data = $('#pimage').prop('files')[0];
                   if(typeof file_data === 'undefined'){
                     file_data = 'null';
@@ -479,6 +510,9 @@
                             window.setTimeout(function(){location.reload()},2000)
                           }
                       },
+                        complete:function(d){
+                            $("#loading").hide();
+                        },
                       error: function (d) {
                           console.log(d);
                       }

@@ -29,7 +29,7 @@
 <div class="dashboard-content">
     <!-- Image loader -->
     <div id='loading' style='display:none ;'>
-        <img src="{{ asset('images/company/loader.gif') }}" id="loading-image" alt="Loading..." />
+        <img src="{{ asset('images/company/loader.gif') }}" id="loading-image" alt="Loading..." style="height: 225px;" />
    </div>
  <!-- Image loader -->
     <section class="profile purchase-status px-4">
@@ -69,7 +69,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12 my-2">
-                                <button class="text-white btn-theme ml-1" id="adduserBtn" type="submit"> Submit </button>
+                                <button class="text-white btn-theme ml-1" id="adduserBtn" type="submit"> Save </button>
                                 <button class="text-white btn btn-sm btn-warning ml-1" id="FormCloseBtn"> Close </button>
                             </div>
                         </div>
@@ -158,13 +158,13 @@
                                                 </td>
 
                                                 <td class="fs-16 txt-secondary px-1">
-                                                    <input style="min-width: 50px;"  type="number" name="unit_rate[]" class="form-control rate" value="0" min="0">
+                                                    <input style="min-width: 80px;"  type="number" name="unit_rate[]" class="form-control rate" value="0" min="0">
                                                 </td>
                                                 <td class="fs-16 txt-secondary px-1">
-                                                    <input style="min-width: 50px;"  type="number" name="vat[]" class="form-control vat" value="0" min="0">
+                                                    <input style="min-width: 80px;"  type="number" name="vat[]" class="form-control vat" value="0" min="0">
                                                 </td>
                                                 <td class="fs-16 txt-secondary px-1">
-                                                    <input style="min-width: 50px;"  type="number" name="amount[]" class="form-control amount" value="0" min="0">
+                                                    <input style="min-width: 80px;"  type="number" name="amount[]" class="form-control amount" value="0" min="0">
                                                 </td>
                                             </tr>
                                             

@@ -35,7 +35,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12 my-2">
-                                <button class="text-white btn-theme ml-1" id="adduserBtn" type="submit"> Submit </button>
+                                <button class="text-white btn-theme ml-1" id="adduserBtn" type="submit"> Save </button>
                                 <button class="text-white btn-theme ml-1" id="updateuserBtn" type="submit"> Update </button>
                                 <button class="text-white btn btn-sm btn-warning ml-1" id="FormCloseBtn"> Close </button>
                             </div>

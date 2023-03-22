@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Charity - Register</title>
+    <title>Taxdocs Login</title>
     <link rel="icon" href="{{ url('css/favicon.jpg') }}">
     <link rel="stylesheet" href="{{ asset('user/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="./css/app.css">

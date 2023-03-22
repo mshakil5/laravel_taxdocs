@@ -30,7 +30,7 @@
 
     <!-- Image loader -->
     <div id='loading' style='display:none ;'>
-        <img src="{{ asset('images/company/loader.gif') }}" id="loading-image" alt="Loading..." />
+        <img src="{{ asset('images/company/loader.gif') }}" id="loading-image" alt="Loading..." style="height: 225px;" />
    </div>
  <!-- Image loader -->
 
@@ -82,7 +82,10 @@
                                         <a href="{{ route('invoice.download',$data->id)}}"><i class="fa fa-book" style="color: #09a311;font-size:16px;"></i></a>
                                         <a href="{{ route('user.invoicedtl',encrypt($data->id))}}"><i class="fa fa-eye" style="color: #09a311;font-size:16px;"></i></a>
                                         <a href="{{ route('user.invoiceedit',$data->id)}}"><i class="fa fa-edit" style="color: #2094f3;font-size:16px;"></i></a>
-                                        <a id="deleteBtn" rid="{{$data->id}}"><i class="fa fa-trash-o" style="color: red;font-size:16px;"></i></a>
+                                            @if ($data->status == 0)
+                                            <a id="deleteBtn" rid="{{$data->id}}"><i class="fa fa-trash-o" style="color: red;font-size:16px;"></i></a>
+                                            @endif
+
                                         </div>
                                        </td>
                                       

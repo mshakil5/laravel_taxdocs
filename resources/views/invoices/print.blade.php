@@ -25,7 +25,7 @@
             }
 
             html, body {
-                margin: 100 0 0 0;
+                margin: 50 0 0 0;
                 padding: 0
             }
 
@@ -50,30 +50,52 @@
     <section class="invoice">
         <div class="container-fluid p-0">
             <div class="invoice-body py-5">
-                <div style="  max-width: 1170px; margin: 70px auto;">
+                <div style="max-width: 1170px; margin: 20px auto;">
                     
 
                         <table style="width: 100%;">
                             <tbody>
                                 <tr>
-                                    <td colspan="2" class="" style="border :0px solid #dee2e6 ;width:80%;">
-                                        <div class="col-lg-2 text-end" style="flex: 2; text-align: right;">
-                                            <h5 style="font-size: .90rem; margin : 5px;text-align: left;">Invoice No: {{ $data->invoiceid}}</h5>
-                                            <h5 style="font-size: .90rem; margin : 5px;text-align: left;">Date: {{ $data->invoice_date}}</h5>
+                                    <td colspan="2" class="" style="border :0px solid #dee2e6;width:50%;">
+                                        <div class="col-lg-2" style="flex: 2; text-align: left;">
+                                            <img src="{{ asset('images/'.$data->image)}}" alt="{{ $data->company_name}}" width="220px" />
                                         </div>
                                     </td>
 
-                                    <td colspan="2" class="" style="border :0px solid #dee2e6 ;width:80%;"></td>
+                                    <td colspan="2" class="" style="border :0px solid #dee2e6 ;width:50%;"></td>
+
+                                    
                                     <td colspan="2" class="" style="border :0px solid #dee2e6 ;">
-                                        <div class="col-lg-2 text-end" style="flex: 2; text-align: right;">
-                                            <img src="{{ asset('images/'.$data->image)}}" alt="{{ $data->company_name}}" width="220px" />
-                                        </div>
+                                        
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="" style="border :0px solid #dee2e6;width:25%;">
+                                    </td>
+
+                                    <td colspan="2" class="" style="border :0px solid #dee2e6 ;width:50%;"></td>
+
+                                    
+                                    <td colspan="2" class="" style="border :0px solid #dee2e6 ;">
+                                        
                                     </td>
                                 </tr>
 
 
+                            </tbody>
+                            
+                        </table>
+
+                        <br><br>
+
+
+
+
+                        <table style="width: 100%;">
+                            <tbody>
+
                                 <tr>
-                                    <td colspan="2" class="" style="border :0px solid #828283 ;width:80%;">
+                                    <td colspan="2" class="" style="border :0px solid #828283 ;width:40%;">
                                         <div class="col-lg-2 text-end" style="flex: 2; text-align: right;">
                                             <h5 style="font-size: .90rem; margin : 5px;text-align: left;">Invoice To</h5>
                                             <h5 style="font-size: .90rem; margin : 5px;text-align: left;">Name: {{ \App\Models\NewUser::where('id',$data->new_user_id)->first()->name}}</h5>
@@ -82,21 +104,38 @@
                                         </div>
                                     </td>
 
-                                    <td colspan="2" class="" style="border :0px solid #dee2e6 ;width:80%;"></td>
-                                    <td colspan="2" class="" style="border :0px solid #dee2e6 ;"></td>
+                                    <td colspan="2" class="" style="border :0px solid #dee2e6;width:30%;"></td>
+                                    <td colspan="2" class="" style="border :0px solid #dee2e6 ;">
+                                        <div class="col-lg-2 text-end" style="flex: 2; text-align: left;">
+                                            <h5 style="font-size: .90rem; margin : 5px;text-align: left;">Invoice No: {{ $data->invoiceid}}</h5>
+                                            <h5 style="font-size: .90rem; margin : 5px;text-align: left;">Date: {{ $data->invoice_date}}</h5>
+                                        </div>
+                                    </td>
                                 </tr>
                                 
                             </tbody>
                             
                         </table>
-
                         <br>
+
+                        <table style="width: 100%;">
+                            <tbody>
+
+                                <tr>
+                                    <td style="border :0px solid #828283 ;width:100%;">
+                                        {{ $data->message_on_invoice}}
+                                    </td>
+                                </tr>
+                                
+                            </tbody>
+                            
+                        </table><br>
                     
                     <div class="row overflow">
                         <table style="width: 100%;border-collapse: collapse;">
                             <thead>
                                 <tr>
-                                    <th  style="border: 1px solid #dee2e6!important; padding: 0 15px;">#</th>
+                                    <th  style="border: 1px solid #dee2e6!important; padding: 0 15px;">SL</th>
                                     <th  style="border: 1px solid #dee2e6!important; padding: 0 15px;">Description</th>
                                     <th  style="border: 1px solid #dee2e6!important; padding: 0 15px;">Qty</th>
                                     <th  style="border: 1px solid #dee2e6!important; padding: 0 15px;">Price</th>
@@ -136,7 +175,7 @@
                                 </tr>
 
                                 <tr>
-                                    <td colspan="2" rowspan="3">{{ $data->message_on_invoice}}</td>
+                                    <td colspan="2" rowspan="3"></td>
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
                                     <td>Subtotal</td>
@@ -169,17 +208,11 @@
                             <tfoot  style="border :1px solid #dee2e6 ; width: 100%; ">
                                 
 
-                               
-
-                                
-
-
-
                             </tfoot>
                         </table>
                     </div><br><br>
 
-                    <div class="row overflow">
+                    <div class="row overflow" style="margin-top: 200px">
                         <table style="width: 100%;border-collapse: collapse;">
                             
                             <tbody>

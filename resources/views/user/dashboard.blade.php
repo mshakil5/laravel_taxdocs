@@ -9,14 +9,53 @@
           <span> {{ \App\Models\Photo::where('user_id', Auth::user()->id )->count() }}</span>
       </div>
   </div>
-  <div class="row my-4">
+  {{-- <div class="row my-4">
       <div class="col-md-12 text-center ">
           <h4 class="text-capitalize bg-info text-white p-3 border-left d-inline-block mx-auto rounded">
               welcome to {{Auth::user()->name}}
           </h4>
       </div>
-  </div>
+  </div> --}}
+
+  
   <fieldset>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="transferFunds shadow-sm">
+                <div class="para pl-2">
+                    <a href="{{ route('user.photo')}}"> 
+
+                        <img src="{{asset('user/images/photo.jpeg')}}" style="width: 245px">
+                    
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="transferFunds shadow-sm">
+                  <div class="para pl-2">
+                        <a href="{{ route('user.invoice')}}"> 
+                            <img src="{{asset('user/images/inv.jpeg')}}" style="width: 245px">
+                        </a>
+                  </div>
+            </div>
+        </div>
+
+        
+        <div class="col-md-4">
+            <div class="transferFunds shadow-sm">
+                <div class="para pl-2">
+                    <a href="{{ route('user.payroll')}}"> 
+                        <img src="{{asset('user/images/payroll.jpeg')}}" style="width: 245px">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</fieldset><br>
+  {{-- <fieldset>
       <div class="row">
           <div class="col-md-5">
               <div class="transferFunds shadow-sm">
@@ -60,7 +99,7 @@
 
           </div>
       </div>
-  </fieldset>
+  </fieldset> --}}
   
 </div>
 

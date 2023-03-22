@@ -22,13 +22,61 @@
     #loading-image {
     z-index: 100;
     }
+
+    .popup{
+    width: 240px;
+    margin: auto;
+    text-align: center
+    }
+    .popup img{
+        width: 100px;
+        height: 100px;
+        cursor: pointer
+    }
+    .show{
+        z-index: 999;
+        display: none;
+    }
+    .show .overlay{
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,.66);
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .show .img-show{
+        width: 600px;
+        height: 400px;
+        background: #FFF;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        overflow: hidden
+    }
+    .img-show span{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 99;
+        cursor: pointer;
+    }
+    .img-show img{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    /*End style*/
 </style>
 
 <div class="dashboard-content">
 
         <!-- Image loader -->
         <div id='loading' style='display:none ;'>
-            <img src="{{ asset('images/company/loader.gif') }}" id="loading-image" alt="Loading..." />
+            <img src="{{ asset('images/company/loader.gif') }}" id="loading-image" alt="Loading..." style="height: 225px;" />
        </div>
      <!-- Image loader -->
     
@@ -103,7 +151,9 @@
                                                     </iframe>
                                                 </div>
                                             @else
+                                            <div class="popup">
                                                 <img src="{{asset('images/'.$data->image)}}" height="100px" width="200px" alt="">
+                                            </div>
                                             @endif
                                             
                                           @endif
@@ -126,6 +176,15 @@
         </div> 
     </section> 
 
+    {{-- image popup show  --}}
+    <div class="show">
+        <div class="overlay"></div>
+        <div class="img-show">
+          <span>X</span>
+          <img src="">
+        </div>
+    </div>
+
 </div>
 
 
@@ -134,6 +193,24 @@
 @section('script')
 
 <script>
+
+    
+$(function () {
+"use strict";
+
+    $(".popup img").click(function () {
+        var $src = $(this).attr("src");
+        $(".show").fadeIn();
+        $(".img-show img").attr("src", $src);
+    });
+    
+    $("span, .overlay").click(function () {
+        $(".show").fadeOut();
+    });
+    
+});
+
+
     $(document).ready(function () {
         $("#addThisFormContainer").hide();
         $("#newBtn").click(function(){
