@@ -9,6 +9,7 @@ use App\Models\NewUser;
 use App\Models\User;
 use App\Models\Invoice;
 use App\Models\InvoiceDetail;
+use App\Models\CompanyDetail;
 use PDF;
 use Mail;
 use App\Mail\InvoiceMail;
@@ -268,12 +269,16 @@ class InvoiceController extends Controller
         }
 
         $newuserinfo = NewUser::where('id',$request->new_user_id)->first();
-
         try{
         
             $data = new Invoice;
             $data->user_name = $request->new_user_id;
-            $data->image = Auth::user()->photo;
+            if (isset(Auth::user()->photo)) {
+                $data->image = Auth::user()->photo;
+            }else{
+                $data->image = "default.png";
+            }
+            
             $data->user_id = Auth::user()->id;
             $data->firm_id = Auth::user()->firm_id;
             $data->email = $newuserinfo->email;

@@ -45,6 +45,9 @@
                             Dashboard
                         </a>
                     </li>
+                    @if (isset(Auth::user()->firm_id))
+                        
+                    
                     <li class="nav-item {{ (request()->is('user/photo*')) ? 'active' : '' }}">
                         <a href="{{route('user.photo')}}">
                             <span class="iconify" data-icon="icon-park-outline:transaction"></span>
@@ -81,6 +84,8 @@
                             All User
                         </a>
                     </li>
+
+                    @endif
                    
                 </ul>
             </nav>
