@@ -32,7 +32,12 @@
                                 <tr>
                                     <td colspan="2" class="" style="border :0px solid #dee2e6;width:50%;">
                                         <div class="col-lg-2" style="flex: 2; text-align: left;">
-                                            <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('images/'.$data->image))) }}" width="120px" style="display:inline-block;"/>
+                                            @if (isset($data->image))
+                                                <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('images/'.$data->image))) }}" width="120px" style="display:inline-block;"/>
+                                            @else
+                                                <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('images/'.Auth::user()->photo))) }}" width="120px" style="display:inline-block;"/>
+                                            @endif
+                                            
                                         </div>
                                     </td>
                                     <td colspan="2" class="" style="border :0px solid #dee2e6 ;width:50%;"></td>
@@ -45,8 +50,6 @@
                                     <td colspan="2" class="" style="border :0px solid #dee2e6 ;">
                                     </td>
                                 </tr>
-
-
                             </tbody>
                             
                         </table>

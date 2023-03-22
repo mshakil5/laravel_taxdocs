@@ -56,6 +56,8 @@
                                     <td colspan="2" class="" style="border :0px solid #dee2e6;width:50%;">
                                         <div class="col-lg-2" style="flex: 2; text-align: left;">
                                             <img src="{{ asset('images/'.$data->image)}}" alt="{{ $data->company_name}}" width="220px" />
+                                            {{-- <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('images/'.$data->image))) }}" width="120px" style="display:inline-block;"/> --}}
+                                            
                                         </div>
                                     </td>
 
