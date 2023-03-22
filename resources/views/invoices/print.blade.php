@@ -16,12 +16,9 @@
     </script>
     <style>
         @media print {
+            
             @page {
                 margin: 100px auto; /* imprtant to logo margin */
-            }
-
-            thead, tfoot {  
-                display: none !important
             }
 
             html, body {
@@ -49,7 +46,7 @@
 <body>
     <section class="invoice">
         <div class="container-fluid p-0">
-            <div class="invoice-body py-5">
+            <div class="invoice-body py-5 position-relative">
                 <div style="max-width: 1170px; margin: 20px auto;">
                     
 
@@ -87,9 +84,6 @@
                         </table>
 
                         <br><br>
-
-
-
 
                         <table style="width: 100%;">
                             <tbody>
@@ -135,13 +129,12 @@
                         <table style="width: 100%;border-collapse: collapse;">
                             <thead>
                                 <tr>
-                                    <th  style="border: 1px solid #dee2e6!important; padding: 0 15px;">SL</th>
-                                    <th  style="border: 1px solid #dee2e6!important; padding: 0 15px;">Description</th>
-                                    <th  style="border: 1px solid #dee2e6!important; padding: 0 15px;">Qty</th>
-                                    <th  style="border: 1px solid #dee2e6!important; padding: 0 15px;">Price</th>
-                                    <th  style="border: 1px solid #dee2e6!important; padding: 0 15px;">Vat Amount</th>
-                                    <th  style="border: 1px solid #dee2e6!important; padding: 0 15px;">Total (Exc VAT)</th>
-
+                                    <td  style="border: 1px solid #dee2e6!important; padding: 0 15px;text-align:center">SL</td>
+                                    <td  style="border: 1px solid #dee2e6!important; padding: 0 15px;text-align:center">Description</td>
+                                    <td  style="border: 1px solid #dee2e6!important; padding: 0 15px;text-align:center">Qty</td>
+                                    <td  style="border: 1px solid #dee2e6!important; padding: 0 15px;text-align:center">Price</td>
+                                    <td  style="border: 1px solid #dee2e6!important; padding: 0 15px;text-align:center">Vat Amount</td>
+                                    <td  style="border: 1px solid #dee2e6!important; padding: 0 15px;text-align:center">Total (Exc VAT)</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -206,28 +199,33 @@
 
                             </tbody>
                             <tfoot  style="border :1px solid #dee2e6 ; width: 100%; ">
-                                
 
                             </tfoot>
                         </table>
                     </div><br><br>
 
-                    <div class="row overflow" style="margin-top: 200px">
-                        <table style="width: 100%;border-collapse: collapse;">
-                            
-                            <tbody>
-                                
-                                
-
+                    <div class="row overflow" style="position:fixed; bottom:0; width:100%; ">
+                        <hr>
+                        <table style="width:95vw;border-collapse: collapse;">
+                            <thead>
                                 <tr>
-                                    <td>Company Name:</td>
-                                    <td>{{ $data->company_name}}</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>Acct. No</td>
+                                    <th style="width: 20%"></th>
+                                    <th style="width: 20%"></th>
+                                    <th style="width: 10%"></th>
+                                    <th style="width: 10%"></th>
+                                    <th style="width: 20%"></th>
+                                    <th style="width: 20%"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="width: 20%">Company Name:</td>
+                                    <td style="width: 20%">{{ $data->company_name}}</td>
+                                    <td style="width: 10%">&nbsp;</td>
+                                    <td style="width: 10%">&nbsp;</td>
+                                    <td style="width: 20%">Acct. No</td>
                                     <td style="text-align:right">{{ $data->acct_no}}</td>
                                 </tr>
-
                                 <tr>
                                     <td>Vat No:</td>
                                     <td>{{ $data->company_vatno}}</td>
@@ -242,7 +240,7 @@
                                     <td>{{ $data->company_tell_no}}</td>
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
-                                    <td>SortCode:</td>
+                                    <td>Sort-code:</td>
                                     <td style="text-align:right">{{ $data->short_code}}</td>
                                 </tr>
                                 <tr>
