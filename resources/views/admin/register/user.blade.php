@@ -189,6 +189,7 @@
                                             <th>Image Transaction</th>
                                             <th>Status</th>
                                             <th>Details</th>
+                                            <th>Report</th>
                                             <th>Action</th>
                                         </tr>
                                         </thead>
@@ -218,6 +219,9 @@
                                                     </td>
                                                     <td>
                                                         <a class="btn btn-info btn-sm text-white" href="{{route('show.userdtl',encrypt($account->id))}}"> View</a>
+                                                    </td>
+                                                    <td>
+                                                        <a class="btn btn-success btn-sm text-white" href="{{route('admin.report',encrypt($account->id))}}"> Report</a>
                                                     </td>
                                                     <td class="text-center">
                                                         <a href="{{ route('admin.paidinvoice', encrypt($account->id) )}}"><span class="badge badge-success">Paid Invoice</span></a><br>

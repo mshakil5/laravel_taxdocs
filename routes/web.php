@@ -13,6 +13,7 @@ use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PayrollController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\AdminController;
@@ -180,4 +181,8 @@ Route::group(['middleware' => ['auth', 'adminagentaccess']], function(){
 
     Route::get('admin/paid-invoice/{id}', [InvoiceController::class, 'getPaidInvoiceByAdmin'])->name('admin.paidinvoice');
     Route::get('admin/invoices-details/{id}', [InvoiceController::class, 'getInvoiceDetailsByAdmin'])->name('admin.invoicedtl');
+
+    // reports
+    Route::get('admin/report/{id}', [ReportController::class, 'getAccountsReport'])->name('admin.report');
+
 });
