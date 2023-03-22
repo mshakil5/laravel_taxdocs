@@ -98,7 +98,7 @@
                                                         <td style="text-align: center">{{ $data->company_name }}</td>
                                                         <td style="text-align: center">{{ $data->payroll_period }}</td>
                                                         <td style="text-align: center">
-                                                            @if ($data->frequency == 7) Weekly @elseif ($data->frequency == 30)  Monthly @else Forth Weekly @endif
+                                                            @if ($data->frequency == 7) Weekly @elseif ($data->frequency == 30)  Monthly @else Fortnight @endif
                                                         </td>
                                                         <td>
                                                             <a href="{{ route('admin.payrolldtl', encrypt($data->id) )}}"><span class="badge badge-primary">show</span></a>

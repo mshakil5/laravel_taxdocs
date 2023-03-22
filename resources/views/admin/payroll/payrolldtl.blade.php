@@ -52,7 +52,7 @@
                                                     <td style="text-align: center">{{ $payroll->date }}</td>
                                                     <td style="text-align: center">{{ $payroll->company_name }}</td>
                                                     <td style="text-align: center">{{ $payroll->payroll_period }}</td>
-                                                    <td style="text-align: center"> @if ($payroll->frequency == 7) Weekly @elseif ($payroll->frequency == 30)  Monthly @else Forth Weekly @endif</td>
+                                                    <td style="text-align: center"> @if ($payroll->frequency == 7) Weekly @elseif ($payroll->frequency == 30)  Monthly @else Fortnight @endif</td>
                                                 </tr>
                                             @endif
                                         </tbody>
