@@ -71,7 +71,8 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/invoice-sent-email', [InvoiceController::class, 'invoiceSendEmail'])->name('user.invoicesendemail');
 
     
-    Route::post('/invoice-email-as-pdf', [InvoiceController::class, 'invoiceStore']);
+    Route::post('/invoice-store-as-pdf', [InvoiceController::class, 'invoicePdfStore']);
+    Route::get('/invoice-pdf-download/{id}', [InvoiceController::class, 'invoicePdfDownload']);
 
 });
      

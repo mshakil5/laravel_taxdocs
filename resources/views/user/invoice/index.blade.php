@@ -79,8 +79,8 @@
                                          <a class="text-decoration-none bg-dark text-white py-1 px-3 rounded mb-1 d-block text-center invoice-paid-status" data-id="{{$data->id}}" href="#">
                                             <small>Paid</small> </a>
                                         <div class="py-1 text-center">
-                                        {{-- <a href="{{ route('invoice.download',$data->id)}}"><i class="fa fa-book" style="color: #09a311;font-size:16px;"></i></a> --}}
-                                        <a href="{{ route('invoice.print',$data->id)}}"><i class="fa fa-book" style="color: #09a311;font-size:16px;"></i></a>
+                                        <a href="{{ route('invoice.download',$data->id)}}"><i class="fa fa-book" style="color: #09a311;font-size:16px;"></i></a>
+                                        {{-- <a href="{{ route('invoice.print',$data->id)}}"><i class="fa fa-book" style="color: #09a311;font-size:16px;"></i></a> --}}
                                         <a href="{{ route('user.invoicedtl',encrypt($data->id))}}"><i class="fa fa-eye" style="color: #09a311;font-size:16px;"></i></a>
                                         <a href="{{ route('user.invoiceedit',$data->id)}}"><i class="fa fa-edit" style="color: #2094f3;font-size:16px;"></i></a>
                                             @if ($data->status == 0)

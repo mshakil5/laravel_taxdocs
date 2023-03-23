@@ -138,6 +138,7 @@ class UserController extends BaseController
     public function bankAccountStore(Request $request){
         $bankdlt = new BankAccountDetail;
         $bankdlt->user_id = Auth::user()->id;
+        $bankdlt->bank_name = $request->bank_name;
         $bankdlt->bank_acc_number = $request->bank_acc_number;
         $bankdlt->bank_acc_sort_code = $request->bank_acc_sort_code;
         $bankdlt->status = "0";

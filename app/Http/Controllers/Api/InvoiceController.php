@@ -47,14 +47,19 @@ class InvoiceController extends BaseController
     {
         $chkdata = Invoice::where('id',$id)->first();
         if ($chkdata->user_id == Auth::user()->id) {
-            if(Invoice::destroy($id)){
-                $responseArray = [
-                    'status'=>'Data Deleted Successfully.'
-                ]; 
-                return response()->json($responseArray,200);
-            }else{
-                return response()->json(['success'=>false,'message'=>'Server Failed']);
+            if ($chkdata->status == 0) {
+                if(Invoice::destroy($id)){
+                    $responseArray = [
+                        'status'=>'Data Deleted Successfully.'
+                    ]; 
+                    return response()->json($responseArray,200);
+                }else{
+                    return response()->json(['success'=>false,'message'=>'Server Failed']);
+                }
+            } else {
+                return response()->json(['success'=>false,'message'=>'This invoice couldn\'t delete']);
             }
+            
         } else {
             return response()->json(['success'=>false,'message'=>'Authentication Error!!']);
         }
@@ -107,7 +112,7 @@ class InvoiceController extends BaseController
     }
 
 
-    public function invoiceStore(Request $request)
+    public function invoiceStore2(Request $request)
     {
 
         if(empty($request->new_user_id)){
@@ -221,11 +226,82 @@ class InvoiceController extends BaseController
         }catch (\Exception $e){
             return response()->json(['success'=>true,'response'=> 'Server Error!!'], 404);
         }
+    }
+
+    public function invoicePdfStore(Request $request)
+    {
+
+        if(empty($request->new_user_id)){
+            return response()->json(['success'=>false,'message'=>'Please Select An User']);
+        }
+
+        $newuserinfo = NewUser::where('id',$request->new_user_id)->first();
+        try{
+        
+            $data = new Invoice;
+            $data->user_name = $request->new_user_id;
+            if (isset(Auth::user()->photo)) {
+                $data->image = Auth::user()->photo;
+            }else{
+                $data->image = "default.png";
+            }
+            
+            $data->user_id = Auth::user()->id;
+            $data->firm_id = Auth::user()->firm_id;
+            $data->email = $newuserinfo->email;
+            $data->new_user_id = $request->new_user_id;
+            $data->billing_address = $newuserinfo->address;
+            $data->invoice_date = $request->invoice_date;
+            $data->message_on_invoice = $request->invmessg;
+            $data->subtotal = $request->subtotal;
+            $data->total = $request->totalamount;
+            $data->vat = $request->totalvat;
+            $data->discount = $request->discount;
+            $data->invoiceid = date('Ymd-his');
+            $data->company_name = Auth::user()->bname;
+            $data->company_vatno = Auth::user()->reg_number;
+            $data->company_email = Auth::user()->email;
+            $data->company_tell_no = Auth::user()->phone;
+            $data->acct_no = Auth::user()->bank_acc_number;
+            $data->bank = Auth::user()->bank_name;
+            $data->short_code = Auth::user()->bank_acc_sort_code;
+            $data->created_by = Auth::user()->id;
+            if($data->save()){
+                $invoicedetails = json_decode($request->invoicedetails, true);    
+                foreach ($invoicedetails as $item)
+                {
+                    $payrolldtl['invoice_id'] = $data->id;
+                    $payrolldtl['user_id'] = Auth::user()->id;
+                    $payrolldtl['name'] = $item['name'];
+                    $payrolldtl['description'] = $item['description'];
+                    $payrolldtl['quantity'] = $item['quantity'];
+                    $payrolldtl['unit_rate'] = $item['unit_rate'];
+                    $payrolldtl['amount'] = $item['amount'];
+                    $payrolldtl['vat'] = $item['vat'];
+                    $payrolldtl['created_by'] = Auth::user()->id;
+                    InvoiceDetail::create($payrolldtl);
+                }
+                //stores the pdf for invoice
+                
+                $success['response'] = 'Invoice create successfully';
+                $success['invoice'] = $data;
+                return response()->json(['success'=>true,'response'=> $success], 200);
+                
+            }
+
+        }catch (\Exception $e){
+            return response()->json(['success'=>true,'response'=> 'Server Error!!'], 404);
+        }
 
         
+    }
+
+    public function invoicePdfDownload($id)
+    {
+        $data = Invoice::with('invoicedetail')->where('id',$id)->first();
+        $pdf = PDF::loadView('invoices.invoice', compact('data'));
+        return $pdf->download('invoice-'.$data->invoiceid.'.pdf');
         
-
-
     }
 
     

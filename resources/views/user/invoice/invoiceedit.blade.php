@@ -74,14 +74,19 @@
                         <div class="row mb-3">
 
                             <div class="col-md-4 ">
-                                <label> Invoice Number</label>
-                                <input type="number" id="invoiceid" name="invoiceid" class="form-control" value="{{$data->invoiceid}}" readonly>
                                 <input type="hidden" id="dataid" name="dataid" class="form-control" value="{{$data->id}}">
                                 <label> Invoice Date</label>
                                 <input type="date" id="invoice_date" name="invoice_date" class="form-control" value="{{$data->invoice_date}}">
 
-                                <label> Terms</label>
-                                <input type="text" id="terms" name="terms" class="form-control" value="{{$data->terms}}">
+
+                                
+
+                                
+
+                                
+
+                            </div>
+                            <div class="col-md-4 ">
 
                                 <div class="row">
                                     <div class="col-8">
@@ -99,44 +104,13 @@
                                         <button class="text-white btn-theme ml-1 mt-4" id="newBtn"> Add New </button>
                                     </div>
                                 </div>
-
                                 
-
+                            </div>
+                            <div class="col-md-4 ">
+                                
                                 <label> Email</label>
                                 <input type="email" id="useremail" name="useremail" class="form-control" value="{{$data->email}}">
                                 <input type="hidden" id="new_user_id" name="new_user_id" class="form-control" value="{{$data->new_user_id}}" >
-
-                                <label>Billing Address </label>
-                                <input type="text" placeholder="Address" id="useraddress" name="useraddress" class="form-control" value="{{$data->billing_address}}" >
-                            </div>
-                            <div class="col-md-4 ">
-
-                                <label> Select Logo</label>
-                                <input type="file" id="image" name="image" class="form-control" onchange="readURL(this);" />
-                                <img id="blah" src="{{ asset('images/'.$data->image)}}" alt="Logo" width="270px" />
-
-                                <label> Company Name</label>
-                                <input type="text" id="company_name" name="company_name" class="form-control" value="{{$data->company_name}}">
-
-                                <label> Vat no </label>
-                                <input type="text" id="company_vatno" name="company_vatno" class="form-control" value="{{$data->company_vatno}}">
-
-                                <label> Tell No</label>
-                                <input type="text" id="company_tell_no" name="company_tell_no" class="form-control" value="{{$data->company_tell_no}}">
-
-                                <label>Company Email </label>
-                                <input type="text" id="company_email" name="company_email" class="form-control" value="{{$data->company_email}}">
-                                
-                            </div>
-                            <div class="col-md-4 ">
-                                <label> Acct No</label>
-                                <input type="text" id="acct_no" name="acct_no" class="form-control" value="{{$data->acct_no}}">
-
-                                <label> Bank </label>
-                                <input type="text" id="bank" name="bank" class="form-control" value="{{$data->bank}}">
-
-                                <label> Sort-Code</label>
-                                <input type="text" id="short_code" name="short_code" class="form-control" value="{{$data->short_code}}">
 
                             </div>
 
