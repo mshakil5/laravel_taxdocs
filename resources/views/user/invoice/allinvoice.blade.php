@@ -570,7 +570,7 @@
                                 $(".invermsg").html(d.message);
                                 pagetop();
                                 window.open(`https://www.taxdocs.co.uk/user/invoice/${d.id}`);
-                                window.setTimeout(function(){location.reload()},2000)
+                                window.setTimeout(function(){location.reload()},2000);
                           }
                       },
                       complete:function(d){

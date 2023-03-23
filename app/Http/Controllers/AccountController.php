@@ -239,10 +239,16 @@ class AccountController extends Controller
         }
     }
 
+    public function invoiceAccountAdd($id)
+    {
+        $data = Invoice::with('invoicedetail')->where('id',decrypt($id))->first();
+        return view('admin.invoice.addaccount', compact('data'));
+    }
+
     public function invoiceAccountEdit($id)
     {
-        $account = Account::where('invoice_id',$id)->first();
-        $data = Invoice::with('invoicedetail')->where('id',$id)->first();
+        $account = Account::where('invoice_id',decrypt($id))->first();
+        $data = Invoice::with('invoicedetail')->where('id',decrypt($id))->first();
         return view('admin.invoice.edit', compact('data','account'));
     }
 

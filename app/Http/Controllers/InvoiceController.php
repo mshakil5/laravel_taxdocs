@@ -44,14 +44,12 @@ class InvoiceController extends Controller
 
     public function paidInvoice(Request $request)
     {
-
         $data = Invoice::find($request->id);
         $data->paid = "1";
         if ($data->save()) {
             $message ="<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Invoice Paid Successfully.</b></div>";
             return response()->json(['status'=> 300,'message'=>$message]);
         }
-
     }
 
     public function getInvoiceDetails($id)

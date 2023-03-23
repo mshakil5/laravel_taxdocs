@@ -26,79 +26,7 @@
             </ul>
         </div>
 
-        <div id="addThisFormContainer">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3>Accounts</h3>
-                        </div>
-                        <div class="ermsg"></div>
-                        <div class="card-body">
-                            <div class="row">
 
-                                <div class="col-md-7">
-                                    <div class="container">
-                                        <div class="showimg">
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                                
-
-                                <div class="col-md-5">
-                                    <div class="container">
-
-                                        {!! Form::open(['url' => 'admin/register/admincreate','id'=>'createThisForm']) !!}
-                                        
-                                        <div>
-                                            <label for="date">Date</label>
-                                            <input type="date" id="date" name="date" class="form-control" value="{{date('Y-m-d')}}">
-                                            <input type="hidden" id="dataid" name="dataid" class="form-control">
-                                            <input type="hidden" id="uid" name="uid" class="form-control">
-                                        </div>
-
-                                        <div>
-                                            <label for="particular">Particular</label>
-                                            <input type="text" id="particular" name="particular" class="form-control">
-                                        </div>
-                                        <div>
-                                            <label for="category">Category</label>
-                                            <select name="category" id="category" class="form-control">
-                                                <option value="">Select</option>
-                                                <option value="Receivable">Receivable</option>
-                                                <option value="Payable">Payable</option>
-                                            </select>
-                                        </div>
-
-                                        <div>
-                                            <label for="amount">Amount</label>
-                                            <input type="number" id="amount" name="amount" class="form-control">
-                                        </div>
-
-                                        <div>
-                                            <label for="vat">Vat Amount</label>
-                                            <input type="number" id="vat" name="vat" class="form-control">
-                                        </div>
-                                        <div>
-                                            <label for="net">Net</label>
-                                            <input type="number" id="net" name="net" class="form-control" readonly>
-                                        </div>
-
-                                    </div>
-                                    <hr>
-                                    <input type="button" id="addImgDtlBtn" value="Create" class="btn btn-primary">
-                                    <input type="button" id="FormCloseBtn" value="Close" class="btn btn-warning">
-                                    {!! Form::close() !!}
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div><br>
 
         <div>
             <div class="row">
@@ -178,17 +106,14 @@
                                                     <a href="{{ route('admin.invoicedtl',encrypt($data->id))}}"><i class="fa fa-eye" style="color: #09a311;font-size:16px;"></i></a>
 
                                                     @if ($data->status == 0)
-                                                    <a id="addinvoiceBtn" rid="{{$data->id}}" uid="{{$data->user_id}}" ><i class="fa fa-plus" style="color: #21f34f;font-size:16px;"></i></a>
+                                                    <a href="{{ route('admin.invoiceaccadd',encrypt($data->id))}}"><i class="fa fa-plus" style="color: #21f34f;font-size:16px;"></i></a>
                                                     @endif
 
                                                     
                                                     @if ($data->status == 1)
-                                                    <a href="{{ route('admin.invoiceaccedit',$data->id)}}"><i class="fa fa-edit" style="color: #440aa9;font-size:16px;"></i></a>
+                                                    <a href="{{ route('admin.invoiceaccedit',encrypt($data->id))}}"><i class="fa fa-edit" style="color: #440aa9;font-size:16px;"></i></a>
                                                     @endif
 
-                                                    
-                                                    
-                                                    
                                                 </td>
                                             </tr>
                                             @endforeach
@@ -223,109 +148,12 @@ $(document).ready(function() {
     <script>
         $(document).ready(function () {
 
-            $("#addThisFormContainer").hide();
-            $("#newBtn").click(function(){
-                clearform();
-                $("#newBtn").hide(100);
-                $("#addThisFormContainer").show(300);
-
-            });
-            $("#FormCloseBtn").click(function(){
-                $("#addThisFormContainer").hide(200);
-                $("#newBtn").show(100);
-                clearform();
-            });
-
             
-            // Add 
-            $("#contentContainer").on('click','#addinvoiceBtn', function(){
-                
-                codeid = $(this).attr('rid');
-                uid = $(this).attr('uid');
-                
-                $("#dataid").val(codeid);
-                $("#uid").val(uid);
-                $("#addThisFormContainer").show(300);
-                    pagetop();
-            });
-            // Add end
-
-
             //header for csrf-token is must in laravel
             $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
             //
-
-            var url = "{{URL::to('/admin/invoice-account')}}";
-            // console.log(url);
-            $("#addImgDtlBtn").click(function(){
-                if($(this).val() == 'Create') {
-                    
-                    var form_data = new FormData();
-                    form_data.append("date", $("#date").val());
-                    form_data.append("dataid", $("#dataid").val());
-                    form_data.append("uid", $("#uid").val());
-                    form_data.append("particular", $("#particular").val());
-                    form_data.append("category", $("#category").val());
-                    form_data.append("amount", $("#amount").val());
-                    form_data.append("vat", $("#vat").val());
-                    form_data.append("net", $("#net").val());
-
-                    $.ajax({
-                      url: url,
-                      method: "POST",
-                      contentType: false,
-                      processData: false,
-                      data:form_data,
-                      success: function (d) {
-                          if (d.status == 303) {
-                                $(".ermsg").html(d.message);
-                          }else if(d.status == 300){
-                                success("Data Insert Successfully!!");
-                                window.setTimeout(function(){location.reload()},2000)
-                          }
-                      },
-                      error: function (d) {
-                          console.log(d);
-                      }
-                  });
-                }
-                //create  end
-
-                // update 
-                // if($(this).val() == 'Update') {
-                    
-                //     var form_data = new FormData();
-
-                //     form_data.append("date", $("#date").val());
-                //     form_data.append("dataid", $("#dataid").val());
-                //     form_data.append("uid", $("#uid").val());
-                //     form_data.append("particular", $("#particular").val());
-                //     form_data.append("category", $("#category").val());
-                //     form_data.append("amount", $("#amount").val());
-                //     form_data.append("vat", $("#vat").val());
-                //     form_data.append("net", $("#net").val());
-
-                //     $.ajax({
-                //       url: upurl,
-                //       method: "POST",
-                //       contentType: false,
-                //       processData: false,
-                //       data:form_data,
-                //       success: function (d) {
-                //           if (d.status == 303) {
-                //                 $(".ermsg").html(d.message);
-                //           }else if(d.status == 300){
-                //                 success("Data Updated Successfully!!");
-                //                 window.setTimeout(function(){location.reload()},2000)
-                //           }
-                //       },
-                //       error: function (d) {
-                //           console.log(d);
-                //       }
-                //   });
-                // }
-                // update end 
-            });
+            
+            
 
             //calculation end
           $("#amount, #vat").keyup(function(){

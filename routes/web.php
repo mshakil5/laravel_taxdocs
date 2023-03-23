@@ -178,9 +178,11 @@ Route::group(['middleware' => ['auth', 'adminagentaccess']], function(){
     Route::post('admin/invoice-account', [AccountController::class, 'invoiceAccountStore']);
     Route::get('admin/invoice-account/{id}/edit', [AccountController::class, 'invoiceAccountEdit'])->name('admin.invoiceaccedit');
     Route::post('admin/invoice-account/update', [AccountController::class, 'invoiceAccountUpdate']);
-
     Route::get('admin/paid-invoice/{id}', [InvoiceController::class, 'getPaidInvoiceByAdmin'])->name('admin.paidinvoice');
     Route::get('admin/invoices-details/{id}', [InvoiceController::class, 'getInvoiceDetailsByAdmin'])->name('admin.invoicedtl');
+
+    Route::get('admin/invoice-account-add/{id}', [AccountController::class, 'invoiceAccountAdd'])->name('admin.invoiceaccadd');
+    
 
     // reports
     Route::get('admin/report/{id}', [ReportController::class, 'getAccountsReport'])->name('admin.report');

@@ -43,6 +43,20 @@
   
               
               </div><br>
+
+
+              <div class="row invoice-info">
+                <div class="col-12">
+                    
+                  <p>{{ $data->message_on_invoice}}</p>
+                </div>
+            </div><br>
+
+
+
+
+
+
               <div class="row">
                 <div class="col-12 table-responsive">
                   <table class="table table-striped">
@@ -87,7 +101,7 @@
                       </tr>
   
                       <tr>
-                          <td colspan="2" rowspan="3">{{ $data->message_on_invoice}}</td>
+                          <td colspan="2" rowspan="3"></td>
                           <td>&nbsp;</td>
                           <td>&nbsp;</td>
                           <td>Subtotal</td>
@@ -175,42 +189,42 @@
                 
                 <div>
                     <label for="date">Date</label>
-                    <input type="date" id="date" name="date" class="form-control" value="{{$account->date}}" readonly>
-                    <input type="hidden" id="dataid" name="dataid" class="form-control" value="{{$account->id}}" readonly>
+                    <input type="date" id="date" name="date" class="form-control">
+                    <input type="hidden" id="dataid" name="dataid" value="{{$data->id}}" class="form-control">
+                    <input type="hidden" id="uid" name="uid" value="{{$data->user_id}}" class="form-control">
                 </div>
 
                 <div>
                     <label for="particular">Particular</label>
-                    <input type="text" id="particular" name="particular" class="form-control" value="{{$account->particular}}" readonly>
+                    <input type="text" id="particular" name="particular" class="form-control">
                 </div>
                 
                 <div>
                     <label for="category">Category</label>
-                    <select name="category" id="category" class="form-control" readonly>
+                    <select name="category" id="category" class="form-control">
                         <option value="">Select</option>
-                        <option value="Receivable" @if ($account->category == 'Receivable') selected @endif>Receivable</option>
-                        <option value="Payable" @if ($account->category == 'Payable') selected @endif>Payable</option>
+                        <option value="Receivable">Receivable</option>
+                        <option value="Payable">Payable</option>
                     </select>
                 </div>
 
                 <div>
                     <label for="amount">Amount</label>
-                    <input type="number" id="amount" name="amount" class="form-control" value="{{$account->amount}}" readonly>
+                    <input type="number" id="amount" name="amount" class="form-control">
                 </div>
 
                 <div>
                     <label for="vat">Vat Amount</label>
-                    <input type="number" id="vat" name="vat" class="form-control" value="{{$account->vat}}" readonly>
+                    <input type="number" id="vat" name="vat" class="form-control">
                 </div>
                 <div>
                     <label for="net">Net</label>
-                    <input type="number" id="net" name="net" class="form-control"  value="{{$account->net}}" readonly>
+                    <input type="number" id="net" name="net" class="form-control">
                 </div>
 
             </div>
             <hr>
-            <input type="button" id="editBtn" value="Edit" class="btn btn-primary">
-            <input type="button" id="FormCloseBtn" value="Close" class="btn btn-warning">
+            <input type="button" id="addImgDtlBtn" value="Save" class="btn btn-primary">
             {!! Form::close() !!}
             
 
@@ -234,59 +248,45 @@
         //
         
         
-        var url = "{{URL::to('/admin/invoice-account/update')}}";
+        var url = "{{URL::to('/admin/invoice-account')}}";
             // console.log(url);
-            $("#editBtn").click(function(){
-                //Update
-                if($(this).val() == 'Update'){
+            $("#addImgDtlBtn").click(function(){
+                if($(this).val() == 'Save') {
                     
                     var form_data = new FormData();
-                    
                     form_data.append("date", $("#date").val());
-                    form_data.append("particular", $("#particular").val());
                     form_data.append("dataid", $("#dataid").val());
+                    form_data.append("uid", $("#uid").val());
+                    form_data.append("particular", $("#particular").val());
                     form_data.append("category", $("#category").val());
                     form_data.append("amount", $("#amount").val());
                     form_data.append("vat", $("#vat").val());
                     form_data.append("net", $("#net").val());
-                    
+
                     $.ajax({
-                        url:url,
-                        type: "POST",
-                        dataType: 'json',
-                        contentType: false,
-                        processData: false,
-                        data:form_data,
-                        success: function(d){
-                            console.log(d);
-                            if (d.status == 303) {
+                      url: url,
+                      method: "POST",
+                      contentType: false,
+                      processData: false,
+                      data:form_data,
+                      success: function (d) {
+                          if (d.status == 303) {
                                 $(".ermsg").html(d.message);
-                                pagetop();
-                            }else if(d.status == 300){
-                                success("Data Update Successfully!!");
-                                window.setTimeout(function(){location.reload()},2000)
-                            }
-                        },
-                        error:function(d){
-                            console.log(d);
-                        }
-                    });
+                          }else if(d.status == 300){
+                                success("Data Insert Successfully!!");
+                                window.open(`https://www.taxdocs.co.uk/admin/user-register`);
+                          }
+                      },
+                      error: function (d) {
+                          console.log(d);
+                      }
+                  });
                 }
-                //Update
+                //create  end
             });
         
         
-        //Edit
-        $("#contentContainer").on('click','#editBtn', function(){
-            $('#date').removeAttr("readonly");
-            $('#particular').removeAttr("readonly");
-            $('#category').removeAttr("readonly");
-            $('#amount').removeAttr("readonly");
-            $('#vat').removeAttr("readonly");
-            $("#editBtn").val('Update');
-            
-        });
-        //Edit  end
+        
 
           //calculation end
           $("#amount, #vat").keyup(function(){
