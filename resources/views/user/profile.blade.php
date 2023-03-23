@@ -128,18 +128,14 @@
 
                                         <div class="row mt-2">
                                             <div class="col-md-6">
-                                                <label><small>Bank Name</small></label>
-                                                <input type="text" class="form-control" id="bank_name" name="bank_name" value="{{ Auth::user()->bank_name }}">
+                                                <label><small>Accountant Name</small></label>
+                                                <input type="text" class="form-control" id="accountant_name" name="accountant_name" value="{{ Auth::user()->accountant_name }}">
                                             </div>
                                             <div class="col-md-6">
-                                                <label><small>Bank Account Number</small></label>
-                                                <input type="text" class="form-control" id="bank_acc_number" name="bank_acc_number" value="{{ Auth::user()->bank_acc_number }}">
+                                                <label><small>Subscription Plan</small></label>
+                                                <input type="text" class="form-control" id="sub_plan" name="sub_plan" value="@if(Auth::user()->subscription_plan == 1) Individual Plan £5.95 @endif @if (Auth::user()->subscription_plan == 2) Business Plan £10.95 @endif">
                                             </div>
                                         </div>
-
-                                        
-
-                                        
 
                                     </div>
                                 </div>
@@ -183,14 +179,16 @@
                                             </div>
                                         </div>
 
+                                        
+
                                         <div class="row mt-2">
                                             <div class="col-md-6">
-                                                <label><small>Accountant Name</small></label>
-                                                <input type="text" class="form-control" id="accountant_name" name="accountant_name" value="{{ Auth::user()->accountant_name }}">
+                                                <label><small>Bank Name</small></label>
+                                                <input type="text" class="form-control" id="bank_name" name="bank_name" value="{{ Auth::user()->bank_name }}" readonly>
                                             </div>
                                             <div class="col-md-6">
-                                                <label><small>Subscription Plan</small></label>
-                                                <input type="text" class="form-control" id="sub_plan" name="sub_plan" value="@if(Auth::user()->subscription_plan == 1) Individual Plan £5.95 @endif @if (Auth::user()->subscription_plan == 2) Business Plan £10.95 @endif">
+                                                <label><small>Bank Account Number</small></label>
+                                                <input type="text" class="form-control" id="bank_acc_number" name="bank_acc_number" value="{{ Auth::user()->bank_acc_number }}" readonly>
                                             </div>
                                         </div>
 
@@ -198,7 +196,7 @@
                                             
                                             <div class="col-md-6">
                                                 <label><small>Bank Account Code</small></label>
-                                                <input type="text" class="form-control" id="bank_acc_sort_code" name="bank_acc_sort_code" value="{{ Auth::user()->bank_acc_sort_code }}">
+                                                <input type="text" class="form-control" id="bank_acc_sort_code" name="bank_acc_sort_code" value="{{ Auth::user()->bank_acc_sort_code }}" readonly>
                                             </div>
                                             
                                         </div>
