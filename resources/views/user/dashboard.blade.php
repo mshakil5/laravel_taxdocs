@@ -26,7 +26,7 @@
                     <div class="para pl-2">
                         <a href="{{ route('user.photo')}}"> 
 
-                            <img src="{{asset('user/images/photo.jpeg')}}" style="width: 245px">
+                            <img src="{{asset('user/images/photo.jpeg')}}" style="width: 200px">
                         
                         </a>
                     </div>
@@ -37,7 +37,7 @@
                 <div class="transferFunds shadow-sm">
                     <div class="para pl-2">
                             <a href="{{ route('user.invoice')}}"> 
-                                <img src="{{asset('user/images/inv.jpeg')}}" style="width: 245px">
+                                <img src="{{asset('user/images/inv.jpeg')}}" style="width: 200px">
                             </a>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                 <div class="transferFunds shadow-sm">
                     <div class="para pl-2">
                         <a href="{{ route('user.payroll')}}"> 
-                            <img src="{{asset('user/images/payroll.jpeg')}}" style="width: 245px">
+                            <img src="{{asset('user/images/payroll.jpeg')}}" style="width: 200px">
                         </a>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                     <div class="para pl-2">
                         <a href="#"> 
 
-                            <img src="{{asset('user/images/photo.jpeg')}}" style="width: 245px">
+                            <img src="{{asset('user/images/photo.jpeg')}}" style="width: 200px">
                         
                         </a>
                     </div>
@@ -70,7 +70,7 @@
                 <div class="transferFunds shadow-sm">
                     <div class="para pl-2">
                             <a href="#"> 
-                                <img src="{{asset('user/images/inv.jpeg')}}" style="width: 245px">
+                                <img src="{{asset('user/images/inv.jpeg')}}" style="width: 200px">
                             </a>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                 <div class="transferFunds shadow-sm">
                     <div class="para pl-2">
                         <a href="#"> 
-                            <img src="{{asset('user/images/payroll.jpeg')}}" style="width: 245px">
+                            <img src="{{asset('user/images/payroll.jpeg')}}" style="width: 200px">
                         </a>
                     </div>
                 </div>

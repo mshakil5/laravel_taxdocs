@@ -69,12 +69,12 @@
                         <div class="col-lg-6">
                           
                           <div class="form-group">
-                            <input class="form-control" type="test" id="bank_account_number" name="bank_account_number"  value="{{ old('bank_account_number') }}" placeholder="Bank account number" required> 
+                            <input class="form-control" type="number" id="bank_account_number" name="bank_account_number"  value="{{ old('bank_account_number') }}" placeholder="Bank account number" required> 
                           </div>
                         </div>
                         <div class="col-lg-6">
                           <div class="form-group">
-                            <input class="form-control" type="text" id="bank_account_code" name="bank_account_code" placeholder="Bank account sort-code"   value="{{ old('bank_account_code') }}" required> 
+                            <input class="form-control" type="number" id="bank_account_code" name="bank_account_code" placeholder="Bank account sort-code"   value="{{ old('bank_account_code') }}" required> 
                           </div>
                         </div>
 
@@ -86,14 +86,17 @@
                           <div class="form-group">
                               <input class="form-control" type="text" id="house_number" name="house_number" placeholder="House number" value="{{ old('house_number') }}" required> 
                           </div>
+
                           <div class="form-group">
-                              <input class="form-control" type="text" id="town" name="town" placeholder="Town"  value="{{ old('town') }}" required> 
-                          </div>
+                            <input class="form-control" type="text" id="street" name="street" placeholder="Street name"  value="{{ old('street') }}" required> 
+                        </div>
+
 
                         </div>
                         <div class="col-lg-6">
+                          
                           <div class="form-group">
-                              <input class="form-control" type="text" id="street" name="street" placeholder="Street name"  value="{{ old('street') }}" required> 
+                            <input class="form-control" type="text" id="town" name="town" placeholder="Town"  value="{{ old('town') }}"> 
                           </div>
                           <div class="form-group">
                               <input class="form-control" type="text" id="postcode" name="postcode" placeholder="Post code"   value="{{ old('postcode') }}" required> 
