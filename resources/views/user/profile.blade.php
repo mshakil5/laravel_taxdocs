@@ -60,7 +60,7 @@
                                         
                                     @endif
 
-                                    <span class="font-weight-bold"><input type="file" id="pimage" name="pimage" class="form-control"></span>
+                                    <span class="font-weight-bold"><input type="file" id="pimage" name="pimage" class="form-control"  accept="image/png, image/jpg, image/jpeg"></span>
                                     <span class="mt-3"><button class="btn-theme text-white imgBtn" type="button">Upload Logo</button></span>
                                 </div>
                             </div>
