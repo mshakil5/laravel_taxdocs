@@ -184,5 +184,6 @@ Route::group(['middleware' => ['auth', 'adminagentaccess']], function(){
 
     // reports
     Route::get('admin/report/{id}', [ReportController::class, 'getAccountsReport'])->name('admin.report');
+    Route::post('admin/report/{id}', [ReportController::class, 'getAccountsReport'])->name('admin.reportSearch');
 
 });

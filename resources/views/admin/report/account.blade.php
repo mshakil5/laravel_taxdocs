@@ -100,7 +100,9 @@
                                                 <tr>
                                                     <td style="text-align: center">{{ $user->name }}</td>
                                                     <td style="text-align: center">{{ $user->email }}</td>
-                                                    <td style="text-align: center">{{ $user->bname }}</td>
+                                                    <td style="text-align: center">{{ $user->bname }}
+                                                    <input type="hidden" id="bname" value="{{$user->bname}}">
+                                                    </td>
                                                     <td style="text-align: center">{{ $user->baddress }}</td>
                                                     <td style="text-align: center">{{ \App\Models\User::where('id',$user->firm_id)->first()->name}}</td>
                                             @endif
@@ -118,6 +120,34 @@
                     <div class="card">
                         <div class="card-header">
                             <h3> All Documents</h3>
+                            <form  action="{{ route('admin.reportSearch', encrypt($id))}}" method ="POST">
+                                @csrf
+                                <br>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="container-fluid">
+                                            <div class="form-group row">
+                                                <label for="date" class="col-form-label col-md-2">From Date</label>
+                                                <div class="col-md-3">
+                                                    <input type="date" class="form-control" id="fromDate" name="fromDate" value="{{$fromDate}}" required/>
+                                                </div>
+                                                <label for="date" class="col-form-label col-md-2">To Date</label>
+                                                <div class="col-md-3">
+                                                    <input type="date" class="form-control" id="toDate" name="toDate" value="{{$toDate}}" required/>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <button type="submit" class="btn" name="search" title="Search"><img src="https://img.icons8.com/android/24/000000/search.png"/></button>
+                                                </div>
+    
+                                            </div>
+    
+                                        </div>
+    
+                                    </div>
+    
+                                </div>
+                                <br>
+                            </form>
                         </div>
                         <div class="card-body">
                             <table class="table table-bordered table-hover" id="example">
@@ -175,10 +205,33 @@
 @section('script')
     <script>
     $(document).ready(function() {
+        var $companyname = $("#bname").val();
+        var $from = $("#fromDate").val();
+        var $to = $("#toDate").val();
+        if ($from == "") {
+            $title2 = "All Transaction";
+        }else{
+            $title2 = "From " + $from + " to " + $to;
+        }
         var table = $('#example').DataTable( {
             lengthChange: false,
-            buttons: [ 'excel', 'pdf', 'colvis' ]
-        } );
+            buttons: [{
+                extend: 'pdfHtml5',
+                customize: function (doc) {
+                    doc.content[1].table.widths = 
+                        Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                },
+                split: [ 'csv', 'excel'],
+                title: $companyname + '\n' + $title2,
+                    customize: function(doc) {
+                        doc.styles.title = {
+                        color: 'black',
+                        fontSize: '24',
+                        alignment: 'center'
+                        }   
+                    }  
+                }]
+            });
      
         table.buttons().container()
             .appendTo( '#example_wrapper .col-md-6:eq(0)' );
