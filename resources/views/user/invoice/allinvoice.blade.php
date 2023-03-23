@@ -569,7 +569,7 @@
                           }else if(d.status == 300){
                                 $(".invermsg").html(d.message);
                                 pagetop();
-                                window.open(`https://www.taxdocs.co.uk/user/invoice-print/${d.id}`);
+                                window.open(`https://www.taxdocs.co.uk/user/invoice/${d.id}`);
                                 window.setTimeout(function(){location.reload()},2000)
                           }
                       },

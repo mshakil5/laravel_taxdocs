@@ -11,17 +11,6 @@
     article, aside, figure, footer, header, hgroup, 
     menu, nav, section { display: block; }
 </style>
-@php
-    $invnumber = \App\Models\Invoice::orderby('id','DESC')->limit(1)->first();
-    if (isset($invnumber)) {
-        $newinv = 1001 + $invnumber->id;
-    } else {
-        $newinv = 1000 + 1;
-    }
-
-    $bankinfo = \App\Models\BankAccountDetail::where('user_id',Auth::user()->id)->where('status',1)->first();
-
-@endphp
 <div class="dashboard-content">
 
     <section class="profile purchase-status px-4">
@@ -41,58 +30,18 @@
                         <div class="row mb-3">
 
                             <div class="col-md-4 ">
-                                <label> Invoice Number</label>
-                                <input type="number" id="invoiceid" name="invoiceid" class="form-control" value="{{$data->invoiceid}}" readonly>
-                                <input type="hidden" id="dataid" name="dataid" class="form-control" value="{{$data->id}}">
                                 <label> Invoice Date</label>
                                 <input type="date" id="invoice_date" name="invoice_date" class="form-control" value="{{$data->invoice_date}}">
-
-                                <label> Terms</label>
-                                <input type="text" id="terms" name="terms" class="form-control" value="{{$data->terms}}">
-
-                                <label> Invoice To</label>
-                                <select name="user_name" id="user_name" class="form-control select2" >
-                                    <option value="">Select</option>
-                                    @foreach (\App\Models\NewUser::where('user_id', Auth::user()->id)->get() as $nuser)
-                                    <option value="{{$nuser->id}}" @if ($nuser->id == $data->user_name) selected @endif>{{$nuser->name}}</option>
-                                    @endforeach
-                                </select>
-
+                            </div>
+                            <div class="col-md-4 ">
                                 <label> Email</label>
                                 <input type="email" id="useremail" name="useremail" class="form-control" value="{{$data->email}}">
                                 <input type="hidden" id="new_user_id" name="new_user_id" class="form-control" value="{{$data->new_user_id}}" >
-
-                                <label>Billing Address </label>
-                                <input type="text" placeholder="Address" id="useraddress" name="useraddress" class="form-control" value="{{$data->billing_address}}" >
-                            </div>
-                            <div class="col-md-4 ">
-
-                                <label> Select Logo</label>
-                                <img id="blah" src="{{ asset('images/'.$data->image)}}" alt="Logo" width="270px" />
-
-                                <label> Company Name</label>
-                                <input type="text" id="company_name" name="company_name" class="form-control" value="{{$data->company_name}}">
-
-                                <label> Vat no </label>
-                                <input type="text" id="company_vatno" name="company_vatno" class="form-control" value="{{$data->company_vatno}}">
-
-                                <label> Tell No</label>
-                                <input type="text" id="company_tell_no" name="company_tell_no" class="form-control" value="{{$data->company_tell_no}}">
-
-                                <label>Company Email </label>
-                                <input type="text" id="company_email" name="company_email" class="form-control" value="{{$data->company_email}}">
                                 
                             </div>
                             <div class="col-md-4 ">
-                                <label> Acct No</label>
-                                <input type="text" id="acct_no" name="acct_no" class="form-control" value="{{$data->acct_no}}">
-
-                                <label> Bank </label>
-                                <input type="text" id="bank" name="bank" class="form-control" value="{{$data->bank}}">
-
-                                <label> Sort-Code</label>
-                                <input type="text" id="short_code" name="short_code" class="form-control" value="{{$data->short_code}}">
-
+                                <label>Billing Address </label>
+                                <input type="text" placeholder="Address" id="useraddress" name="useraddress" class="form-control" value="{{$data->billing_address}}" >
                             </div>
 
                         </div>
