@@ -210,13 +210,13 @@
                                 <tbody>
 
                                     <tr>
-                                        <td style="width: 20%; text-align:left;" colspan="2"><b> Business Information</b></td>
+                                        <td style="width: 20%; text-align:left;" colspan="2"><b>{{$data->company_name}}</b></td>
                                         <td style="width: 20%; text-align:left;" colspan="2"><b> Contact Information</b></td>
                                         <td style="width: 15%; text-align:left;" colspan="2"><b> Payment Details</b></td>
                                     </tr>
                                     
                                     <tr>
-                                        <td>{{ $data->company_name}}</td>
+                                        <td>{{ $data->company_street_name}}</td>
                                         <td>&nbsp;</td>
                                         <td>{{ $data->name }}</td>
                                         <td>&nbsp;</td>
@@ -225,31 +225,22 @@
                                     </tr>
     
                                     <tr>
-                                        <td>{{ $data->company_street_name}}</td>
+                                        <td>{{ $data->company_town}}</td>
                                         <td>&nbsp;</td>
                                         <td>{{ $data->billing_address }}</td>
                                         <td>&nbsp;</td>
-                                        <td>Acct. No:</td>
+                                        <td>A/C No:</td>
                                         <td style="text-align:right">{{ $data->acct_no}}</td>
                                     </tr>
     
                                     <tr>
-                                        <td>{{ $data->company_town}}</td>
+                                        <td>VAT #{{ $data->company_vatno}}</td>
                                         <td>&nbsp;</td>
                                         <td>{{ $data->email}}</td>
                                         <td>&nbsp;</td>
-                                        <td>Sort-code:</td>
+                                        <td>Sort Code:</td>
                                         <td style="text-align:right">{{ $data->short_code}}</td>
                                     </tr>
-                                    <tr>
-                                        <td>Vat #{{ $data->company_vatno}}</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                    </tr>
-                                    
                                     <tr>
                                         <td>{{ $data->company_email}}</td>
                                         <td>&nbsp;</td>
@@ -258,6 +249,7 @@
                                         <td>&nbsp;</td>
                                         <td>&nbsp;</td>
                                     </tr>
+                                    
     
                                 </tbody>
                                 
