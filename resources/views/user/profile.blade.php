@@ -183,7 +183,7 @@
 
                                         <div class="row mt-2">
                                             <div class="col-md-6">
-                                                <label><small>Bank Name</small></label>
+                                                <label><small>A/C Name</small></label>
                                                 <input type="text" class="form-control" id="bank_name" name="bank_name" value="{{ Auth::user()->bank_name }}" @if (Auth::user()->bank_name)
                                                 readonly
                                                 @endif >
@@ -278,9 +278,9 @@
                                             <thead>
                                                 <tr>
                                                     <th scope="col">Date</th>
-                                                    <th scope="col">Bank Name</th>
-                                                    <th scope="col">Bank Account Number</th>
-                                                    <th scope="col">Bank Account Code </th>
+                                                    <th scope="col">A/C Name</th>
+                                                    <th scope="col">A/C Number</th>
+                                                    <th scope="col">A/C Sort Code </th>
                                                     <th scope="col">Status</th>
                                                     <th scope="col">Action</th>
                                                 </tr>
@@ -337,15 +337,15 @@
                                     @csrf
                                     <div class="row mt-2">
                                         <div class="col-md-4">
-                                            <label> Bank Name</label>
+                                            <label> A/C Name</label>
                                             <input type="text" class="form-control" id="bank_name2" name="bank_name">
                                         </div>
                                         <div class="col-md-4">
-                                            <label> Bank Account Number </label>
+                                            <label> A/C Number </label>
                                             <input type="text" class="form-control" id="bank_acc_number2" name="bank_acc_number">
                                         </div>
                                         <div class="col-md-4">
-                                            <label> Bank Account Code </label>
+                                            <label> A/C Sort Code </label>
                                             <input type="text" class="form-control" id="bank_acc_sort_code2" name="bank_acc_sort_code">
                                         </div>
                                     </div>

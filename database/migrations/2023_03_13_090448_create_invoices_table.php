@@ -32,6 +32,9 @@ return new class extends Migration
             $table->string('due_date',191)->nullable();
             $table->longText('message_on_invoice')->nullable();
             $table->string('company_name',191)->nullable();
+            $table->string('company_surname',191)->nullable();
+            $table->string('company_bname',191)->nullable();
+            $table->string('company_house_number',191)->nullable();
             $table->string('company_street_name',191)->nullable();
             $table->string('company_post_code',191)->nullable();
             $table->string('company_town',191)->nullable();

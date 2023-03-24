@@ -291,7 +291,10 @@ class InvoiceController extends Controller
             $data->vat = $request->totalvat;
             $data->discount = $request->discount;
             $data->invoiceid = date('Ymd-his');
-            $data->company_name = Auth::user()->bname;
+            $data->company_name = Auth::user()->name;
+            $data->company_surname = Auth::user()->surname;
+            $data->company_bname = Auth::user()->bname;
+            $data->company_house_number = Auth::user()->house_number;
             $data->company_vatno = Auth::user()->reg_number;
             $data->company_email = Auth::user()->email;
             $data->company_tell_no = Auth::user()->phone;

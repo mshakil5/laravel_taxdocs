@@ -63,7 +63,7 @@
                     <li class="nav-item {{ (request()->is('user/invoice*')) ? 'active' : '' }}">
                         <a href="{{route('user.invoice')}}">
                             <span class="iconify" data-icon="icon-park-outline:transaction"></span>
-                            Invoice
+                            Create Invoice
                         </a>
                     </li>
                     <li class="nav-item {{ (request()->is('all-invoice*')) ? 'active' : '' }}">
@@ -81,7 +81,7 @@
                     <li class="nav-item {{ (request()->is('user/new-user*')) ? 'active' : '' }}">
                         <a href="{{route('user.newuser')}}">
                             <span class="iconify" data-icon="icon-park-outline:transaction"></span>
-                            All User
+                            All Clients
                         </a>
                     </li>
 
