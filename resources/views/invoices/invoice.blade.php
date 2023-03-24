@@ -83,159 +83,160 @@
                     </table>
                     <br>
 
-                    <div class="container">
-                        <div class="row overflow">
-                            <table style="width: 100%;border-collapse: collapse;" class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <td  style="border: 1px solid #dee2e6!important; padding: 0 10px 0 10;text-align:center;background-color: #d5d0cf;">Description</td>
-                                        <td  style="border: 1px solid #dee2e6!important; padding: 0 10px 0 10;text-align:center;background-color: #d5d0cf;">Qty</td>
-                                        <td  style="border: 1px solid #dee2e6!important; padding: 0 10px 0 10;text-align:center;background-color: #d5d0cf;">Price</td>
-                                        <td  style="border: 1px solid #dee2e6!important; padding: 0 10px 0 10;text-align:center;background-color: #d5d0cf;">Vat Amount</td>
-                                        <td  style="border: 1px solid #dee2e6!important; padding: 0 10px 0 10;text-align:center;background-color: #d5d0cf;">Total (Exc VAT)</td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-    
-                                    @foreach ($data->invoicedetail as $key => $invoicedtl)
-                                    @if ($key % 2 == 0)
-                                        <tr style="border-bottom:1px solid #dee2e6; border-right:1px solid #dee2e6; border-left:1px solid #dee2e6;">
-                                            <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;">{{$invoicedtl->description}}  </td>
-                                            <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:center;width: 10%">{{$invoicedtl->quantity}} </td>
-                                            <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:right;width: 10%">£{{ number_format($invoicedtl->unit_rate, 2) }}</td>
-                                            <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:right;width: 15%">£{{ number_format($invoicedtl->vat, 2) }}</td>
-                                            <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:right;width: 20%">£{{ number_format($invoicedtl->quantity * $invoicedtl->unit_rate, 2) }}</td>
-                                        </tr>
-                                    @else
-                                        <tr style="border-bottom:1px solid #dee2e6; border-right:1px solid #dee2e6; border-left:1px solid #dee2e6; background-color: #f2f2f2">
-                                            <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;">{{$invoicedtl->description}}  </td>
-                                            <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:center;width: 10%">{{$invoicedtl->quantity}} </td>
-                                            <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:right;width: 10%">£{{ number_format($invoicedtl->unit_rate, 2) }}</td>
-                                            <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:right;width: 15%">£{{ number_format($invoicedtl->vat, 2) }}</td>
-                                            <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:right;width: 20%">£{{ number_format($invoicedtl->quantity * $invoicedtl->unit_rate, 2) }}</td>
-                                        </tr>
-                                    @endif
 
-                                    @endforeach
-                                </tbody>
-                            </table>  
-                                    
-    
-                            <table style="width: 100%;border-collapse: collapse;">
-                                <tbody>
-                                    <tr>
-                                        <td style="width: 20%">&nbsp;</td>
-                                        <td style="width: 25%">&nbsp;</td>
-                                        <td style="width: 25%">&nbsp;</td>
-                                        <td>Subtotal</td>
-                                        <td style="text-align:right">£{{ number_format($data->subtotal, 2) }}</td>
+
+                    <div class="row overflow">
+                        <table style="width: 100%;border-collapse: collapse;" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <td  style="border: 1px solid #dee2e6!important; padding: 0 10px 0 10;text-align:center;background-color: #d5d0cf;">Description</td>
+                                    <td  style="border: 1px solid #dee2e6!important; padding: 0 10px 0 10;text-align:center;background-color: #d5d0cf;">Qty</td>
+                                    <td  style="border: 1px solid #dee2e6!important; padding: 0 10px 0 10;text-align:center;background-color: #d5d0cf;">Price</td>
+                                    <td  style="border: 1px solid #dee2e6!important; padding: 0 10px 0 10;text-align:center;background-color: #d5d0cf;">Vat Amount</td>
+                                    <td  style="border: 1px solid #dee2e6!important; padding: 0 10px 0 10;text-align:center;background-color: #d5d0cf;">Total (Exc VAT)</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach ($data->invoicedetail as $key => $invoicedtl)
+                                @if ($key % 2 == 0)
+                                    <tr style="border-bottom:1px solid #dee2e6; border-right:1px solid #dee2e6; border-left:1px solid #dee2e6;">
+                                        <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;">{{$invoicedtl->description}}  </td>
+                                        <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:center;width: 10%">{{$invoicedtl->quantity}} </td>
+                                        <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:right;width: 10%">£{{ number_format($invoicedtl->unit_rate, 2) }}</td>
+                                        <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:right;width: 15%">£{{ number_format($invoicedtl->vat, 2) }}</td>
+                                        <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:right;width: 20%">£{{ number_format($invoicedtl->quantity * $invoicedtl->unit_rate, 2) }}</td>
                                     </tr>
-    
-                                    <tr>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>VAT</td>
-                                        <td style="text-align:right">£{{ number_format($data->vat, 2) }}</td>
+                                @else
+                                    <tr style="border-bottom:1px solid #dee2e6; border-right:1px solid #dee2e6; border-left:1px solid #dee2e6; background-color: #f2f2f2">
+                                        <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;">{{$invoicedtl->description}}  </td>
+                                        <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:center;width: 10%">{{$invoicedtl->quantity}} </td>
+                                        <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:right;width: 10%">£{{ number_format($invoicedtl->unit_rate, 2) }}</td>
+                                        <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:right;width: 15%">£{{ number_format($invoicedtl->vat, 2) }}</td>
+                                        <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:right;width: 20%">£{{ number_format($invoicedtl->quantity * $invoicedtl->unit_rate, 2) }}</td>
                                     </tr>
-    
-                                    @if ($data->discount > 0)
-                                    <tr>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>Discount</td>
-                                        <td style="text-align:right">£{{ number_format($data->discount, 2) }}</td>
-                                    </tr>
-                                    @endif
-                                    
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td>&nbsp;</td>
-                                        <td style="background-color: #f2f2f2">Total</td>
-                                        <td style="text-align:right; background-color: #f2f2f2">£{{ number_format($data->total, 2) }}</td>
-                                    </tr>
-    
-                                </tbody>
-                                <tfoot  style="border :0px solid #dee2e6 ; width: 100%; ">
-    
-                                </tfoot>
-                            </table>
-                        </div>
-                    </div> 
+                                @endif
+
+                                @endforeach
+                            </tbody>
+                        </table>  
+                                
+
+                        <table style="width: 100%;border-collapse: collapse;">
+                            <tbody>
+                                <tr>
+                                    <td style="width: 20%">&nbsp;</td>
+                                    <td style="width: 25%">&nbsp;</td>
+                                    <td style="width: 25%">&nbsp;</td>
+                                    <td>Subtotal</td>
+                                    <td style="text-align:right">£{{ number_format($data->subtotal, 2) }}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>VAT</td>
+                                    <td style="text-align:right">£{{ number_format($data->vat, 2) }}</td>
+                                </tr>
+
+                                @if ($data->discount > 0)
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>Discount</td>
+                                    <td style="text-align:right">£{{ number_format($data->discount, 2) }}</td>
+                                </tr>
+                                @endif
+                                
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td>&nbsp;</td>
+                                    <td style="background-color: #f2f2f2">Total</td>
+                                    <td style="text-align:right; background-color: #f2f2f2">£{{ number_format($data->total, 2) }}</td>
+                                </tr>
+
+                            </tbody>
+                            <tfoot  style="border :0px solid #dee2e6 ; width: 100%; ">
+
+                            </tfoot>
+                        </table>
+                    </div>
+
+
                     
                     <br><br>
 
-                    <div class="container">
-                        <div class="row overflow" style="position:fixed; bottom:0; width:100%; ">
-                            <table style="width: 100%;">
-                                <tbody>
-    
-                                    <tr>
-                                        <td style="border :0px solid #828283 ;width:100%;">
-                                            {{ $data->message_on_invoice}}
-                                        </td>
-                                    </tr>
-                                    
-                                </tbody>
-                                
-                            </table><br>
-                            <hr>
-                            <table style="width:100%;border-collapse: collapse;">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 20%"></th>
-                                        <th style="width: 20%"></th>
-                                        <th style="width: 20%"></th>
-                                        <th style="width: 10%"></th>
-                                        <th style="width: 15%"></th>
-                                        <th style="width: 15%"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    
-                                    <tr>
-                                        <td style="width: 20%">Company Name:</td>
-                                        <td style="width: 20%">{{ $data->company_name}}</td>
-                                        <td style="width: 20%">&nbsp;</td>
-                                        <td style="width: 10%">&nbsp;</td>
-                                        <td style="width: 15%">Acct. No:</td>
-                                        <td style="text-align:right">{{ $data->acct_no}}</td>
-                                    </tr>
-    
-                                    <tr>
-                                        <td>Vat No:</td>
-                                        <td>{{ $data->company_vatno}}</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>Bank:</td>
-                                        <td style="text-align:right">{{ $data->bank}}</td>
-                                    </tr>
-    
-                                    <tr>
-                                        <td>Tell No.</td>
-                                        <td>{{ $data->company_tell_no}}</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>Sort-code:</td>
-                                        <td style="text-align:right">{{ $data->short_code}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Email:</td>
-                                        <td>{{ $data->company_email}}</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                    </tr>
-    
-                                </tbody>
-                                
-                            </table>
-                        </div>
 
+                    <div class="row overflow" style="position:fixed; bottom:0; width:100%; ">
+                        <table style="width: 100%;">
+                            <tbody>
+
+                                <tr>
+                                    <td style="border :0px solid #828283 ;width:100%;">
+                                        {{ $data->message_on_invoice}}
+                                    </td>
+                                </tr>
+                                
+                            </tbody>
+                            
+                        </table><br>
+                        <hr>
+                        <table style="width:100%;border-collapse: collapse;">
+                            <thead>
+                                <tr>
+                                    <th style="width: 20%"></th>
+                                    <th style="width: 20%"></th>
+                                    <th style="width: 20%"></th>
+                                    <th style="width: 10%"></th>
+                                    <th style="width: 15%"></th>
+                                    <th style="width: 15%"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                <tr>
+                                    <td style="width: 20%">Company Name:</td>
+                                    <td style="width: 20%">{{ $data->company_name}}</td>
+                                    <td style="width: 20%">&nbsp;</td>
+                                    <td style="width: 10%">&nbsp;</td>
+                                    <td style="width: 15%">Acct. No:</td>
+                                    <td style="text-align:right">{{ $data->acct_no}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Vat No:</td>
+                                    <td>{{ $data->company_vatno}}</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>Bank:</td>
+                                    <td style="text-align:right">{{ $data->bank}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Tell No.</td>
+                                    <td>{{ $data->company_tell_no}}</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>Sort-code:</td>
+                                    <td style="text-align:right">{{ $data->short_code}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Email:</td>
+                                    <td>{{ $data->company_email}}</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+
+                            </tbody>
+                            
+                        </table>
                     </div>
+
                     
                 </div>
             </div>
