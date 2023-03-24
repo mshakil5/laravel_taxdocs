@@ -184,7 +184,9 @@
                                         <div class="row mt-2">
                                             <div class="col-md-6">
                                                 <label><small>Bank Name</small></label>
-                                                <input type="text" class="form-control" id="bank_name" name="bank_name" value="{{ Auth::user()->bank_name }}" readonly>
+                                                <input type="text" class="form-control" id="bank_name" name="bank_name" value="{{ Auth::user()->bank_name }}" @if (Auth::user()->bank_name)
+                                                readonly
+                                                @endif >
                                             </div>
                                             <div class="col-md-6">
                                                 <label><small>Bank Account Number</small></label>
