@@ -282,6 +282,8 @@ class InvoiceController extends Controller
             $data->email = $newuserinfo->email;
             $data->new_user_id = $request->new_user_id;
             $data->billing_address = $newuserinfo->address;
+            $data->post_code = $newuserinfo->post_code;
+            $data->name = $newuserinfo->name;
             $data->invoice_date = $request->invoice_date;
             $data->message_on_invoice = $request->invmessg;
             $data->subtotal = $request->subtotal;
@@ -293,6 +295,9 @@ class InvoiceController extends Controller
             $data->company_vatno = Auth::user()->reg_number;
             $data->company_email = Auth::user()->email;
             $data->company_tell_no = Auth::user()->phone;
+            $data->company_street_name = Auth::user()->street_name;
+            $data->company_post_code = Auth::user()->postcode;
+            $data->company_town = Auth::user()->town;
             $data->acct_no = Auth::user()->bank_acc_number;
             $data->bank = Auth::user()->bank_name;
             $data->short_code = Auth::user()->bank_acc_sort_code;

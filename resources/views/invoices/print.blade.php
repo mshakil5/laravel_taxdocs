@@ -199,45 +199,60 @@
                             <table style="width:100%;border-collapse: collapse;">
                                 <thead>
                                     <tr>
-                                        <th style="width: 20%"></th>
-                                        <th style="width: 20%"></th>
+                                        <th style="width: 25%"></th>
+                                        <th style="width: 5%"></th>
                                         <th style="width: 20%"></th>
                                         <th style="width: 10%"></th>
-                                        <th style="width: 15%"></th>
-                                        <th style="width: 15%"></th>
+                                        <th style="width: 20%"></th>
+                                        <th style="width: 20%"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
+
+                                    <tr>
+                                        <td style="width: 20%; text-align:left;" colspan="2"><b> Business Information</b></td>
+                                        <td style="width: 20%; text-align:left;" colspan="2"><b> Contact Information</b></td>
+                                        <td style="width: 15%; text-align:left;" colspan="2"><b> Payment Details</b></td>
+                                    </tr>
                                     
                                     <tr>
-                                        <td style="width: 20%">Company Name:</td>
-                                        <td style="width: 20%">{{ $data->company_name}}</td>
-                                        <td style="width: 20%">&nbsp;</td>
-                                        <td style="width: 10%">&nbsp;</td>
-                                        <td style="width: 15%">Acct. No:</td>
-                                        <td style="text-align:right">{{ $data->acct_no}}</td>
-                                    </tr>
-    
-                                    <tr>
-                                        <td>Vat No:</td>
-                                        <td>{{ $data->company_vatno}}</td>
+                                        <td>{{ $data->company_name}}</td>
                                         <td>&nbsp;</td>
+                                        <td>{{ $data->name }}</td>
                                         <td>&nbsp;</td>
                                         <td>Bank:</td>
                                         <td style="text-align:right">{{ $data->bank}}</td>
                                     </tr>
     
                                     <tr>
-                                        <td>Tell No.</td>
-                                        <td>{{ $data->company_tell_no}}</td>
+                                        <td>{{ $data->company_street_name}}</td>
                                         <td>&nbsp;</td>
+                                        <td>{{ $data->billing_address }}</td>
+                                        <td>&nbsp;</td>
+                                        <td>Acct. No:</td>
+                                        <td style="text-align:right">{{ $data->acct_no}}</td>
+                                    </tr>
+    
+                                    <tr>
+                                        <td>{{ $data->company_town}}</td>
+                                        <td>&nbsp;</td>
+                                        <td>{{ $data->email}}</td>
                                         <td>&nbsp;</td>
                                         <td>Sort-code:</td>
                                         <td style="text-align:right">{{ $data->short_code}}</td>
                                     </tr>
                                     <tr>
-                                        <td>Email:</td>
+                                        <td>Vat #{{ $data->company_vatno}}</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    
+                                    <tr>
                                         <td>{{ $data->company_email}}</td>
+                                        <td>&nbsp;</td>
                                         <td>&nbsp;</td>
                                         <td>&nbsp;</td>
                                         <td>&nbsp;</td>
