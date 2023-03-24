@@ -103,16 +103,16 @@
                                     <tr style="border-bottom:1px solid #dee2e6; border-right:1px solid #dee2e6; border-left:1px solid #dee2e6;">
                                         <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;">{{$invoicedtl->description}}  </td>
                                         <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:center;width: 10%">{{$invoicedtl->quantity}} </td>
-                                        <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:right;width: 10%">£{{ number_format($invoicedtl->unit_rate, 2) }}</td>
-                                        <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:right;width: 15%">£{{ number_format($invoicedtl->vat, 2) }}</td>
+                                        <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:center;width: 10%">£{{ number_format($invoicedtl->unit_rate, 2) }}</td>
+                                        <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:center;width: 15%">£{{ number_format($invoicedtl->vat, 2) }}</td>
                                         <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:right;width: 20%">£{{ number_format($invoicedtl->quantity * $invoicedtl->unit_rate, 2) }}</td>
                                     </tr>
                                 @else
                                     <tr style="border-bottom:1px solid #dee2e6; border-right:1px solid #dee2e6; border-left:1px solid #dee2e6; background-color: #f2f2f2">
                                         <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;">{{$invoicedtl->description}}  </td>
                                         <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:center;width: 10%">{{$invoicedtl->quantity}} </td>
-                                        <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:right;width: 10%">£{{ number_format($invoicedtl->unit_rate, 2) }}</td>
-                                        <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:right;width: 15%">£{{ number_format($invoicedtl->vat, 2) }}</td>
+                                        <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:center;width: 10%">£{{ number_format($invoicedtl->unit_rate, 2) }}</td>
+                                        <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:center;width: 15%">£{{ number_format($invoicedtl->vat, 2) }}</td>
                                         <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:right;width: 20%">£{{ number_format($invoicedtl->quantity * $invoicedtl->unit_rate, 2) }}</td>
                                     </tr>
                                 @endif
