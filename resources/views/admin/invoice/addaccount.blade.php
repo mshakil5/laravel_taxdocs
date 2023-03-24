@@ -13,6 +13,8 @@
       <ul class="app-breadcrumb breadcrumb">
       </ul>
     </div>
+    
+    <div class="ermsg"></div>
     <div class="row">
       <div class="col-md-6">
         
@@ -185,23 +187,24 @@
 
             <div class="container">
 
-                {!! Form::open(['url' => 'admin/register/admincreate','id'=>'createThisForm']) !!}
+              <form class="form-custom" action="{{route('admin.invoiceaccStore')}}" method="POST">
+                @csrf
                 
                 <div>
                     <label for="date">Date</label>
-                    <input type="date" id="date" name="date" class="form-control">
+                    <input type="date" id="date" name="date" class="form-control" required>
                     <input type="hidden" id="dataid" name="dataid" value="{{$data->id}}" class="form-control">
                     <input type="hidden" id="uid" name="uid" value="{{$data->user_id}}" class="form-control">
                 </div>
 
                 <div>
                     <label for="particular">Particular</label>
-                    <input type="text" id="particular" name="particular" class="form-control">
+                    <input type="text" id="particular" name="particular" class="form-control" required>
                 </div>
                 
                 <div>
                     <label for="category">Category</label>
-                    <select name="category" id="category" class="form-control">
+                    <select name="category" id="category" class="form-control" required>
                         <option value="">Select</option>
                         <option value="Receivable">Receivable</option>
                         <option value="Payable">Payable</option>
@@ -210,7 +213,7 @@
 
                 <div>
                     <label for="amount">Amount</label>
-                    <input type="number" id="amount" name="amount" class="form-control">
+                    <input type="number" id="amount" name="amount" class="form-control" required>
                 </div>
 
                 <div>
@@ -219,13 +222,15 @@
                 </div>
                 <div>
                     <label for="net">Net</label>
-                    <input type="number" id="net" name="net" class="form-control">
+                    <input type="number" id="net" name="net" class="form-control" required>
                 </div>
 
             </div>
             <hr>
-            <input type="button" id="addImgDtlBtn" value="Save" class="btn btn-primary">
-            {!! Form::close() !!}
+            {{-- <input type="button" id="addImgDtlBtn" value="Save" class="btn btn-primary"> --}}
+            <button type="submit" class="btn btn-primary">Save</button>
+            
+          </form> 
             
 
           </div>
@@ -273,8 +278,9 @@
                           if (d.status == 303) {
                                 $(".ermsg").html(d.message);
                           }else if(d.status == 300){
-                                success("Data Insert Successfully!!");
-                                window.open(`https://www.taxdocs.co.uk/admin/user-register`);
+                                $(".ermsg").html(d.message);
+                                window.setTimeout(function(){location.reload()},2000);
+                                window.open(`https://www.localhost/laravel/laravel_taxdocs/admin/paid-invoice/${d.user_id}`);
                           }
                       },
                       error: function (d) {

@@ -26,11 +26,7 @@
             </ul>
         </div>
 
-        @if (Session::has('message'))
 
-            <div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>{{ Session::get('message') }}</b></div>
-
-        @endif
 
         <div>
             <div class="row">
@@ -80,32 +76,31 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="container" style="max-width: 1200px;">
-                                    <table class="table table-bordered table-hover " id="example" style="width: 100%">
+                                    <table class="table table-bordered table-hover table-responsive" id="example" style="width: 100%">
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Date</th>
                                                 <th>Invoice No</th>
-                                                <th>Particular</th>
-                                                <th>Category</th>
-                                                <th>Amount</th>
-                                                <th>Vat</th>
-                                                <th>Net</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Billing Address</th>
+                                                <th>Messege</th>
+                                                <th>Total</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($data as $key => $data)
-                                            @if ($data->status == 0)
                                             <tr>
                                                 <td style="text-align: center">{{ $data->id }}</td>
                                                 <td style="text-align: center">{{ $data->invoice_date }}</td>
                                                 <td style="text-align: center">{{ $data->invoiceid }}</td>
-                                                <td style="text-align: center"></td>
-                                                <td style="text-align: center"></td>
-                                                <td style="text-align: center"></td>
-                                                <td style="text-align: center"></td>
-                                                <td style="text-align: center"></td>
+                                                <td style="text-align: center">{{ \App\Models\NewUser::where('id',$data->new_user_id)->first()->name }}</td>
+                                                <td style="text-align: center">{{ $data->email }}</td>
+                                                <td style="text-align: center">{{ $data->billing_address }}</td>
+                                                <td style="text-align: center">{{ $data->message_on_invoice }}</td>
+                                                <td style="text-align: center">{{ $data->total }}</td>
                                                 <td>
 
                                                     <a href="{{ route('admin.invoicedtl',encrypt($data->id))}}"><i class="fa fa-eye" style="color: #09a311;font-size:16px;"></i></a>
@@ -114,27 +109,13 @@
                                                     <a href="{{ route('admin.invoiceaccadd',encrypt($data->id))}}"><i class="fa fa-plus" style="color: #21f34f;font-size:16px;"></i></a>
                                                     @endif
 
-                                                </td>
-                                            </tr>
-                                            @else
-                                            <tr>
-                                                <td style="text-align: center">{{ $data->id }}</td>
-                                                <td style="text-align: center">{{ $data->invoice_date }}</td>
-                                                <td style="text-align: center">{{ $data->invoiceid }}</td>
-                                                <td style="text-align: center">{{ $data->account->particular }}</td>
-                                                <td style="text-align: center">{{$data->account->category}}</td>
-                                                <td style="text-align: center">{{$data->account->amount}}</td>
-                                                <td style="text-align: center">{{$data->account->vat}}</td>
-                                                <td style="text-align: center">{{$data->account->net}}</td>
-                                                <td>
-                                                    <a href="{{ route('admin.invoicedtl',encrypt($data->id))}}"><i class="fa fa-eye" style="color: #09a311;font-size:16px;"></i></a>
+                                                    
                                                     @if ($data->status == 1)
                                                     <a href="{{ route('admin.invoiceaccedit',encrypt($data->id))}}"><i class="fa fa-edit" style="color: #440aa9;font-size:16px;"></i></a>
                                                     @endif
+
                                                 </td>
                                             </tr>
-                                            @endif
-                                            
                                             @endforeach
                                             
                                         </tbody>

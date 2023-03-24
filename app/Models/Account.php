@@ -13,4 +13,9 @@ class Account extends Model
     {
         return $this->belongsTo(Photo::class);
     }
+
+    public function invoice()
+    {
+        return $this->belongsTo(Invoice::class);
+    }
 }

@@ -32,7 +32,7 @@
                                 <tr>
                                     <td colspan="2" class="" style="border :0px solid #dee2e6;width:50%;">
                                         <div class="col-lg-2" style="flex: 2; text-align: left;">
-                                            <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('images/'.$data->image))) }}" width="120px" style="display:inline-block;"/>
+                                            {{-- <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('images/'.$data->image))) }}" width="120px" style="display:inline-block;"/> --}}
                                         </div>
                                     </td>
                                     <td colspan="2" class="" style="border :0px solid #dee2e6 ;width:50%;"></td>
@@ -89,7 +89,6 @@
                             <thead>
                                 <tr>
                                     <td  style="border: 1px solid #dee2e6!important; padding: 0 15px;text-align:center">Description</td>
-                                    <td  style="border: 1px solid #dee2e6!important; padding: 0 15px;text-align:center">Date</td>
                                     <td  style="border: 1px solid #dee2e6!important; padding: 0 15px;text-align:center">Qty</td>
                                     <td  style="border: 1px solid #dee2e6!important; padding: 0 15px;text-align:center">Price</td>
                                     <td  style="border: 1px solid #dee2e6!important; padding: 0 15px;text-align:center">Vat Amount</td>
@@ -101,7 +100,6 @@
                                 @foreach ($data->invoicedetail as $key => $invoicedtl)
                                 <tr style="border-bottom:1px solid #dee2e6 ; border-right:1px solid #dee2e6 ; border-left:1px solid #dee2e6 ;">
                                     <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;">{{$invoicedtl->description}}  </td>
-                                    <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:center;width: 15%">{{$data->invoice_date}}</td>
                                     <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:center;width: 10%">{{$invoicedtl->quantity}} </td>
                                     <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:right;width: 10%">£{{ number_format($invoicedtl->unit_rate, 2) }}</td>
                                     <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:right;width: 10%">£{{ number_format($invoicedtl->vat, 2) }}</td>
@@ -112,13 +110,11 @@
                                 <tr style="border-bottom:1px solid #dee2e6 ; border-right:1px solid #dee2e6 ; border-left:1px solid #dee2e6 ;">
                                     <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:center">&nbsp;</td>
                                     <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;">&nbsp;</td>
-                                    <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;">&nbsp;</td>
                                     <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:center">&nbsp;</td>
                                     <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:right">&nbsp;</td>
                                     <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:right">&nbsp;</td>
                                 </tr>
                                 <tr>
-                                    <td>&nbsp;</td>
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
@@ -129,13 +125,11 @@
                                 <tr>
                                     <td colspan="2" rowspan="3"></td>
                                     <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
                                     <td>Subtotal</td>
                                     <td style="text-align:right">£{{ $data->subtotal}}</td>
                                 </tr>
 
                                 <tr>
-                                    <td>&nbsp;</td>
                                     <td>&nbsp;</td>
                                     <td>Vat</td>
                                     <td style="text-align:right">£{{ $data->vat}}</td>
@@ -143,7 +137,6 @@
 
                                 @if ($data->discount > 0)
                                 <tr>
-                                    <td>&nbsp;</td>
                                     <td>&nbsp;</td>
                                     <td>Discount</td>
                                     <td style="text-align:right">£{{ $data->discount}}</td>
@@ -155,7 +148,6 @@
                                     <td></td>
                                     <td></td>
                                     @endif
-                                    <td>&nbsp;</td>
                                     <td>&nbsp;</td>
                                     <td>Total</td>
                                     <td style="text-align:right">£{{ $data->total}}</td>
@@ -188,9 +180,9 @@
                                     <th style="width: 20%"></th>
                                     <th style="width: 20%"></th>
                                     <th style="width: 20%"></th>
-                                    <th style="width: 20%"></th>
                                     <th style="width: 10%"></th>
-                                    <th style="width: 10%"></th>
+                                    <th style="width: 15%"></th>
+                                    <th style="width: 15%"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -199,8 +191,8 @@
                                     <td style="width: 20%">Company Name:</td>
                                     <td style="width: 20%">{{ $data->company_name}}</td>
                                     <td style="width: 20%">&nbsp;</td>
-                                    <td style="width: 20%">&nbsp;</td>
-                                    <td style="width: 10%">Acct. No:</td>
+                                    <td style="width: 10%">&nbsp;</td>
+                                    <td style="width: 15%">Acct. No:</td>
                                     <td style="text-align:right">{{ $data->acct_no}}</td>
                                 </tr>
 

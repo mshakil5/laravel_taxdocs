@@ -130,7 +130,7 @@
                                         <tr>
                                             <td style="text-align: left">Discount: </td>
                                             <td style="text-align: left;width: 108px;" class="">
-                                                <input type="text"  name="discount" id="discount" value="0" class="form-control" value="{{$data->discount}}">
+                                                <input type="text"  name="discount" id="discount"  class="form-control" value="{{$data->discount}}" readonly>
                                             </td>
                                         </tr>
                                         <tr>

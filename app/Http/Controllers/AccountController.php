@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 Use Image;
 use Illuminate\support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class AccountController extends Controller
 {
@@ -194,6 +195,36 @@ class AccountController extends Controller
 
     public function invoiceAccountStore(Request $request)
     {
+
+
+        $data = new Account();
+        $data->user_id = $request->uid;
+        $data->invoice_id = $request->dataid;
+        $data->date = $request->date;
+        $data->particular = $request->particular;
+        $data->category = $request->category;
+        $data->amount = $request->amount;
+        $data->vat = $request->vat;
+        $data->expense = $request->expense;
+        $data->income = $request->income;
+        $data->others = $request->others;
+        $data->net = $request->net;
+        $data->status = "0";
+        $data->created_by = Auth::user()->id;
+        if ($data->save()) {
+
+            $imgupdate = Invoice::find($request->dataid);
+            $imgupdate->status = "1";
+            $imgupdate->save();
+            $uid = encrypt($data->user_id);
+            return Redirect::route('admin.paidinvoice', $uid)->with('message', 'Data saved correctly!!!');
+        } else {
+            return response()->json(['status'=> 303,'message'=>'Server Error!!']);
+        }
+    }
+
+    public function invoiceAccountStore2(Request $request)
+    {
         if(empty($request->date)){
             $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill \"Date \" field..!</b></div>";
             return response()->json(['status'=> 303,'message'=>$message]);
@@ -232,8 +263,9 @@ class AccountController extends Controller
             $imgupdate = Invoice::find($request->dataid);
             $imgupdate->status = "1";
             $imgupdate->save();
+            $uid = encrypt($data->user_id);
             $message ="<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Data Created Successfully.</b></div>";
-            return response()->json(['status'=> 300,'message'=>$message]);
+            return response()->json(['status'=> 300,'message'=>$message,'user_id'=>$uid]);
         } else {
             return response()->json(['status'=> 303,'message'=>'Server Error!!']);
         }

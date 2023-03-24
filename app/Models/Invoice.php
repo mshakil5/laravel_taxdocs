@@ -16,4 +16,9 @@ class Invoice extends Model
     public function newuser(){
         return $this->belongsTo('App\Models\NewUser');
     }
+
+    public function account()
+    {
+        return $this->hasOne(Account::class);
+    }
 }

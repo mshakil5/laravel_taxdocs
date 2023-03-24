@@ -1639,6 +1639,12 @@ footer .social-sites li a .iconify {
   color: #fff;
 }
 
+@media (max-width: 768px) {
+  .title-section {
+    width: 40% !important;
+  }
+}
+
 .profile .title-section, .wishlist .title-section {
   background-color: white;
   padding: 19px 24px;

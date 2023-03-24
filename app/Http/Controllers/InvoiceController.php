@@ -19,7 +19,7 @@ class InvoiceController extends Controller
 
     public function getPaidInvoiceByAdmin($id)
     {
-        $data = Invoice::with('invoicedetail')->where('user_id',decrypt($id))->where('paid',1)->orderby('id','DESC')->get();
+        $data = Invoice::with('invoicedetail','account')->where('user_id',decrypt($id))->where('paid',1)->orderby('id','DESC')->get();
         $user = User::where('id',decrypt($id))->first();
         return view('admin.invoice.paidinvoice', compact('data','user'));
     }

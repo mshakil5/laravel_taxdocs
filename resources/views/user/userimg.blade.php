@@ -46,8 +46,8 @@
         left: 0;
     }
     .show .img-show{
-        width: 600px;
-        height: 400px;
+        width: 95%;
+        height: 95%;
         background: #FFF;
         position: absolute;
         top: 50%;

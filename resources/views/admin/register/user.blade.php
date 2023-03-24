@@ -198,7 +198,7 @@
                                             @php
                                                 $firmname = \App\Models\User::where('id',$account->firm_id)->first();
                                                 $imgcount = \App\Models\Photo::where('user_id',$account->id)->count();
-                                                $notcalimgcount = \App\Models\Photo::where('user_id',$account->id)->where('status','0')->count();
+                                                $notcalimgcount = \App\Models\Photo::where('user_id',$account->id)->where('status','1')->count();
                                             @endphp
                                                 <tr>
                                                     <td>{{$key++}}</td>
