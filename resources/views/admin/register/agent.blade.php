@@ -160,7 +160,6 @@
                                                         </label>
                                                     </div>
                                                 </td>
-                                                </td>
                                                     <td>
                                                         <a href="{{ route('allcustomer',$account->id)}}" ><i class="fa fa-eye" style="color: #23b64f;font-size:16px;"></i></a>
                                                         <a id="EditBtn" rid="{{$account->id}}"><i class="fa fa-edit" style="color: #2196f3;font-size:16px;"></i></a>

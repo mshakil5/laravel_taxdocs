@@ -1,5 +1,17 @@
 @extends('admin.layouts.admin')
-
+<style>
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
+    tr:nth-child(even){background-color: #f2f2f2}
+</style>
 
 
 @section('content')
@@ -116,6 +128,42 @@
         <a href="{{ route('allfirm')}}" id="backBtn" class="btn btn-info">Back</a>
         <button id="newBtn" type="button" class="btn btn-info">Add New</button>
         <hr>
+        <div id="contentContainer2">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3> Accuntancy Firm Details</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-bordered table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Contact Number</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>{{$user->created_at->format("m/d/Y")}}</td>
+                                                <td>{{$user->name}}</td>
+                                                <td>{{$user->email}}</td>
+                                                <td>{{$user->phone}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
 
         <div id="contentContainer">
 
@@ -128,63 +176,67 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <table class="table table-bordered table-hover" id="example" style="width: 100%">
-                                    <thead>
-                                    <tr>
-                                        <th>Sl</th>
-                                        <th>Date</th>
-                                        <th>Name</th>
-                                        <th>Business Name</th>
-                                        <th>Business Address</th>
-                                        <th>Contact Person</th>
-                                        <th>Mobile</th>
-                                        <th>Land Number</th>
-                                        <th>Accountant Firm</th>
-                                        <th>Email</th>
-                                        <th>Number of Image</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($accounts as $key => $account)
-                                        @php
-                                            $firmname = \App\Models\User::where('id',$account->firm_id)->first();
-                                            $imgcount = \App\Models\Photo::where('user_id',$account->id)->count();
-                                        @endphp
+                                <div class="container" style="max-width: 1200px;">
+                                    <table class="table table-bordered table-hover table-responsive" id="example" style="width: 100%">
+                                        <thead>
                                             <tr>
-                                                <td>{{$key++}}</td>
-                                                <td>{{$account->created_at->format("m/d/Y")}}</td>
-                                                <td>{{$account->name}}</td>
-                                                <td>{{$account->bname}}</td>
-                                                <td>{{$account->baddress}}</td>
-                                                <td>{{$account->contact_person}}</td>
-                                                <td>{{$account->phone}}</td>
-                                                <td>{{$account->blandnumber}}</td>
-                                                <td>
-                                                    @if (isset($firmname))
-                                                        {{$firmname->name}}
-                                                    @endif
-                                                </td>
-                                                <td>{{$account->email}}</td>
-                                                <td>{{$imgcount}}</td>
-                                                <td>
-                                                    <div class="toggle-flip">
-                                                        <label>
-                                                            <input type="checkbox" class="toggle-class" data-id="{{$account->id}}" {{ $account->status ? 'checked' : '' }}><span class="flip-indecator" data-toggle-on="Active" data-toggle-off="Inactive"></span>
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <a href="{{ route('showimg', encrypt($account->id))}}"><i class="fa fa-eye" style="color: #3ddf52;font-size:16px;"></i></a>
-                                                    <a id="EditBtn" rid="{{$account->id}}"><i class="fa fa-edit" style="color: #2196f3;font-size:16px;"></i></a>
-                                                    <a id="deleteBtn" rid="{{$account->id}}"><i class="fa fa-trash-o" style="color: red;font-size:16px;"></i></a>
-                                                </td>
+                                                <th>Sl</th>
+                                                <th>Date</th>
+                                                <th>Name</th>
+                                                <th>Business Name</th>
+                                                <th>Business Address</th>
+                                                <th>Contact Person</th>
+                                                <th>Mobile</th>
+                                                <th>Land Number</th>
+                                                <th>Accountant Firm</th>
+                                                <th>Email</th>
+                                                <th>Number of Image</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
                                             </tr>
-                                        @endforeach
-                                        
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($accounts as $key => $account)
+                                            @php
+                                                $firmname = \App\Models\User::where('id',$account->firm_id)->first();
+                                                $imgcount = \App\Models\Photo::where('user_id',$account->id)->count();
+                                            @endphp
+                                                <tr>
+                                                    <td>{{$key++}}</td>
+                                                    <td>{{$account->created_at->format("m/d/Y")}}</td>
+                                                    <td>{{$account->name}}</td>
+                                                    <td>{{$account->bname}}</td>
+                                                    <td>{{$account->baddress}}</td>
+                                                    <td>{{$account->contact_person}}</td>
+                                                    <td>{{$account->phone}}</td>
+                                                    <td>{{$account->blandnumber}}</td>
+                                                    <td>
+                                                        @if (isset($firmname))
+                                                            {{$firmname->name}}
+                                                        @endif
+                                                    </td>
+                                                    <td>{{$account->email}}</td>
+                                                    <td>{{$imgcount}}</td>
+                                                    <td>
+                                                        <div class="toggle-flip">
+                                                            <label>
+                                                                <input type="checkbox" class="toggle-class" data-id="{{$account->id}}" {{ $account->status ? 'checked' : '' }}><span class="flip-indecator" data-toggle-on="Active" data-toggle-off="Inactive"></span>
+                                                            </label>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{ route('showimg', encrypt($account->id))}}"><i class="fa fa-eye" style="color: #3ddf52;font-size:16px;"></i></a>
+                                                        <a id="EditBtn" rid="{{$account->id}}"><i class="fa fa-edit" style="color: #2196f3;font-size:16px;"></i></a>
+                                                        <a id="deleteBtn" rid="{{$account->id}}"><i class="fa fa-trash-o" style="color: red;font-size:16px;"></i></a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                
                             </div>
                         </div>
                     </div>
@@ -199,6 +251,18 @@
 @endsection
 @section('script')
 <script>
+
+    $(document).ready(function() {
+        var table = $('#example').DataTable( {
+            lengthChange: false,
+            buttons: ['excel', 'pdf', 'colvis' ]
+        } );
+     
+        table.buttons().container()
+            .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+    } );
+
+
     $(function() {
       $('.toggle-class').change(function() {
         var url = "{{URL::to('/active-user')}}";
@@ -225,9 +289,10 @@
           });
       })
     })
-  </script>
+</script>
 
-    <script>
+
+<script>
         $(document).ready(function () {
 
             $("#addThisFormContainer").hide();
@@ -390,24 +455,14 @@
         });
 
         
-    </script>
-    <script>
-        $(document).ready(function() {
-            var table = $('#example').DataTable( {
-                lengthChange: false,
-                buttons: [ 'copy', 'excel', 'pdf', 'colvis' ]
-            } );
-         
-            table.buttons().container()
-                .appendTo( '#example_wrapper .col-md-6:eq(0)' );
-        } );
-        </script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $("#alluser").addClass('active');
-            $("#alluser").addClass('is-expanded');
-            $("#agent").addClass('active');
-        });
-    </script>
+</script>
+    
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#alluser").addClass('active');
+        $("#alluser").addClass('is-expanded');
+        $("#agent").addClass('active');
+    });
+</script>
 
 @endsection

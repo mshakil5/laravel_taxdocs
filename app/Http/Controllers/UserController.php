@@ -17,11 +17,13 @@ class UserController extends Controller
     public function getCustomerByAgent($id)
     {
         if (Auth::user()->is_type == 1) {
+            $user = User::where('id','=', $id)->first();
             $accounts = User::where('firm_id','=', $id)->get();
         } else {
+            $user = User::where('id','=', Auth::user()->id)->first();
             $accounts = User::where('firm_id','=', Auth::user()->id)->get();
         }
-        return view('agent.customer',compact('accounts'));
+        return view('agent.customer',compact('accounts','user'));
     }
 
     public function getCustomerDetails($id)
