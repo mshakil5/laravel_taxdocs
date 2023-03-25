@@ -1639,11 +1639,6 @@ footer .social-sites li a .iconify {
   color: #fff;
 }
 
-@media (max-width: 768px) {
-  .title-section {
-    width: 40% !important;
-  }
-}
 
 .profile .title-section, .wishlist .title-section {
   background-color: white;
@@ -2286,12 +2281,12 @@ footer .social-sites li a .iconify {
   }
 }
 
-@media (max-width: 500px) {
+/* @media (max-width: 500px) {
   .overflow {
     overflow-x: auto;
     width: 456px;
   }
-}
+} */
 
 @media (max-width: 425px) {
   .overflow {

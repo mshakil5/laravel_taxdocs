@@ -23,7 +23,7 @@
         @if (isset(Auth::user()->firm_id))
             <div class="col-md-4">
                 <div class="transferFunds shadow-sm">
-                    <div class="para pl-2">
+                    <div class="para pl-2 text-center">
                         <a href="{{ route('user.photo')}}"> 
 
                             <img src="{{asset('user/images/photo.jpeg')}}" style="width: 200px">
@@ -35,7 +35,7 @@
             
             <div class="col-md-4">
                 <div class="transferFunds shadow-sm">
-                    <div class="para pl-2">
+                    <div class="para pl-2 text-center">
                             <a href="{{ route('user.invoice')}}"> 
                                 <img src="{{asset('user/images/inv.jpeg')}}" style="width: 200px">
                             </a>
@@ -46,7 +46,7 @@
             
             <div class="col-md-4">
                 <div class="transferFunds shadow-sm">
-                    <div class="para pl-2">
+                    <div class="para pl-2 text-center">
                         <a href="{{ route('user.payroll')}}"> 
                             <img src="{{asset('user/images/payroll.jpeg')}}" style="width: 200px">
                         </a>
@@ -56,7 +56,7 @@
         @else
             <div class="col-md-4">
                 <div class="transferFunds shadow-sm">
-                    <div class="para pl-2">
+                    <div class="para pl-2 text-center">
                         <a href="#"> 
 
                             <img src="{{asset('user/images/photo.jpeg')}}" style="width: 200px">
@@ -68,7 +68,7 @@
             
             <div class="col-md-4">
                 <div class="transferFunds shadow-sm">
-                    <div class="para pl-2">
+                    <div class="para pl-2 text-center">
                             <a href="#"> 
                                 <img src="{{asset('user/images/inv.jpeg')}}" style="width: 200px">
                             </a>
@@ -79,7 +79,7 @@
             
             <div class="col-md-4">
                 <div class="transferFunds shadow-sm">
-                    <div class="para pl-2">
+                    <div class="para pl-2 text-center">
                         <a href="#"> 
                             <img src="{{asset('user/images/payroll.jpeg')}}" style="width: 200px">
                         </a>

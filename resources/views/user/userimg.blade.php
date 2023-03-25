@@ -93,7 +93,7 @@
                 <div class="ermsg"></div>
                 <div class="col-md-12 text-muted bg-white ">
                         <div class="row">
-                            <div class="col-md-4 ">
+                            <div class="col-md-4 mb-2">
                                 <input type="date" placeholder="Date" id="date" name="date"  class="form-control" value="{{date('Y-m-d')}}">
                             </div>
                             
