@@ -116,7 +116,7 @@
                                                 <label><small>Vat Registration Number</small></label>
                                                 <input type="text" class="form-control" id="reg_number" name="reg_number" placeholder="Registration Number" value="{{ Auth::user()->reg_number }}">
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="col-md-6" style="display:none">
                                                 <label><small>Note</small></label>
                                                 <input type="text" class="form-control" id="note" name="note" value="{{ Auth::user()->note }}" placeholder="Note">
                                             </div>
@@ -126,7 +126,7 @@
                                             $accnumber = \App\Models\BankAccountDetail::where('user_id', Auth::user()->id)->where('status','1')->first();
                                         @endphp --}}
 
-                                        <div class="row mt-2">
+                                        <div class="row mt-2" style="display:none">
                                             <div class="col-md-6">
                                                 <label><small>Accountant Name</small></label>
                                                 <input type="text" class="form-control" id="accountant_name" name="accountant_name" value="{{ Auth::user()->accountant_name }}">
@@ -168,7 +168,7 @@
                                         </div>
 
                                         
-                                        <div class="row mt-2">
+                                        <div class="row mt-2"  style="display:none">
                                             <div class="col-md-6">
                                                 <label><small>Contact Person</small></label>
                                                 <input type="text" class="form-control" id="contact_person" name="contact_person" placeholder="Contact Person" value="{{ Auth::user()->contact_person }}">
