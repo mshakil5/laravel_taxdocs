@@ -69,19 +69,19 @@
                     <li class="nav-item {{ (request()->is('all-invoice*')) ? 'active' : '' }}">
                         <a href="{{route('user.allinvoice')}}">
                             <span class="iconify" data-icon="icon-park-outline:transaction"></span>
-                            All Invoice
+                            Unpaid Invoice
                         </a>
                     </li>
                     <li class="nav-item {{ (request()->is('all-paidinvoice*')) ? 'active' : '' }}">
                         <a href="{{route('user.paidinvoice')}}">
                             <span class="iconify" data-icon="icon-park-outline:transaction"></span>
-                            All Paid Invoice
+                            Paid Invoice
                         </a>
                     </li>
                     <li class="nav-item {{ (request()->is('user/new-user*')) ? 'active' : '' }}">
                         <a href="{{route('user.newuser')}}">
                             <span class="iconify" data-icon="icon-park-outline:transaction"></span>
-                            All Clients
+                            Clients
                         </a>
                     </li>
 
