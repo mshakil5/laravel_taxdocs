@@ -236,7 +236,7 @@
                                     <tr>
                                         <td>VAT #{{ $data->company_vatno}}</td>
                                         <td>&nbsp;</td>
-                                        <td>{{ $data->email}}</td>
+                                        <td>{{ $data->company_email}}</td>
                                         <td>&nbsp;</td>
                                         <td>Sort Code:</td>
                                         <td style="text-align:right">{{ $data->short_code}}</td>
