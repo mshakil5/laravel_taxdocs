@@ -42,13 +42,10 @@
 
                                         {!! Form::open(['url' => 'admin/register/admincreate','id'=>'createThisForm']) !!}
                                         {!! Form::hidden('registerid','', ['id' => 'registerid']) !!}
-    
-                                        
                                         <div>
                                             <label for="name">Name</label>
                                             <input type="text" id="name" name="name" class="form-control">
                                         </div>
-
                                         <div>
                                             <label for="email">Email</label>
                                             <input type="email" id="useremail" name="useremail" class="form-control">
@@ -73,11 +70,13 @@
                                                 <option value="2">Business Plan £10.95</option>
                                             </select>
                                         </div>
+
                                         
                                         <div>
-                                            <label for="bank_account_number"> Bank Account Number</label>
-                                            <input type="text" id="bank_account_number" name="bank_account_number" class="form-control">
+                                            <label for="bank_name">A/C Name</label>
+                                            <input type="text" id="bank_name" name="bank_name" class="form-control">
                                         </div>
+                                        
                                         <div>
                                             <label for="password">Password</label>
                                             <input type="password" id="password" name="password" class="form-control">
@@ -118,12 +117,20 @@
                                             <label for="contact_person">Contact Person</label>
                                             <input type="text" id="contact_person" name="contact_person" class="form-control">
                                         </div>
+                                        
                                         <div>
                                             <label for="blandnumber">Business Land Number</label>
                                             <input type="text" id="blandnumber" name="blandnumber" class="form-control">
                                         </div>
+
                                         <div>
-                                            <label for="bank_account_code"> Bank Account Srt-code</label>
+                                            <label for="bank_account_number"> A/C Number</label>
+                                            <input type="text" id="bank_account_number" name="bank_account_number" class="form-control">
+                                        </div>
+
+
+                                        <div>
+                                            <label for="bank_account_code"> A/C Sort Code</label>
                                             <input type="text" id="bank_account_code" name="bank_account_code" class="form-control">
                                         </div>
                                         
@@ -329,18 +336,28 @@ $(document).ready(function() {
             $("#addBtn").click(function(){
                 //alert('form work');
                 if($(this).val() == 'Create') {
+
                     $.ajax({
                         url: url,
                         method: "POST",
                         data: {
                             name: $("#name").val(),
+                            surname: $("#surname").val(),
                             email: $("#useremail").val(),
                             bname: $("#bname").val(),
+                            house_number: $("#house_number").val(),
                             baddress: $("#baddress").val(),
                             contact_person: $("#contact_person").val(),
                             blandnumber: $("#blandnumber").val(),
                             phone: $("#phone").val(),
+                            postcode: $("#postcode").val(),
+                            street_name: $("#street_name").val(),
+                            town: $("#town").val(),
+                            subscription_plan: $("#sub_plan").val(),
                             firm_id: $("#firm_id").val(),
+                            bank_acc_number: $("#bank_account_number").val(),
+                            bank_acc_sort_code: $("#bank_account_code").val(),
+                            bank_name: $("#bank_name").val(),
                             password: $("#password").val(),
                             cpassword: $("#cpassword").val()
                         },
@@ -369,13 +386,22 @@ $(document).ready(function() {
                         data:{ 
                             registerid: $("#registerid").val(),
                             name: $("#name").val(),
+                            surname: $("#surname").val(),
                             email: $("#useremail").val(),
                             bname: $("#bname").val(),
+                            house_number: $("#house_number").val(),
                             baddress: $("#baddress").val(),
                             contact_person: $("#contact_person").val(),
                             blandnumber: $("#blandnumber").val(),
                             phone: $("#phone").val(),
+                            postcode: $("#postcode").val(),
+                            street_name: $("#street_name").val(),
+                            town: $("#town").val(),
+                            subscription_plan: $("#sub_plan").val(),
                             firm_id: $("#firm_id").val(),
+                            bank_acc_number: $("#bank_account_number").val(),
+                            bank_acc_sort_code: $("#bank_account_code").val(),
+                            bank_name: $("#bank_name").val(),
                             password: $("#password").val(),
                             cpassword: $("#cpassword").val()
                             },
@@ -445,6 +471,7 @@ $(document).ready(function() {
 
             function populateForm(data){
                 $("#name").val(data.name);
+                $("#surname").val(data.surname);
                 $("#useremail").val(data.email);
                 $("#phone").val(data.phone);   
                 $("#bname").val(data.bname);   
@@ -457,6 +484,7 @@ $(document).ready(function() {
                 $("#bank_account_number").val(data.bank_acc_number);   
                 $("#sub_plan").val(data.subscription_plan);   
                 $("#bank_account_code").val(data.bank_acc_sort_code);  
+                $("#bank_name").val(data.bank_name);  
                 $("#surname").val(data.surname);   
                 $("#blandnumber").val(data.blandnumber);   
                 $("#contact_person").val(data.contact_person);   

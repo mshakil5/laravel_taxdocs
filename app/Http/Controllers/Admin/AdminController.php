@@ -486,7 +486,7 @@ class AdminController extends Controller
             return response()->json(['status'=> 303,'message'=>$message]);
             exit();
         }
-
+        
 
         try{
             $account = new User();
@@ -497,10 +497,18 @@ class AdminController extends Controller
             $account->firm_id = $request->firm_id;
             $account->bname = $request->bname;
             $account->baddress = $request->baddress;
+            $account->surname = $request->surname;
+            $account->house_number = $request->house_number;
+            $account->postcode = $request->postcode;
+            $account->street_name = $request->street_name;
+            $account->town = $request->town;
+            $account->subscription_plan = $request->subscription_plan;
+            $account->bank_acc_number = $request->bank_acc_number;
+            $account->bank_acc_sort_code = $request->bank_acc_sort_code;
+            $account->bank_name = $request->bank_name;
             $account->contact_person = $request->contact_person;
             $account->blandnumber = $request->blandnumber;
             $account->password = Hash::make($request->input('password'));
-
             $account->save();
 
             $message ="<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>User Account Created Successfully.</b></div>";

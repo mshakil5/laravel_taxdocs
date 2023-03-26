@@ -33,14 +33,13 @@
    </div>
  <!-- Image loader -->
     <section class="profile purchase-status px-4">
-
         <div class="title-section">
             <span class="iconify" data-icon="clarity:heart-solid"></span>
             <div class="mx-2"> Invoice Information</div>
         </div>
-
     </section>  
-
+    <div class="invermsg"></div>
+    
     <section class="profile purchase-status px-4" id="addThisFormContainer">
         <div class="title-section row mt-3">
             <div class="col-md-12">
@@ -79,58 +78,57 @@
 
     </section>
 
+    {{-- new section start --}}
+    <section class="profile purchase-status px-4">
+
+        
+        <div class="title-section row mt-3" style="margin-left: 1px">
+            <div class="col-md-12">
+                <div class="col-md-12 text-muted bg-white ">
+                    <div class="row mb-3 py-3">
+
+                        <div class="col-md-4 ">
+                            <label> Invoice Date</label>
+                            <input type="date" id="invoice_date" name="invoice_date" class="form-control" value="{{date('Y-m-d')}}">
+                        </div>
+                        <div class="col-md-4 ">
+
+                            <div class="row">
+                                <div class="col-8">
+                                    <label> Invoice To</label>
+                                    <select name="user_name" id="user_name" class="form-control select2" >
+                                        <option value="">Select</option>
+                                        @foreach (\App\Models\NewUser::where('user_id', Auth::user()->id)->get() as $nuser)
+                                        <option value="{{$nuser->id}}">{{$nuser->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    
+                                </div>
+                                <div class="col-4">
+                                    <button class="text-white btn-theme ml-1 mt-4" id="newBtn"> Add New </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 ">
+                            <label> Email</label>
+                            <input type="email" id="useremail" name="useremail" class="form-control" >
+                            <input type="hidden" id="new_user_id" name="new_user_id" class="form-control" >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    {{-- new section end --}}
+
     <section class="profile purchase-status px-4">
         <div class="title-section row mt-3">
             <div class="col-md-12">
-                <div class="invermsg"></div>
                 <div class="col-md-12 text-muted bg-white ">
-                        <div class="row mb-3">
-
-                            <div class="col-md-4 ">
-                                
-                                <label> Invoice Date</label>
-                                <input type="date" id="invoice_date" name="invoice_date" class="form-control" value="{{date('Y-m-d')}}">
-
-                                
-
-                                
-
-                                
-                            </div>
-                            <div class="col-md-4 ">
-
-                                <div class="row">
-                                    <div class="col-8">
-                                        <label> Invoice To</label>
-                                        <select name="user_name" id="user_name" class="form-control select2" >
-                                            <option value="">Select</option>
-                                            @foreach (\App\Models\NewUser::where('user_id', Auth::user()->id)->get() as $nuser)
-                                            <option value="{{$nuser->id}}">{{$nuser->name}}</option>
-                                            @endforeach
-                                        </select>
-                                        
-                                    </div>
-                                    <div class="col-4">
-                                      
-                                        <button class="text-white btn-theme ml-1 mt-4" id="newBtn"> Add New </button>
-                                    </div>
-                                </div>
-
-                                {{-- <label>Billing Address </label>
-                                <input type="text" placeholder="Address" id="useraddress" name="useraddress" class="form-control" > --}}
-                                
-                            </div>
-                            <div class="col-md-4 ">
-                                <label> Email</label>
-                                <input type="email" id="useremail" name="useremail" class="form-control" >
-                                <input type="hidden" id="new_user_id" name="new_user_id" class="form-control" >
-
-                            </div>
-
-                        </div>
+                        
 
                         <div class="row">
-
                             {{-- new  --}}
                             <div class="data-container">
                                 <table class="table table-theme mt-0">

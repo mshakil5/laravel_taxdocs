@@ -42,13 +42,10 @@
 
                                         {!! Form::open(['url' => 'admin/register/admincreate','id'=>'createThisForm']) !!}
                                         {!! Form::hidden('registerid','', ['id' => 'registerid']) !!}
-    
-                                        
                                         <div>
                                             <label for="name">Name</label>
                                             <input type="text" id="name" name="name" class="form-control">
                                         </div>
-
                                         <div>
                                             <label for="email">Email</label>
                                             <input type="email" id="useremail" name="useremail" class="form-control">
@@ -57,6 +54,29 @@
                                             <label for="phone">Mobile</label>
                                             <input type="text" id="phone" name="phone" class="form-control">
                                         </div>
+                                        <div>
+                                            <label for="house_number">House Number</label>
+                                            <input type="text" id="house_number" name="house_number" class="form-control">
+                                        </div>
+                                        <div>
+                                            <label for="town"> Town</label>
+                                            <input type="text" id="town" name="town" class="form-control">
+                                        </div>
+                                        <div>
+                                            <label for="town"> Subscription Plan</label>
+                                            <select name="sub_plan" id="sub_plan" class="form-control" required>
+                                                <option value="">Subscription plan</option>
+                                                <option value="1">Individual Plan £5.95</option>
+                                                <option value="2">Business Plan £10.95</option>
+                                            </select>
+                                        </div>
+
+                                        
+                                        <div>
+                                            <label for="bank_name">A/C Name</label>
+                                            <input type="text" id="bank_name" name="bank_name" class="form-control">
+                                        </div>
+                                        
                                         <div>
                                             <label for="password">Password</label>
                                             <input type="password" id="password" name="password" class="form-control">
@@ -71,42 +91,54 @@
                                 <div class="col-md-6">
                                     <div class="container">
                                         <div>
+                                            <label for="surname">Surname</label>
+                                            <input type="text" id="surname" name="surname" class="form-control">
+                                        </div>
+                                        <div>
                                             <label for="bname">Business Name</label>
                                             <input type="text" id="bname" name="bname" class="form-control">
                                         </div>
     
-                                        <div>
+                                        <div style="display:none">
                                             <label for="baddress">Business Address</label>
                                             <input type="text" id="baddress" name="baddress" class="form-control">
+                                        </div>
+                                        
+                                        <div>
+                                            <label for="street_name">Street Name</label>
+                                            <input type="text" id="street_name" name="street_name" class="form-control">
+                                        </div>
+                                        <div>
+                                            <label for="postcode">Post Code</label>
+                                            <input type="text" id="postcode" name="postcode" class="form-control">
                                         </div>
     
                                         <div>
                                             <label for="contact_person">Contact Person</label>
                                             <input type="text" id="contact_person" name="contact_person" class="form-control">
                                         </div>
+                                        
                                         <div>
                                             <label for="blandnumber">Business Land Number</label>
                                             <input type="text" id="blandnumber" name="blandnumber" class="form-control">
                                         </div>
 
-                                        @if (Auth::user()->is_type == 1)
-                                            <div>
-                                                <label for="firm_id">Accountant Firm</label>
-                                                <select  id="firm_id" name="firm_id" class="form-control">
-                                                    <option value="">Select</option>
-                                                    @foreach (\App\Models\User::where('is_type','2')->get() as $item)
-                                                        <option value="{{$item->id}}">{{$item->name}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        @else
-                                            <div>
-                                                <label for="firm_id">Accountant Firm</label>
-                                                <input type="text" id="firm_id" name="firm_id" value="{{Auth::user()->id}}" class="form-control">
-                                            </div>
-                                        @endif
+                                        <div>
+                                            <label for="bank_account_number"> A/C Number</label>
+                                            <input type="text" id="bank_account_number" name="bank_account_number" class="form-control">
+                                        </div>
 
 
+                                        <div>
+                                            <label for="bank_account_code"> A/C Sort Code</label>
+                                            <input type="text" id="bank_account_code" name="bank_account_code" class="form-control">
+                                        </div>
+                                        
+                                        
+                                        <div style="display: none">
+                                            <label for="firm_id">Accountant Firm</label>
+                                            <input type="text" id="firm_id" name="firm_id" value="{{$user->name}}" class="form-control">
+                                        </div>
                                     </div>
                                 </div>
 
@@ -184,10 +216,7 @@
                                                 <th>Date</th>
                                                 <th>Name</th>
                                                 <th>Business Name</th>
-                                                <th>Business Address</th>
-                                                <th>Contact Person</th>
                                                 <th>Mobile</th>
-                                                <th>Land Number</th>
                                                 <th>Accountant Firm</th>
                                                 <th>Email</th>
                                                 <th>Number of Image</th>
@@ -206,10 +235,7 @@
                                                     <td>{{$account->created_at->format("m/d/Y")}}</td>
                                                     <td>{{$account->name}}</td>
                                                     <td>{{$account->bname}}</td>
-                                                    <td>{{$account->baddress}}</td>
-                                                    <td>{{$account->contact_person}}</td>
                                                     <td>{{$account->phone}}</td>
-                                                    <td>{{$account->blandnumber}}</td>
                                                     <td>
                                                         @if (isset($firmname))
                                                             {{$firmname->name}}
@@ -299,12 +325,14 @@
             $("#newBtn").click(function(){
                 clearform();
                 $("#newBtn").hide(100);
+                $("#backBtn").hide(100);
                 $("#addThisFormContainer").show(300);
 
             });
             $("#FormCloseBtn").click(function(){
                 $("#addThisFormContainer").hide(200);
                 $("#newBtn").show(100);
+                $("#backBtn").show(100);
                 clearform();
             });
 
@@ -323,13 +351,22 @@
                         method: "POST",
                         data: {
                             name: $("#name").val(),
+                            surname: $("#surname").val(),
                             email: $("#useremail").val(),
                             bname: $("#bname").val(),
+                            house_number: $("#house_number").val(),
                             baddress: $("#baddress").val(),
                             contact_person: $("#contact_person").val(),
                             blandnumber: $("#blandnumber").val(),
                             phone: $("#phone").val(),
+                            postcode: $("#postcode").val(),
+                            street_name: $("#street_name").val(),
+                            town: $("#town").val(),
+                            subscription_plan: $("#sub_plan").val(),
                             firm_id: $("#firm_id").val(),
+                            bank_acc_number: $("#bank_account_number").val(),
+                            bank_acc_sort_code: $("#bank_account_code").val(),
+                            bank_name: $("#bank_name").val(),
                             password: $("#password").val(),
                             cpassword: $("#cpassword").val()
                         },
@@ -358,13 +395,22 @@
                         data:{ 
                             registerid: $("#registerid").val(),
                             name: $("#name").val(),
+                            surname: $("#surname").val(),
                             email: $("#useremail").val(),
                             bname: $("#bname").val(),
+                            house_number: $("#house_number").val(),
                             baddress: $("#baddress").val(),
                             contact_person: $("#contact_person").val(),
                             blandnumber: $("#blandnumber").val(),
                             phone: $("#phone").val(),
+                            postcode: $("#postcode").val(),
+                            street_name: $("#street_name").val(),
+                            town: $("#town").val(),
+                            subscription_plan: $("#sub_plan").val(),
                             firm_id: $("#firm_id").val(),
+                            bank_acc_number: $("#bank_account_number").val(),
+                            bank_acc_sort_code: $("#bank_account_code").val(),
+                            bank_name: $("#bank_name").val(),
                             password: $("#password").val(),
                             cpassword: $("#cpassword").val()
                             },
@@ -434,6 +480,7 @@
 
             function populateForm(data){
                 $("#name").val(data.name);
+                $("#surname").val(data.surname);
                 $("#useremail").val(data.email);
                 $("#phone").val(data.phone);   
                 $("#bname").val(data.bname);   
@@ -441,10 +488,23 @@
                 $("#baddress").val(data.baddress);   
                 $("#contact_person").val(data.contact_person);   
                 $("#blandnumber").val(data.blandnumber);   
+                $("#house_number").val(data.house_number);   
+                $("#town").val(data.town);   
+                $("#bank_account_number").val(data.bank_acc_number);   
+                $("#sub_plan").val(data.subscription_plan);   
+                $("#bank_account_code").val(data.bank_acc_sort_code);  
+                $("#bank_name").val(data.bank_name);  
+                $("#surname").val(data.surname);   
+                $("#blandnumber").val(data.blandnumber);   
+                $("#contact_person").val(data.contact_person);   
+                $("#postcode").val(data.postcode);   
+                $("#street_name").val(data.street_name);   
+                $("#surname").val(data.surname);       
                 $("#registerid").val(data.id);
                 $("#addBtn").val('Update');
                 $("#addThisFormContainer").show(300);
                 $("#newBtn").hide(100);
+                $("#backBtn").hide(100);
             }
             function clearform(){
                 $('#createThisForm')[0].reset();
