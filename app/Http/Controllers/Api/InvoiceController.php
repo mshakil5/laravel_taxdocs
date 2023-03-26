@@ -251,46 +251,56 @@ class InvoiceController extends BaseController
             $data->email = $newuserinfo->email;
             $data->new_user_id = $request->new_user_id;
             $data->billing_address = $newuserinfo->address;
+            $data->post_code = $newuserinfo->post_code;
+            $data->name = $newuserinfo->name;
             $data->invoice_date = $request->invoice_date;
-            $data->message_on_invoice = $request->invmessg;
+            $data->message_on_invoice = $request->message_on_invoice;
             $data->subtotal = $request->subtotal;
-            $data->total = $request->totalamount;
-            $data->vat = $request->totalvat;
+            $data->total = $request->total;
+            $data->vat = $request->vat;
             $data->discount = $request->discount;
             $data->invoiceid = date('Ymd-his');
-            $data->company_name = Auth::user()->bname;
+            $data->company_name = Auth::user()->name;
+            $data->company_surname = Auth::user()->surname;
+            $data->company_bname = Auth::user()->bname;
+            $data->company_house_number = Auth::user()->house_number;
             $data->company_vatno = Auth::user()->reg_number;
             $data->company_email = Auth::user()->email;
             $data->company_tell_no = Auth::user()->phone;
+            $data->company_street_name = Auth::user()->street_name;
+            $data->company_post_code = Auth::user()->postcode;
+            $data->company_town = Auth::user()->town;
             $data->acct_no = Auth::user()->bank_acc_number;
             $data->bank = Auth::user()->bank_name;
             $data->short_code = Auth::user()->bank_acc_sort_code;
             $data->created_by = Auth::user()->id;
             if($data->save()){
-                $invoicedetails = json_decode($request->invoicedetails, true);    
+                $invoicedetails = json_decode($request->invoicedetails, true);   
+                
                 foreach ($invoicedetails as $item)
                 {
-                    $payrolldtl['invoice_id'] = $data->id;
-                    $payrolldtl['user_id'] = Auth::user()->id;
-                    $payrolldtl['name'] = $item['name'];
-                    $payrolldtl['description'] = $item['description'];
-                    $payrolldtl['quantity'] = $item['quantity'];
-                    $payrolldtl['unit_rate'] = $item['unit_rate'];
-                    $payrolldtl['amount'] = $item['amount'];
-                    $payrolldtl['vat'] = $item['vat'];
-                    $payrolldtl['created_by'] = Auth::user()->id;
-                    InvoiceDetail::create($payrolldtl);
+                    $invdtl = new InvoiceDetail;
+                    $invdtl->invoice_id = $data->id;
+                    $invdtl->user_id = Auth::user()->id;
+                    $invdtl->description = $item['description'];
+                    $invdtl->quantity = $item['quantity'];
+                    $invdtl->unit_rate = $item['unit_rate'];
+                    $invdtl->amount = $item['amount'];
+                    $invdtl->vat = $item['vat'];
+                    $invdtl->created_by = Auth::user()->id;
+                    $invdtl->save();
+
                 }
                 //stores the pdf for invoice
-                
-                $success['response'] = 'Invoice create successfully';
-                $success['invoice'] = $data;
+                $invoice = Invoice::with('invoicedetail')->where('id',$data->id)->first();
+                $success['message'] = 'Invoice create successfully';
+                $success['invoice'] = $invoice;
                 return response()->json(['success'=>true,'response'=> $success], 200);
                 
             }
 
         }catch (\Exception $e){
-            return response()->json(['success'=>true,'response'=> 'Server Error!!'], 404);
+            return response()->json(['success'=>false,'response'=> 'Server Error!!'], 404);
         }
 
         
