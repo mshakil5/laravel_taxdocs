@@ -71,11 +71,11 @@
                                         <th scope="col"></th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Insurance</th>
-                                        <th scope="col">Pay Rate</th>
+                                        <th scope="col">Pay Rates</th>
                                         <th scope="col">W/H </th>
                                         <th scope="col">H/H </th>
                                         <th scope="col">O/T </th>
-                                        <th scope="col">Total P/H</th>
+                                        <th scope="col">Total</th>
                                         <th scope="col">Note</th>
 
                                     </tr>
@@ -97,7 +97,7 @@
                                                     <input class="form-control" name="national_insurance[]"  placeholder="National Insurance" value="{{ $payrolldts->national_insurance }}">
                                                 </td>
                                                 <td class="fs-16 txt-secondary px-1">
-                                                    <input style="min-width: 91px;"  type="number" name="pay_rate[]" class="form-control" placeholder="Pay Rate" value="{{ $payrolldts->pay_rate }}">
+                                                    <input style="min-width: 50px;"  type="number" name="pay_rate[]" class="form-control" placeholder="Pay Rate" value="{{ $payrolldts->pay_rate }}">
                                                 </td>
 
                                                 <td class="fs-16 txt-secondary px-1">
@@ -113,7 +113,7 @@
                                                 </td>
 
                                                 <td class="fs-16 txt-secondary px-1">
-                                                    <input style="min-width: 96px;"  type="number" name="total_paid_hour[]" class="form-control total_paid_hour" readonly min="0"  value="{{ $payrolldts->total_paid_hour }}" placeholder="Total Paid Hour">
+                                                    <input style="min-width: 50px;"  type="number" name="total_paid_hour[]" class="form-control total_paid_hour" readonly min="0"  value="{{ $payrolldts->total_paid_hour }}" placeholder="Total Paid Hour">
                                                 </td>
                                                 
                                                 <td class="text-center">
@@ -135,7 +135,7 @@
                                                 <input class="form-control" name="national_insurance[]"  placeholder="National Insurance">
                                             </td>
                                             <td class="fs-16 txt-secondary px-1">
-                                                <input style="min-width: 91px;"  type="number" name="pay_rate[]" class="form-control" placeholder="Pay Rate">
+                                                <input style="min-width: 50px;"  type="number" name="pay_rate[]" class="form-control" placeholder="Pay Rate">
                                             </td>
 
                                             <td class="fs-16 txt-secondary px-1">
@@ -151,7 +151,7 @@
                                             </td>
 
                                             <td class="fs-16 txt-secondary px-1">
-                                                <input style="min-width: 96px;"  type="number" name="total_paid_hour[]" class="form-control total_paid_hour" readonly min="0" placeholder="Total Paid Hour">
+                                                <input style="min-width: 50px;"  type="number" name="total_paid_hour[]" class="form-control total_paid_hour" readonly min="0" placeholder="Total Paid Hour">
                                             </td>
                                             
                                             <td class="text-center">
@@ -160,7 +160,6 @@
                                         </tr>
                                         
                                     @endif
-
                                     
 
                                 </tbody>
@@ -244,7 +243,7 @@
     $(document).ready(function () {
         $(".add-row").click(function() {
             var markup =
-                '<tr class="item-row" style="position:realative"><td class="px-1"><div style="color:#fff;user-select:none;padding:5px;background:red;width:45px;display:flex;align-items:center;margin-right:5px;justify-content:center;border-radius:4px;left:4px;top:8px" onclick="removeRow(event)">X</div></td><td class="px-1"><input class="form-control" name="name[]" type="text" placeholder="Name"></td><td class="fs-16 txt-secondary px-1"><input class="form-control" name="national_insurance[]" placeholder="National Insurance"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:91px" type="number" name="pay_rate[]" class="form-control" placeholder="Pay Rate"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="working_hour[]" class="form-control working_hour" value="0"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="holiday_hour[]" class="form-control holiday_hour" value="0"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="overtime_hour[]" class="form-control overtime_hour" value="0"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:96px" type="number" name="total_paid_hour[]" class="form-control total_paid_hour" readonly placeholder="Total Paid Hour"></td><td class="text-center"><input style="min-width:50px" type="text" name="note[]" class="form-control" placeholder="Note"></td></tr>';
+            '<tr class="item-row" style="position:realative"><td class="px-1"><div style="color:#fff;user-select:none;padding:5px;background:red;width:45px;display:flex;align-items:center;margin-right:5px;justify-content:center;border-radius:4px;left:4px;top:8px" onclick="removeRow(event)">X</div></td><td class="px-1"><input class="form-control" name="name[]" type="text" placeholder="Name"></td><td class="fs-16 txt-secondary px-1"><input class="form-control" name="national_insurance[]" placeholder="National Insurance"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="pay_rate[]" class="form-control" placeholder="Pay Rate"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="working_hour[]" class="form-control working_hour" value="0"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="holiday_hour[]" class="form-control holiday_hour" value="0"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="overtime_hour[]" class="form-control overtime_hour" value="0"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="total_paid_hour[]" class="form-control total_paid_hour" readonly placeholder="Total Paid Hour"></td><td class="text-center"><input style="min-width:50px" type="text" name="note[]" class="form-control" placeholder="Note"></td></tr>';
 
             $("table #inner").append(markup);
         });
