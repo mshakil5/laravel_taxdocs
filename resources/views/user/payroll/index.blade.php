@@ -14,9 +14,9 @@
         <div class="title-section">
             <span class="iconify" data-icon="clarity:heart-solid"></span>
             <div class="mx-2"> Payroll Information</div>
-            <div class="ermsg"></div>
+            
         </div>
-
+        <div class="ermsg"></div>
         <div class="title-section row mt-3" style="margin-left: 1px">
             <div class="col-md-12">
                 <div class="col-md-12 text-muted bg-white ">
@@ -57,8 +57,6 @@
     <section class="profile purchase-status px-4">
             
             <div class="col-md-12 text-muted bg-white ">
-                <div class="ermsg"></div>
-                   
 
                     <div class="row">
 
@@ -139,15 +137,15 @@
                                             </td>
 
                                             <td class="fs-16 txt-secondary px-1">
-                                                <input style="min-width: 50px;"  type="number" name="working_hour[]" class="form-control working_hour" value="0" min="0">
+                                                <input style="min-width: 50px;"  type="number" name="working_hour[]" class="form-control working_hour" min="0">
                                             </td>
 
                                             <td class="fs-16 txt-secondary px-1">
-                                                <input style="min-width: 50px;"  type="number" name="holiday_hour[]" class="form-control holiday_hour" value="0" min="0">
+                                                <input style="min-width: 50px;"  type="number" name="holiday_hour[]" class="form-control holiday_hour" min="0">
                                             </td>
 
                                             <td class="fs-16 txt-secondary px-1">
-                                                <input style="min-width: 50px;"  type="number" name="overtime_hour[]" class="form-control overtime_hour" value="0" min="0">
+                                                <input style="min-width: 50px;"  type="number" name="overtime_hour[]" class="form-control overtime_hour" min="0">
                                             </td>
 
                                             <td class="fs-16 txt-secondary px-1">
@@ -243,7 +241,7 @@
     $(document).ready(function () {
         $(".add-row").click(function() {
             var markup =
-            '<tr class="item-row" style="position:realative"><td class="px-1"><div style="color:#fff;user-select:none;padding:5px;background:red;width:45px;display:flex;align-items:center;margin-right:5px;justify-content:center;border-radius:4px;left:4px;top:8px" onclick="removeRow(event)">X</div></td><td class="px-1"><input class="form-control" name="name[]" type="text" placeholder="Name"></td><td class="fs-16 txt-secondary px-1"><input class="form-control" name="national_insurance[]" placeholder="National Insurance"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="pay_rate[]" class="form-control" placeholder="Pay Rate"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="working_hour[]" class="form-control working_hour" value="0"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="holiday_hour[]" class="form-control holiday_hour" value="0"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="overtime_hour[]" class="form-control overtime_hour" value="0"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="total_paid_hour[]" class="form-control total_paid_hour" readonly placeholder="Total Paid Hour"></td><td class="text-center"><input style="min-width:50px" type="text" name="note[]" class="form-control" placeholder="Note"></td></tr>';
+            '<tr class="item-row" style="position:realative"><td class="px-1"><div style="color:#fff;user-select:none;padding:5px;background:red;width:45px;display:flex;align-items:center;margin-right:5px;justify-content:center;border-radius:4px;left:4px;top:8px" onclick="removeRow(event)">X</div></td><td class="px-1"><input class="form-control" name="name[]" type="text" placeholder="Name"></td><td class="fs-16 txt-secondary px-1"><input class="form-control" name="national_insurance[]" placeholder="National Insurance"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="pay_rate[]" class="form-control" placeholder="Pay Rate"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="working_hour[]" class="form-control working_hour"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="holiday_hour[]" class="form-control holiday_hour"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="overtime_hour[]" class="form-control overtime_hour"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="total_paid_hour[]" class="form-control total_paid_hour" readonly placeholder="Total Paid Hour"></td><td class="text-center"><input style="min-width:50px" type="text" name="note[]" class="form-control" placeholder="Note"></td></tr>';
 
             $("table #inner").append(markup);
         });
