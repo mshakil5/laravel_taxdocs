@@ -2287,6 +2287,10 @@ footer .social-sites li a .iconify {
     width: 456px;
   }
 } */
+.data-container {
+  overflow-x: auto;
+  max-width: 100vw;
+}
 
 @media (max-width: 425px) {
   .overflow {
