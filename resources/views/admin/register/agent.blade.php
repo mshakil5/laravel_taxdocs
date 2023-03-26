@@ -129,15 +129,15 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-12">
-                                    <table class="table table-bordered table-hover" id="example">
+                                <div class="container" style="max-width: 1000px;">
+                                    <table class="table table-bordered table-hover table-responsive" id="example" style="width: 100%">
                                         <thead>
                                         <tr>
                                             <th>Sl</th>
-                                            <th>Date</th>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Contact Number</th>
+                                            <th style="width: 20%">Date</th>
+                                            <th style="width: 20%">Name</th>
+                                            <th style="width: 20%">Email</th>
+                                            <th style="width: 20%">Contact Number</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
@@ -209,6 +209,17 @@
           });
       })
     })
+
+    $(document).ready(function() {
+        var table = $('#example').DataTable( {
+            lengthChange: false,
+            buttons: [ 'excel', 'pdf', 'colvis' ]
+        });
+        
+        table.buttons().container()
+            .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+    });
+
   </script>
     <script>
         $(document).ready(function () {
@@ -389,23 +400,13 @@
         
     </script>
 
-<script>
-$(document).ready(function() {
-    var table = $('#example').DataTable( {
-        lengthChange: false,
-        buttons: [ 'copy', 'excel', 'pdf', 'colvis' ]
-    } );
-    
-    table.buttons().container()
-        .appendTo( '#example_wrapper .col-md-6:eq(0)' );
-} );
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#alluser").addClass('active');
+        $("#alluser").addClass('is-expanded');
+        $("#agent").addClass('active');
+    });
 </script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $("#alluser").addClass('active');
-            $("#alluser").addClass('is-expanded');
-            $("#agent").addClass('active');
-        });
-    </script>
 
 @endsection
