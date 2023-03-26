@@ -2292,6 +2292,10 @@ footer .social-sites li a .iconify {
   max-width: 100vw;
 }
 
+[name="name[]"]{
+  min-width:150px;
+}
+
 @media (max-width: 425px) {
   .overflow {
     overflow-x: auto;
