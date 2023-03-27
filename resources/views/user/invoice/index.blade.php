@@ -61,7 +61,10 @@
                                     <tr>
                                       <td style="text-align: center">{{ $key + 1 }}</td>
                                       <td style="text-align: center;width: 125px">{{ $data->invoice_date }}</td>
-                                      <td style="text-align: center">{{ substr($data->invoiceid, -6) }}</td>
+                                      <td style="text-align: center">
+                                        
+                                        <a href="{{ route('user.invoiceedit',$data->id)}}" class="text-decoration-none bg-primary text-white py-1 px-3 rounded mb-1 text-center">{{ substr($data->invoiceid, -6) }}</a>
+                                        </td>
                                       <td style="text-align: center">{{ \App\Models\NewUser::where('id',$data->new_user_id)->first()->name }}</td>
                                       <td style="text-align: center">{{ $data->email }}</td>
                                       <td style="text-align: center">{{ $data->billing_address }}</td>
@@ -72,17 +75,17 @@
                                       <td style="text-align: center">
 
                                         <button class="text-decoration-none bg-info text-white py-1 px-3 rounded mb-1 text-center invoice-paid-status" data-id="{{$data->id}}"> Paid </button>
+                                        @if ($data->status == 0)
+                                        <a id="deleteBtn" rid="{{$data->id}}"><i class="fa fa-trash-o mt-1" style="color: red;font-size:24px;"></i></a>
+                                        @endif
 
                                         <div class="py-1 text-center" style="width: 100px">
                                         <a href="{{ route('invoice.download',$data->id)}}"  class="text-decoration-none bg-secondary text-white py-1 px-3 rounded mb-1 text-center">Download </a>
                                         
                                         
-                                        <a href="{{ route('user.invoiceedit',$data->id)}}" class="text-decoration-none bg-primary text-white py-1 px-3 rounded mb-1 text-center">Edit</a>
+                                        {{-- <a href="{{ route('user.invoiceedit',$data->id)}}" class="text-decoration-none bg-primary text-white py-1 px-3 rounded mb-1 text-center">Edit</a> --}}
 
-                                        @if ($data->status == 0)
-                                        <a id="deleteBtn" rid="{{$data->id}}"><i class="fa fa-trash-o mt-1" style="color: red;font-size:30px;"></i></a>
-                                        @endif
-
+                                        
                                         </div>
                                        </td>
                                       
