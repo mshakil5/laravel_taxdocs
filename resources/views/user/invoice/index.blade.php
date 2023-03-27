@@ -62,10 +62,9 @@
                                       <td style="text-align: center">{{ $key + 1 }}</td>
                                       <td style="text-align: center;width: 125px">{{ $data->invoice_date }}</td>
                                       <td style="text-align: center">
-                                        
                                         <a href="{{ route('user.invoiceedit',$data->id)}}" class="text-decoration-none bg-primary text-white py-1 px-3 rounded mb-1 text-center">{{ substr($data->invoiceid, -6) }}</a>
                                         </td>
-                                      <td style="text-align: center">{{ \App\Models\NewUser::where('id',$data->new_user_id)->first()->name }}</td>
+                                      <td style="text-align: center;width: 180px">{{ \App\Models\NewUser::where('id',$data->new_user_id)->first()->name }}</td>
                                       <td style="text-align: center">{{ $data->email }}</td>
                                       <td style="text-align: center">{{ $data->billing_address }}</td>
                                       <td style="text-align: center">{{ $data->total }}</td>
