@@ -50,9 +50,9 @@
                                         <th style="text-align: center">Name</th>
                                         <th style="text-align: center">Email</th>
                                         <th style="text-align: center">Billing Address</th>
-                                        <th style="text-align: center">Message</th>
                                         <th style="text-align: center">Total</th>
-                                        <th style="text-align: center;width:13%">Action</th>
+                                        <th style="text-align: center">Email</th>
+                                        <th style="text-align: center;width:20%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -60,32 +60,28 @@
                                     @foreach ($data as $key =>  $data)
                                     <tr>
                                       <td style="text-align: center">{{ $key + 1 }}</td>
-                                      <td style="text-align: center">{{ $data->invoice_date }}</td>
-                                      <td style="text-align: center">{{ $data->invoiceid }}</td>
+                                      <td style="text-align: center;width: 125px">{{ $data->invoice_date }}</td>
+                                      <td style="text-align: center">{{ substr($data->invoiceid, -6) }}</td>
                                       <td style="text-align: center">{{ \App\Models\NewUser::where('id',$data->new_user_id)->first()->name }}</td>
                                       <td style="text-align: center">{{ $data->email }}</td>
                                       <td style="text-align: center">{{ $data->billing_address }}</td>
-                                      <td style="text-align: center">{{ $data->message_on_invoice }}</td>
                                       <td style="text-align: center">{{ $data->total }}</td>
                                       <td style="text-align: center">
+                                        <button class="text-decoration-none bg-success text-white py-1 px-3 rounded mb-1 d-block text-center invoice-send-mail"  data-id="{{$data->id}}"> <small>Send Email</small> </button>
+                                      </td>
+                                      <td style="text-align: center">
 
+                                        <button class="text-decoration-none bg-info text-white py-1 px-3 rounded mb-1 text-center invoice-paid-status" data-id="{{$data->id}}"> Paid </button>
+
+                                        <div class="py-1 text-center" style="width: 100px">
+                                        <a href="{{ route('invoice.download',$data->id)}}"  class="text-decoration-none bg-secondary text-white py-1 px-3 rounded mb-1 text-center">Download </a>
                                         
-                                        {{-- <a class="text-decoration-none bg-success text-white py-1 px-3 rounded mb-1 d-block text-center invoice-send-mail" href="{{ route('user.invoicesendemail',$data->id)}}" data-id="{{$data->id}}">
-                                         <small>Send Email</small> </a> --}}
+                                        
+                                        <a href="{{ route('user.invoiceedit',$data->id)}}" class="text-decoration-none bg-primary text-white py-1 px-3 rounded mb-1 text-center">Edit</a>
 
-                                         <button class="text-decoration-none bg-success text-white py-1 px-3 rounded mb-1 d-block text-center invoice-send-mail"  data-id="{{$data->id}}"> <small>Send Email</small> </button>
-
-
-                                         <a class="text-decoration-none bg-dark text-white py-1 px-3 rounded mb-1 d-block text-center invoice-paid-status" data-id="{{$data->id}}" href="#">
-                                            <small>Paid</small> </a>
-                                        <div class="py-1 text-center">
-                                        <a href="{{ route('invoice.download',$data->id)}}"><i class="fa fa-book" style="color: #09a311;font-size:16px;"></i></a>
-                                        {{-- <a href="{{ route('invoice.print',$data->id)}}"><i class="fa fa-book" style="color: #09a311;font-size:16px;"></i></a> --}}
-                                        <a href="{{ route('user.invoicedtl',encrypt($data->id))}}"><i class="fa fa-eye" style="color: #09a311;font-size:16px;"></i></a>
-                                        <a href="{{ route('user.invoiceedit',$data->id)}}"><i class="fa fa-edit" style="color: #2094f3;font-size:16px;"></i></a>
-                                            @if ($data->status == 0)
-                                            <a id="deleteBtn" rid="{{$data->id}}"><i class="fa fa-trash-o" style="color: red;font-size:16px;"></i></a>
-                                            @endif
+                                        @if ($data->status == 0)
+                                        <a id="deleteBtn" rid="{{$data->id}}"><i class="fa fa-trash-o mt-1" style="color: red;font-size:30px;"></i></a>
+                                        @endif
 
                                         </div>
                                        </td>

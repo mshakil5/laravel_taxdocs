@@ -179,7 +179,7 @@
                         
                         <div class="col-md-12 my-2">
                             @if (isset($data))
-                                <button class="text-white btn-theme ml-1" id="addBtn" type="submit"> Update </button>
+                                <button class="text-white btn-theme ml-1" id="addBtn" type="submit"> Submit </button>
                             @else
                                 <button class="text-white btn-theme ml-1" id="addBtn" type="submit"> Submit </button>
                             @endif
@@ -216,7 +216,7 @@
                   <td style="text-align: center">@if ($data->frequency == 7) Weekly @else Monthly @endif</td>
                   
                   <td style="text-align: center">
-                    <a  href="{{ route('user.payrolldtl',encrypt($data->id))}}" class="text-white btn-theme">Show</a>
+                    <a  href="{{ route('user.payrolldtl',encrypt($data->id))}}" class="text-white btn-theme">View</a>
                   </td>
                 </tr>
                 @endforeach

@@ -11,6 +11,8 @@
       </div>
     </div>
 
+    <a href="{{ route('admin.paidinvoice', encrypt($data->user_id))}}" id="backBtn" class="btn btn-info mb-2">Back</a>
+
     
     <div class="row">
       <div class="col-md-12">
@@ -85,7 +87,7 @@
                     </tr>
 
                     <tr>
-                        <td colspan="2" rowspan="3">{{ $data->message_on_invoice}}</td>
+                        <td colspan="2" rowspan="3"></td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                         <td>Subtotal</td>
@@ -128,28 +130,34 @@
             </div>
 
             <div class="row invoice-info">
+              <div class="col-12">
+                  <p>{{ $data->message_on_invoice}}</p><br>
+              </div>
+            </div><br>
+
+            <div class="row invoice-info">
                 <div class="col-4">
-                    <b>Company Name: {{ $data->company_name}}</b><br>
-                    <b>Email:</b> {{ $data->company_email}}<br>
-                    <b>Vat Number:</b>{{ $data->company_vatno}}<br>
-                    <b>Tel No: </b>{{ $data->company_tell_no}}<br>
+                    <b>{{ $data->company_name}}</b><br>
+                    <b>{{ $data->company_house_number}} {{ $data->company_street_name}}</b><br>
+                    <b>{{ $data->company_town}}</b><br>
+                    <b>{{ $data->company_vatno}}</b><br>
                 </div>
-              <div class="col-4">
-                
+              <div class="col-5">
+                    <b>Contact Information</b><br>
+                    <b>{{ $data->company_name }} {{ $data->company_surname }}</b><br>
+                    <b>{{ $data->company_tell_no }}</b><br>
+                    <b>{{ $data->company_email}}</b><br>
                 
               </div>
 
 
-              <div class="col-4">
+              <div class="col-3">
                 
                 <b>	Acct. No: {{ $data->acct_no}}</b><br>
                 <b>	Bank:</b> {{ $data->bank}}<br>
-                <b>Sort-Code::</b>{{ $data->short_code}}<br>
+                <b> Sort-Code:</b>{{ $data->short_code}}<br>
                 
               </div>
-
-
-            
             </div><br>
 
             <div class="row d-print-none mt-2">

@@ -78,6 +78,26 @@
                             <div class="row mx-auto">
                                 <div class="col-md-6">
                                     <div class="p-3 py-4 text-muted">
+                                        <div class="row mt-2">
+                                            @if (isset(Auth::user()->firm_id))
+                                                @php
+                                                    $accname = \App\Models\User::where('id', Auth::user()->firm_id)->first()->name;
+                                                @endphp
+                                                <div class="col-md-12">
+                                                    <label><small>Accountant Name</small></label>
+                                                    <input type="text" class="form-control"  value="{{ $accname }}" readonly>
+                                                </div>
+                                            @else
+
+                                            
+                                                <div class="col-md-12">
+                                                    <label><small>Accountant Name</small></label>
+                                                    <input type="text" class="form-control" id="accountant_name" name="accountant_name" value="{{ Auth::user()->accountant_name }}">
+                                                </div>
+                                                
+                                            @endif
+                                        </div>
+
 
                                         <div class="row mt-2">
                                             <div class="col-md-6">
@@ -93,28 +113,33 @@
 
                                         <div class="row mt-2">
                                             <div class="col-md-6">
+                                                <label><small>House Number</small></label>
+                                                <input type="text" class="form-control" id="uhousenumber" name="uhousenumber" placeholder="House Number" value="{{ Auth::user()->house_number }}">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label><small>Street Name</small></label>
+                                                <input type="text" class="form-control" id="ustreetname" name="ustreetname" value="{{ Auth::user()->street_name }}" placeholder="Street Name">
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-2">
+                                            <div class="col-md-6">
                                                 <label><small>Business Name</small></label>
                                                 <input type="text" class="form-control" id="ubname" name="ubname" placeholder="Business Name" value="{{ Auth::user()->bname }}">
                                             </div>
-                                            <div class="col-md-6">
-                                                <label><small>Business Address</small></label>
-                                                <input type="text" class="form-control" id="ubaddress" name="ubaddress" value="{{ Auth::user()->baddress }}" placeholder="Business Address">
-                                            </div>
-                                        </div>
-                                        <div class="row mt-2">
-                                            <div class="col-md-6">
-                                                <label><small>Town</small></label>
-                                                <input type="text" class="form-control" id="utown" name="utown" placeholder="Town" value="{{ Auth::user()->town }}">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label><small>Post Code</small></label>
-                                                <input type="text" class="form-control" id="upostcode" name="upostcode" value="{{ Auth::user()->postcode }}" placeholder="Post Code">
-                                            </div>
-                                        </div>
-                                        <div class="row mt-2">
+                                            
                                             <div class="col-md-6">
                                                 <label><small>Vat Registration Number</small></label>
                                                 <input type="text" class="form-control" id="reg_number" name="reg_number" placeholder="Registration Number" value="{{ Auth::user()->reg_number }}">
+                                            </div>
+
+                                            
+                                        </div>
+
+                                        <div class="row mt-2">
+                                            <div class="col-md-6" style="display:none">
+                                                <label><small>Business Address</small></label>
+                                                <input type="text" class="form-control" id="ubaddress" name="ubaddress" value="{{ Auth::user()->baddress }}" placeholder="Business Address">
                                             </div>
                                             <div class="col-md-6" style="display:none">
                                                 <label><small>Note</small></label>
@@ -126,14 +151,10 @@
                                             $accnumber = \App\Models\BankAccountDetail::where('user_id', Auth::user()->id)->where('status','1')->first();
                                         @endphp --}}
 
-                                        <div class="row mt-2" style="display:none">
-                                            <div class="col-md-6">
-                                                <label><small>Accountant Name</small></label>
-                                                <input type="text" class="form-control" id="accountant_name" name="accountant_name" value="{{ Auth::user()->accountant_name }}">
-                                            </div>
+                                        <div class="row mt-2" style="display: none">
                                             <div class="col-md-6">
                                                 <label><small>Subscription Plan</small></label>
-                                                <input type="text" class="form-control" id="sub_plan" name="sub_plan" value="@if(Auth::user()->subscription_plan == 1) Individual Plan £5.95 @endif @if (Auth::user()->subscription_plan == 2) Business Plan £10.95 @endif">
+                                                <input type="text" class="form-control" id="sub_plan" name="sub_plan" value="@if(Auth::user()->subscription_plan == 1) Individual Plan £5.95 @endif @if (Auth::user()->subscription_plan == 2) Business Plan £10.95 @endif" readonly>
                                             </div>
                                         </div>
 
@@ -158,12 +179,12 @@
                                         
                                         <div class="row mt-2">
                                             <div class="col-md-6">
-                                                <label><small>House Number</small></label>
-                                                <input type="text" class="form-control" id="uhousenumber" name="uhousenumber" placeholder="House Number" value="{{ Auth::user()->house_number }}">
+                                                <label><small>Town</small></label>
+                                                <input type="text" class="form-control" id="utown" name="utown" placeholder="Town" value="{{ Auth::user()->town }}">
                                             </div>
                                             <div class="col-md-6">
-                                                <label><small>Street Name</small></label>
-                                                <input type="text" class="form-control" id="ustreetname" name="ustreetname" value="{{ Auth::user()->street_name }}" placeholder="Street Name">
+                                                <label><small>Post Code</small></label>
+                                                <input type="text" class="form-control" id="upostcode" name="upostcode" value="{{ Auth::user()->postcode }}" placeholder="Post Code">
                                             </div>
                                         </div>
 
@@ -183,13 +204,13 @@
 
                                         <div class="row mt-2">
                                             <div class="col-md-6">
-                                                <label><small>A/C Name</small></label>
+                                                <label><small>Account Name</small></label>
                                                 <input type="text" class="form-control" id="bank_name" name="bank_name" value="{{ Auth::user()->bank_name }}" @if (Auth::user()->bank_name)
                                                 readonly
                                                 @endif >
                                             </div>
                                             <div class="col-md-6">
-                                                <label><small>Bank Account Number</small></label>
+                                                <label><small>Account Number</small></label>
                                                 <input type="text" class="form-control" id="bank_acc_number" name="bank_acc_number" value="{{ Auth::user()->bank_acc_number }}" readonly>
                                             </div>
                                         </div>
@@ -197,7 +218,7 @@
                                         <div class="row mt-2">
                                             
                                             <div class="col-md-6">
-                                                <label><small>Bank Account Code</small></label>
+                                                <label><small>Sort Code</small></label>
                                                 <input type="text" class="form-control" id="bank_acc_sort_code" name="bank_acc_sort_code" value="{{ Auth::user()->bank_acc_sort_code }}" readonly>
                                             </div>
                                             
@@ -278,9 +299,9 @@
                                             <thead>
                                                 <tr>
                                                     <th scope="col">Date</th>
-                                                    <th scope="col">A/C Name</th>
-                                                    <th scope="col">A/C Number</th>
-                                                    <th scope="col">A/C Sort Code </th>
+                                                    <th scope="col">Account Name</th>
+                                                    <th scope="col">Account Number</th>
+                                                    <th scope="col">Sort Code </th>
                                                     <th scope="col">Status</th>
                                                     <th scope="col">Action</th>
                                                 </tr>

@@ -106,7 +106,7 @@
                                 <img class="rounded-circle" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
                             @endif
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" >
                             <a class="dropdown-item" href="{{ route('user.profile') }}"><span class="iconify" data-icon="carbon:user-avatar"></span> Profile</a>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><span class="iconify" data-icon="ion:log-out-outline"></span> Log Out</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

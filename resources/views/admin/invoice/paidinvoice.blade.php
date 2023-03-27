@@ -32,6 +32,8 @@
 
         @endif
 
+        <a href="{{ route('alluser')}}" id="backBtn" class="btn btn-info mb-2">Back</a>
+        <br>
         <div>
             <div class="row">
                 <div class="col-md-12">
@@ -58,7 +60,7 @@
                                                     <td style="text-align: center">{{ $user->name }}</td>
                                                     <td style="text-align: center">{{ $user->email }}</td>
                                                     <td style="text-align: center">{{ $user->bname }}</td>
-                                                    <td style="text-align: center">{{ $user->baddress }}</td>
+                                                    <td style="text-align: center">{{$user->house_number}} {{$user->street_name}} {{$user->town}} {{$user->postcode}}</td>
                                                     <td style="text-align: center">{{ \App\Models\User::where('id',$user->firm_id)->first()->name}}</td>
                                             @endif
                                         </tbody>
@@ -80,7 +82,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="container" style="max-width: 1200px;">
-                                    <table class="table table-bordered table-hover " id="example" style="width: 100%">
+                                    <table class="table table-bordered table-hover" id="example" style="width: 100%">
                                         <thead>
                                             <tr>
                                                 <th>ID</th>

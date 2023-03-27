@@ -152,17 +152,17 @@
                                                     <input class="form-control" name="description[]" type="text">
                                                 </td>
                                                 <td class="fs-16 txt-secondary px-1">
-                                                    <input style="min-width: 50px;"  type="number" name="quantity[]" class="form-control quantity" value="1" min="1">
+                                                    <input style="min-width: 50px;"  type="number" name="quantity[]" class="form-control quantity" value="0" onfocus="this.value=''" min="1">
                                                 </td>
 
                                                 <td class="fs-16 txt-secondary px-1">
-                                                    <input style="min-width: 80px;"  type="number" name="unit_rate[]" class="form-control rate" value="0" min="0">
+                                                    <input style="min-width: 80px;"  type="number" name="unit_rate[]" class="form-control rate" value="0" onfocus="this.value=''" min="0">
                                                 </td>
                                                 <td class="fs-16 txt-secondary px-1">
-                                                    <input style="min-width: 80px;"  type="number" name="vat[]" class="form-control vat" value="0" min="0">
+                                                    <input style="min-width: 80px;"  type="number" name="vat[]" class="form-control vat" value="0" onfocus="this.value=''" min="0">
                                                 </td>
                                                 <td class="fs-16 txt-secondary px-1">
-                                                    <input style="min-width: 80px;"  type="number" name="amount[]" class="form-control amount" value="0" min="0">
+                                                    <input style="min-width: 80px;" type="number" name="amount[]" class="form-control amount" min="0">
                                                 </td>
                                             </tr>
                                             
@@ -212,7 +212,7 @@
                                         <tr>
                                             <td style="text-align: left">Discount: </td>
                                             <td style="text-align: left;width: 108px;" class="">
-                                                <input type="text"  name="discount" id="discount" value="0" class="form-control">
+                                                <input type="text"  name="discount" id="discount" class="form-control">
                                             </td>
                                         </tr>
                                         <tr>
@@ -304,7 +304,7 @@
         
         $(".add-row").click(function() {
             var markup =
-                '<tr class="item-row" style="position:realative"><td class="px-1"><div style="color:#fff;user-select:none;padding:5px;background:red;width:45px;display:flex;align-items:center;margin-right:5px;justify-content:center;border-radius:4px;left:4px;top:8px" onclick="removeRow(event)">X</div></td><td class="fs-16 txt-secondary px-1"><input class="form-control" name="description[]" type="text"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="quantity[]" class="form-control quantity" value="1" min="1"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="unit_rate[]" class="form-control rate" value="0" min="0"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="vat[]" class="form-control vat" value="0" min="0"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="amount[]" class="form-control amount" value="0" min="0"></td></tr>';
+                '<tr class="item-row" style="position:realative"><td class="px-1"><div style="color:#fff;user-select:none;padding:5px;background:red;width:45px;display:flex;align-items:center;margin-right:5px;justify-content:center;border-radius:4px;left:4px;top:8px" onclick="removeRow(event)">X</div></td><td class="fs-16 txt-secondary px-1"><input class="form-control" name="description[]" type="text"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="quantity[]" class="form-control quantity" min="1"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="unit_rate[]" class="form-control rate"  min="0"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="vat[]" class="form-control vat" value="0" min="0"></td><td class="fs-16 txt-secondary px-1"><input style="min-width:50px" type="number" name="amount[]" class="form-control amount" min="0"></td></tr>';
 
             $("table #inner").append(markup);
         });
@@ -426,90 +426,90 @@
         });
 
 
-        var invoiceurl = "{{URL::to('/user/invoice')}}";
-        $("body").delegate("#saveinvBtn","click",function(event){
-                event.preventDefault();
+        // var invoiceurl = "{{URL::to('/user/invoice')}}";
+        // $("body").delegate("#saveinvBtn","click",function(event){
+        //         event.preventDefault();
 
-                var image = $('#image').prop('files')[0];
-                    if(typeof image === 'undefined'){
-                        image = 'null';
-                    }
+        //         var image = $('#image').prop('files')[0];
+        //             if(typeof image === 'undefined'){
+        //                 image = 'null';
+        //             }
                 
-                var form_data = new FormData();
-                form_data.append('image', image);
-                form_data.append("user_name", $("#user_name").val());
-                form_data.append("useremail", $("#useremail").val());
-                form_data.append("new_user_id", $("#new_user_id").val());
-                form_data.append("useraddress", $("#useraddress").val());
-                form_data.append("terms", $("#terms").val());
-                form_data.append("invoice_date", $("#invoice_date").val());
-                form_data.append("due_date", $("#due_date").val());
-                form_data.append("invmessg", $("#invmessg").val());
-                form_data.append("appointmentmessg", $("#appointmentmessg").val());
-                form_data.append("tomail", $("#tomail").val());
-                form_data.append("subjectmail", $("#subjectmail").val());
-                form_data.append("mailbody", $("#mailbody").val());
-                form_data.append("subtotal", $("#subtotal").val());
-                form_data.append("totalamount", $("#totalamount").val());
-                form_data.append("balancedue", $("#balancedue").val());
-                form_data.append("invoiceid", $("#invoiceid").val());
-                form_data.append("totalvat", $("#totalvat").val());
-                form_data.append("discount", $("#discount").val());
+        //         var form_data = new FormData();
+        //         form_data.append('image', image);
+        //         form_data.append("user_name", $("#user_name").val());
+        //         form_data.append("useremail", $("#useremail").val());
+        //         form_data.append("new_user_id", $("#new_user_id").val());
+        //         form_data.append("useraddress", $("#useraddress").val());
+        //         form_data.append("terms", $("#terms").val());
+        //         form_data.append("invoice_date", $("#invoice_date").val());
+        //         form_data.append("due_date", $("#due_date").val());
+        //         form_data.append("invmessg", $("#invmessg").val());
+        //         form_data.append("appointmentmessg", $("#appointmentmessg").val());
+        //         form_data.append("tomail", $("#tomail").val());
+        //         form_data.append("subjectmail", $("#subjectmail").val());
+        //         form_data.append("mailbody", $("#mailbody").val());
+        //         form_data.append("subtotal", $("#subtotal").val());
+        //         form_data.append("totalamount", $("#totalamount").val());
+        //         form_data.append("balancedue", $("#balancedue").val());
+        //         form_data.append("invoiceid", $("#invoiceid").val());
+        //         form_data.append("totalvat", $("#totalvat").val());
+        //         form_data.append("discount", $("#discount").val());
 
-                form_data.append("company_name", $("#company_name").val());
-                form_data.append("company_vatno", $("#company_vatno").val());
-                form_data.append("company_tell_no", $("#company_tell_no").val());
-                form_data.append("company_email", $("#company_email").val());
-                form_data.append("acct_no", $("#acct_no").val());
-                form_data.append("bank", $("#bank").val());
-                form_data.append("short_code", $("#short_code").val());
-                form_data.append("invoice_image", $("#invoice_image").val());
+        //         form_data.append("company_name", $("#company_name").val());
+        //         form_data.append("company_vatno", $("#company_vatno").val());
+        //         form_data.append("company_tell_no", $("#company_tell_no").val());
+        //         form_data.append("company_email", $("#company_email").val());
+        //         form_data.append("acct_no", $("#acct_no").val());
+        //         form_data.append("bank", $("#bank").val());
+        //         form_data.append("short_code", $("#short_code").val());
+        //         form_data.append("invoice_image", $("#invoice_image").val());
 
 
-                var description = $("input[name='description[]']")
-                    .map(function(){return $(this).val();}).get();
+        //         var description = $("input[name='description[]']")
+        //             .map(function(){return $(this).val();}).get();
 
-                var quantity = $("input[name='quantity[]']")
-                    .map(function(){return $(this).val();}).get();
+        //         var quantity = $("input[name='quantity[]']")
+        //             .map(function(){return $(this).val();}).get();
 
-                var unit_rate = $("input[name='unit_rate[]']")
-                    .map(function(){return $(this).val();}).get();
+        //         var unit_rate = $("input[name='unit_rate[]']")
+        //             .map(function(){return $(this).val();}).get();
 
-                var amount = $("input[name='amount[]']")
-                    .map(function(){return $(this).val();}).get();
+        //         var amount = $("input[name='amount[]']")
+        //             .map(function(){return $(this).val();}).get();
                     
-                var vat = $("input[name='vat[]']")
-                    .map(function(){return $(this).val();}).get();
+        //         var vat = $("input[name='vat[]']")
+        //             .map(function(){return $(this).val();}).get();
 
-                    form_data.append('description', description);
-                    form_data.append('quantity', quantity);
-                    form_data.append('unit_rate', unit_rate);
-                    form_data.append('amount', amount);
-                    form_data.append('vat', vat);
+        //             form_data.append('description', description);
+        //             form_data.append('quantity', quantity);
+        //             form_data.append('unit_rate', unit_rate);
+        //             form_data.append('amount', amount);
+        //             form_data.append('vat', vat);
 
 
-                $.ajax({
-                      url: invoiceurl,
-                      method: "POST",
-                      contentType: false,
-                      processData: false,
-                      data:form_data,
-                      success: function (d) {
-                            console.log(d);
-                          if (d.status == 303) {
-                                $(".invermsg").html(d.message);
-                          }else if(d.status == 300){
-                                $(".invermsg").html(d.message);
-                                pagetop();
-                                window.setTimeout(function(){location.reload()},2000)
-                          }
-                      },
-                      error: function (d) {
-                          console.log(d);
-                      }
-                  });
+        //         $.ajax({
+        //               url: invoiceurl,
+        //               method: "POST",
+        //               contentType: false,
+        //               processData: false,
+        //               data:form_data,
+        //               success: function (d) {
+        //                     console.log(d);
+        //                   if (d.status == 303) {
+        //                         $(".invermsg").html(d.message);
+        //                   }else if(d.status == 300){
+        //                         $(".invermsg").html(d.message);
+        //                         pagetop();
+        //                         window.setTimeout(function(){location.reload()},2000)
+        //                   }
+        //               },
+        //               error: function (d) {
+        //                   console.log(d);
+        //               }
+        //           });
 
-        });
+        // });
 
 
         var invoicepdfurl = "{{URL::to('/user/invoice-pdf')}}";
@@ -519,19 +519,13 @@
 
                 var form_data = new FormData();
                 form_data.append("user_name", $("#user_name").val());
-                form_data.append("useremail", $("#useremail").val());
                 form_data.append("new_user_id", $("#new_user_id").val());
-                form_data.append("useraddress", $("#useraddress").val());
                 form_data.append("invoice_date", $("#invoice_date").val());
                 form_data.append("invmessg", $("#invmessg").val());
                 form_data.append("subtotal", $("#subtotal").val());
                 form_data.append("totalamount", $("#totalamount").val());
-                form_data.append("balancedue", $("#balancedue").val());
                 form_data.append("totalvat", $("#totalvat").val());
                 form_data.append("discount", $("#discount").val());
-                form_data.append("acct_no", $("#acct_no").val());
-                form_data.append("bank", $("#bank").val());
-                form_data.append("short_code", $("#short_code").val());
 
                 var description = $("input[name='description[]']")
                     .map(function(){return $(this).val();}).get();
@@ -547,7 +541,7 @@
                     
                 var vat = $("input[name='vat[]']")
                     .map(function(){return $(this).val();}).get();
-
+                    
                     form_data.append('description', description);
                     form_data.append('quantity', quantity);
                     form_data.append('unit_rate', unit_rate);
@@ -584,20 +578,7 @@
 
     });
 
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                $('#blah')
-                    .attr('src', e.target.result)
-                    .width(170)
-                    .height(100);
-            };
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    };
+    
 
 </script>
 

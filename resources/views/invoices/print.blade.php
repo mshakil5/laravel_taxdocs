@@ -64,7 +64,7 @@
                                 <td colspan="2" class="" style="border :0px solid #dee2e6 ;width:50%;"></td>
                                 <td colspan="2" class="" style="border :0px solid #dee2e6 ;">
                                     <div class="col-lg-2" style="flex: 2; text-align: right;">
-                                        <h1 style="font-size: 40px; color:blue">INVOICE</h1>
+                                        <h1 style="font-size: 30px; color:blue">INVOICE</h1>
                                     </div>
                                 </td>
                             </tr>
@@ -90,6 +90,7 @@
                                         <h5 style="font-size: .90rem; margin : 5px;text-align: left;">Invoice To</h5>
                                         <h5 style="font-size: .90rem; margin : 5px;text-align: left;">Name: {{ \App\Models\NewUser::where('id',$data->new_user_id)->first()->name}}</h5>
                                         <h5 style="font-size: .90rem; margin : 5px;text-align: left;">Billing Address: {{ $data->billing_address}}</h5>
+                                        <h5 style="font-size: .90rem; margin : 5px;text-align: left;">Post code: {{ $data->post_code}}</h5>
                                         <h5 style="font-size: .90rem; margin : 5px;text-align: left;">Email: {{ $data->email}}</h5>
                                     </div>
                                 </td>
@@ -113,22 +114,22 @@
                             <table style="width: 100%;border-collapse: collapse;" class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <td  style="border: 1px solid #dee2e6!important; padding: 0 10px 0 10;text-align:center;background-color: #d5d0cf;">Description</td>
-                                        <td  style="border: 1px solid #dee2e6!important; padding: 0 10px 0 10;text-align:center;background-color: #d5d0cf;">Qty</td>
-                                        <td  style="border: 1px solid #dee2e6!important; padding: 0 10px 0 10;text-align:center;background-color: #d5d0cf;">Price</td>
-                                        <td  style="border: 1px solid #dee2e6!important; padding: 0 10px 0 10;text-align:center;background-color: #d5d0cf;">Vat Amount</td>
-                                        <td  style="border: 1px solid #dee2e6!important; padding: 0 10px 0 10;text-align:center;background-color: #d5d0cf;">Total (Exc VAT)</td>
+                                        <td  style="border: 1px solid #dee2e6!important; padding: 0 10px 0 10;text-align:center;background-color: #d5d0cf;"><b>Description</b></td>
+                                        <td  style="border: 1px solid #dee2e6!important; padding: 0 10px 0 10;text-align:center;background-color: #d5d0cf;"><b>Qty</b></td>
+                                        <td  style="border: 1px solid #dee2e6!important; padding: 0 10px 0 10;text-align:center;background-color: #d5d0cf;"><b>Price</b></td>
+                                        <td  style="border: 1px solid #dee2e6!important; padding: 0 10px 0 10;text-align:center;background-color: #d5d0cf;"><b>Vat</b></td>
+                                        <td  style="border: 1px solid #dee2e6!important; padding: 0 10px 0 10;text-align:center;background-color: #d5d0cf;"><b>Total (Exc VAT)</b></td>
                                     </tr>
                                 </thead>
                                 <tbody>
     
                                     @foreach ($data->invoicedetail as $key => $invoicedtl)
                                     <tr style="border-bottom:1px solid #dee2e6 ; border-right:1px solid #dee2e6 ; border-left:1px solid #dee2e6 ;">
-                                        <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;">{{$invoicedtl->description}}  </td>
-                                        <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:center;width: 10%">{{$invoicedtl->quantity}} </td>
-                                        <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:center;width: 10%">£{{ number_format($invoicedtl->unit_rate, 2) }}</td>
-                                        <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:center;width: 15%">£{{ number_format($invoicedtl->vat, 2) }}</td>
-                                        <td style="border: 1px solid #dee2e6!important; padding: 1px 10px;text-align:right;width: 20%">£{{ number_format($invoicedtl->quantity * $invoicedtl->unit_rate, 2) }}</td>
+                                        <td style="border: 0px solid #ffffff!important; padding: 1px 10px;">{{$invoicedtl->description}}  </td>
+                                        <td style="border: 0px solid #ffffff!important; padding: 1px 10px;text-align:center;width: 10%">{{$invoicedtl->quantity}} </td>
+                                        <td style="border: 0px solid #ffffff!important; padding: 1px 10px;text-align:center;width: 10%">£{{ number_format($invoicedtl->unit_rate, 2) }}</td>
+                                        <td style="border: 0px solid #ffffff!important; padding: 1px 10px;text-align:center;width: 15%">£{{ number_format($invoicedtl->vat, 2) }}</td>
+                                        <td style="border: 0px solid #ffffff!important; padding: 1px 10px;text-align:right;width: 20%">£{{ number_format($invoicedtl->quantity * $invoicedtl->unit_rate, 2) }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -184,7 +185,13 @@
                     <div class="container">
                         <div class="row overflow" style="position:fixed; bottom:0; width:100%; ">
                             <table style="width: 100%;">
-                                <tbody>
+                                <tbody style="border:1px solid #828283;">
+
+                                    <tr>
+                                        <td style="border :0px solid #828283 ;width:100%;">
+                                            NOTE:
+                                        </td>
+                                    </tr>
     
                                     <tr>
                                         <td style="border :0px solid #828283 ;width:100%;">
@@ -200,11 +207,11 @@
                                 <thead>
                                     <tr>
                                         <th style="width: 25%"></th>
-                                        <th style="width: 5%"></th>
+                                        <th style="width: 12%"></th>
                                         <th style="width: 20%"></th>
                                         <th style="width: 10%"></th>
-                                        <th style="width: 20%"></th>
-                                        <th style="width: 20%"></th>
+                                        <th style="width: 15%"></th>
+                                        <th style="width: 18%"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -216,7 +223,7 @@
                                     </tr>
                                     
                                     <tr>
-                                        <td>{{ $data->company_house_number}},{{ $data->company_street_name}}</td>
+                                        <td>{{ $data->company_house_number}} {{ $data->company_street_name}}</td>
                                         <td>&nbsp;</td>
                                         <td>{{ $data->company_name }} {{ $data->company_surname }}</td>
                                         <td>&nbsp;</td>

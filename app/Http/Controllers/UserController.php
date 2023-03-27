@@ -107,8 +107,12 @@ class UserController extends Controller
         $userdata->bank_acc_number = $request->bank_acc_number;
         $userdata->bank_name = $request->bank_name;
         $userdata->updated_by = Auth::user()->id;
-
         if ($userdata->save()) {
+
+            $bankaccount = BankAccountDetail::where('user_id',Auth::user()->id)->orderby('id','ASC')->first()->id;
+            $bankupdate = BankAccountDetail::find($bankaccount);
+            $bankupdate->bank_name = $request->bank_name;
+            $bankupdate->save();
             $message ="<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>User Details Updated Successfully.</b></div>";
             return response()->json(['status'=> 300,'message'=>$message]);
         }
@@ -199,6 +203,11 @@ class UserController extends Controller
             $user = BankAccountDetail::find($request->id);
             $user->status = $request->status;
             $user->save();
+            $userupdate = User::find(Auth::user()->id);
+            $userupdate->bank_name = $user->bank_name;
+            $userupdate->bank_acc_number = $user->bank_acc_number;
+            $userupdate->bank_acc_sort_code = $user->bank_acc_sort_code;
+            $userupdate->save();
             $message ="<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Active Successfully.</b></div>";
             return response()->json(['status'=> 300,'message'=>$message]);
         }else{

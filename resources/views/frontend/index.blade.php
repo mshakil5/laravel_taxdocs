@@ -147,7 +147,7 @@
            </a>
         </div>
         <div class="col-lg-8 pt-4">
-            <p class="text-dark mb-1 darkerGrotesque-semibold ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam natus vel dolorem, dicta inventore sed excepturi, harum veniam maxime officiis officia a! Nisi totam magnam incidunt molestiae, eum corporis minus.</p>
+            <p class="text-dark mb-1 darkerGrotesque-semibold " style="font-size: 20px; font-family: Roboto-Regular; color: #4E4B44;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam natus vel dolorem, dicta inventore sed excepturi, harum veniam maxime officiis officia a! Nisi totam magnam incidunt molestiae, eum corporis minus.</p>
             <div class="d-flex mt-2 txt-primary darkerGrotesque-semibold shadow-sm px-3 py-1">
                 <a href="#" class="me-2 px-0 txt-primary fw-bold" title="link">some</a>
                 <a href="#" class="me-2 px-0 txt-primary fw-bold" title="link">link</a>

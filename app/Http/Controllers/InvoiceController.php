@@ -347,66 +347,82 @@ class InvoiceController extends Controller
     public function invoiceUpdate(Request $request)
     {
 
+        if(empty($request->new_user_id)){
+            $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please Select a \"User\" field..!</b></div>";
+            return response()->json(['status'=> 303,'message'=>$message]);
+            exit();
+        }
+
 
         $invdtlids = explode(",",$request->invdtlid);
-        $product_names = explode(",",$request->product_name);
         $descriptions = explode(",",$request->description);
         $quantitys = explode(",",$request->quantity);
         $amounts = explode(",",$request->amount);
         $unit_rates = explode(",",$request->unit_rate);
         $vats = explode(",",$request->vat);
 
-        $invdata = Invoice::find($request->dataid);
-        $invdata->user_name = $request->user_name;
-        // intervention
-        if ($request->image != 'null') {
-            $request->validate([
-                'image' => 'mimes:jpeg,png,jpg,gif,svg,pdf|max:8048',
-            ]);
-            $rand = mt_rand(100000, 999999);
-            $imageName = time(). $rand .'.'.$request->image->extension();
-            $request->image->move(public_path('images'), $imageName);
-            $invdata->image= $imageName;
-        }
-        // end
 
+        foreach($descriptions as $key => $name){
+            if($descriptions[$key] == "" ||  $quantitys[$key] == "" || $amounts[$key] == "" || $unit_rates[$key] == ""  ){
+            $message ="<div class='alert alert-danger'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill all field.</b></div>";
+            return response()->json(['status'=> 303,'message'=>$message]);
+            exit();
+            }
+        }
+
+        
+        $newuserinfo = NewUser::where('id',$request->new_user_id)->first();
+        $invdata = Invoice::find($request->dataid);
+        $invdata->user_name = $request->new_user_id;
+        if (isset(Auth::user()->photo)) {
+            $invdata->image = Auth::user()->photo;
+        }else{
+            $invdata->image = "default.png";
+        }
+        
         $invdata->user_id = Auth::user()->id;
-        $invdata->email = $request->useremail;
+        $invdata->firm_id = Auth::user()->firm_id;
+        $invdata->email = $newuserinfo->email;
         $invdata->new_user_id = $request->new_user_id;
-        $invdata->billing_address = $request->useraddress;
-        $invdata->terms = $request->terms;
+        $invdata->billing_address = $newuserinfo->address;
+        $invdata->post_code = $newuserinfo->post_code;
+        $invdata->name = $newuserinfo->name;
         $invdata->invoice_date = $request->invoice_date;
-        $invdata->due_date = $request->due_date;
         $invdata->message_on_invoice = $request->invmessg;
         $invdata->subtotal = $request->subtotal;
         $invdata->total = $request->totalamount;
         $invdata->vat = $request->totalvat;
         $invdata->discount = $request->discount;
-        $invdata->invoiceid = $request->invoiceid;
-        $invdata->company_name = $request->company_name;
-        $invdata->company_vatno = $request->company_vatno;
-        $invdata->company_email = $request->company_email;
-        $invdata->company_tell_no = $request->company_tell_no;
-        $invdata->acct_no = $request->acct_no;
-        $invdata->bank = $request->bank;
-        $invdata->short_code = $request->short_code;
-        $invdata->created_by = Auth::user()->id;
+        $invdata->invoiceid = date('Ymd-his');
+        $invdata->company_name = Auth::user()->name;
+        $invdata->company_surname = Auth::user()->surname;
+        $invdata->company_bname = Auth::user()->bname;
+        $invdata->company_house_number = Auth::user()->house_number;
+        $invdata->company_vatno = Auth::user()->reg_number;
+        $invdata->company_email = Auth::user()->email;
+        $invdata->company_tell_no = Auth::user()->phone;
+        $invdata->company_street_name = Auth::user()->street_name;
+        $invdata->company_post_code = Auth::user()->postcode;
+        $invdata->company_town = Auth::user()->town;
+        $invdata->acct_no = Auth::user()->bank_acc_number;
+        $invdata->bank = Auth::user()->bank_name;
+        $invdata->short_code = Auth::user()->bank_acc_sort_code;
+        $invdata->updated_by = Auth::user()->id;
         if($invdata->save()){
 
-        foreach($product_names as $key => $value)
+        foreach($descriptions as $key => $value)
         {
             if(isset($invdtlids[$key])){
 
                 $invdtl = InvoiceDetail::findOrFail($invdtlids[$key]);
                 $invdtl->invoice_id = $invdata->id;
                 $invdtl->user_id = Auth::user()->id;
-                $invdtl->product = $product_names[$key];
                 $invdtl->description = $descriptions[$key]; 
                 $invdtl->quantity = $quantitys[$key]; 
                 $invdtl->unit_rate = $unit_rates[$key]; 
                 $invdtl->amount = $amounts[$key]; 
                 $invdtl->vat = $vats[$key]; 
-                $invdtl->created_by = Auth::user()->id;
+                $invdtl->updated_by = Auth::user()->id;
                 $invdtl->save();
 
             }else{
@@ -414,7 +430,6 @@ class InvoiceController extends Controller
                 $invdtl = new InvoiceDetail();
                 $invdtl->invoice_id = $invdata->id;
                 $invdtl->user_id = Auth::user()->id;
-                $invdtl->product = $product_names[$key];
                 $invdtl->description = $descriptions[$key]; 
                 $invdtl->quantity = $quantitys[$key]; 
                 $invdtl->unit_rate = $unit_rates[$key]; 

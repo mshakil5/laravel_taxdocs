@@ -425,46 +425,20 @@
         var upurl = "{{URL::to('/user/invoice-update')}}";
         $("body").delegate("#updateBtn","click",function(event){
                 event.preventDefault();
-
-                var image = $('#image').prop('files')[0];
-                    if(typeof image === 'undefined'){
-                        image = 'null';
-                    }
                 
                 var form_data = new FormData();
-                form_data.append('image', image);
                 form_data.append("dataid", $("#dataid").val());
+
                 form_data.append("user_name", $("#user_name").val());
-                form_data.append("useremail", $("#useremail").val());
                 form_data.append("new_user_id", $("#new_user_id").val());
-                form_data.append("useraddress", $("#useraddress").val());
-                form_data.append("terms", $("#terms").val());
                 form_data.append("invoice_date", $("#invoice_date").val());
-                form_data.append("due_date", $("#due_date").val());
                 form_data.append("invmessg", $("#invmessg").val());
-                form_data.append("appointmentmessg", $("#appointmentmessg").val());
-                form_data.append("tomail", $("#tomail").val());
-                form_data.append("subjectmail", $("#subjectmail").val());
-                form_data.append("mailbody", $("#mailbody").val());
                 form_data.append("subtotal", $("#subtotal").val());
                 form_data.append("totalamount", $("#totalamount").val());
-                form_data.append("balancedue", $("#balancedue").val());
-                form_data.append("invoiceid", $("#invoiceid").val());
                 form_data.append("totalvat", $("#totalvat").val());
                 form_data.append("discount", $("#discount").val());
 
-                form_data.append("company_name", $("#company_name").val());
-                form_data.append("company_vatno", $("#company_vatno").val());
-                form_data.append("company_tell_no", $("#company_tell_no").val());
-                form_data.append("company_email", $("#company_email").val());
-                form_data.append("acct_no", $("#acct_no").val());
-                form_data.append("bank", $("#bank").val());
-                form_data.append("short_code", $("#short_code").val());
-
                 var invdtlid = $("input[name='invdtlid[]']")
-                    .map(function(){return $(this).val();}).get();
-
-                var product_name = $("input[name='product_name[]']")
                     .map(function(){return $(this).val();}).get();
 
                 var description = $("input[name='description[]']")
@@ -483,7 +457,6 @@
                     .map(function(){return $(this).val();}).get();
 
                     form_data.append('invdtlid', invdtlid);
-                    form_data.append('product_name', product_name);
                     form_data.append('description', description);
                     form_data.append('quantity', quantity);
                     form_data.append('unit_rate', unit_rate);

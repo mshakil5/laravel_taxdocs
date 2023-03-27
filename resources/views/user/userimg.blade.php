@@ -1,22 +1,19 @@
 @extends('layouts.user')
 @section('content')
 <style>
-    .pl25{
-        padding-left: 25px;
-    }
     /*loader css*/
     #loading {
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    opacity: 0.7;
-    background-color: #fff;
-    z-index: 99;
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        opacity: 0.7;
+        background-color: #fff;
+        z-index: 99;
     }
 
     #loading-image {
@@ -24,9 +21,14 @@
     }
 
     .popup{
-    width: 240px;
-    margin: auto;
-    text-align: center
+        width: 240px;
+        margin: auto;
+        text-align: center
+    }
+    .popup{
+        width: 240px;
+        margin: auto;
+        text-align: center
     }
     .popup img{
         width: 100px;
@@ -45,15 +47,19 @@
         top: 0;
         left: 0;
     }
-    .show .img-show{
-        width: 95%;
-        height: 95%;
+    
+    .show .img-show {
+        width: 500px;
+        height: 500px;
         background: #FFF;
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%,-50%);
-        overflow: hidden
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     .img-show span{
         position: absolute;
@@ -62,10 +68,11 @@
         z-index: 99;
         cursor: pointer;
     }
-    .img-show img{
-        width: 100%;
-        height: 100%;
-        position: absolute;
+    
+    .img-show img {
+        width: 500px;
+        height: auto;
+        position: relative;
         top: 0;
         left: 0;
     }
@@ -83,31 +90,34 @@
 
     <section class="profile purchase-status px-4">
 
-        <div class="title-section">
-            <span class="iconify" data-icon="clarity:heart-solid"></span>
-            <div class="mx-2">Add New Image</div>
-        </div>
-
-        <div class="title-section row mt-3">
+        <div class="row">
             <div class="col-md-12">
-                <div class="ermsg"></div>
-                <div class="col-md-12 text-muted bg-white ">
-                        <div class="row">
-                            <div class="col-md-4 mb-2">
-                                <input type="date" placeholder="Date" id="date" name="date"  class="form-control" value="{{date('Y-m-d')}}">
-                            </div>
-                            
-                            <div class="col-md-4 ">
-                                <input type="file" placeholder="Image" id="image" name="image" class="form-control">
-                            </div>
-                            {{-- <div class="col-md-12 my-2">
-                                <input type="text" placeholder="Description" class="form-control">
-                            </div> --}}
-                            <div class="col-md-12 my-2">
-                                <button class="text-white btn-theme ml-1" id="addBtn" type="submit"> Submit </button>
-                            </div>
-                        </div>
+                <div class="title-section">
+                    <span class="iconify" data-icon="clarity:heart-solid"></span>
+                    <div class="mx-2">Add New Image</div>
                 </div>
+                
+                <div class="ermsg"></div>
+
+                <div class="col-md-12 text-muted bg-white ">
+                    <div class="row">
+                        <div class="col-md-4 mb-2">
+                            <input type="date" placeholder="Date" id="date" name="date"  class="form-control" value="{{date('Y-m-d')}}">
+                        </div>
+                        
+                        <div class="col-md-4 ">
+                            <input type="file" placeholder="Image" id="image" name="image" class="form-control">
+                        </div>
+                        {{-- <div class="col-md-12 my-2">
+                            <input type="text" placeholder="Description" class="form-control">
+                        </div> --}}
+                        <div class="col-md-12 my-2">
+                            <button class="text-white btn-theme ml-1" id="addBtn" type="submit"> Submit </button>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
         </div>
 

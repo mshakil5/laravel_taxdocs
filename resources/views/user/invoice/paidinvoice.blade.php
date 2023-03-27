@@ -51,8 +51,8 @@
                                         <th style="text-align: center">Name</th>
                                         <th style="text-align: center">Email</th>
                                         <th style="text-align: center">Billing Address</th>
-                                        <th style="text-align: center">Message</th>
                                         <th style="text-align: center">Total</th>
+                                        <th style="text-align: center">Email</th>
                                         <th style="text-align: center">Action</th>
                                     </tr>
                                 </thead>
@@ -62,22 +62,24 @@
                                     <tr>
                                       <td style="text-align: center">{{ $key + 1 }}</td>
                                       <td style="text-align: center">{{ $data->invoice_date }}</td>
-                                      <td style="text-align: center">{{ $data->invoiceid }}</td>
+                                      <td style="text-align: center">{{ substr($data->invoiceid, -6) }}</td>
                                       <td style="text-align: center">{{ \App\Models\NewUser::where('id',$data->new_user_id)->first()->name }}</td>
                                       <td style="text-align: center">{{ $data->email }}</td>
                                       <td style="text-align: center">{{ $data->billing_address }}</td>
-                                      <td style="text-align: center">{{ $data->message_on_invoice }}</td>
                                       <td style="text-align: center">{{ $data->total }}</td>
+                                      <td style="text-align: center">
+                                        <button class="text-decoration-none bg-success text-white py-1 px-3 rounded mb-1 d-block text-center invoice-send-mail"  data-id="{{$data->id}}">
+                                            <small>Send Email</small> </button>
+                                      </td>
                                       <td style="text-align: center">
 
                                         
-                                        <button class="text-decoration-none bg-success text-white py-1 px-3 rounded mb-1 d-block text-center invoice-send-mail"  data-id="{{$data->id}}">
-                                            <small>Send Email</small> </button>
+                                        
                                          
-                                        <div class="py-1 text-center">
+                                        <div class="py-1 text-center" style="width: 100px">
                                             
-                                        <a href="{{ route('invoice.download',$data->id)}}"><i class="fa fa-book" style="color: #09a311;font-size:16px;"></i></a>
-                                        <a href="{{ route('user.invoicedtl',encrypt($data->id))}}"><i class="fa fa-eye" style="color: #09a311;font-size:16px;"></i></a>
+                                        <a href="{{ route('invoice.download',$data->id)}}"><i class="fa fa-download" style="color: #8b918b;font-size:30px;"></i></a>
+                                        <a href="{{ route('user.invoicedtl',encrypt($data->id))}}"><i class="fa fa-eye" style="color: #09a311;font-size:30px;"></i></a>
                                         
                                         </div>
                                        </td>
