@@ -117,8 +117,8 @@
                                         <td  style="border: 1px solid #dee2e6!important; padding: 0 10px 0 10;text-align:center;background-color: #d5d0cf;"><b>Description</b></td>
                                         <td  style="border: 1px solid #dee2e6!important; padding: 0 10px 0 10;text-align:center;background-color: #d5d0cf;"><b>Qty</b></td>
                                         <td  style="border: 1px solid #dee2e6!important; padding: 0 10px 0 10;text-align:center;background-color: #d5d0cf;"><b>Price</b></td>
-                                        <td  style="border: 1px solid #dee2e6!important; padding: 0 10px 0 10;text-align:center;background-color: #d5d0cf;"><b>Vat</b></td>
-                                        <td  style="border: 1px solid #dee2e6!important; padding: 0 10px 0 10;text-align:center;background-color: #d5d0cf;"><b>Total (Exc VAT)</b></td>
+                                        <td  style="border: 1px solid #dee2e6!important; padding: 0 10px 0 10;text-align:center;background-color: #d5d0cf;"><b>VAT</b></td>
+                                        <td  style="border: 1px solid #dee2e6!important; padding: 0 10px 0 10;text-align:center;background-color: #d5d0cf;"><b>Total</b></td>
                                     </tr>
                                 </thead>
                                 <tbody>
