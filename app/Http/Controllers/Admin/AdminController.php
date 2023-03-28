@@ -494,6 +494,7 @@ class AdminController extends Controller
             $account->email = $request->email;
             $account->is_type = "0";
             $account->phone = $request->phone;
+            $account->clientid = $request->clientid;
             $account->firm_id = $request->firm_id;
             $account->bname = $request->bname;
             $account->baddress = $request->baddress;
@@ -506,6 +507,7 @@ class AdminController extends Controller
             $account->bank_acc_number = $request->bank_acc_number;
             $account->bank_acc_sort_code = $request->bank_acc_sort_code;
             $account->bank_name = $request->bank_name;
+            $account->agent_assign = $request->assign;
             $account->contact_person = $request->contact_person;
             $account->blandnumber = $request->blandnumber;
             $account->password = Hash::make($request->input('password'));
@@ -582,7 +584,9 @@ class AdminController extends Controller
         $userData->baddress = request('baddress');
         $userData->town = request('town');
         $userData->postcode = request('postcode');
+        $userData->clientid = request('clientid');
         $userData->bank_acc_number = request('bank_acc_number');
+        $userData->bank_name = request('bank_name');
         $userData->bank_acc_sort_code = request('bank_acc_sort_code');
         $userData->subscription_plan = request('subscription_plan');
         $userData->contact_person = request('contact_person');

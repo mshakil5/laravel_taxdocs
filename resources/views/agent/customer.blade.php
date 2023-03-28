@@ -31,7 +31,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3>New User Registration</h3>
+                            <h3>New Client Registration</h3>
                         </div>
                         <div class="ermsg"> </div>
                         <div class="card-body">
@@ -132,11 +132,17 @@
                                             <label for="bank_account_code"> Account Sort Code</label>
                                             <input type="text" id="bank_account_code" name="bank_account_code" class="form-control">
                                         </div>
+
+                                        <div>
+                                            <label for="clientid">Client ID</label>
+                                            <input type="text" id="clientid" name="clientid" class="form-control">
+                                        </div>
                                         
                                         
                                         <div style="display: none">
                                             <label for="firm_id">Accountant Firm</label>
                                             <input type="text" id="firm_id" name="firm_id" value="{{$user->id}}" class="form-control">
+                                            <input type="text" id="assign" name="assign" value="1" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -203,7 +209,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3> User Account Details</h3>
+                            <h3> Client Account Details</h3>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -252,7 +258,7 @@
                                                     <td>
                                                         <a href="{{ route('showimg', encrypt($account->id))}}"><i class="fa fa-eye" style="color: #3ddf52;font-size:16px;"></i></a>
                                                         <a id="EditBtn" rid="{{$account->id}}"><i class="fa fa-edit" style="color: #2196f3;font-size:16px;"></i></a>
-                                                        <a id="deleteBtn" rid="{{$account->id}}"><i class="fa fa-trash-o" style="color: red;font-size:16px;"></i></a>
+                                                        {{-- <a id="deleteBtn" rid="{{$account->id}}"><i class="fa fa-trash-o" style="color: red;font-size:16px;"></i></a> --}}
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -345,6 +351,8 @@
             $("#addBtn").click(function(){
                 //alert('form work');
                 if($(this).val() == 'Create') {
+                    // $clientid = $("#clientid").val();
+                    // console.log( $clientid );
                     $.ajax({
                         url: url,
                         method: "POST",
@@ -366,6 +374,8 @@
                             bank_acc_number: $("#bank_account_number").val(),
                             bank_acc_sort_code: $("#bank_account_code").val(),
                             bank_name: $("#bank_name").val(),
+                            assign: $("#assign").val(),
+                            clientid: $("#clientid").val(),
                             password: $("#password").val(),
                             cpassword: $("#cpassword").val()
                         },
@@ -410,6 +420,7 @@
                             bank_acc_number: $("#bank_account_number").val(),
                             bank_acc_sort_code: $("#bank_account_code").val(),
                             bank_name: $("#bank_name").val(),
+                            clientid: $("#clientid").val(),
                             password: $("#password").val(),
                             cpassword: $("#cpassword").val()
                             },
@@ -493,6 +504,7 @@
                 $("#sub_plan").val(data.subscription_plan);   
                 $("#bank_account_code").val(data.bank_acc_sort_code);  
                 $("#bank_name").val(data.bank_name);  
+                $("#clientid").val(data.clientid);  
                 $("#surname").val(data.surname);   
                 $("#blandnumber").val(data.blandnumber);   
                 $("#contact_person").val(data.contact_person);   

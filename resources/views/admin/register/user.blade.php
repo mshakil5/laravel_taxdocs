@@ -62,6 +62,10 @@
                                             <label for="town"> Town</label>
                                             <input type="text" id="town" name="town" class="form-control">
                                         </div>
+                                        <div>
+                                            <label for="bname">Business Name</label>
+                                            <input type="text" id="bname" name="bname" class="form-control">
+                                        </div>
                                         <div style="display: none">
                                             <label for="town"> Subscription Plan</label>
                                             <select name="sub_plan" id="sub_plan" class="form-control" required>
@@ -87,10 +91,6 @@
                                         <div>
                                             <label for="surname">Surname</label>
                                             <input type="text" id="surname" name="surname" class="form-control">
-                                        </div>
-                                        <div>
-                                            <label for="bname">Business Name</label>
-                                            <input type="text" id="bname" name="bname" class="form-control">
                                         </div>
     
                                         <div style="display:none">
@@ -133,6 +133,11 @@
                                             <input type="text" id="bank_account_code" name="bank_account_code" class="form-control">
                                         </div>
                                         
+                                        <div>
+                                            <label for="clientid">Client ID</label>
+                                            <input type="text" id="clientid" name="clientid" class="form-control">
+                                            <input type="hidden" id="assign" name="assign" value="1" class="form-control">
+                                        </div>
                                         
                                         @if (Auth::user()->is_type == 1)
                                             <div>
@@ -211,7 +216,7 @@
                                                 <tr>
                                                     <td>{{$key++}}</td>
                                                     <td>{{$account->created_at->format("m/d/Y")}}</td>
-                                                    <td></td>
+                                                    <td>{{$account->clientid}}</td>
                                                     <td>{{$account->bname}}</td>
                                                     <td>{{$imgcount}}</td>
                                                     <td>{{$notcalimgcount}}</td>
@@ -368,6 +373,8 @@ $(document).ready(function() {
                             bank_acc_number: $("#bank_account_number").val(),
                             bank_acc_sort_code: $("#bank_account_code").val(),
                             bank_name: $("#bank_name").val(),
+                            clientid: $("#clientid").val(),
+                            assign: $("#assign").val(),
                             password: $("#password").val(),
                             cpassword: $("#cpassword").val()
                         },
@@ -412,6 +419,7 @@ $(document).ready(function() {
                             bank_acc_number: $("#bank_account_number").val(),
                             bank_acc_sort_code: $("#bank_account_code").val(),
                             bank_name: $("#bank_name").val(),
+                            clientid: $("#clientid").val(),
                             password: $("#password").val(),
                             cpassword: $("#cpassword").val()
                             },
@@ -494,7 +502,8 @@ $(document).ready(function() {
                 $("#bank_account_number").val(data.bank_acc_number);   
                 $("#sub_plan").val(data.subscription_plan);   
                 $("#bank_account_code").val(data.bank_acc_sort_code);  
-                $("#bank_name").val(data.bank_name);  
+                $("#bank_name").val(data.bank_name); 
+                $("#clientid").val(data.clientid);   
                 $("#surname").val(data.surname);   
                 $("#blandnumber").val(data.blandnumber);   
                 $("#contact_person").val(data.contact_person);   
