@@ -62,19 +62,13 @@
                                             <label for="town"> Town</label>
                                             <input type="text" id="town" name="town" class="form-control">
                                         </div>
-                                        <div>
+                                        <div style="display: none">
                                             <label for="town"> Subscription Plan</label>
                                             <select name="sub_plan" id="sub_plan" class="form-control" required>
                                                 <option value="">Subscription plan</option>
                                                 <option value="1">Individual Plan £5.95</option>
                                                 <option value="2">Business Plan £10.95</option>
                                             </select>
-                                        </div>
-
-                                        
-                                        <div>
-                                            <label for="bank_name">A/C Name</label>
-                                            <input type="text" id="bank_name" name="bank_name" class="form-control">
                                         </div>
                                         
                                         <div>
@@ -113,26 +107,32 @@
                                             <input type="text" id="postcode" name="postcode" class="form-control">
                                         </div>
     
-                                        <div>
+                                        <div style="display: none">
                                             <label for="contact_person">Contact Person</label>
                                             <input type="text" id="contact_person" name="contact_person" class="form-control">
                                         </div>
                                         
-                                        <div>
+                                        <div style="display: none">
                                             <label for="blandnumber">Business Land Number</label>
                                             <input type="text" id="blandnumber" name="blandnumber" class="form-control">
                                         </div>
 
                                         <div>
-                                            <label for="bank_account_number"> A/C Number</label>
+                                            <label for="bank_name">Account Name</label>
+                                            <input type="text" id="bank_name" name="bank_name" class="form-control">
+                                        </div>
+
+                                        <div>
+                                            <label for="bank_account_number"> Account Number</label>
                                             <input type="text" id="bank_account_number" name="bank_account_number" class="form-control">
                                         </div>
 
 
                                         <div>
-                                            <label for="bank_account_code"> A/C Sort Code</label>
+                                            <label for="bank_account_code"> Account Sort Code</label>
                                             <input type="text" id="bank_account_code" name="bank_account_code" class="form-control">
                                         </div>
+                                        
                                         
                                         @if (Auth::user()->is_type == 1)
                                             <div>
@@ -235,7 +235,7 @@
                                                         <a href="{{ route('payroll', encrypt($account->id) )}}"><span class="badge badge-primary">Payroll</span></a><br>
                                                         <a href="{{ route('showimg', encrypt($account->id) )}}"><i class="fa fa-eye" style="color: #3ddf52;font-size:16px;"></i></a>
                                                         <a id="EditBtn" rid="{{$account->id}}"><i class="fa fa-edit" style="color: #2196f3;font-size:16px;"></i></a>
-                                                        <a id="deleteBtn" rid="{{$account->id}}"><i class="fa fa-trash-o" style="color: red;font-size:16px;"></i></a>
+                                                        {{-- <a id="deleteBtn" rid="{{$account->id}}"><i class="fa fa-trash-o" style="color: red;font-size:16px;"></i></a> --}}
                                                     </td>
                                                 </tr>
                                             @endforeach

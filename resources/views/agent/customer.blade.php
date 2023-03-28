@@ -136,7 +136,7 @@
                                         
                                         <div style="display: none">
                                             <label for="firm_id">Accountant Firm</label>
-                                            <input type="text" id="firm_id" name="firm_id" value="{{$user->name}}" class="form-control">
+                                            <input type="text" id="firm_id" name="firm_id" value="{{$user->id}}" class="form-control">
                                         </div>
                                     </div>
                                 </div>

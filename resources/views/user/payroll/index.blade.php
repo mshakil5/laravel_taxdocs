@@ -213,7 +213,7 @@
                   <td style="text-align: center">{{ $data->date }}</td>
                   <td style="text-align: center">{{ $data->company_name }}</td>
                   <td style="text-align: center">{{ $data->payroll_period }}</td>
-                  <td style="text-align: center">@if ($data->frequency == 7) Weekly @else Monthly @endif</td>
+                  <td style="text-align: center">@if ($data->frequency == 7) Weekly @elseif($data->frequency == 30) Monthly @else Fortnight @endif</td>
                   
                   <td style="text-align: center">
                     <a  href="{{ route('user.payrolldtl',encrypt($data->id))}}" class="text-white btn-theme">View</a>
