@@ -221,7 +221,7 @@
 
 
                                 <tr>
-                                    <td>{{ $data->company_post_code}}</td>
+                                    <td>{{ $data->company_town}}</td>
                                     <td>&nbsp;</td>
                                     <td>{{ $data->company_tell_no }}</td>
                                     <td>&nbsp;</td>
@@ -231,7 +231,7 @@
                                 
 
                                 <tr>
-                                    <td>{{ $data->company_town}}</td>
+                                    <td>{{ $data->company_post_code}}</td>
                                     <td>&nbsp;</td>
                                     <td>{{ $data->company_email}}</td>
                                     <td>&nbsp;</td>
