@@ -290,7 +290,7 @@ class InvoiceController extends Controller
             $data->total = $request->totalamount;
             $data->vat = $request->totalvat;
             $data->discount = $request->discount;
-            $data->invoiceid = date('Ymd-his');
+            $data->invoiceid = date('his');
             $data->company_name = Auth::user()->name;
             $data->company_surname = Auth::user()->surname;
             $data->company_bname = Auth::user()->bname;

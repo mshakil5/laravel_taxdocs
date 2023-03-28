@@ -13,6 +13,8 @@
       <ul class="app-breadcrumb breadcrumb">
       </ul>
     </div>
+    <a href="{{ route('admin.paidinvoice', encrypt($data->user_id))}}" id="backBtn" class="btn btn-info mb-2">Back</a>
+
     <div class="row">
       <div class="col-md-6">
         
@@ -171,7 +173,6 @@
             </div>
             <hr>
             <input type="button" id="editBtn" value="Edit" class="btn btn-primary">
-            <input type="button" id="FormCloseBtn" value="Close" class="btn btn-warning">
             {!! Form::close() !!}
             
 

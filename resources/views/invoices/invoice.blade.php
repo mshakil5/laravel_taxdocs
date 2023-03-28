@@ -65,7 +65,7 @@
                                         <h5 style="font-size: .90rem; margin : 5px;text-align: left;">Invoice To</h5>
                                         <h5 style="font-size: .90rem; margin : 5px;text-align: left;">{{ \App\Models\NewUser::where('id',$data->new_user_id)->first()->name}}</h5>
                                         <h5 style="font-size: .90rem; margin : 5px;text-align: left;">{{ $data->billing_address}}</h5>
-                                        <h5 style="font-size: .90rem; margin : 5px;text-align: left;">Post code: {{ $data->post_code}}</h5>
+                                        <h5 style="font-size: .90rem; margin : 5px;text-align: left;">{{ $data->post_code}}</h5>
                                         <h5 style="font-size: .90rem; margin : 5px;text-align: left;">{{ $data->email}}</h5>
                                     </div>
                                 </td>

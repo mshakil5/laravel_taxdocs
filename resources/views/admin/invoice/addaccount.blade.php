@@ -13,7 +13,7 @@
       <ul class="app-breadcrumb breadcrumb">
       </ul>
     </div>
-    
+    <a href="{{ route('admin.paidinvoice', encrypt($data->user_id))}}" id="backBtn" class="btn btn-info mb-2">Back</a>
     <div class="ermsg"></div>
     <div class="row">
       <div class="col-md-6">

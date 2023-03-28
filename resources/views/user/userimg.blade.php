@@ -20,7 +20,7 @@
     z-index: 100;
     }
 
-    .popup{
+    /* .popup{
         width: 240px;
         margin: auto;
         text-align: center
@@ -75,7 +75,7 @@
         position: relative;
         top: 0;
         left: 0;
-    }
+    } */
     /*End style*/
 </style>
 
@@ -161,9 +161,31 @@
                                                     </iframe>
                                                 </div>
                                             @else
-                                            <div class="popup">
+                                            {{-- <div class="popup">
                                                 <img src="{{asset('images/'.$data->image)}}" height="100px" width="200px" alt="">
-                                            </div>
+                                            </div> --}}
+                                            <a href="#" id="pop" class="pop">
+                                                <img src="{{asset('images/'.$data->image)}}" height="100px" width="200px" alt="">
+                                            </a>
+
+                                            <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                  <div class="modal-content">
+                                                    <div class="modal-header">
+                                                      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                                      <h4 class="modal-title" id="myModalLabel">Image preview</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                      <img src="{{asset('images/'.$data->image)}}" id="imagepreview" style="width: 400px; height: 264px;" >
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+
+
                                             @endif
                                             
                                           @endif
@@ -204,6 +226,10 @@
 
 <script>
 
+$(".pop").on("click", function() {
+   $('#imagepreview').attr('src', $('#imageresource').attr('src')); // here asign the image to the modal when the user click the enlarge link
+   $('#imagemodal').modal('show'); // imagemodal is the id attribute assigned to the bootstrap modal, then i use the show function
+});
     
 $(function () {
 "use strict";
