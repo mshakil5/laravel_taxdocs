@@ -94,16 +94,16 @@
         <li><a class="app-menu__item" href="{{route('admin.photo')}}" id="photo"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Photo</span></a></li>
         @endif
         
-        <li class="treeview" id="alluser"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">User</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+        <li class="treeview" id="alluser"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Client</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
             @if(Auth::user()->is_type == '1')
             <li><a class="treeview-item" href="{{url('admin/agent-register')}}" id="agent"><i class="icon fa fa-circle-o"></i> Accountant Firm</a></li>
             @endif
             {{-- @if(Auth::user()->is_type == 'admin' || in_array('4', json_decode(Auth::user()->staff->role->permissions))) --}}
-            <li><a class="treeview-item" href="{{url('admin/user-register')}}" id="user"><i class="icon fa fa-circle-o"></i> Customer</a></li>
+            <li><a class="treeview-item" href="{{url('admin/user-register')}}" id="user"><i class="icon fa fa-circle-o"></i> Client</a></li>
             {{-- @endif --}}
             @if(Auth::user()->is_type == '1')
-            <li><a class="treeview-item" href="{{ route('notassigncustomer')}}" id="newcustomer"><i class="icon fa fa-circle-o"></i>New Customer</a></li>
+            <li><a class="treeview-item" href="{{ route('notassigncustomer')}}" id="newcustomer"><i class="icon fa fa-circle-o"></i>New Client</a></li>
             @endif
 
             {{-- @if(Auth::user()->is_type == 'admin' || in_array('2', json_decode(Auth::user()->staff->role->permissions))) --}}

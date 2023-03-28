@@ -26,13 +26,15 @@
             </ul>
         </div>
         
-
+        <a href="{{ route('alluser')}}" id="backBtn" class="btn btn-info mb-2">Back</a>
+        <br>
+        
         <div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3> User Details</h3>
+                            <h3> Client Details</h3>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -40,8 +42,9 @@
                                     <table class="table table-bordered table-hover">
                                         <thead>
                                         <tr>
-                                            <th style="text-align: center; width:20%">Name</th>
+                                            <th style="text-align: center; width:10%">Name</th>
                                             <th style="text-align: center; width:20%">Email</th>
+                                            <th style="text-align: center; width:10%">Client ID</th>
                                             <th style="text-align: center; width:20%">Business Name</th>
                                             <th style="text-align: center; width:20%">Business Address</th>
                                             <th style="text-align: center; width:20%">Firm Name </th>
@@ -52,6 +55,7 @@
                                                 <tr>
                                                     <td style="text-align: center">{{ $user->name }}</td>
                                                     <td style="text-align: center">{{ $user->email }}</td>
+                                                    <td style="text-align: center">{{ $user->clientid }}</td>
                                                     <td style="text-align: center">{{ $user->bname }}</td>
                                                     <td style="text-align: center">{{ $user->baddress }}</td>
                                                     <td style="text-align: center">{{ \App\Models\User::where('id',$user->firm_id)->first()->name}}</td>

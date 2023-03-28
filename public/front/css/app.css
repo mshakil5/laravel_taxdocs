@@ -751,3 +751,36 @@ body::-webkit-scrollbar-thumb {
   height: 25px;
   width: 25px;
 }/*# sourceMappingURL=app.css.map */
+
+
+.plan {
+  min-height: 435px;
+}
+.plan.plan-bg-1 {
+  background: #fbeedf;
+}
+.plan.plan-bg-2 {
+  background: #ffefe7;
+}
+.plan.plan-bg-3 {
+  background: #fff8f0;
+}
+.plan .planContent .optionItems {
+  font-size: 19px;
+  font-weight: bold;
+  margin-bottom: 4px;
+  padding: 5px 15px;
+  letter-spacing: 0.7px;
+}
+.plan .planContent .optionItems:hover {
+  background-color: rgba(211, 211, 211, 0.2784313725);
+}
+.plan .planContent .optionItems:nth-child(odd) {
+  background-color: rgb(231, 220, 214);
+  border-radius: 4px;
+  color: #785403;
+}
+
+.advertisement {
+  background-color: #e3d4c2;
+}/*# sourceMappingURL=app.css.map */

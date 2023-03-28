@@ -72,6 +72,52 @@
             </ul>
         </div>
 
+        <a href="{{ route('alluser')}}" id="backBtn" class="btn btn-info">Back</a>
+        <button id="newBtn" type="button" class="btn btn-info">Add New</button>
+
+        <hr>
+
+        <div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3> Client Details</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="container">
+                                    <table class="table table-bordered table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th style="text-align: center; width:10%">Name</th>
+                                            <th style="text-align: center; width:20%">Email</th>
+                                            <th style="text-align: center; width:10%">Client ID</th>
+                                            <th style="text-align: center; width:20%">Business Name</th>
+                                            <th style="text-align: center; width:20%">Business Address</th>
+                                            <th style="text-align: center; width:20%">Firm Name </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (isset($user))
+                                                <tr>
+                                                    <td style="text-align: center">{{ $user->name }}</td>
+                                                    <td style="text-align: center">{{ $user->email }}</td>
+                                                    <td style="text-align: center">{{ $user->clientid }}</td>
+                                                    <td style="text-align: center">{{ $user->bname }}
+                                                    <input type="hidden" id="bname" value="{{$user->bname}}">
+                                                    </td>
+                                                    <td style="text-align: center">{{ $user->baddress }}</td>
+                                                    <td style="text-align: center">{{ \App\Models\User::where('id',$user->firm_id)->first()->name}}</td>
+                                            @endif
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
 
 
         <div id="addThisFormContainer">
@@ -231,9 +277,7 @@
             </div>
         </div>
 
-        {{-- <a href="{{ url()->previous() }}" id="backBtn" class="btn btn-info">Back</a> --}}
-        <a href="{{ route('alluser')}}" id="backBtn" class="btn btn-info">Back</a>
-        <button id="newBtn" type="button" class="btn btn-info">Add New</button>
+        
         <hr>
         <div id="contentContainer">
             <div class="row">

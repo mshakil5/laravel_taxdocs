@@ -31,7 +31,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3>New User Registration</h3>
+                            <h3>New Client Registration</h3>
                         </div>
                         <div class="ermsg"> </div>
                         <div class="card-body">
@@ -178,7 +178,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3> User Account Details</h3>
+                            <h3> Client Account Details</h3>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -218,9 +218,16 @@
                                                     <td>
                                                         <a class="btn btn-success btn-sm text-white" href="{{route('admin.report',encrypt($account->id))}}"> Report</a>
                                                     </td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
+                                                    <td>
+                                                        <a class="btn btn-info btn-sm text-white" href="{{ route('showimg', encrypt($account->id) )}}">Image</a>
+                                                    </td>
+                                                    <td>
+                                                        <a class="btn btn-dark btn-sm text-white" href="{{ route('admin.paidinvoice', encrypt($account->id) )}}">
+                                                        Invoice</a>
+                                                    </td>
+                                                    <td>
+                                                        <a class="btn btn-secondary btn-sm text-white" href="{{ route('payroll', encrypt($account->id) )}}">Payroll</a>
+                                                    </td>
                                                     
                                                     <td>
                                                         <div class="toggle-flip">
@@ -233,10 +240,11 @@
                                                         <a class="btn btn-info btn-sm text-white" href="{{route('show.userdtl',encrypt($account->id))}}"> View</a>
                                                     </td>
                                                     <td class="text-center">
-                                                        <a href="{{ route('admin.paidinvoice', encrypt($account->id) )}}"><span class="badge badge-success">Paid Invoice</span></a><br>
-                                                        <a href="{{ route('payroll', encrypt($account->id) )}}"><span class="badge badge-primary">Payroll</span></a><br>
-                                                        <a href="{{ route('showimg', encrypt($account->id) )}}"><i class="fa fa-eye" style="color: #3ddf52;font-size:16px;"></i></a>
-                                                        <a id="EditBtn" rid="{{$account->id}}"><i class="fa fa-edit" style="color: #2196f3;font-size:16px;"></i></a>
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        <a id="EditBtn" class="btn btn-warning btn-sm text-white"  rid="{{$account->id}}">Edit</a>
                                                         {{-- <a id="deleteBtn" rid="{{$account->id}}"><i class="fa fa-trash-o" style="color: red;font-size:16px;"></i></a> --}}
                                                     </td>
                                                 </tr>

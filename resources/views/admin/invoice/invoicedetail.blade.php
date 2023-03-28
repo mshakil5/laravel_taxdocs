@@ -23,10 +23,11 @@
             <div class="row invoice-info">
                 <div class="col-4"><b>Invoice #{{$data->invoiceid}}</b>
                     <br>
-                    <b>Order ID:</b> {{ $data->invoice_date}}<br>
+                    <b>Date:</b> {{ \Carbon\Carbon::parse($data->invoice_date)->format('d/m/Y') }}<br>
                     <b>Invoice To:</b><br>
                     <b>Name: </b>{{ \App\Models\NewUser::where('id',$data->new_user_id)->first()->name}}<br>
                     <b>Email: </b>{{ $data->email}}<br>
+                    <b>Post code: </b>{{ $data->post_code}}<br>
                     <b>Billing Address: </b>{{ $data->billing_address}}<br>
                 </div>
               <div class="col-4">
@@ -87,23 +88,17 @@
                     </tr>
 
                     <tr>
-                        <td colspan="2" rowspan="3"></td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td colspan="4" rowspan="3"></td>
                         <td>Subtotal</td>
                         <td style="text-align:right">{{ $data->subtotal}}</td>
                     </tr>
 
                     <tr>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
                         <td>Vat</td>
                         <td style="text-align:right">{{ $data->vat}}</td>
                     </tr>
                     @if ($data->discount > 0)
                     <tr>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
                         <td>Discount</td>
                         <td style="text-align:right">{{ $data->discount}}</td>
                     </tr>
@@ -114,8 +109,6 @@
                         @if ($data->discount > 0)
                         <td></td>
                         <td></td>@endif
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
                         <td>Total</td>
                         <td style="text-align:right">{{ $data->total}}</td>
                     </tr>
@@ -140,6 +133,7 @@
                     <b>{{ $data->company_name}}</b><br>
                     <b>{{ $data->company_house_number}} {{ $data->company_street_name}}</b><br>
                     <b>{{ $data->company_town}}</b><br>
+                    <b>{{ $data->company_post_code}}</b><br>
                     <b>{{ $data->company_vatno}}</b><br>
                 </div>
               <div class="col-5">

@@ -19,7 +19,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3>New User Registration</h3>
+                            <h3>New Client Registration</h3>
                         </div>
                         <div class="ermsg"> </div>
                         <div class="card-body">
@@ -150,7 +150,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3> User Account Details</h3>
+                            <h3> Client Account Details</h3>
                         </div>
                         <div class="card-body">
                             <div class="row">

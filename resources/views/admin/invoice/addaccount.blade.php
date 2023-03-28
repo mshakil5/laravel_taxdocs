@@ -25,7 +25,7 @@
               <div class="row invoice-info">
                   <div class="col-8"><b>Invoice #{{$data->invoiceid}}</b>
                       <br>
-                      <b>Date:</b> {{ $data->invoice_date}}<br>
+                      <b>Date:</b> {{ \Carbon\Carbon::parse($data->invoice_date)->format('d/m/Y') }}<br>
                   </div>
   
   
