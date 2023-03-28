@@ -17,6 +17,10 @@
         .text-right {
             text-align: right;
         }
+
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+        }
     </style>
 </head>
 
