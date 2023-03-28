@@ -57,25 +57,25 @@
 
                     <br><br>
 
-                    <table style="width: 100%;font-family: Arial, Helvetica;font-size: 12px;">
+                    <table style="width: 100%;font-family: Arial, Helvetica;font-size: 13px;">
                         <tbody>
 
                             <tr>
                                 <td colspan="2" class="" style="border :0px solid #828283 ;width:40%;">
                                     <div class="col-lg-2 text-end" style="flex: 2; text-align: right;">
-                                        <h5 style="font-size: 12px; margin : 5px;text-align: left;">Invoice To</h5>
-                                        <p style="font-size: 12px; margin : 5px;text-align: left;line-height: 10px;">{{ \App\Models\NewUser::where('id',$data->new_user_id)->first()->name}}</p>
-                                        <p style="font-size: 12px; margin : 5px;text-align: left;line-height: 10px;">{{ $data->billing_address}}</p>
-                                        <p style="font-size: 12px; margin : 5px;text-align: left;line-height: 10px;">{{ $data->post_code}}</p>
-                                        <p style="font-size: 12px; margin : 5px;text-align: left;line-height: 10px;">{{ $data->email}}</p>
+                                        <h5 style="font-size: 13px; margin : 5px;text-align: left;">Invoice To</h5>
+                                        <p style="font-size: 13px; margin : 5px;text-align: left;line-height: 10px;">{{ \App\Models\NewUser::where('id',$data->new_user_id)->first()->name}}</p>
+                                        <p style="font-size: 13px; margin : 5px;text-align: left;line-height: 10px;">{{ $data->billing_address}}</p>
+                                        <p style="font-size: 13px; margin : 5px;text-align: left;line-height: 10px;">{{ $data->post_code}}</p>
+                                        <p style="font-size: 13px; margin : 5px;text-align: left;line-height: 10px;">{{ $data->email}}</p>
                                     </div>
                                 </td>
 
                                 <td colspan="2" class="" style="border :0px solid #dee2e6;width:30%;"></td>
                                 <td colspan="2" class="" style="border :0px solid #dee2e6 ;">
                                     <div class="col-lg-2 text-end" style="flex: 2; text-align: right;">
-                                        <p style="font-size: 12px; margin : 5px;text-align: right;line-height: 10px;">Invoice No: {{ $data->invoiceid}}</p>
-                                        <p style="font-size: 12px; margin : 5px;text-align: right;line-height: 10px;">Date: {{ \Carbon\Carbon::parse($data->invoice_date)->format('d/m/Y') }}</p>
+                                        <p style="font-size: 13px; margin : 5px;text-align: right;line-height: 10px;">Invoice No: {{ $data->invoiceid}}</p>
+                                        <p style="font-size: 13px; margin : 5px;text-align: right;line-height: 10px;">Date: {{$data->invoice_date}}</p>
                                     </div>
                                 </td>
                             </tr>
@@ -87,7 +87,7 @@
 
 
 
-                    <div class="row overflow" style="font-family: Arial, Helvetica;font-size: 12px;">
+                    <div class="row overflow" style="font-family: Arial, Helvetica;font-size: 13px;">
                         <table style="width: 100%;border-collapse: collapse;" class="table table-striped">
                             <thead>
                                 <tr>
@@ -172,78 +172,96 @@
                     <br><br>
 
 
-                    <div class="row overflow" style="position:fixed; bottom:0; width:100%;font-family: Arial, Helvetica;font-size: 12px; ">
+                    <div class="row overflow" style="position:fixed; bottom:0; width:100%;font-family: Arial, Helvetica;font-size: 13px; ">
                         <table style="width: 100%;">
                             <tbody style="border:1px solid #828283;">
                                 <tr>
-                                    <td style="border :0px solid #828283 ;width:100%;">
-                                        NOTE:
+                                    <td style="border :0px solid #828283 ;width:100%;margin: 5px;">
+                                        <div class="col-lg-12" style="flex: 2;">
+                                            NOTE:
+                                        </div>
                                     </td>
+                                    
                                 </tr>
                                 <tr>
-                                    <td style="border :0px solid #828283 ;width:100%;">
-                                        {{ $data->message_on_invoice}}
+                                    <td style="border :0px solid #828283 ;width:100%;margin: 5px;">
+                                        <div class="col-lg-12" style="flex: 2;">
+                                            {{ $data->message_on_invoice}}
+                                        </div>
+                                        
                                     </td>
                                 </tr>
                             </tbody>
                         </table><br>
                         <hr>
-                        <table style="width:100%;border-collapse: collapse;">
+                        <table style="width:100%;border-collapse: collapse;font-family: Arial, Helvetica;font-size: 13px;">
                             <thead>
                                 <tr>
                                     <th style="width: 25%"></th>
                                     <th style="width: 8%"></th>
                                     <th style="width: 22%"></th>
                                     <th style="width: 9%"></th>
-                                    <th style="width: 16%"></th>
-                                    <th style="width: 20%"></th>
+                                    <th style="width: 6%"></th>
+                                    <th style="width: 30%"></th>
                                 </tr>
                             </thead>
                             <tbody>
 
                                 <tr>
-                                    <td style="width: 20%; text-align:left;" colspan="2"><b>{{$data->company_bname}}</b></td>
-                                    <td style="width: 20%; text-align:left;" colspan="2"><b> Contact Information</b></td>
-                                    <td style="width: 15%; text-align:left;" colspan="2"><b> Payment Details</b></td>
+                                    <td style="text-align:left;margin: 5px;" colspan="2">
+                                        <div class="col-lg-12" style="flex: 2;">
+                                            <b style="margin-left: 4px;">{{$data->company_bname}}</b>
+                                        </div>
+                                    </td>
+                                    <td style="text-align:left;margin: 5px;" colspan="2">
+                                        <div class="col-lg-12" style="flex: 2;">
+                                            <b style="margin-left: 4px;"> Contact Information</b>
+                                        </div>
+                                    </td>
+                                    <td style="text-align:left;margin: 5px;" ></td>
+                                    <td style="text-align:left;margin: 5px;" >
+                                        
+                                        <div class="col-lg-12" style="flex: 2;">
+                                            <b style="margin-left: 4px;"> Payment Details</b>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="col-lg-12" style="flex: 2;">
+                                            <p style="font-size: 13px;text-align: left;line-height: 10px;margin: 5px;">{{ $data->company_house_number}} {{ $data->company_street_name}}</p>
+                                            <p style="font-size: 13px; text-align: left;line-height: 10px;margin: 5px;">{{ $data->company_town}}</p>
+                                            <p style="font-size: 13px; text-align: left;line-height: 10px;margin: 5px;">{{ $data->company_post_code}}</p>
+                                            <p style="font-size: 13px; text-align: left;line-height: 10px;margin: 5px;">VAT:{{ $data->company_vatno}}</p>
+                                        </div>
+                                    
+                                    </td>
+                                    <td></td>
+                                    <td>
+
+                                        <div class="col-lg-12 " style="flex: 2;">
+                                            <p style="font-size: 13px;text-align: left;line-height: 10px;margin: 5px;">{{ $data->company_name }} {{ $data->company_surname }}</p>
+                                            <p style="font-size: 13px;text-align: left;line-height: 10px;margin: 5px;">{{ $data->company_tell_no }}</p>
+                                            <p style="font-size: 13px;text-align: left;line-height: 10px;margin: 5px;">{{ $data->company_email}}</p>
+                                            <p style="font-size: 13px;text-align: left;line-height: 10px;margin: 5px;">&nbsp;</p>
+                                        </div>
+                                        
+
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td style="text-align:left">
+                                        <div class="col-lg-12 " style="flex: 2;">
+                                            <p style="font-size: 13px;text-align: left;line-height: 10px;margin: 5px;">A/C Name: {{ $data->bank}}</p>
+                                            <p style="font-size: 13px;text-align: left;line-height: 10px;margin: 5px;">A/C No: {{ $data->acct_no}}</p>
+                                            <p style="font-size: 13px;text-align: left;line-height: 10px;margin: 5px;">Sort Code: {{ $data->short_code}}</p>
+                                            <p style="font-size: 13px;text-align: left;line-height: 10px;margin: 5px;">&nbsp;</p>
+                                        </div>
+                                        
+                                    </td>
                                 </tr>
                                 
-                                <tr>
-                                    <td>{{ $data->company_house_number}} {{ $data->company_street_name}}</td>
-                                    <td>&nbsp;</td>
-                                    <td>{{ $data->company_name }} {{ $data->company_surname }}</td>
-                                    <td>&nbsp;</td>
-                                    <td>A/C Name:</td>
-                                    <td style="text-align:left">{{ $data->bank}}</td>
-                                </tr>
-
-
-                                <tr>
-                                    <td>{{ $data->company_town}}</td>
-                                    <td>&nbsp;</td>
-                                    <td>{{ $data->company_tell_no }}</td>
-                                    <td>&nbsp;</td>
-                                    <td>A/C No:</td>
-                                    <td style="text-align:left">{{ $data->acct_no}}</td>
-                                </tr>
-                                
-
-                                <tr>
-                                    <td>{{ $data->company_post_code}}</td>
-                                    <td>&nbsp;</td>
-                                    <td>{{ $data->company_email}}</td>
-                                    <td>&nbsp;</td>
-                                    <td>Sort Code:</td>
-                                    <td style="text-align:left">{{ $data->short_code}}</td>
-                                </tr>
-
-                                <tr>
-                                    <td>VAT:{{ $data->company_vatno}}</td>
-                                    <td>&nbsp;</td>
-                                    <td></td>
-                                    <td>&nbsp;</td>
-                                    <td></td>
-                                    <td style="text-align:right"></td>
-                                </tr>
                                 
 
                             </tbody>

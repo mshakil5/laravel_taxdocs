@@ -24,7 +24,9 @@
 
             html, body {
                 margin: 50 0 0 0;
-                padding: 0
+                padding: 0;
+                font-size: 12px;
+                font-family: Arial, Helvetica;
             }
 
             #printContainer {
@@ -40,9 +42,9 @@
                 text-align: right;
             }
 
-            body{
+            /* body{
                 font-family: Arial, Helvetica;
-            }
+            } */
         }
     </style>
     
@@ -91,11 +93,11 @@
                             <tr>
                                 <td colspan="2" class="" style="border :0px solid #828283 ;width:40%;">
                                     <div class="col-lg-2 text-end" style="flex: 2; text-align: right;">
-                                        <h5 style="font-size: .90rem; margin : 5px;text-align: left;">Invoice To</h5>
-                                        <h5 style="font-size: .90rem; margin : 5px;text-align: left;">{{ \App\Models\NewUser::where('id',$data->new_user_id)->first()->name}}</h5>
-                                        <h5 style="font-size: .90rem; margin : 5px;text-align: left;">{{ $data->billing_address}}</h5>
-                                        <h5 style="font-size: .90rem; margin : 5px;text-align: left;">{{ $data->post_code}}</h5>
-                                        <h5 style="font-size: .90rem; margin : 5px;text-align: left;">{{ $data->email}}</h5>
+                                        <h5 style="font-size: 12px; margin : 5px;text-align: left;">Invoice To</h5>
+                                        <p style="font-size: 12px; margin : 5px;text-align: left;">{{ \App\Models\NewUser::where('id',$data->new_user_id)->first()->name}}</p>
+                                        <p style="font-size: 12px; margin : 5px;text-align: left;">{{ $data->billing_address}}</p>
+                                        <p style="font-size: 12px; margin : 5px;text-align: left;">{{ $data->post_code}}</p>
+                                        <p style="font-size: 12px; margin : 5px;text-align: left;">{{ $data->email}}</p>
                                     </div>
                                 </td>
 
@@ -103,7 +105,7 @@
                                 <td colspan="2" class="" style="border :0px solid #dee2e6 ;">
                                     <div class="col-lg-2 text-end" style="flex: 2; text-align: right;">
                                         <h5 style="font-size: .90rem; margin : 5px;text-align: right;">Invoice No: {{ $data->invoiceid}}</h5>
-                                        <h5 style="font-size: .90rem; margin : 5px;text-align: right;">Date: {{$data->invoice_date}}</h5>
+                                        <h5 style="font-size: .90rem; margin : 5px;text-align: right;">Date: {{ \Carbon\Carbon::parse($data->invoice_date)->format('d/m/Y') }}</h5>
                                     </div>
                                 </td>
                             </tr>
@@ -207,14 +209,16 @@
                                 
                             </table><br>
                             <hr>
+                            
+                        
                             <table style="width:100%;border-collapse: collapse;">
                                 <thead>
                                     <tr>
                                         <th style="width: 25%"></th>
-                                        <th style="width: 10%"></th>
-                                        <th style="width: 20%"></th>
-                                        <th style="width: 10%"></th>
-                                        <th style="width: 15%"></th>
+                                        <th style="width: 8%"></th>
+                                        <th style="width: 22%"></th>
+                                        <th style="width: 9%"></th>
+                                        <th style="width: 16%"></th>
                                         <th style="width: 20%"></th>
                                     </tr>
                                 </thead>
@@ -232,7 +236,7 @@
                                         <td>{{ $data->company_name }} {{ $data->company_surname }}</td>
                                         <td>&nbsp;</td>
                                         <td>A/C Name:</td>
-                                        <td style="text-align:right">{{ $data->bank}}</td>
+                                        <td style="text-align:left">{{ $data->bank}}</td>
                                     </tr>
     
     
@@ -242,7 +246,7 @@
                                         <td>{{ $data->company_tell_no }}</td>
                                         <td>&nbsp;</td>
                                         <td>A/C No:</td>
-                                        <td style="text-align:right">{{ $data->acct_no}}</td>
+                                        <td style="text-align:left">{{ $data->acct_no}}</td>
                                     </tr>
                                     
     
@@ -252,7 +256,7 @@
                                         <td>{{ $data->company_email}}</td>
                                         <td>&nbsp;</td>
                                         <td>Sort Code:</td>
-                                        <td style="text-align:right">{{ $data->short_code}}</td>
+                                        <td style="text-align:left">{{ $data->short_code}}</td>
                                     </tr>
     
                                     <tr>
