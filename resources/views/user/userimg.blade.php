@@ -20,7 +20,7 @@
     z-index: 100;
     }
 
-    /* .popup{
+    .popup{
         width: 240px;
         margin: auto;
         text-align: center
@@ -37,7 +37,6 @@
     }
     .show{
         z-index: 999;
-        display: none;
     }
     .show .overlay{
         width: 100%;
@@ -75,7 +74,7 @@
         position: relative;
         top: 0;
         left: 0;
-    } */
+    }
     /*End style*/
 </style>
 
@@ -189,7 +188,7 @@
     </section> 
 
     {{-- image popup show  --}}
-    <div class="show">
+    <div class="show" style="display: none">
         <div class="overlay"></div>
         <div class="img-show">
           <span>X</span>
