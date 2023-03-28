@@ -41,7 +41,7 @@
             }
 
             body{
-                font-family: Arial, Helvetica, sans-serif;
+                font-family: Arial, Helvetica;
             }
         }
     </style>
@@ -122,7 +122,7 @@
                                         <td  style="border: 1px solid #dee2e6!important; padding: 0 10px 0 10;text-align:center;background-color: #d5d0cf;"><b>Qty</b></td>
                                         <td  style="border: 1px solid #dee2e6!important; padding: 0 10px 0 10;text-align:center;background-color: #d5d0cf;"><b>Price</b></td>
                                         <td  style="border: 1px solid #dee2e6!important; padding: 0 10px 0 10;text-align:center;background-color: #d5d0cf;"><b>VAT</b></td>
-                                        <td  style="border: 1px solid #dee2e6!important; padding: 0 10px 0 10;text-align:center;background-color: #d5d0cf;"><b>Total</b></td>
+                                        <td  style="border: 1px solid #dee2e6!important; padding: 0 10px 0 10;text-align:right;background-color: #d5d0cf;"><b>Total</b></td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -133,7 +133,7 @@
                                         <td style="border: 0px solid #ffffff!important; padding: 1px 10px;text-align:center;width: 10%">{{$invoicedtl->quantity}} </td>
                                         <td style="border: 0px solid #ffffff!important; padding: 1px 10px;text-align:center;width: 10%">£{{ number_format($invoicedtl->unit_rate, 2) }}</td>
                                         <td style="border: 0px solid #ffffff!important; padding: 1px 10px;text-align:center;width: 15%">£{{ number_format($invoicedtl->vat, 2) }}</td>
-                                        <td style="border: 0px solid #ffffff!important; padding: 1px 10px;text-align:right;width: 20%">£{{ number_format($invoicedtl->quantity * $invoicedtl->unit_rate, 2) }}</td>
+                                        <td style="border: 0px solid #ffffff!important; padding: 1px 1px;text-align:right;width: 20%">£{{ number_format($invoicedtl->quantity * $invoicedtl->unit_rate, 2) }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -211,15 +211,15 @@
                                 <thead>
                                     <tr>
                                         <th style="width: 25%"></th>
-                                        <th style="width: 12%"></th>
+                                        <th style="width: 10%"></th>
                                         <th style="width: 20%"></th>
                                         <th style="width: 10%"></th>
                                         <th style="width: 15%"></th>
-                                        <th style="width: 18%"></th>
+                                        <th style="width: 20%"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-
+    
                                     <tr>
                                         <td style="width: 20%; text-align:left;" colspan="2"><b>{{$data->company_bname}}</b></td>
                                         <td style="width: 20%; text-align:left;" colspan="2"><b> Contact Information</b></td>
@@ -235,6 +235,7 @@
                                         <td style="text-align:right">{{ $data->bank}}</td>
                                     </tr>
     
+    
                                     <tr>
                                         <td>{{ $data->company_town}}</td>
                                         <td>&nbsp;</td>
@@ -243,14 +244,24 @@
                                         <td>A/C No:</td>
                                         <td style="text-align:right">{{ $data->acct_no}}</td>
                                     </tr>
+                                    
     
                                     <tr>
-                                        <td>VAT #{{ $data->company_vatno}}</td>
+                                        <td>{{ $data->company_post_code}}</td>
                                         <td>&nbsp;</td>
                                         <td>{{ $data->company_email}}</td>
                                         <td>&nbsp;</td>
                                         <td>Sort Code:</td>
                                         <td style="text-align:right">{{ $data->short_code}}</td>
+                                    </tr>
+    
+                                    <tr>
+                                        <td>VAT:{{ $data->company_vatno}}</td>
+                                        <td>&nbsp;</td>
+                                        <td></td>
+                                        <td>&nbsp;</td>
+                                        <td></td>
+                                        <td style="text-align:right"></td>
                                     </tr>
                                     
     

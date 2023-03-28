@@ -20,7 +20,7 @@
     z-index: 100;
     }
 
-    .popup{
+    /* .popup{
         width: 240px;
         margin: auto;
         text-align: center
@@ -75,7 +75,7 @@
         position: relative;
         top: 0;
         left: 0;
-    }
+    } */
     /*End style*/
 </style>
 
