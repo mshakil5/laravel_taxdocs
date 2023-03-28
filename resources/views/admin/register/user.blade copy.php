@@ -188,16 +188,15 @@
                                         <tr>
                                             <th>Sl</th>
                                             <th>Date</th>
-                                            <th>Client ID</th>
+                                            <th>Name</th>
                                             <th>Business Name</th>
-                                            <th>Number of Document</th>
-                                            <th>Document Processed</th>
-                                            <th>Report</th>
-                                            <th>Image</th>
-                                            <th>Paid Invoice</th>
-                                            <th>Payroll</th>
+                                            <th>Email</th>
+                                            <th>Mobile</th>
+                                            <th>Number of Image</th>
+                                            <th>Image Transaction</th>
                                             <th>Status</th>
                                             <th>Details</th>
+                                            <th>Report</th>
                                             <th>Action</th>
                                         </tr>
                                         </thead>
@@ -211,16 +210,12 @@
                                                 <tr>
                                                     <td>{{$key++}}</td>
                                                     <td>{{$account->created_at->format("m/d/Y")}}</td>
-                                                    <td></td>
+                                                    <td>{{$account->name}}</td>
                                                     <td>{{$account->bname}}</td>
+                                                    <td>{{$account->email}}</td>
+                                                    <td>{{$account->phone}}</td>
                                                     <td>{{$imgcount}}</td>
                                                     <td>{{$notcalimgcount}}</td>
-                                                    <td>
-                                                        <a class="btn btn-success btn-sm text-white" href="{{route('admin.report',encrypt($account->id))}}"> Report</a>
-                                                    </td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
                                                     
                                                     <td>
                                                         <div class="toggle-flip">
@@ -231,6 +226,9 @@
                                                     </td>
                                                     <td>
                                                         <a class="btn btn-info btn-sm text-white" href="{{route('show.userdtl',encrypt($account->id))}}"> View</a>
+                                                    </td>
+                                                    <td>
+                                                        <a class="btn btn-success btn-sm text-white" href="{{route('admin.report',encrypt($account->id))}}"> Report</a>
                                                     </td>
                                                     <td class="text-center">
                                                         <a href="{{ route('admin.paidinvoice', encrypt($account->id) )}}"><span class="badge badge-success">Paid Invoice</span></a><br>
