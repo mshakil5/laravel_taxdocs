@@ -77,14 +77,6 @@
                                 <input type="hidden" id="dataid" name="dataid" class="form-control" value="{{$data->id}}">
                                 <label> Invoice Date</label>
                                 <input type="date" id="invoice_date" name="invoice_date" class="form-control" value="{{$data->invoice_date}}">
-
-
-                                
-
-                                
-
-                                
-
                             </div>
                             <div class="col-md-4 ">
 

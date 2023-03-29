@@ -79,12 +79,13 @@
     </section>
 
     {{-- new section start --}}
-    <section class="profile purchase-status px-4">
+
+    <section class="profile purchase-status ">
 
         
-        <div class="title-section row mt-3" style="margin-left: 1px">
-            <div class="col-md-12">
-                <div class="col-md-12 text-muted bg-white ">
+        <div class="row mt-3 mx-auto" style="margin-left: 1px">
+            <div class="col-md-12" style="padding-right: 24px;padding-left: 23px;">
+                <div class="col-md-12 text-muted bg-white">
                     <div class="row mb-3 py-3">
 
                         <div class="col-md-4 ">
@@ -102,7 +103,6 @@
                                         <option value="{{$nuser->id}}">{{$nuser->name}}</option>
                                         @endforeach
                                     </select>
-                                    
                                 </div>
                                 <div class="col-4">
                                     <button class="text-white btn-theme ml-1 mt-4" id="newBtn"> Add New </button>
@@ -123,9 +123,9 @@
     {{-- new section end --}}
 
     <section class="profile purchase-status px-4">
-        <div class="title-section row mt-3">
+        <div class="row mt-3">
             <div class="col-md-12">
-                <div class="col-md-12 text-muted bg-white ">
+                <div class="col-md-12 text-muted bg-white pt-5 pb-5">
                         
 
                         <div class="row">
