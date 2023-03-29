@@ -105,7 +105,7 @@
                                     </select>
                                 </div>
                                 <div class="col-4">
-                                    <button class="text-white btn-theme ml-1 mt-4" id="newBtn"> Add New </button>
+                                    <button class="text-white btn-theme ml-1 mt-4" id="newBtn"> Add </button>
                                 </div>
                             </div>
                         </div>
