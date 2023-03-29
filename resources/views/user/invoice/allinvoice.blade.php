@@ -90,7 +90,7 @@
 
                         <div class="col-md-4 ">
                             <label> Invoice Date</label>
-                            <input type="date" id="invoice_date" name="invoice_date" class="form-control" value="{{date('Y-m-d')}}">
+                            <input type="date" id="invoice_date" name="invoice_date" class="form-control" value="{{date('Y-m-d')}}" style="width: 93%">
                         </div>
                         <div class="col-md-4 ">
 
@@ -111,7 +111,7 @@
                         </div>
                         <div class="col-md-4 ">
                             <label> Email</label>
-                            <input type="email" id="useremail" name="useremail" class="form-control" >
+                            <input type="email" id="useremail" name="useremail" class="form-control"  style="width: 93%">
                             <input type="hidden" id="new_user_id" name="new_user_id" class="form-control" >
                         </div>
                     </div>

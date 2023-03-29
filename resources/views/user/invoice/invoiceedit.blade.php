@@ -76,7 +76,7 @@
                             <div class="col-md-4 ">
                                 <input type="hidden" id="dataid" name="dataid" class="form-control" value="{{$data->id}}">
                                 <label> Invoice Date</label>
-                                <input type="date" id="invoice_date" name="invoice_date" class="form-control" value="{{$data->invoice_date}}">
+                                <input type="date" id="invoice_date" name="invoice_date" class="form-control" value="{{$data->invoice_date}}" style="width: 93%">
                             </div>
                             <div class="col-md-4 ">
 
@@ -93,7 +93,7 @@
                                     </div>
                                     <div class="col-4">
                                       
-                                        <button class="text-white btn-theme ml-1 mt-4" id="newBtn"> Add New </button>
+                                        <button class="text-white btn-theme ml-1 mt-4" id="newBtn"> Add </button>
                                     </div>
                                 </div>
                                 
@@ -102,7 +102,7 @@
                                 
                                 <label> Email</label>
                                 <input type="email" id="useremail" name="useremail" class="form-control" value="{{$data->email}}">
-                                <input type="hidden" id="new_user_id" name="new_user_id" class="form-control" value="{{$data->new_user_id}}" >
+                                <input type="hidden" id="new_user_id" name="new_user_id" class="form-control" value="{{$data->new_user_id}}"  style="width: 93%">
 
                             </div>
 
