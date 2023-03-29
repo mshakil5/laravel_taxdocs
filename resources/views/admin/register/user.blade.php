@@ -380,9 +380,11 @@ $(document).ready(function() {
                         },
                         success: function (d) {
                             if (d.status == 303) {
+                                pagetop();
                                 $(".ermsg").html(d.message);
                             }else if(d.status == 300){
                                 $(".ermsg").html(d.message);
+                                pagetop();
                                 window.setTimeout(function(){location.reload()},2000)
                             }
                         },
@@ -425,6 +427,7 @@ $(document).ready(function() {
                             },
                         success: function(d){
                             if (d.status == 303) {
+                                pagetop();
                                 $(".ermsg").html(d.message);
                             }else if(d.status == 300){
                                 success("User Updated Successfully!!");

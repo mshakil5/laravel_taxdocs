@@ -486,6 +486,13 @@ class AdminController extends Controller
             return response()->json(['status'=> 303,'message'=>$message]);
             exit();
         }
+
+        $chkclientid = User::where('firm_id',$request->firm_id)->where('clientid',$request->clientid)->first();
+        if($chkclientid){
+            $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>This client id already added.</b></div>";
+            return response()->json(['status'=> 303,'message'=>$message]);
+            exit();
+        }
         
 
         try{
@@ -560,6 +567,13 @@ class AdminController extends Controller
         $chkemail = User::where('email',$request->email)->where('id','!=', $request->registerid)->first();
         if($chkemail){
             $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>This email already added.</b></div>";
+            return response()->json(['status'=> 303,'message'=>$message]);
+            exit();
+        }
+
+        $chkclientid = User::where('firm_id',$request->firm_id)->where('clientid',$request->clientid)->where('id','!=', $request->registerid)->first();
+        if($chkclientid){
+            $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>This client id already added.</b></div>";
             return response()->json(['status'=> 303,'message'=>$message]);
             exit();
         }
