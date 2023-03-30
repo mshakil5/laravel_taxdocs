@@ -570,12 +570,13 @@ class AdminController extends Controller
             return response()->json(['status'=> 303,'message'=>$message]);
             exit();
         }
-
-        $chkclientid = User::where('firm_id',$request->firm_id)->where('clientid',$request->clientid)->where('id','!=', $request->registerid)->first();
-        if($chkclientid){
-            $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>This client id already added.</b></div>";
-            return response()->json(['status'=> 303,'message'=>$message]);
-            exit();
+        if(!empty($request->clientid)){
+            $chkclientid = User::where('firm_id',$request->firm_id)->where('clientid',$request->clientid)->where('id','!=', $request->registerid)->first();
+            if($chkclientid){
+                $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>This client id already added.</b></div>";
+                return response()->json(['status'=> 303,'message'=>$message]);
+                exit();
+            }
         }
 
         $where = [
@@ -598,7 +599,9 @@ class AdminController extends Controller
         $userData->baddress = request('baddress');
         $userData->town = request('town');
         $userData->postcode = request('postcode');
-        $userData->clientid = request('clientid');
+        if(!empty($request->clientid)){
+            $userData->clientid = request('clientid');
+        }
         $userData->bank_acc_number = request('bank_acc_number');
         $userData->bank_name = request('bank_name');
         $userData->bank_acc_sort_code = request('bank_acc_sort_code');
