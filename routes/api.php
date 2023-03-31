@@ -59,6 +59,7 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     // payroll
     Route::get('/payroll', [PayrollController::class, 'index'])->name('user.payroll');
+    Route::get('/payroll-history', [PayrollController::class, 'getPayrollHistory'])->name('user.payrollhistory');
     Route::get('/payroll-details/{id}', [PayrollController::class, 'payrollDetails'])->name('user.payrolldtl');
     Route::post('/payroll', [PayrollController::class, 'payrollStore']);
     Route::post('/payroll-update', [PayrollController::class, 'payrollUpdate']);

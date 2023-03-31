@@ -13,6 +13,19 @@ use Validator;
 
 class PayrollController extends BaseController
 {
+    public function getPayrollHistory()
+    {
+        $data = Payroll::with('payrolldetail')->orderby('id','DESC')->where('user_id',Auth::user()->id)->get();
+        if($data == null){
+            $data = 'Data Not Found';
+        }
+        $responseArray = [
+            'status'=>'ok',
+            'data'=>$data
+        ]; 
+        return response()->json($responseArray,200);
+    }
+
     public function index()
     {
         $data = Payroll::with('payrolldetail')->orderby('id','DESC')->where('user_id',Auth::user()->id)->limit(1)->first();

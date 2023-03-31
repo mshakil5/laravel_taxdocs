@@ -71,7 +71,6 @@
                                         <th style="text-align: center">Sl</th>
                                         <th style="text-align: center">Name</th>
                                         <th style="text-align: center">National Insurance</th>
-                                        <th style="text-align: center">Frequency</th>
                                         <th style="text-align: center">Pay Rate</th>
                                         <th style="text-align: center">Working Hours</th>
                                         <th style="text-align: center">Holiday Hours</th>
@@ -87,7 +86,6 @@
                                       <td style="text-align: center">{{ $key + 1 }}</td>
                                       <td style="text-align: center">{{ $data->name }}</td>
                                       <td style="text-align: center">{{ $data->national_insurance }}</td>
-                                      <td style="text-align: center">{{ $data->frequency }}</td>
                                       <td style="text-align: center">{{ $data->pay_rate }}</td>
                                       <td style="text-align: center">{{ $data->working_hour }}</td>
                                       <td style="text-align: center">{{ $data->holiday_hour }}</td>
