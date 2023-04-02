@@ -92,7 +92,7 @@
                             <label> Invoice Date</label>
                             <input type="date" id="invoice_date" name="invoice_date" class="form-control" value="{{date('Y-m-d')}}" style="width: 93%">
                         </div>
-                        <div class="col-md-4 ">
+                        <div class="col-md-4" id="userselect">
 
                             <div class="row">
                                 <div class="col-8">
@@ -108,6 +108,10 @@
                                     <button class="text-white btn-theme ml-1 mt-4" id="newBtn"> Add </button>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-md-4 " id="newusername">
+                            <label> Name</label>
+                            <input type="text" id="username" name="username" class="form-control"  style="width: 93%">
                         </div>
                         <div class="col-md-4 ">
                             <label> Email</label>
@@ -310,6 +314,7 @@
         });
 
         $("#addThisFormContainer").hide();
+        $("#newusername").hide();
         $("#newBtn").click(function(){
             $("#newBtn").hide(100);
             $("#addThisFormContainer").show(300);
@@ -347,6 +352,8 @@
                             $(".ermsg").html(d.message);
                             pagetop();
                             $("#addThisFormContainer").hide();
+                            $("#userselect").hide();
+                            $("#newusername").show();
                             
                             $("#new_user_id").val(d.data.id);
                             $("#username").val(d.data.name);

@@ -106,6 +106,10 @@
             <li><a class="treeview-item" href="{{ route('notassigncustomer')}}" id="newcustomer"><i class="icon fa fa-circle-o"></i>New Client</a></li>
             @endif
 
+            @if(Auth::user()->is_type == '2')
+            <li><a class="treeview-item" href="{{ route('agent.newuser')}}" id="newclient"><i class="icon fa fa-circle-o"></i>New Client</a></li>
+            @endif
+
             {{-- @if(Auth::user()->is_type == 'admin' || in_array('2', json_decode(Auth::user()->staff->role->permissions))) --}}
             {{-- <li><a class="treeview-item" href="{{url('admin/staff')}}" id="staff"><i class="icon fa fa-circle-o"></i> Staff</a></li> --}}
             {{-- @endif --}}

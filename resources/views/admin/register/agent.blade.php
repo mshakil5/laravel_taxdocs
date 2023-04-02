@@ -149,7 +149,7 @@
                                             @forelse ($accounts as $account)
                                                 <tr>
                                                 <td>{{$n++}}</td>
-                                                <td>{{$account->created_at->format("m/d/Y")}}</td>
+                                                <td>{{$account->created_at->format("d/m/Y")}}</td>
                                                 <td>{{$account->name}}</td>
                                                 <td>{{$account->email}}</td>
                                                 <td>{{$account->phone}}</td>

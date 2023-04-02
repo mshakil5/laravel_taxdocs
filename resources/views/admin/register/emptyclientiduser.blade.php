@@ -62,6 +62,10 @@
                                             <label for="town"> Town</label>
                                             <input type="text" id="town" name="town" class="form-control">
                                         </div>
+                                        <div>
+                                            <label for="bname">Business Name</label>
+                                            <input type="text" id="bname" name="bname" class="form-control">
+                                        </div>
                                         <div style="display: none">
                                             <label for="town"> Subscription Plan</label>
                                             <select name="sub_plan" id="sub_plan" class="form-control" required>
@@ -87,10 +91,6 @@
                                         <div>
                                             <label for="surname">Surname</label>
                                             <input type="text" id="surname" name="surname" class="form-control">
-                                        </div>
-                                        <div>
-                                            <label for="bname">Business Name</label>
-                                            <input type="text" id="bname" name="bname" class="form-control">
                                         </div>
     
                                         <div style="display:none">
@@ -132,18 +132,29 @@
                                             <label for="bank_account_code"> Account Sort Code</label>
                                             <input type="text" id="bank_account_code" name="bank_account_code" class="form-control">
                                         </div>
-
+                                        
                                         <div>
                                             <label for="clientid">Client ID</label>
                                             <input type="text" id="clientid" name="clientid" class="form-control">
+                                            <input type="hidden" id="assign" name="assign" value="1" class="form-control">
                                         </div>
                                         
-                                        
-                                        <div style="display: none">
-                                            <label for="firm_id">Accountant Firm</label>
-                                            <input type="text" id="firm_id" name="firm_id" value="{{$user->id}}" class="form-control">
-                                            <input type="text" id="assign" name="assign" value="1" class="form-control">
-                                        </div>
+                                        @if (Auth::user()->is_type == 1)
+                                            <div>
+                                                <label for="firm_id">Accountant Firm</label>
+                                                <select  id="firm_id" name="firm_id" class="form-control">
+                                                    <option value="">Select</option>
+                                                    @foreach (\App\Models\User::where('is_type','2')->get() as $item)
+                                                        <option value="{{$item->id}}">{{$item->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        @else
+                                            <div style="display: none">
+                                                <label for="firm_id">Accountant Firm</label>
+                                                <input type="text" id="firm_id" name="firm_id" value="{{Auth::user()->id}}" class="form-control">
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
 
@@ -162,44 +173,7 @@
 
         </div>
 
-        <a href="{{ route('allfirm')}}" id="backBtn" class="btn btn-info">Back</a>
         <button id="newBtn" type="button" class="btn btn-info">Add New</button>
-        <hr>
-        <div id="contentContainer2">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3> Accuntancy Firm Details</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <table class="table table-bordered table-hover">
-                                        <thead>
-                                        <tr>
-                                            <th>Date</th>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Contact Number</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>{{$user->created_at->format("d/m/Y")}}</td>
-                                                <td>{{$user->name}}</td>
-                                                <td>{{$user->email}}</td>
-                                                <td>{{$user->phone}}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <hr>
 
         <div id="contentContainer">
@@ -216,38 +190,50 @@
                                 <div class="container" style="max-width: 1200px;">
                                     <table class="table table-bordered table-hover table-responsive" id="example" style="width: 100%">
                                         <thead>
-                                            <tr>
-                                                <th>Sl</th>
-                                                <th>Date</th>
-                                                <th>Client ID</th>
-                                                <th>Business Name</th>
-                                                <th>Mobile</th>
-                                                <th>Accountant Firm</th>
-                                                <th>Email</th>
-                                                <th>Number of Image</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
-                                            </tr>
+                                        <tr>
+                                            <th>Sl</th>
+                                            <th>Date</th>
+                                            <th>Client ID</th>
+                                            <th>Business Name</th>
+                                            <th>Number of Document</th>
+                                            <th>Document Processed</th>
+                                            <th>Report</th>
+                                            <th>Image</th>
+                                            <th>Paid Invoice</th>
+                                            <th>Payroll</th>
+                                            <th>Status</th>
+                                            <th>Details</th>
+                                            <th>Action</th>
+                                        </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($accounts as $key => $account)
                                             @php
                                                 $firmname = \App\Models\User::where('id',$account->firm_id)->first();
                                                 $imgcount = \App\Models\Photo::where('user_id',$account->id)->count();
+                                                $notcalimgcount = \App\Models\Photo::where('user_id',$account->id)->where('status','1')->count();
                                             @endphp
                                                 <tr>
                                                     <td>{{$key++}}</td>
                                                     <td>{{$account->created_at->format("d/m/Y")}}</td>
                                                     <td>{{$account->clientid}}</td>
                                                     <td>{{$account->bname}}</td>
-                                                    <td>{{$account->phone}}</td>
-                                                    <td>
-                                                        @if (isset($firmname))
-                                                            {{$firmname->name}}
-                                                        @endif
-                                                    </td>
-                                                    <td>{{$account->email}}</td>
                                                     <td>{{$imgcount}}</td>
+                                                    <td>{{$notcalimgcount}}</td>
+                                                    <td>
+                                                        <a class="btn btn-success btn-sm text-white" href="{{route('admin.report',encrypt($account->id))}}"> Report</a>
+                                                    </td>
+                                                    <td>
+                                                        <a class="btn btn-info btn-sm text-white" href="{{ route('showimg', encrypt($account->id) )}}">Image</a>
+                                                    </td>
+                                                    <td>
+                                                        <a class="btn btn-dark btn-sm text-white" href="{{ route('admin.paidinvoice', encrypt($account->id) )}}">
+                                                        Invoice</a>
+                                                    </td>
+                                                    <td>
+                                                        <a class="btn btn-secondary btn-sm text-white" href="{{ route('payroll', encrypt($account->id) )}}">Payroll</a>
+                                                    </td>
+                                                    
                                                     <td>
                                                         <div class="toggle-flip">
                                                             <label>
@@ -256,8 +242,14 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <a href="{{ route('showimg', encrypt($account->id))}}"><i class="fa fa-eye" style="color: #3ddf52;font-size:16px;"></i></a>
-                                                        <a id="EditBtn" rid="{{$account->id}}"><i class="fa fa-edit" style="color: #2196f3;font-size:16px;"></i></a>
+                                                        <a class="btn btn-info btn-sm text-white" href="{{route('show.userdtl',encrypt($account->id))}}"> View</a>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        <a id="EditBtn" class="btn btn-warning btn-sm text-white"  rid="{{$account->id}}">Edit</a>
                                                         {{-- <a id="deleteBtn" rid="{{$account->id}}"><i class="fa fa-trash-o" style="color: red;font-size:16px;"></i></a> --}}
                                                     </td>
                                                 </tr>
@@ -266,8 +258,6 @@
                                         </tbody>
                                     </table>
                                 </div>
-
-                                
                             </div>
                         </div>
                     </div>
@@ -282,18 +272,31 @@
 @endsection
 @section('script')
 <script>
-
-    $(document).ready(function() {
-        var table = $('#example').DataTable( {
-            lengthChange: false,
-            buttons: ['excel', 'pdf', 'colvis' ]
-        } );
-     
-        table.buttons().container()
-            .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+$(document).ready(function() {
+    var table = $('#example').DataTable( {
+        responsive: true,
+        lengthChange: false,
+        buttons: ['excel', 'pdf', 'colvis' ]
     } );
 
+    
+ 
+    table.buttons().container()
+        .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+});
 
+// $(document).ready(function() {
+//     var table = $('#example').DataTable( {
+//         responsive: true
+//     } );
+ 
+//     new $.fn.dataTable.FixedHeader( table );
+// } );
+
+
+</script>
+
+<script>
     $(function() {
       $('.toggle-class').change(function() {
         var url = "{{URL::to('/active-user')}}";
@@ -320,24 +323,21 @@
           });
       })
     })
-</script>
-
-
-<script>
+  </script>
+  
+    <script>
         $(document).ready(function () {
 
             $("#addThisFormContainer").hide();
             $("#newBtn").click(function(){
                 clearform();
                 $("#newBtn").hide(100);
-                $("#backBtn").hide(100);
                 $("#addThisFormContainer").show(300);
 
             });
             $("#FormCloseBtn").click(function(){
                 $("#addThisFormContainer").hide(200);
                 $("#newBtn").show(100);
-                $("#backBtn").show(100);
                 clearform();
             });
 
@@ -351,8 +351,7 @@
             $("#addBtn").click(function(){
                 //alert('form work');
                 if($(this).val() == 'Create') {
-                    // $clientid = $("#clientid").val();
-                    // console.log( $clientid );
+
                     $.ajax({
                         url: url,
                         method: "POST",
@@ -374,8 +373,8 @@
                             bank_acc_number: $("#bank_account_number").val(),
                             bank_acc_sort_code: $("#bank_account_code").val(),
                             bank_name: $("#bank_name").val(),
-                            assign: $("#assign").val(),
                             clientid: $("#clientid").val(),
+                            assign: $("#assign").val(),
                             password: $("#password").val(),
                             cpassword: $("#cpassword").val()
                         },
@@ -384,8 +383,8 @@
                                 pagetop();
                                 $(".ermsg").html(d.message);
                             }else if(d.status == 300){
-                                pagetop();
                                 $(".ermsg").html(d.message);
+                                pagetop();
                                 window.setTimeout(function(){location.reload()},2000)
                             }
                         },
@@ -506,19 +505,18 @@
                 $("#bank_account_number").val(data.bank_acc_number);   
                 $("#sub_plan").val(data.subscription_plan);   
                 $("#bank_account_code").val(data.bank_acc_sort_code);  
-                $("#bank_name").val(data.bank_name);  
-                $("#clientid").val(data.clientid);  
+                $("#bank_name").val(data.bank_name); 
+                $("#clientid").val(data.clientid);   
                 $("#surname").val(data.surname);   
                 $("#blandnumber").val(data.blandnumber);   
                 $("#contact_person").val(data.contact_person);   
                 $("#postcode").val(data.postcode);   
                 $("#street_name").val(data.street_name);   
-                $("#surname").val(data.surname);       
+                $("#surname").val(data.surname);     
                 $("#registerid").val(data.id);
                 $("#addBtn").val('Update');
                 $("#addThisFormContainer").show(300);
                 $("#newBtn").hide(100);
-                $("#backBtn").hide(100);
             }
             function clearform(){
                 $('#createThisForm')[0].reset();
@@ -529,14 +527,13 @@
         });
 
         
-</script>
-    
-<script type="text/javascript">
-    $(document).ready(function() {
-        $("#alluser").addClass('active');
-        $("#alluser").addClass('is-expanded');
-        $("#agent").addClass('active');
-    });
-</script>
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#alluser").addClass('active');
+            $("#alluser").addClass('is-expanded');
+            $("#newclient").addClass('active');
+        });
+    </script>
 
 @endsection

@@ -162,7 +162,7 @@
                                             <select name="category" id="category" class="form-control">
                                                 <option value="">Select</option>
                                                 <option value="Receivable">Receivable</option>
-                                                <option value="Payable">Payable</option>
+                                                <option value="Payable" selected>Payable</option>
                                             </select>
                                         </div>
 

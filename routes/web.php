@@ -153,11 +153,13 @@ Route::group(['middleware' => ['auth', 'adminagentaccess']], function(){
     Route::get('customer-detais/{id}', [UserController::class, 'getCustomerDetails'])->name('show.userdtl');
     
     //user registration
-    Route::get('admin/user-register','App\Http\Controllers\Admin\AdminController@userindex')->name('alluser');;
+    Route::get('admin/user-register','App\Http\Controllers\Admin\AdminController@userindex')->name('alluser');
     Route::post('admin/user-register','App\Http\Controllers\Admin\AdminController@userstore');
     Route::get('admin/user-register/{id}/edit','App\Http\Controllers\Admin\AdminController@useredit');
     Route::put('admin/user-register/{id}','App\Http\Controllers\Admin\AdminController@userupdate');
     Route::get('admin/user-register/{id}', 'App\Http\Controllers\Admin\AdminController@userdestroy');
+    // new client for agent
+    Route::get('admin/new-user-register','App\Http\Controllers\Admin\AdminController@getNullClientIDUser')->name('agent.newuser');
     //user registration end
     Route::get('active-user','App\Http\Controllers\Admin\AdminController@activeuser');
     // payroll 

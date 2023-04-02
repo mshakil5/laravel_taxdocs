@@ -210,7 +210,7 @@
                 @foreach (\App\Models\Payroll::where('user_id',Auth::user()->id)->orderby('id','DESC')->get() as $key => $data)
                 <tr>
                   <td style="text-align: center">{{ $key + 1 }}</td>
-                  <td style="text-align: center">{{ $data->date }}</td>
+                  <td style="text-align: center">{{ \Carbon\Carbon::parse($data->date)->format('d/m/Y') }}</td>
                   <td style="text-align: center">{{ $data->company_name }}</td>
                   <td style="text-align: center">{{ $data->payroll_period }}</td>
                   <td style="text-align: center">@if ($data->frequency == 7) Weekly @elseif($data->frequency == 30) Monthly @else Fortnight @endif</td>

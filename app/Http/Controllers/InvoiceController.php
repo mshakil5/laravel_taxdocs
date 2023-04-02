@@ -146,12 +146,6 @@ class InvoiceController extends Controller
     public function invoiceStore(Request $request)
     {
 
-        // if($request->image == 'null'){
-        //     $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill \"Image\" field..!</b></div>";
-        //     return response()->json(['status'=> 303,'message'=>$message]);
-        //     exit();
-        // }
-
         if(empty($request->new_user_id)){
             $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please Select a \"User\" field..!</b></div>";
             return response()->json(['status'=> 303,'message'=>$message]);

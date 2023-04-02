@@ -215,7 +215,7 @@
                                             @endphp
                                                 <tr>
                                                     <td>{{$key++}}</td>
-                                                    <td>{{$account->created_at->format("m/d/Y")}}</td>
+                                                    <td>{{$account->created_at->format("d/m/Y")}}</td>
                                                     <td>{{$account->clientid}}</td>
                                                     <td>{{$account->bname}}</td>
                                                     <td>{{$imgcount}}</td>

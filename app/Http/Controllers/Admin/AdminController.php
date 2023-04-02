@@ -447,11 +447,23 @@ class AdminController extends Controller
         if (Auth::user()->is_type == 1) {
             $accounts = User::where('is_type','=', '0')->whereNotNull('firm_id')->get();
         } else {
-            $accounts = User::where('is_type','=', '0')->where('agent_assign','1')->where('firm_id', Auth::user()->id)->get();
+            $accounts = User::where('is_type','=', '0')->whereNotNull('clientid')->where('agent_assign','1')->where('firm_id', Auth::user()->id)->get();
         }
         
 
         return view('admin.register.user')->with('accounts',$accounts)->with('roles',$roles);
+    }
+
+    public function getNullClientIDUser()
+    {
+        if (Auth::user()->is_type == 1) {
+            $accounts = User::where('is_type','=', '0')->whereNotNull('firm_id')->get();
+        } else {
+            $accounts = User::where('is_type','=', '0')->whereNull('clientid')->where('agent_assign','1')->where('firm_id', Auth::user()->id)->get();
+        }
+        
+
+        return view('admin.register.emptyclientiduser')->with('accounts',$accounts);
     }
 
     public function userstore(Request $request)
