@@ -34,7 +34,6 @@
                     <div class="card">
                         <div class="card-header">
                             <h3>New Pages
-                            {{-- <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target=".bd-example-modal-lg">Get Image Link</button></h3> --}}
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -59,6 +58,7 @@
                                                 <option value="">Select</option>
                                                 <option value="1">Individual plan</option>
                                                 <option value="2">Business plan</option>
+                                                <option value="3">Premier Business Plan</option>
                                             </select>
                                         </div>
                                           
@@ -108,7 +108,7 @@
                                             <tr>
                                               <td style="text-align: center">{{ $key + 1 }}</td>
                                               <td style="text-align: center">{{$data->title}}</td>
-                                              <td style="text-align: center">@if ($data->plan == 1) Individual plan @else Business plan @endif</td>
+                                              <td style="text-align: center">@if ($data->plan == 1) Individual plan @elseif ($data->plan == 2) Business plan @else Premier Business Plan @endif</td>
                                               <td style="text-align: center">
                                                 <a id="EditBtn" rid="{{$data->id}}"><i class="fa fa-edit" style="color: #2196f3;font-size:16px;"></i></a>
                                                 <a id="deleteBtn" rid="{{$data->id}}"><i class="fa fa-trash-o" style="color: red;font-size:16px;"></i></a>

@@ -62,7 +62,8 @@
                             <select name="sub_plan" id="sub_plan" class="form-control" required>
                               <option value="">Subscription Plan</option>
                               <option value="1">Individual Plan £5.95</option>
-                              <option value="2">Business Plan £10.95</option>
+                              <option value="2">Standard Business Plan £10.95</option>
+                              <option value="2">Premier Business Plan £10.95</option>
                             </select>
                           </div>
                         </div>
@@ -79,7 +80,7 @@
                         </div>
 
                       </div>
-                      <div class="title">Address</div><hr>
+                      <div class="title" style="font-size: 25px">Address</div><hr>
                       <div class="row">
                         <div class="col-lg-6">
                           
@@ -104,7 +105,7 @@
                         </div>
                       </div>
 
-                      <div class="title">Credentials</div><hr>
+                      <div class="title" style="font-size: 25px">Credentials</div><hr>
                       <div class="row">
                         <div class="col-md-12">
                           <div class="form-group">

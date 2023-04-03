@@ -94,10 +94,11 @@
         <div class="row ">
             <div class=" mx-auto">
                 <div class="row gx-1">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="plan p-4 mb-3 rounded shadow-sm plan-bg-1">
                             <div class="text-center border-bottom">
-                                 <h3 class="txt-primary fw-bold">Self Employed</h3>
+                                <a href="{{route('register')}}" style="text-decoration: none"><h3 class="txt-primary fw-bold">Individual Plan</h3></a>
+                                 
                                  <h4 class="txt-secondary fw-bold mb-3">£5.95/Month</h4>
                             </div>
                             <div class="planContent pt-4 text-center">
@@ -107,10 +108,11 @@
                             </div>
                         </div> 
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="plan p-4 mb-3 rounded shadow-sm plan-bg-3">
                             <div class="text-center border-bottom">
-                                 <h3 class="txt-primary fw-bold">Business</h3>
+                                <a href="{{route('register')}}" style="text-decoration: none"><h3 class="txt-primary fw-bold">Standard Business Plan</h3>
+                                </a>
                                  <h4 class="txt-secondary fw-bold mb-3">£10.95/Month</h4>
                             </div>
                             <div class="planContent pt-4 text-center">
@@ -123,30 +125,23 @@
                         </div>
 
                     </div>
-                    {{-- <div class="col-md-4" style="display: none">
+                    <div class="col-md-4">
                         <div class="plan p-4 mb-3 rounded shadow-sm plan-bg-2">
                             <div class="text-center border-bottom">
-                                 <h3 class="txt-primary fw-bold">Plan 3</h3>
-                                 <h4 class="txt-secondary fw-bold mb-3">$500</h4>
+                                <a href="{{route('register')}}" style="text-decoration: none"><h3 class="txt-primary fw-bold">Premier Business Plan</h3>
+                                </a>
+                                 
+                                 <h4 class="txt-secondary fw-bold mb-3">£15.95/Month</h4>
                             </div>
                             <div class="planContent pt-4 text-center">
-                                <p class="optionItems">
-                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis nemo, cum, dolores   </p>
-                                <p class="optionItems">
-                                  Lorem ipsum dolor sit amet consectetur  
-                                </p>
-                                <p class="optionItems">
-                                  Lorem ipsum dolor sit amet consectetur  
-                                </p>
-                                <p class="optionItems">
-                                  Lorem ipsum dolor sit amet consectetur  
-                                </p>
-                                <p class="optionItems">
-                                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis nemo, cum,  
-                                </p>
+
+                                @foreach (\App\Models\Option::where('plan','3')->get() as $item2)
+                                <p class="optionItems">{{ $item2->title }} </p>
+                                @endforeach
+                                 
                             </div>
                         </div> 
-                    </div> --}}
+                    </div>
                 </div>
             </div>
         </div>
