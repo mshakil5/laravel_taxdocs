@@ -161,7 +161,7 @@
                 </div>
                 <div>
                     <label for="net">Net</label>
-                    <input type="number" id="net" name="net" class="form-control" required>
+                    <input type="number" id="net" name="net" class="form-control" required readonly>
                 </div>
 
             </div>

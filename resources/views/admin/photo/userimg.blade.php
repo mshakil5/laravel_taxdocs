@@ -474,8 +474,10 @@
                       data:form_data,
                       success: function (d) {
                           if (d.status == 303) {
+                                pagetop();
                                 $(".ermsg").html(d.message);
                           }else if(d.status == 300){
+                                pagetop();
                                 success("Data Insert Successfully!!");
                                 window.setTimeout(function(){location.reload()},2000)
                           }
@@ -509,8 +511,10 @@
                       data:form_data,
                       success: function (d) {
                           if (d.status == 303) {
+                                pagetop();
                                 $(".ermsg").html(d.message);
                           }else if(d.status == 300){
+                                pagetop();
                                 success("Data Updated Successfully!!");
                                 window.setTimeout(function(){location.reload()},2000)
                           }

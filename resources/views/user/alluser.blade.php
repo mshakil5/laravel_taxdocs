@@ -82,7 +82,7 @@
                                       <td style="text-align: center">
                                         <div class="py-1 text-center">
                                             
-                                            <a id="editBtn" class="editBtn" uid="{{$data->id}}" uname="{{$data->name}}" uemail="{{ $data->email }}" uaddress="{{$data->address}}"><i class="fa fa-edit" style="color: #2094f3;font-size:16px;"></i></a>
+                                            <a id="editBtn" class="editBtn" uid="{{$data->id}}" uname="{{$data->name}}" uemail="{{ $data->email }}" uaddress="{{$data->address}}" upost_code="{{$data->post_code}}"><i class="fa fa-edit" style="color: #2094f3;font-size:16px;"></i></a>
                                             <a id="deleteBtn" rid="{{$data->id}}"><i class="fa fa-trash-o" style="color: red;font-size:16px;"></i></a>
                                             </div>
                                       </td>

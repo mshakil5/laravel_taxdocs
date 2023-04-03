@@ -28,6 +28,12 @@ class AccountController extends Controller
             exit();
         }
 
+        if(empty($request->category)){
+            $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill \"Category \" field..!</b></div>";
+            return response()->json(['status'=> 303,'message'=>$message]);
+            exit();
+        }
+
         if ($request->image == 'null') {
             $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill \"Image \" field..!</b></div>";
             return response()->json(['status'=> 303,'message'=>$message]);
@@ -83,11 +89,14 @@ class AccountController extends Controller
             exit();
         }
 
-        // if(empty($request->expense) && empty($request->income)){
-        //     $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill \"Income or Expense \" field..!</b></div>";
-        //     return response()->json(['status'=> 303,'message'=>$message]);
-        //     exit();
-        // }
+        
+
+        if(empty($request->category)){
+            $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill \"Category \" field..!</b></div>";
+            return response()->json(['status'=> 303,'message'=>$message]);
+            exit();
+        }
+
 
 
         $data = Account::find($request->dataid);
@@ -132,11 +141,14 @@ class AccountController extends Controller
             exit();
         }
 
-        // if(empty($request->expense) && empty($request->income)){
-        //     $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill \"Income or Expense \" field..!</b></div>";
-        //     return response()->json(['status'=> 303,'message'=>$message]);
-        //     exit();
-        // }
+        
+
+        if(empty($request->category)){
+            $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill \"Category \" field..!</b></div>";
+            return response()->json(['status'=> 303,'message'=>$message]);
+            exit();
+        }
+
 
         $firmid = User::where('id',$request->uid)->first();
 
@@ -196,6 +208,24 @@ class AccountController extends Controller
     public function invoiceAccountStore(Request $request)
     {
 
+        if(empty($request->date)){
+            $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill \"Date \" field..!</b></div>";
+            return response()->json(['status'=> 303,'message'=>$message]);
+            exit();
+        }
+
+        if(empty($request->category)){
+            $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill \"Category \" field..!</b></div>";
+            return response()->json(['status'=> 303,'message'=>$message]);
+            exit();
+        }
+
+        if(empty($request->amount)){
+            $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill \"Amount \" field..!</b></div>";
+            return response()->json(['status'=> 303,'message'=>$message]);
+            exit();
+        }
+
 
         $data = new Account();
         $data->user_id = $request->uid;
@@ -237,11 +267,7 @@ class AccountController extends Controller
             exit();
         }
 
-        if ($request->image == 'null') {
-            $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill \"Image \" field..!</b></div>";
-            return response()->json(['status'=> 303,'message'=>$message]);
-            exit();
-        }
+    
 
 
         $data = new Account();
