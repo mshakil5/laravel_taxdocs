@@ -82,6 +82,8 @@ class InvoiceController extends Controller
         $array['name'] = $data->name;
         $array['from'] = $data->company_email;
         $array['company_bname'] = $data->company_bname;
+        $array['company_fullname'] = Auth::user()->name;
+        $array['company_surname'] = Auth::user()->surname;
         $array['company_tell_no'] = $data->company_tell_no;
         $array['content'] = 'Hi, Your Invoice form has been placed';
         $array['file'] = public_path().'/invoice/Invoice#'.$data->invoiceid.'.pdf';

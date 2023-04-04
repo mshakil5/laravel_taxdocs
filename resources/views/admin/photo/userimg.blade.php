@@ -25,7 +25,6 @@
     }
     .show{
         z-index: 999;
-        display: none;
     }
     .show .overlay{
         margin-top: 540px;
@@ -370,7 +369,7 @@
         </div>
 
         {{-- image popup show  --}}
-        <div class="show">
+        <div class="show" style="display: none">
             <div class="overlay"></div>
             <div class="img-show">
               <span>X</span>
