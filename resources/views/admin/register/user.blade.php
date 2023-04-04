@@ -38,29 +38,44 @@
                             <div class="row">
 
                                 <div class="col-md-6">
-                                    <div class="container">
+                                    
+                                    {!! Form::open(['url' => 'admin/register/admincreate','id'=>'createThisForm']) !!}
+                                    {!! Form::hidden('registerid','', ['id' => 'registerid']) !!}
+                                    @if (Auth::user()->is_type == 1)
+                                        <div>
+                                            <label for="firm_id">Accountant Firm</label>
+                                            <select  id="firm_id" name="firm_id" class="form-control">
+                                                <option value="">Select</option>
+                                                @foreach (\App\Models\User::where('is_type','2')->get() as $item)
+                                                    <option value="{{$item->id}}">{{$item->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    @else
+                                        <div style="display: none">
+                                            <label for="firm_id">Accountant Firm</label>
+                                            <input type="text" id="firm_id" name="firm_id" value="{{Auth::user()->id}}" class="form-control">
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="col-md-6">
+                                    <div>
+                                        <label for="clientid">Client ID</label>
+                                        <input type="text" id="clientid" name="clientid" class="form-control">
+                                        <input type="hidden" id="assign" name="assign" value="1" class="form-control">
+                                    </div>
+                                </div>
 
-                                        {!! Form::open(['url' => 'admin/register/admincreate','id'=>'createThisForm']) !!}
-                                        {!! Form::hidden('registerid','', ['id' => 'registerid']) !!}
+
+                                <div class="col-md-3">
+
                                         <div>
                                             <label for="name">Name</label>
                                             <input type="text" id="name" name="name" class="form-control">
                                         </div>
                                         <div>
-                                            <label for="email">Email</label>
-                                            <input type="email" id="useremail" name="useremail" class="form-control">
-                                        </div>
-                                        <div>
-                                            <label for="phone">Mobile</label>
-                                            <input type="text" id="phone" name="phone" class="form-control">
-                                        </div>
-                                        <div>
                                             <label for="house_number">House Number</label>
                                             <input type="text" id="house_number" name="house_number" class="form-control">
-                                        </div>
-                                        <div>
-                                            <label for="town"> Town</label>
-                                            <input type="text" id="town" name="town" class="form-control">
                                         </div>
                                         <div>
                                             <label for="bname">Business Name</label>
@@ -80,15 +95,12 @@
                                             <label for="password">Password</label>
                                             <input type="password" id="password" name="password" class="form-control">
                                         </div>
-                                        <div class="form-group">
-                                            <label for="cpwd">Confirm Password:</label>
-                                            <input id="cpassword" type="password" class="form-control" name="cpassword" required autocomplete="new-password">
-                                        </div>
-                                    </div>
+
+
                                 </div>
 
-                                <div class="col-md-6">
-                                    <div class="container">
+                                <div class="col-md-3">
+                                    
                                         <div>
                                             <label for="surname">Surname</label>
                                             <input type="text" id="surname" name="surname" class="form-control">
@@ -102,10 +114,6 @@
                                         <div>
                                             <label for="street_name">Street Name</label>
                                             <input type="text" id="street_name" name="street_name" class="form-control">
-                                        </div>
-                                        <div>
-                                            <label for="postcode">Post Code</label>
-                                            <input type="text" id="postcode" name="postcode" class="form-control">
                                         </div>
     
                                         <div style="display: none">
@@ -122,40 +130,51 @@
                                             <label for="bank_name">Account Name</label>
                                             <input type="text" id="bank_name" name="bank_name" class="form-control">
                                         </div>
-
-                                        <div>
-                                            <label for="bank_account_number"> Account Number</label>
-                                            <input type="text" id="bank_account_number" name="bank_account_number" class="form-control">
-                                        </div>
-
-
-                                        <div>
-                                            <label for="bank_account_code"> Account Sort Code</label>
-                                            <input type="text" id="bank_account_code" name="bank_account_code" class="form-control">
+                                        
+                                        <div class="form-group">
+                                            <label for="cpwd">Confirm Password:</label>
+                                            <input id="cpassword" type="password" class="form-control" name="cpassword" required autocomplete="new-password">
                                         </div>
                                         
-                                        <div>
-                                            <label for="clientid">Client ID</label>
-                                            <input type="text" id="clientid" name="clientid" class="form-control">
-                                            <input type="hidden" id="assign" name="assign" value="1" class="form-control">
-                                        </div>
                                         
-                                        @if (Auth::user()->is_type == 1)
-                                            <div>
-                                                <label for="firm_id">Accountant Firm</label>
-                                                <select  id="firm_id" name="firm_id" class="form-control">
-                                                    <option value="">Select</option>
-                                                    @foreach (\App\Models\User::where('is_type','2')->get() as $item)
-                                                        <option value="{{$item->id}}">{{$item->name}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        @else
-                                            <div style="display: none">
-                                                <label for="firm_id">Accountant Firm</label>
-                                                <input type="text" id="firm_id" name="firm_id" value="{{Auth::user()->id}}" class="form-control">
-                                            </div>
-                                        @endif
+                                        
+                                        
+                                </div>
+
+                                <div class="col-md-3">
+                                    
+                                    <div>
+                                        <label for="email">Email</label>
+                                        <input type="email" id="useremail" name="useremail" class="form-control">
+                                    </div>
+                                    <div>
+                                        <label for="town"> Town</label>
+                                        <input type="text" id="town" name="town" class="form-control">
+                                    </div>
+                                    
+
+                                    <div>
+                                        <label for="bank_account_number"> Account Number</label>
+                                        <input type="text" id="bank_account_number" name="bank_account_number" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+
+                                    <div>
+                                        <label for="phone">Mobile</label>
+                                        <input type="text" id="phone" name="phone" class="form-control">
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="postcode">Post Code</label>
+                                        <input type="text" id="postcode" name="postcode" class="form-control">
+                                    </div>
+
+
+                                    <div>
+                                        <label for="bank_account_code"> Account Sort Code</label>
+                                        <input type="text" id="bank_account_code" name="bank_account_code" class="form-control">
                                     </div>
                                 </div>
 
@@ -337,6 +356,7 @@ $(document).ready(function() {
 
             });
             $("#FormCloseBtn").click(function(){
+                // window.setTimeout(function(){location.reload()},2000)
                 $("#addThisFormContainer").hide(200);
                 $("#newBtn").show(100);
                 clearform();
