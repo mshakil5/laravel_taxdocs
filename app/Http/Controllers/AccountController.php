@@ -129,75 +129,32 @@ class AccountController extends Controller
             exit();
         }
 
-        if(empty($request->amount)){
-            $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill \"Amount \" field..!</b></div>";
-            return response()->json(['status'=> 303,'message'=>$message]);
-            exit();
+        //image upload start
+        if ($request->hasfile('media')) {
+            // $media= [];
+            foreach ($request->file('media') as $image) {
+                $rand = mt_rand(100000, 999999);
+                $name = time(). $rand .'.'.$image->getClientOriginalExtension();
+                $image->move(public_path() . '/images/', $name);
+                $data = new Photo();
+                $data->user_id = $request->newuid;
+                $data->firm_id = $request->firm_id;
+                $data->date = $request->date;
+                $data->image = $name;
+                $data->link = "/images/".$name;
+                $data->status = "0";
+                $data->created_by = Auth::user()->id;
+                $data->save();
+            }
         }
-
-        if ($request->image == 'null') {
-            $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill \"Image \" field..!</b></div>";
-            return response()->json(['status'=> 303,'message'=>$message]);
-            exit();
-        }
-
-        
-
-        if(empty($request->category)){
-            $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill \"Category \" field..!</b></div>";
-            return response()->json(['status'=> 303,'message'=>$message]);
-            exit();
-        }
-
-
-        $firmid = User::where('id',$request->uid)->first();
-
-
-        $data = new Photo();
-        $data->user_id = $request->uid;
-        $data->firm_id = $firmid->firm_id;
-        $data->date = $request->date;
-        // intervention
-        if ($request->image != 'null') {
-            $request->validate([
-                'image' => 'required|mimes:jpeg,png,jpg,gif,svg,pdf|max:8048',
-            ]);
-            $rand = mt_rand(100000, 999999);
-            $imageName = time(). $rand .'.'.$request->image->extension();
-            $request->image->move(public_path('images'), $imageName);
-            $data->image= $imageName;
-            $data->link = "/images/".$imageName;
-        }
-        // end
-
-        $data->status = "1";
-        $data->created_by = Auth::user()->id;
-        if ($data->save()) {
-
-            $account = new Account();
-            $account->user_id = $request->uid;
-            $account->photo_id = $data->id;
-            $account->date = $request->date;
-            $account->particular = $request->particular;
-            $account->category = $request->category;
-            $account->amount = $request->amount;
-            $account->vat = $request->vat;
-            $account->net = $request->net;
-            $account->status = "0";
-            $account->created_by = Auth::user()->id;
-            $account->save();
-
-            $message ="<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Data Created Successfully.</b></div>";
-            return response()->json(['status'=> 300,'message'=>$message]);
-        } else {
-            return response()->json(['status'=> 303,'message'=>'Server Error!!']);
-        }
+        $message ="<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Data Created Successfully.</b></div>";
+        return response()->json(['status'=> 300,'message'=>$message]);
     }
 
     public function delete($id)
     {
-        $acc = Account::where('photo_id',$id)->first()->id;
-        Account::destroy($acc);
+        // $acc = Account::where('photo_id',$id)->first()->id;
+        // Account::destroy($acc);
         if(Photo::destroy($id)){
             return response()->json(['success'=>true,'message'=>'Data deleted successfully']);
         }else{

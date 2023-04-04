@@ -105,11 +105,11 @@
                         </div>
                         
                         <div class="col-md-4 ">
-                            <input type="file" placeholder="Image" id="image" name="image" class="form-control">
+                            <input type="file" placeholder="Image" id="media" name="media[]" class="form-control" multiple="" >
                         </div>
-                        {{-- <div class="col-md-12 my-2">
-                            <input type="text" placeholder="Description" class="form-control">
-                        </div> --}}
+                        <div class="col-md-12 my-2" style="display: none">
+                            <div class="preview2"></div>
+                        </div>
                         <div class="col-md-12 my-2">
                             <button class="text-white btn-theme ml-1" id="addBtn" type="submit"> Submit </button>
                         </div>
@@ -223,6 +223,7 @@ $(function () {
 });
 
 
+    var storedFiles = [];
     $(document).ready(function () {
         $("#addThisFormContainer").hide();
         $("#newBtn").click(function(){
@@ -244,12 +245,10 @@ $(function () {
         $("#addBtn").click(function(){
                 $("#loading").show();
 
-                var file_data = $('#image').prop('files')[0];
-                if(typeof file_data === 'undefined'){
-                    file_data = 'null';
-                }
                 var form_data = new FormData();
-                form_data.append('image', file_data);
+                for(var i=0, len=storedFiles.length; i<len; i++) {
+                        form_data.append('media[]', storedFiles[i]);
+                    }
                 form_data.append("date", $("#date").val());
                 form_data.append("title", $("#title").val());
                 $.ajax({
@@ -259,6 +258,7 @@ $(function () {
                   processData: false,
                   data:form_data,
                   success: function (d) {
+                    console.log(d);
                       if (d.status == 303) {
                           $(".ermsg").html(d.message);
                       }else if(d.status == 300){
@@ -305,6 +305,35 @@ $(function () {
         
 
     });
+
+
+    // gallery images
+        /* WHEN YOU UPLOAD ONE OR MULTIPLE FILES */
+        $(document).on('change','#media',function(){
+            len_files = $("#media").prop("files").length;
+            var construc = "<div class='row'>";
+            for (var i = 0; i < len_files; i++) {
+                var file_data2 = $("#media").prop("files")[i];
+                storedFiles.push(file_data2);
+                construc += '<div class="col-3 singleImage my-3"><span data-file="'+file_data2.name+'" class="btn ' +
+                    'btn-sm btn-danger imageremove2">&times;</span><img width="120px" height="auto" src="' +  window.URL.createObjectURL(file_data2) + '" alt="'  +  file_data2.name  + '" /></div>';
+            }
+            construc += "</div>";
+            $('.preview2').append(construc);
+        });
+
+        $(".preview2").on('click','span.imageremove2',function(){
+            var trash = $(this).data("file");
+            for(var i=0;i<storedFiles.length;i++) {
+                if(storedFiles[i].name === trash) {
+                    storedFiles.splice(i,1);
+                    break;
+                }
+            }
+            $(this).parent().remove();
+
+        });
+
 
     $(document).ready(function () {
         $('#example').DataTable();

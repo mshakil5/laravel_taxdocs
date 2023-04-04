@@ -22,9 +22,8 @@
           </div>
         </div>
       </div>
-      @endif
+      
 
-      @if (Auth::user()->is_type == 2)
       <div class="col-md-6 col-lg-3">
         <div class="widget-small info coloured-icon"><i class="icon fa fa-thumbs-o-up fa-3x"></i>
           <div class="info">
@@ -33,13 +32,12 @@
           </div>
         </div>
       </div>
-      @endif
 
-      {{-- <div class="col-md-6 col-lg-3">
+      <div class="col-md-6 col-lg-3">
         <div class="widget-small warning coloured-icon"><i class="icon fa fa-files-o fa-3x"></i>
           <div class="info">
-            <h4>Uploades</h4>
-            <p><b>10</b></p>
+            <h4>Payroll</h4>
+            <p><b>{{\App\Models\Payroll::where('firm_id','=', Auth::user()->id)->count()}}</b></p>
           </div>
         </div>
       </div>
@@ -48,12 +46,13 @@
       <div class="col-md-6 col-lg-3">
         <div class="widget-small danger coloured-icon"><i class="icon fa fa-star fa-3x"></i>
           <div class="info">
-            <h4>Stars</h4>
-            <p><b>500</b></p>
+            <h4>Invoice</h4>
+            <p><b>{{\App\Models\Invoice::where('firm_id','=', Auth::user()->id)->count()}}</b></p>
           </div>
         </div>
-      </div> --}}
+      </div>
 
+      @endif
 
     </div>
     <div class="row">
@@ -117,6 +116,69 @@
         </div>
       </div>
 
+      <div class="col-md-6" id="contentContainer3">
+        <div class="tile">
+          <h3 class="tile-title">Payroll Notification</h3>
+
+          @if (Auth::user()->is_type == 1)
+            @foreach (\App\Models\Payroll::where('admin_notification','=', 0)->orderby('id','DESC')->get() as $payroll)
+            <div class="bs-component">
+              <div class="alert alert-dismissible alert-success">
+                <a id="newpayrollnotiAdminBtn" imgid="{{$payroll->id}}"><button class="close" type="button" data-dismiss="alert">×</button></a>
+                <strong>New Payroll!!</strong> New Payroll added. <a class="alert-link" href="{{ route('payroll', encrypt($payroll->user_id))}}">See More</a>.
+              </div>
+            </div>
+            @endforeach
+          @endif
+
+
+            @if (Auth::user()->is_type == 2)
+            @foreach (\App\Models\Photo::where('accfirm_notification','=', 0)->orderby('id','DESC')->where('firm_id','=', Auth::user()->id)->get() as $payroll)
+            <div class="bs-component">
+              <div class="alert alert-dismissible alert-success">
+                <a id="newpayrollnotiAgentBtn" imgid="{{$payroll->id}}"><button class="close" type="button" data-dismiss="alert">×</button></a>
+                <strong>New Payroll!!</strong> New Payroll added. <a class="alert-link" href="{{ route('payroll', encrypt($payroll->user_id))}}">See More</a>.
+              </div>
+            </div>
+            @endforeach
+          @endif
+
+
+
+        </div>
+      </div>
+
+      <div class="col-md-6" id="contentContainer4">
+        <div class="tile">
+          <h3 class="tile-title">Invoice Notification</h3>
+
+          @if (Auth::user()->is_type == 1)
+            @foreach (\App\Models\Invoice::where('admin_notification','=', 0)->orderby('id','DESC')->get() as $invoice)
+            <div class="bs-component">
+              <div class="alert alert-dismissible alert-success">
+                <a id="newinvoicenotiAdminBtn" imgid="{{$invoice->id}}"><button class="close" type="button" data-dismiss="alert">×</button></a>
+                <strong>New Invoice!!</strong> New Invoice added. <a class="alert-link" href="{{ route('admin.paidinvoice', encrypt($invoice->user_id))}}">See More</a>.
+              </div>
+            </div>
+            @endforeach
+          @endif
+
+
+            @if (Auth::user()->is_type == 2)
+            @foreach (\App\Models\Invoice::where('accfirm_notification','=', 0)->where('paid','=', 1)->orderby('id','DESC')->where('firm_id','=', Auth::user()->id)->get() as $invoice)
+            <div class="bs-component">
+              <div class="alert alert-dismissible alert-success">
+                <a id="newinvoicenotiAgentBtn" imgid="{{$invoice->id}}"><button class="close" type="button" data-dismiss="alert">×</button></a>
+                <strong>New Invoice!!</strong> New Invoice added. <a class="alert-link" href="{{ route('admin.paidinvoice', encrypt($invoice->user_id))}}">See More</a>.
+              </div>
+            </div>
+            @endforeach
+          @endif
+
+
+
+        </div>
+      </div>
 
 
 
@@ -235,6 +297,53 @@
 
 
       
+      // var adminpayrollurl = "{{URL::to('/admin/payroll-notification')}}";
+      // $("#contentContainer3").on('click','#newimgnotiAdminBtn', function(){
+
+      //     var imgid= $(this).attr('imgid');
+
+      //     $.ajax({
+      //         url: adminpayrollurl,
+      //         method: "POST",
+      //         data: {imgid},
+      //         success: function (d) {
+      //             if (d.status == 303) {
+      //                 $(".ermsg").html(d.message);
+      //             }else if(d.status == 300){
+      //                 $(".ermsg").html(d.message);
+      //                 window.setTimeout(function(){location.reload()},2000)
+      //             }
+      //         },
+      //         error: function (d) {
+      //             console.log(d);
+      //         }
+      //     });
+
+      // });
+
+      // var agentpayrollurl = "{{URL::to('/agent/payroll-notification')}}";
+      // $("#contentContainer3").on('click','#newimgnotiAgentBtn', function(){
+
+      //     var imgid= $(this).attr('imgid');
+
+      //     $.ajax({
+      //         url: agentpayrollurl,
+      //         method: "POST",
+      //         data: {imgid},
+      //         success: function (d) {
+      //             if (d.status == 303) {
+      //                 $(".ermsg").html(d.message);
+      //             }else if(d.status == 300){
+      //                 $(".ermsg").html(d.message);
+      //                 window.setTimeout(function(){location.reload()},2000)
+      //             }
+      //         },
+      //         error: function (d) {
+      //             console.log(d);
+      //         }
+      //     });
+
+      // });
 
 
 

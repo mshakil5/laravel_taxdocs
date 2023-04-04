@@ -107,38 +107,35 @@ class ImageController extends Controller
 
     public function userImageStore(Request $request)
     { 
-        if($request->image == 'null'){
-            $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill \"Image\" field..!</b></div>";
-            return response()->json(['status'=> 303,'message'=>$message]);
-            exit();
-        }
+        
+            //image upload start
+            if ($request->hasfile('media')) {
+                // $media= [];
+                foreach ($request->file('media') as $image) {
+                    $rand = mt_rand(100000, 999999);
+                    $name = time(). $rand .'.'.$image->getClientOriginalExtension();
+                    //move image to postimages folder
+                    $image->move(public_path() . '/images/', $name);
+                    // $data[] = $name;
+                    //insert into picture table
 
-
-        $data = new Photo();
-        $data->user_id = Auth::user()->id;
-        $data->firm_id = Auth::user()->firm_id;
-        $data->date = $request->date;
-
-        // intervention
-        if ($request->image != 'null') {
-            $request->validate([
-                'image' => 'required|mimes:jpeg,png,jpg,gif,svg,pdf|max:8048',
-            ]);
-            $rand = mt_rand(100000, 999999);
-            $imageName = time(). $rand .'.'.$request->image->extension();
-            $request->image->move(public_path('images'), $imageName);
-            $data->image= $imageName;
-            $data->link = "/images/".$imageName;
-        }
-        // end
-
-        $data->status = "0";
-        $data->created_by = Auth::user()->id;
-        if ($data->save()) {
+                    $data = new Photo();
+                    $data->user_id = Auth::user()->id;
+                    $data->firm_id = Auth::user()->firm_id;
+                    $data->date = $request->date;
+                    $data->image = $name;
+                    $data->link = "/images/".$name;
+                    $data->status = "0";
+                    $data->created_by = Auth::user()->id;
+                    $data->save();
+                }
+            }
             $message ="<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Data Created Successfully.</b></div>";
             return response()->json(['status'=> 300,'message'=>$message]);
-        } else {
-            return response()->json(['status'=> 303,'message'=>'Server Error!!']);
-        }
+
+        
+        
     }
+
+    
 }

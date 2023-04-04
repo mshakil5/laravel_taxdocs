@@ -95,6 +95,9 @@
                 <div class="fold" onclick='foldSidebar();'>
                     <span class="iconify" data-icon="eva:menu-fill"></span>
                 </div>
+                <div class="items d-flex justify-content-between align-items-center flex-wrap">
+                    <b style="padding-left: 46px">CLIENT ID: @if (isset(Auth::user()->clientid)) {{Auth::user()->clientid }} @endif</b>
+                </div>
                 <div class="right-element">
                     <div class="dropdown">
                         <a href="#" class="btn dropdown-toggle profile-manage" role="button" id="dropdownMenuButton1"

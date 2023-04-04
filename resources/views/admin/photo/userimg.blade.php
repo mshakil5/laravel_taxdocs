@@ -61,6 +61,12 @@
     }
     /*End style*/
 </style>
+
+@php
+    $firmID = \App\Models\User::where('id', $id)->first();
+@endphp
+
+
     <main class="app-content">
         <div class="app-title">
             <div>
@@ -202,7 +208,7 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-header">
-                            <h3>Add New Accounts Details</h3>
+                            <h3>Add New Documents</h3>
                         </div>
                         <div class="ermsg"></div>
                         <div class="card-body">
@@ -212,32 +218,12 @@
                                     <div class="container">
 
                                         {!! Form::open(['url' => 'admin/register/admincreate','id'=>'createThisForm']) !!}
-    
-                                        
                                         <div>
                                             <label for="date">Date</label>
                                             <input type="date" id="newdate" name="date" class="form-control" value="{{date('Y-m-d')}}">
-                                            <input type="hidden" id="newuid" name="uid" class="form-control" value="{{$id}}">
+                                            <input type="hidden" id="newuid" name="newuid" class="form-control" value="{{$id}}">
+                                            <input type="hidden" id="firm_id" name="firm_id" class="form-control" value="{{$firmID->firm_id}}">
                                         </div>
-
-                                        <div>
-                                            <label for="particular">Particular</label>
-                                            <input type="text" id="newparticular" name="particular" class="form-control">
-                                        </div>
-                                        <div>
-                                            <label for="category">Category</label>
-                                            <select name="newcategory" id="newcategory" class="form-control" required>
-                                                <option value="">Select</option>
-                                                <option value="Receivable">Receivable</option>
-                                                <option value="Payable">Payable</option>
-                                            </select>
-                                        </div>
-                                        
-                                        <div>
-                                            <label for="image">Image</label>
-                                            <input type="file" id="image" name="image" class="form-control">
-                                        </div>
-
                                     </div>
                                 </div>
 
@@ -245,24 +231,22 @@
                                     <div class="container">
                                         
                                         <div>
-                                            <label for="amount">Amount</label>
-                                            <input type="number" id="newamount" name="amount" class="form-control">
+                                            <label for="image">Image</label>
+                                            <input type="file" placeholder="Image" id="media" name="media[]" class="form-control" multiple="" >
                                         </div>
 
-                                        <div>
-                                            <label for="vat">Vat</label>
-                                            <input type="number" id="newvat" name="vat" class="form-control">
-                                        </div>
-                                        <div>
-                                            <label for="net">Net</label>
-                                            <input type="number" id="newnet" name="net" class="form-control" readonly>
-                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12" style="display: none">
+                                    <div class="container">
+                                            <div class="preview2"></div>
                                     </div>
                                 </div>
 
                                 <div class="col-md-12">
                                     <hr>
-                                    <input type="button" id="createNewBtn" value="Create" class="btn btn-primary">
+                                    <input type="button" id="createNewBtn" value="Upload" class="btn btn-primary">
                                     <input type="button" id="CloseBtn" value="Close" class="btn btn-warning">
                                     {!! Form::close() !!}
                                 </div>
@@ -397,6 +381,7 @@
     <script>
     $(document).ready(function() {
         var table = $('#example').DataTable( {
+            order: [[3, 'desc']],
             lengthChange: false,
             buttons: [ 'excel', 'pdf', 'colvis' ]
         } );
@@ -420,6 +405,8 @@
     });
     </script>
     <script>
+        
+        var storedFiles = [];
         $(document).ready(function () {
             $("#addThisFormContainer").hide();
             $("#addNewFormContainer").hide();
@@ -599,23 +586,13 @@
 
             // add new transaction
             $("#createNewBtn").click(function(){
-                var file_data = $('#image').prop('files')[0];
-                if(typeof file_data === 'undefined'){
-                    file_data = 'null';
-                }
-
                 var form_data = new FormData();
-                form_data.append('image', file_data);
-                form_data.append("date", $("#newdate").val());
-                form_data.append("uid", $("#newuid").val());
-                form_data.append("particular", $("#newparticular").val());
-                form_data.append("category", $("#newcategory").val());
-                form_data.append("amount", $("#newamount").val());
-                form_data.append("vat", $("#newvat").val());
-                form_data.append("expense", $("#newexpense").val());
-                form_data.append("income", $("#newincome").val());
-                form_data.append("others", $("#newothers").val());
-                form_data.append("net", $("#newnet").val());
+                for(var i=0, len=storedFiles.length; i<len; i++) {
+                        form_data.append('media[]', storedFiles[i]);
+                    }
+                form_data.append("date", $("#date").val());
+                form_data.append("newuid", $("#newuid").val());
+                form_data.append("firm_id", $("#firm_id").val());
 
                 $.ajax({
                     url: createurl,
@@ -680,6 +657,33 @@
                 $('#newnet').val(net.toFixed(2));
             });
             //calculation end 
+
+        });
+
+        // gallery images
+        /* WHEN YOU UPLOAD ONE OR MULTIPLE FILES */
+        $(document).on('change','#media',function(){
+            len_files = $("#media").prop("files").length;
+            var construc = "<div class='row'>";
+            for (var i = 0; i < len_files; i++) {
+                var file_data2 = $("#media").prop("files")[i];
+                storedFiles.push(file_data2);
+                construc += '<div class="col-3 singleImage my-3"><span data-file="'+file_data2.name+'" class="btn ' +
+                    'btn-sm btn-danger imageremove2">&times;</span><img width="120px" height="auto" src="' +  window.URL.createObjectURL(file_data2) + '" alt="'  +  file_data2.name  + '" /></div>';
+            }
+            construc += "</div>";
+            $('.preview2').append(construc);
+        });
+
+        $(".preview2").on('click','span.imageremove2',function(){
+            var trash = $(this).data("file");
+            for(var i=0;i<storedFiles.length;i++) {
+                if(storedFiles[i].name === trash) {
+                    storedFiles.splice(i,1);
+                    break;
+                }
+            }
+            $(this).parent().remove();
 
         });
 

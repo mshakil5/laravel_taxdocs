@@ -63,7 +63,7 @@
                               <option value="">Subscription Plan</option>
                               <option value="1">Individual Plan £5.95</option>
                               <option value="2">Standard Business Plan £10.95</option>
-                              <option value="2">Premier Business Plan £10.95</option>
+                              <option value="2">Premier Business Plan £15.95</option>
                             </select>
                           </div>
                         </div>
