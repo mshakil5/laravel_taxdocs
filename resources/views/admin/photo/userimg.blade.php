@@ -28,6 +28,7 @@
         display: none;
     }
     .show .overlay{
+        margin-top: 540px;
         width: 100%;
         height: 100%;
         background: rgba(0,0,0,.66);
@@ -36,6 +37,7 @@
         left: 0;
     }
     .show .img-show{
+        margin-top: 540px;
         width: 600px;
         height: 400px;
         background: #FFF;

@@ -47,7 +47,7 @@
 
                         <div class="col-lg-6">
                           <div class="form-group">
-                            <input class="form-control" type="text"  name="accountant_name" id="accountant_name"  placeholder="Accountant Name" value="{{ old('accountant_name') }}"> 
+                            <input class="form-control" type="text"  name="accountant_name" id="accountant_name"  placeholder="Accountant Name" value="{{ old('accountant_name') }}" required> 
                           </div>
                         </div>
 
