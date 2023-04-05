@@ -22,7 +22,7 @@ class RegisterController extends BaseController
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'phone' => 'required',
-            'bname' => 'required',
+            'bname' => 'required|unique:users,bname',
             'house_number' => 'required',
             'town' => 'required',
             'bank_acc_number' => 'required',

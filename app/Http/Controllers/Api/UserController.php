@@ -49,7 +49,8 @@ class UserController extends BaseController
 
 
         $emailchk = User::where('email','=', $request->email)->where('id','!=', Auth::id())->first();
-        if (empty($emailchk)) {
+        $bnamechk = User::where('bname','=', $request->bname)->where('id','!=', Auth::id())->first();
+        if (empty($emailchk) && empty($bnamechk)) {
             $user = User::find(Auth::id());
             $user->name = $request->name;
             $user->surname = $request->surname;
@@ -73,6 +74,12 @@ class UserController extends BaseController
             $user->save();
             if (!empty($user))
             {
+                if (isset($request->bank_name)) {
+                    $bankaccount = BankAccountDetail::where('user_id',Auth::user()->id)->orderby('id','ASC')->first()->id;
+                    $bankupdate = BankAccountDetail::find($bankaccount);
+                    $bankupdate->bank_name = $request->bank_name;
+                    $bankupdate->save();
+                }
                 return response()->json(['success'=>true,'response'=> $user], 200);
             }
             else{

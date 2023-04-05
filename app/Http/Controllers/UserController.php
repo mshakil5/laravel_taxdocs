@@ -108,11 +108,12 @@ class UserController extends Controller
         $userdata->bank_name = $request->bank_name;
         $userdata->updated_by = Auth::user()->id;
         if ($userdata->save()) {
-
-            $bankaccount = BankAccountDetail::where('user_id',Auth::user()->id)->orderby('id','ASC')->first()->id;
-            $bankupdate = BankAccountDetail::find($bankaccount);
-            $bankupdate->bank_name = $request->bank_name;
-            $bankupdate->save();
+            if (isset($request->bank_name)) {
+                $bankaccount = BankAccountDetail::where('user_id',Auth::user()->id)->orderby('id','ASC')->first()->id;
+                $bankupdate = BankAccountDetail::find($bankaccount);
+                $bankupdate->bank_name = $request->bank_name;
+                $bankupdate->save();
+            }
             $message ="<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>User Details Updated Successfully.</b></div>";
             return response()->json(['status'=> 300,'message'=>$message]);
         }
