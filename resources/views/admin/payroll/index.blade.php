@@ -39,7 +39,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="container">
-                                    <table class="table table-bordered table-hover">
+                                    <table class="table table-bordered table-hover table-responsive">
                                         <thead>
                                         <tr>
                                             <th style="text-align: center; width:10%">Name</th>
@@ -53,8 +53,8 @@
                                         <tbody>
                                             @if (isset($user))
                                                 <tr>
-                                                    <td style="text-align: center">{{ $user->name }}</td>
-                                                    <td style="text-align: center">{{ $user->email }}</td>
+                                                    <td style="text-align: center; width:20%">{{ $user->name }}</td>
+                                                    <td style="text-align: center; width:20%">{{ $user->email }}</td>
                                                     <td style="text-align: center">{{ $user->clientid }}</td>
                                                     <td style="text-align: center">{{ $user->bname }}</td>
                                                     <td style="text-align: center">{{ $user->baddress }}</td>
@@ -82,7 +82,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="container">
-                                    <table class="table table-bordered table-hover" id="example">
+                                    <table class="table table-bordered table-hover table-responsive" id="example">
                                         <thead>
                                         <tr>
                                             <th style="text-align: center; width:20%">Sl</th>

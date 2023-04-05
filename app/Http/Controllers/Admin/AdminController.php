@@ -475,6 +475,12 @@ class AdminController extends Controller
             return response()->json(['status'=> 303,'message'=>$message]);
             exit();
         }
+        if(empty($request->bname)){
+            $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill \"Business Name \" field..!</b></div>";
+            return response()->json(['status'=> 303,'message'=>$message]);
+            exit();
+        }
+
         if(empty($request->email)){
             $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill \"Email \" field..!</b></div>";
             return response()->json(['status'=> 303,'message'=>$message]);
@@ -502,6 +508,14 @@ class AdminController extends Controller
         $chkclientid = User::where('firm_id',$request->firm_id)->where('clientid',$request->clientid)->first();
         if($chkclientid){
             $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>This client id already added.</b></div>";
+            return response()->json(['status'=> 303,'message'=>$message]);
+            exit();
+        }
+
+
+        $chkbname = User::where('bname',$request->bname)->first();
+        if($chkbname){
+            $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>This business name already added.</b></div>";
             return response()->json(['status'=> 303,'message'=>$message]);
             exit();
         }
@@ -564,12 +578,13 @@ class AdminController extends Controller
             return response()->json(['status'=> 303,'message'=>$message]);
             exit();
         }
-        // if(empty($request->phone)){
-        //     $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill \"Phone \" field..!</b></div>";
-        //     return response()->json(['status'=> 303,'message'=>$message]);
-        //     exit();
-        // }
         
+        
+        if(empty($request->bname)){
+            $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill \"Business Name \" field..!</b></div>";
+            return response()->json(['status'=> 303,'message'=>$message]);
+            exit();
+        }
         if(isset($request->password) && ($request->password != $request->cpassword)){
             $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Password doesn't match.</b></div>";
             return response()->json(['status'=> 303,'message'=>$message]);
@@ -589,6 +604,13 @@ class AdminController extends Controller
                 return response()->json(['status'=> 303,'message'=>$message]);
                 exit();
             }
+        }
+
+        $chkbname = User::where('bname',$request->bname)->where('id','!=', $request->registerid)->first();
+        if($chkbname){
+            $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>This business name already added.</b></div>";
+            return response()->json(['status'=> 303,'message'=>$message]);
+            exit();
         }
 
         $where = [

@@ -203,13 +203,13 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <table class="table table-bordered table-hover">
+                                    <table class="table table-bordered table-responsive table-hover">
                                         <thead>
                                         <tr>
                                             <th>Date</th>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Contact Number</th>
+                                            <th style="width: 30%">Name</th>
+                                            <th style="width: 30%">Email</th>
+                                            <th style="width: 30%">Contact Number</th>
                                         </tr>
                                         </thead>
                                         <tbody>

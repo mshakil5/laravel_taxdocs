@@ -156,7 +156,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <table class="table table-bordered table-hover" id="example" style="width: 100%">
+                                    <table class="table table-bordered table-hover table-responsive" id="example">
                                         <thead>
                                         <tr>
                                             <th>Sl</th>

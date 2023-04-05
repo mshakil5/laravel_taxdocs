@@ -44,7 +44,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="container">
-                                    <table class="table table-bordered table-hover">
+                                    <table class="table table-bordered table-hover table-responsive">
                                         <thead>
                                         <tr>
                                             <th style="text-align: center; width:10%">Name</th>
@@ -83,18 +83,18 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="container" style="max-width: 1200px;">
-                                    <table class="table table-bordered table-hover" id="example" style="width: 100%">
+                                <div class="container" style="max-width: 1400px;">
+                                    <table class="table table-bordered table-hover table-responsive" id="example" style="width: 100%">
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Date</th>
-                                                <th>Invoice No</th>
-                                                <th>Particular</th>
-                                                <th>Category</th>
+                                                <th style="text-align: center; width:15%">Invoice No</th>
+                                                <th style="text-align: center; width:20%">Particular</th>
+                                                <th style="text-align: center; width:15%">Category</th>
                                                 <th>Amount</th>
                                                 <th>Vat</th>
-                                                <th>Net</th>
+                                                <th style="width:15%">Net</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -123,12 +123,12 @@
                                             @else
                                             <tr>
                                                 <td style="text-align: center">{{ $data->id }}</td>
-                                                <td style="text-align: center">{{ $data->invoice_date }}</td>
-                                                <td style="text-align: center">{{ $data->invoiceid }}</td>
-                                                <td style="text-align: center">{{ $data->account->particular }}</td>
-                                                <td style="text-align: center">{{$data->account->category}}</td>
-                                                <td style="text-align: center">{{$data->account->amount}}</td>
-                                                <td style="text-align: center">{{$data->account->vat}}</td>
+                                                <td style="text-align: center; width:20%">{{ $data->invoice_date }}</td>
+                                                <td style="text-align: center; width:20%">{{ $data->invoiceid }}</td>
+                                                <td style="text-align: center; width:20%">{{ $data->account->particular }}</td>
+                                                <td style="text-align: center; width:20%">{{$data->account->category}}</td>
+                                                <td style="text-align: center; width:20%">{{$data->account->amount}}</td>
+                                                <td style="text-align: center; width:20%">{{$data->account->vat}}</td>
                                                 <td style="text-align: center">{{$data->account->net}}</td>
                                                 <td>
                                                     <a href="{{ route('admin.invoicedtl',encrypt($data->id))}}"><i class="fa fa-eye" style="color: #09a311;font-size:16px;"></i></a>

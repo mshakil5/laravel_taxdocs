@@ -94,10 +94,10 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="container">
-                                    <table class="table table-bordered table-hover">
+                                    <table class="table table-bordered table-hover table-responsive">
                                         <thead>
                                         <tr>
-                                            <th style="text-align: center; width:10%">Name</th>
+                                            <th style="text-align: center; width:15%">Name</th>
                                             <th style="text-align: center; width:20%">Email</th>
                                             <th style="text-align: center; width:10%">Client ID</th>
                                             <th style="text-align: center; width:20%">Business Name</th>
@@ -272,7 +272,7 @@
                             <h3> All Documents</h3>
                         </div>
                         <div class="card-body">
-                            <table class="table table-bordered table-hover" id="example">
+                            <table class="table table-bordered table-hover table-responsive" id="example">
                                 <thead>
                                 <tr>
                                     <th style="text-align: center">ID</th>
