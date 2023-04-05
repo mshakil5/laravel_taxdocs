@@ -14,7 +14,7 @@
                         <img src="{{ asset('front/images/taxdocs.svg')}}" class="img-fluid mx-auto" alt="">
                     </div>
                     <div class="col-lg-6 d-flex align-items-center justify-content-center">
-                        <div class="inner w-75">
+                        <div class="inner w-75" style="font-size: 20px; font-family: Roboto-Regular; color: #4E4B44;">
                             <div class="intro-title">
                                 {{ \App\Models\Master::where('id','4')->first()->title }}
                             </div>
@@ -62,7 +62,7 @@
                     <div class="col-lg-4">
                         <img src="{{ asset('images/'.$work->image)}}" class="arrow">
                     </div>
-                    <div class="col-lg-8">
+                    <div class="col-lg-8" style="font-size: 20px; font-family: Roboto-Regular; color: #4E4B44;">
                         <div class="paratitle">{{ $work->title }}</div>
                         <p class="theme-para">
                             {!! $work->description !!}
