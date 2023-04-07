@@ -204,11 +204,14 @@ class UserController extends Controller
             $user = BankAccountDetail::find($request->id);
             $user->status = $request->status;
             $user->save();
+
             $userupdate = User::find(Auth::user()->id);
             $userupdate->bank_name = $user->bank_name;
             $userupdate->bank_acc_number = $user->bank_acc_number;
             $userupdate->bank_acc_sort_code = $user->bank_acc_sort_code;
+            $userupdate->updated_by = Auth::user()->id;
             $userupdate->save();
+            
             $message ="<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Active Successfully.</b></div>";
             return response()->json(['status'=> 300,'message'=>$message]);
         }else{

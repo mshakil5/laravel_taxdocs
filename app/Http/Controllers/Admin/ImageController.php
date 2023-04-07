@@ -110,15 +110,12 @@ class ImageController extends Controller
         
             //image upload start
             if ($request->hasfile('media')) {
-                // $media= [];
                 foreach ($request->file('media') as $image) {
                     $rand = mt_rand(100000, 999999);
                     $name = time(). $rand .'.'.$image->getClientOriginalExtension();
                     //move image to postimages folder
                     $image->move(public_path() . '/images/', $name);
-                    // $data[] = $name;
                     //insert into picture table
-
                     $data = new Photo();
                     $data->user_id = Auth::user()->id;
                     $data->firm_id = Auth::user()->firm_id;

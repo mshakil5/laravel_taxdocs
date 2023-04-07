@@ -29,37 +29,29 @@ class ImageController extends Controller
             return response()->json(['success' => false, 'response' => 'File not found!!'], 404);
         }
 
-        $request->validate([
-            'image' => 'required|mimes:pdf,jpg,jpeg,png,JPEG|max:10048',
-        ]);
-        if($request->hasFile('image')) {
-            $data = new Photo();
-            $data->user_id = Auth::user()->id;
-            $data->date = $request->date;
-            $data->title = $request->title;
-            $data->caption = $request->caption;
-            // intervention
-            if ($request->image != 'null') {
-                $request->validate([
-                    'image' => 'required|mimes:jpeg,png,jpg,gif,svg,pdf|max:8048',
-                ]);
+        if ($request->hasfile('image')) {
+            foreach ($request->file('image') as $image) {
                 $rand = mt_rand(100000, 999999);
-                $imageName = time(). $rand .'.'.$request->image->extension();
-                $request->image->move(public_path('images'), $imageName);
-                $data->image= $imageName;
-                $data->link = "/images/".$imageName;
+                $name = time(). $rand .'.'.$image->getClientOriginalExtension();
+                //move image to postimages folder
+                $image->move(public_path() . '/images/', $name);
+                //insert into picture table
+                $data = new Photo();
+                $data->user_id = Auth::user()->id;
+                $data->firm_id = Auth::user()->firm_id;
+                $data->date = $request->date;
+                $data->image = $name;
+                $data->link = "/images/".$name;
+                $data->status = "0";
+                $data->created_by = Auth::user()->id;
+                $data->save();
             }
-            // end
-            $data->status = "0";
-            $data->created_by = Auth::user()->id;
-            if ($data->save()) {
-                return response()->json(['success' => true, 'response' => $data], 200);
-            } else {
-                return response()->json(['success' => false, 'response' => 'Server Error!!'], 404);
-            }
-        } else {
-            return response()->json(['success' => false, 'response' => 'Invalid file format!!'], 422);
         }
+
+        $responseArray = [
+            'status'=>'Document upload successfully!!'
+        ]; 
+        return response()->json($responseArray,200);
 
 
     }

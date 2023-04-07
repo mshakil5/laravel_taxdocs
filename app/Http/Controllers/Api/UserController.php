@@ -33,14 +33,12 @@ class UserController extends BaseController
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.Auth::user()->id,
             'phone' => 'required',
-            'bname' => 'required',
+            'bname' => 'required|unique:users,bname,'.Auth::user()->id,
             'house_number' => 'required',
             'town' => 'required',
-            'accountant_name' => 'required',
             'surname' => 'required',
             'street_name' => 'required',
             'postcode' => 'required',
-            'subscription_plan' => 'required',
         ]);
    
         if($validator->fails()){
@@ -56,20 +54,17 @@ class UserController extends BaseController
             $user->surname = $request->surname;
             $user->email = $request->email;
             $user->phone = $request->phone;
-            $user->accountant_name = $request->accountant_name;
+            if (isset($request->accountant_name)) {
+                $user->accountant_name = $request->accountant_name;
+            }
             $user->bname = $request->bname;
             $user->bweb = $request->bweb;
-            $user->baddress = $request->baddress;
             $user->house_number = $request->house_number;
             $user->street_name = $request->street_name;
             $user->postcode = $request->postcode;
             $user->town = $request->town;
-            $user->address = $request->address;
-            $user->country = $request->country;
-            $user->contact_person = $request->contact_person;
-            $user->subscription_plan = $request->subscription_plan;
-            $user->bank_acc_number = $request->bank_acc_number;
-            $user->bank_acc_sort_code = $request->bank_acc_sort_code;
+            $user->reg_number = $request->reg_number;
+            $user->bank_name = $request->bank_name;
             $user->updated_by = Auth::user()->id;
             $user->save();
             if (!empty($user))
@@ -189,6 +184,13 @@ class UserController extends BaseController
             $user->status = $request->status;
             $user->updated_by = Auth::user()->id;
             $user->save();
+            
+            $userupdate = User::find(Auth::user()->id);
+            $userupdate->bank_name = $user->bank_name;
+            $userupdate->bank_acc_number = $user->bank_acc_number;
+            $userupdate->bank_acc_sort_code = $user->bank_acc_sort_code;
+            $userupdate->updated_by = Auth::user()->id;
+            $userupdate->save();
 
             $responseArray = [
                 'status'=>'Active Successfully.'
