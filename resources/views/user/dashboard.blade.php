@@ -146,7 +146,7 @@
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
     <div class="col">
       <div class="card shadow-sm">
-        <img src="{{ asset('1.png')}}" class="img-responsive" alt="">
+        <img src="https://cdn.pixabay.com/photo/2016/01/08/06/13/woman-1127201_960_720.jpg" class="img-responsive" alt="">
         <div class="card-body">
           <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
           
@@ -155,7 +155,7 @@
     </div>
     <div class="col">
         <div class="card shadow-sm">
-            <img src="{{ asset('1.png')}}" class="img-responsive" alt="">
+            <img src="https://cdn.pixabay.com/photo/2016/01/08/06/13/woman-1127201_960_720.jpg" class="img-responsive" alt="">
           <div class="card-body">
             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
             
@@ -164,7 +164,7 @@
       </div>
       <div class="col">
         <div class="card shadow-sm">
-            <img src="{{ asset('1.png')}}" class="img-responsive" alt="">
+            <img src="https://cdn.pixabay.com/photo/2016/01/08/06/13/woman-1127201_960_720.jpg" class="img-responsive" alt="">
           <div class="card-body">
             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
             
