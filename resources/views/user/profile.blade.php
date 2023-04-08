@@ -167,7 +167,7 @@
                                         <div class="row mt-2">
                                             @if (isset(Auth::user()->clientid))
                                                 <div class="col-md-12">
-                                                    <label><small>Accountant Name</small></label>
+                                                    <label><small>Client ID</small></label>
                                                     <input type="text" class="form-control"  value="{{ Auth::user()->clientid }}" readonly>
                                                 </div>                                                
                                             @endif
