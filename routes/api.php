@@ -53,6 +53,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     // new user
     Route::get('/new-user', [UserController::class, 'getNewUser'])->name('user.newuser');
     Route::post('/new-user', [UserController::class, 'newUserStore']);
+    Route::post('/new-user-update', [UserController::class, 'newUserUpdate']);
     Route::post('/get-new-users', [UserController::class, 'getUserDetails']);
     Route::get('/new-user/{id}', [UserController::class, 'newUserDelete']);
 

@@ -274,6 +274,29 @@ class UserController extends BaseController
         $data->email = $request->email;
         $data->address = $request->address;
         $data->post_code = $request->post_code;
+        $data->created_by = Auth::user()->id;
+        if ($data->save())
+            {
+                $responseArray = [
+                    'status'=>'User Create Successfully.',
+                    'data'=>$data
+                ];
+                return response()->json(['success'=>true,'response'=> $responseArray], 200);
+            }
+            else{
+                return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
+            }
+    }
+
+    public function newUserUpdate(Request $request)
+    {
+        $data = NewUser::find($request->id);
+        $data->user_id = Auth::user()->id;
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->address = $request->address;
+        $data->post_code = $request->post_code;
+        $data->updated_by = Auth::user()->id;
         if ($data->save())
             {
                 $responseArray = [
