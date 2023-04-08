@@ -155,15 +155,15 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-12">
-                                    <table class="table table-bordered table-hover table-responsive" id="example">
+                                <div class="container" style="max-width: 1000px;">
+                                    <table class="table table-bordered table-hover table-responsive" id="example" style="width: 100%">
                                         <thead>
                                         <tr>
                                             <th>Sl</th>
                                             <th>Date</th>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Phone</th>
+                                            <th style="width: 20%">Name</th>
+                                            <th style="width: 20%">Email</th>
+                                            <th style="width: 20%">Phone</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
@@ -210,7 +210,7 @@
 $(document).ready(function() {
     var table = $('#example').DataTable( {
         lengthChange: false,
-        buttons: [ 'copy', 'excel', 'pdf', 'colvis' ]
+        buttons: ['excel', 'pdf', 'colvis' ]
     } );
  
     table.buttons().container()

@@ -756,21 +756,13 @@ body::-webkit-scrollbar-thumb {
 .plan {
   min-height: 435px;
 }
-.plan.plan-bg-1 {
-  background: #fbeedf;
-}
-.plan.plan-bg-2 {
-  background: #ffefe7;
-}
-.plan.plan-bg-3 {
-  background: #fff8f0;
-}
 .plan .planContent .optionItems {
   font-size: 19px;
   font-weight: bold;
   margin-bottom: 4px;
-  padding: 5px 15px;
+  padding: 8px 15px;
   letter-spacing: 0.7px;
+  line-height: 1;
 }
 .plan .planContent .optionItems:hover {
   background-color: rgba(211, 211, 211, 0.2784313725);
@@ -780,6 +772,21 @@ body::-webkit-scrollbar-thumb {
   border-radius: 4px;
   color: #785403;
 }
+.plan .planContent .optionItems:nth-child(even) {
+  background-color: rgb(235, 204, 188);
+  border-radius: 4px;
+  color: #785403;
+}
+.plan.plan-bg-1 {
+  background: #fbeedf;
+}
+.plan.plan-bg-2 {
+  background: #ffefe7;
+}
+.plan.plan-bg-3 {
+  background: #fff8f0;
+}
+
 
 .advertisement {
   background-color: #e3d4c2;
