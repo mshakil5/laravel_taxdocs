@@ -25,12 +25,16 @@ class ImageController extends Controller
 
     public function store(Request $request)
     {
+        
         if(!$request->hasFile('image')) {
             return response()->json(['success' => false, 'response' => 'File not found!!'], 404);
         }
 
         if ($request->hasfile('image')) {
-            foreach ($request->file('image') as $image) {
+            $data = [];
+            $files = $request->file('image');
+            
+            foreach ($files as $image) {
                 $rand = mt_rand(100000, 999999);
                 $name = time(). $rand .'.'.$image->getClientOriginalExtension();
                 //move image to postimages folder
@@ -46,15 +50,16 @@ class ImageController extends Controller
                 $data->created_by = Auth::user()->id;
                 $data->save();
             }
+            $responseArray = [
+                'status'=>'Document upload successfully!!'
+            ]; 
+            return response()->json($responseArray,200);
         }
 
-        $responseArray = [
-            'status'=>'Document upload successfully!!'
-        ]; 
-        return response()->json($responseArray,200);
-
+        return response()->json(['success' => false, 'response' => 'Server error!!'], 404);
 
     }
+
 
     public function delete($id){
 
