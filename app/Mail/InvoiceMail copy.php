@@ -41,7 +41,12 @@ class InvoiceMail extends Mailable
      *
      * @return \Illuminate\Mail\Mailables\Content
      */
-    
+    public function content()
+    {
+        return new Content(
+            view: 'view.name',
+        );
+    }
 
     /**
      * Get the attachments for the message.
@@ -56,10 +61,10 @@ class InvoiceMail extends Mailable
     public function build()
     {
         
-        return $this->view('emails.invoice')
-                     ->from($this->array['from'],'Taxdocs')
-                     ->subject($this->array['subject'])
-                     ->attach($this->array['file'],['as'=>$this->array['file_name'], 'mime'=>'application/pdf']);
+        return $this->from('do-not-reply@taxdocs.co.uk', $this->array['company_bname'])
+        ->subject('Taxdocs')
+        ->attach($this->array['file'],['as'=>$this->array['file_name'], 'mime'=>'application/pdf'])
+        ->markdown('emails.invoice');
 
     }
 }
