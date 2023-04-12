@@ -50,6 +50,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/', [FrontendController::class, 'index'])->name('homepage');
 Route::get('/about', [FrontendController::class, 'about'])->name('frontend.about');
 Route::get('/privacy', [FrontendController::class, 'privacy'])->name('frontend.privacy');
+Route::get('/faqs', [FrontendController::class, 'faqs'])->name('frontend.faqs');
 Route::get('/terms', [FrontendController::class, 'terms'])->name('frontend.terms');
 Route::get('/contact', [FrontendController::class, 'contact'])->name('frontend.contact');
 Route::get('/how-we-work/{id}', [FrontendController::class, 'getWorkDetails'])->name('frontend.workDetails');

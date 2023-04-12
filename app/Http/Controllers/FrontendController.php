@@ -35,4 +35,10 @@ class FrontendController extends Controller
     {
         return view('frontend.terms');
     }
+
+    
+    public function faqs()
+    {
+        return view('frontend.faqs');
+    }
 }
