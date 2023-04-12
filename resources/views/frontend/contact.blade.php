@@ -46,7 +46,7 @@
     </div>
 </section>
 
-<section class="default contactInfo">
+<section class="default contactInfo" style="display: none">
     <div class="container">
         <div class="row ">
             <div class="col-lg-3 d-flex flex-column align-items-center">

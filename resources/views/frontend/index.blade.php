@@ -67,7 +67,7 @@
                         <p class="theme-para">
                             {!! $work->description !!}
                         </p>
-                        <a href="{{ route('frontend.workDetails', $work->id)}}" class="btn-theme bg-primary btn-line">Get started</a>
+                        <a href="{{ route('register')}}" class="btn-theme bg-primary btn-line">Get started</a>
                     </div>
                 </div>
             </div>

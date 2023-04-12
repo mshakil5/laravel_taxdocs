@@ -133,47 +133,38 @@ $(document).ready(function() {
         lengthChange: true,
         buttons: [ 'excel', 'pdf', 'colvis' ]
     } );
-
-    
- 
     table.buttons().container()
         .appendTo( '#example_wrapper .col-md-6:eq(0)' );
 });
-
-
-
 </script>
+<script>
+    $(document).ready(function () {
 
-
-  
-    <script>
-        $(document).ready(function () {
-
-            $("#addThisFormContainer").hide();
-            $("#newBtn").click(function(){
-                clearform();
-                $("#newBtn").hide(100);
-                $("#addThisFormContainer").show(300);
-
-            });
-            $("#FormCloseBtn").click(function(){
-                $("#addThisFormContainer").hide(200);
-                $("#newBtn").show(100);
-                clearform();
-            });
-
-
+        $("#addThisFormContainer").hide();
+        $("#newBtn").click(function(){
+            clearform();
+            $("#newBtn").hide(100);
+            $("#addThisFormContainer").show(300);
 
         });
-
-        
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $("#alluser").addClass('active');
-            $("#alluser").addClass('is-expanded');
-            $("#user").addClass('active');
+        $("#FormCloseBtn").click(function(){
+            $("#addThisFormContainer").hide(200);
+            $("#newBtn").show(100);
+            clearform();
         });
-    </script>
+
+
+
+    });
+
+    
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#alluser").addClass('active');
+        $("#alluser").addClass('is-expanded');
+        $("#user").addClass('active');
+    });
+</script>
 
 @endsection

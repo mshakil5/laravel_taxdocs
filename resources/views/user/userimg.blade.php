@@ -63,7 +63,7 @@
     .img-show span{
         position: absolute;
         top: 10px;
-        right: 10px;
+        right: 256px;
         z-index: 99;
         cursor: pointer;
     }
