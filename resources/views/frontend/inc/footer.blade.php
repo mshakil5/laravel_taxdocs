@@ -10,7 +10,7 @@
                     icon="ic:outline-email"></iconify-icon> Email: {{\App\Models\CompanyDetail::where('id',1)->first()->email1 }}</p>
 
             </div>
-            <div class=" col-md-2 mb-3">
+            <div class=" col-md-2 mb-3"><br>
                 <ul class="footer-link ">
                     <li class="mb-2"><a href="{{ route('frontend.about')}}" class=""> <iconify-icon
                                 class="txt-primary" icon="material-symbols:arrow-forward-ios-rounded"></iconify-icon> About</a></li>
@@ -19,7 +19,7 @@
                                 class="txt-primary" icon="material-symbols:arrow-forward-ios-rounded"></iconify-icon> Privacy policy</a></li>
                 </ul>
             </div>
-            <div class=" col-md-2 mb-3">
+            <div class=" col-md-2 mb-3"><br>
                 <ul class="footer-link ">
                     <li class="mb-2"><a href="{{ route('homepage')}}" class=""> 
                         <iconify-icon class="txt-primary" icon="material-symbols:arrow-forward-ios-rounded"></iconify-icon> Home</a></li>
