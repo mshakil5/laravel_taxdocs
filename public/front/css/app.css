@@ -778,7 +778,7 @@ body::-webkit-scrollbar-thumb {
   letter-spacing: 0.7px;
   line-height: 1;
 }
-.plan .planContent .optionItems:hover {
+/* .plan .planContent .optionItems:hover {
   background-color: rgba(211, 211, 211, 0.2784313725);
 }
 .plan .planContent .optionItems:nth-child(odd) {
@@ -790,7 +790,7 @@ body::-webkit-scrollbar-thumb {
   background-color: rgb(235, 204, 188);
   border-radius: 4px;
   color: #785403;
-}
+} */
 .plan.plan-bg-1 {
   background: #fbeedf;
 }
@@ -801,6 +801,24 @@ body::-webkit-scrollbar-thumb {
   background: #fff8f0;
 }
 
+.plan .optionItems {
+  font-size: 19px;
+  font-weight: bold;
+  margin-bottom: 4px;
+  padding: 8px 15px;
+  letter-spacing: 0.7px;
+  line-height: 1;
+}
+.plan .optionItems:nth-child(odd) {
+  background-color: #E8E1D9;
+  border-radius: 4px;
+  color: #003057;
+}
+.plan .optionItems:nth-child(even) {
+  background-color: rgb(243, 239, 235);
+  border-radius: 4px;
+  color: #003057;
+}
 
 .advertisement {
   background-color: #e3d4c2;
