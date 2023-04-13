@@ -51,7 +51,7 @@
         width: 500px;
         height: 500px;
         background: #FFF;
-        position: absolute;
+        position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%,-50%);
@@ -60,12 +60,31 @@
         align-items: center;
         justify-content: center;
     }
+
+    @media (max-width: 768px) {
+        .show .img-show {
+            width: 200px !important;
+            height: auto !important;
+            position: fixed !important;
+            top: 50% !important;
+            left: 42% !important;
+        }
+    }
+
+
     .img-show span{
         position: absolute;
-        top: 10px;
+        top: 5%;
         right: 256px;
         z-index: 99;
         cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+        .img-show span{
+            top: -4% !important;;
+            right: 95px !important;;
+        }
     }
     
     .img-show img {
@@ -74,7 +93,10 @@
         position: relative;
         top: 0;
         left: 0;
+        margin:0 auto;
     }
+
+    
     /*End style*/
 </style>
 
@@ -134,7 +156,7 @@
                             <table class="table table-custom shadow-sm bg-white contentContainer" id="example">
                                 <thead>
                                     <tr> 
-                                        <th style="text-align: center">Sl</th>
+                                        <th style="text-align: center">ID</th>
                                         <th style="text-align: center">Date</th>
                                         <th style="text-align: center;width:50%">Image/PDF</th>
                                         <th style="text-align: center">Action </th> 
@@ -144,8 +166,8 @@
 
                                     @foreach (\App\Models\Photo::where('user_id',Auth::user()->id)->orderby('id','DESC')->get() as $key => $data)
                                     <tr>
-                                      <td style="text-align: center">{{ $key + 1 }}</td>
-                                      <td style="text-align: center">{{ $data->date }}</td>
+                                      <td style="text-align: center">{{ $data->id }}</td>
+                                      <td style="text-align: center">{{ \Carbon\Carbon::parse( $data->date)->format('d-m-Y') }}</td>
                                       <td style="text-align: center;width:50%">
                                           @if ($data->image)
 
@@ -191,8 +213,9 @@
     <div class="show" style="display: none">
         <div class="overlay"></div>
         <div class="img-show">
-          <span>X</span>
-          <img src="">
+          <span style="font-size: 30px;">X</span>
+          
+          <img src="" class="img-fluid">
         </div>
     </div>
 

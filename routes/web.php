@@ -53,6 +53,9 @@ Route::get('/privacy', [FrontendController::class, 'privacy'])->name('frontend.p
 Route::get('/faqs', [FrontendController::class, 'faqs'])->name('frontend.faqs');
 Route::get('/terms', [FrontendController::class, 'terms'])->name('frontend.terms');
 Route::get('/contact', [FrontendController::class, 'contact'])->name('frontend.contact');
+
+Route::post('/contact-submit', [FrontendController::class, 'visitorContact'])->name('contact.submit');
+
 Route::get('/how-we-work/{id}', [FrontendController::class, 'getWorkDetails'])->name('frontend.workDetails');
 
 Route::get('/user/invoice-print/{id}', [InvoiceController::class, 'invoice_print'])->name('invoice.print');

@@ -57,7 +57,7 @@ class InvoiceMail extends Mailable
     {
         
         return $this->view('emails.invoice')
-                     ->from($this->array['from'],'Taxdocs')
+                     ->from($this->array['from'],$this->array['company_bname'])
                      ->subject($this->array['subject'])
                      ->attach($this->array['file'],['as'=>$this->array['file_name'], 'mime'=>'application/pdf']);
 
