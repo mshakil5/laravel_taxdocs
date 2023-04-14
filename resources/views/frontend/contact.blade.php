@@ -77,7 +77,7 @@
 </section>
 
 
-<section class="client faq default " id="faq">
+<section class="client faq default " id="faq"  style="display: none">
     <div class="container">
         <div class="row">
             <div class="title txt-primary">
