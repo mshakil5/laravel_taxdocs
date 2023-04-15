@@ -1,13 +1,24 @@
 
-<h2>Hey !</h2> 
+@component('mail::message')
+# Introduction
 
-<p> You received an email from : {{ $name }} </p>
-<p> </p>
-<p> User details: </p>
-<p> </p>
-<p> Name:  {{ $name }}</p>
-<p> Email:  {{ $email }}</p>
-<p> Subject:  {{ $visitor_subject }}</p>
-<p> Message:  {{ $visitor_message }}</p>
-<p> </p>
-<p> Thanks</p>
+The body of your message. <br>
+You received an email from : {{$array['name']}}
+
+@component('mail::table')
+|          |           |
+|:------:  |:---------:|
+|Name|{{$array['name']}}|
+|Email |{{$array['email']}}|
+|Subject |{{$array['subject']}}|
+|Message |{{$array['message']}}|
+|          |           |
+|:------:  |:---------:|
+@endcomponent
+
+
+
+
+Thanks,<br>
+Taxdocs
+@endcomponent

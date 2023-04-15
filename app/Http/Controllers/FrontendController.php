@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\HowWeWork;
 use App\Models\ContactMail;
 use App\Mail\ContactFormMail;
+use App\Models\Contact;
 use Mail;
 
 class FrontendController extends Controller
@@ -98,49 +99,32 @@ class FrontendController extends Controller
 
       
 
-        $contactmail = ContactMail::where('id', 1)->first()->name;
+        $contactmail = ContactMail::where('id', 1)->first()->email;
 
-	    $mail_to_send_to = $contactmail;
-	    
-        $from_email = "info@taxdocs.co.uk";
-        $subject= "New message from Taxdocs";
+        $contact = new Contact();
+        $contact->name = $request->name;
+        $contact->email = $request->email; 
+        $contact->subject = $request->subject; 
+        $contact->message = $request->message; 
+        if ($contact->save()) {
 
-        // $message= "\r\n" . "Name: $name" . "\r\n". "Subject: $visitor_subject" . "\r\n"; //get recipient name in contact form
-        // $message = $message.$visitor_message . "\r\n" ;//add message from the contact form to existing message(name of the client)
-        // $headers = "From: $from_email" . "\r\n" . "Reply-To: $email"  ;
-        // $a = mail( $mail_to_send_to, $subject, $message, $headers );
+            $array['name'] = $request->name;
+            $array['email'] = $request->email;
+            $array['subject'] = $request->subject;
+            $array['message'] = $request->message;
+            $array['contactmail'] = $contactmail;
+            Mail::to($contactmail)
+            ->send(new ContactFormMail($array));
 
-        // $array['view'] = 'emails.contactmail';
-        // $array['cc'] = $contactmail;
-        // $array['subject'] = $visitor_subject;
-        // $array['name'] = $name;
-        // $array['from'] = $email;
-        // $array['message'] = $visitor_message;
-        // Mail::to($contactmail)
-        // ->send(new ContactFormMail($array));
+            $message ="<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Message Send Successfully.</b></div>";
+            return response()->json(['status'=> 300,'message'=>$message]);
+        } else {
+            return response()->json(['status'=> 303,'message'=>'Server Error']);
+        }
 
-
-        //  Send mail to admin
-        \Mail::send('emails.contactmail', compact(
-            'name',
-            'email',
-            'visitor_subject',
-            'visitor_message',
-        ), function($message) use ($request){
-            $message->from($request->email);
-            $message->to('info@eminentint.com', 'Taxdocs Contact Mail')->subject($request->get('subject'));
-        });
-
-        $message ="<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Mail sent successfully.</b></div>";
-        return response()->json(['status'=> 300,'message'=>$message]);
         
-        // $array['view'] = 'emails.contactmail';
-        // $array['cc'] = $contactmail;
-        // $array['subject'] = $visitor_subject;
-        // $array['name'] = $name ;
-        // $array['from'] = $email;
-        // $array['message'] = $message;
-        // $a = Mail::to($contactmail)->queue(new ContactFormMail($array));
+
+        
         
         
 

@@ -26,53 +26,17 @@ class ContactFormMail extends Mailable
      }
 
     /**
-     * Get the message envelope.
+     * Build the message.
      *
-     * @return \Illuminate\Mail\Mailables\Envelope
-     */
-    public function envelope()
-    {
-        return new Envelope(
-            subject: 'Contact Form Mail',
-        );
-    }
-
-    /**
-     * Get the message content definition.
-     *
-     * @return \Illuminate\Mail\Mailables\Content
+     * @return $this
      */
     
-
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array
-     */
-    public function attachments()
-    {
-        return [];
-    }
     public function build()
     {
-        
-        // return $this->view('emails.contactmail')
-        //              ->from($this->array['from'],'TaxDocs Contact Mail')
-        //              ->cc($this->array['cc'])
-        //              ->to($this->array['cc'], 'TaxDocs Contact Mail')
-        //              ->replyTo($this->array['cc'],'TaxDocs Contact Mail')
-        //              ->subject($this->array['subject']);
-
-        // return $this->from('info@taxdocs.co.uk','TaxDocs Contact Mail')
-		//     ->to('info@taxdocs.co.uk', 'TaxDocs Contact Mail')
-        //     ->view('emails.contactmail')
-        //     ->with([
-        //         'contact' => $this->array
-        //     ]);
-
-        return $this->from('info@eminentint.com', 'TaxDocs Contact Mail')
-        ->subject('New mail form TaxDocs Contact Mail')
-        ->replyTo($this->array['from'])
+        return $this->from('info@taxdocs.co.uk', 'Taxdocs')
+        ->to($this->array['contactmail'], 'Taxdocs')
+        ->subject('New contact message form Taxdocs')
+        ->replyTo('kmushakil22@gmail.com')
         ->markdown('emails.contactmail');
 
     }
