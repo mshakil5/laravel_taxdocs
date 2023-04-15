@@ -33,7 +33,7 @@ class ContactFormMail extends Mailable
     
     public function build()
     {
-        return $this->from('info@taxdocs.co.uk', 'Taxdocs')
+        return $this->from('do-not-reply@taxdocs.co.uk', 'Taxdocs')
         ->to($this->array['contactmail'], 'Taxdocs')
         ->subject('New contact message form Taxdocs')
         ->replyTo('kmushakil22@gmail.com')
