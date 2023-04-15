@@ -128,6 +128,7 @@
                         
                         <div class="col-md-4 ">
                             <input type="file" placeholder="Image" id="media" name="media[]" class="form-control" multiple="" >
+                            <small>*Maxmimum 20 files or 5 MB.</small>
                         </div>
                         <div class="col-md-12 my-2" style="display: none">
                             <div class="preview2"></div>
@@ -359,7 +360,9 @@ $(function () {
 
 
     $(document).ready(function () {
-        $('#example').DataTable();
+        $('#example').dataTable( {
+            "pageLength": 50
+        });
     });
 
     
