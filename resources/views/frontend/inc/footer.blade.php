@@ -6,76 +6,34 @@
                     <img src="{{ asset('images/company/'.\App\Models\CompanyDetail::where('id',1)->first()->header_logo)}}" width="200px">
                 </a>
                 <p class="fw-bold my-3 darkerGrotesque-bold lh-1">Company registration number 987788888 in England and Wales </p>
-                <p class="mb-1 darkerGrotesque-semibold "><iconify-icon class="txt-primary"
+                <p class="mb-1 darkerGrotesque-semibold " style="font-size: 20px;font-family: Roboto-Regular;color: #4E4B44;"><iconify-icon class="txt-primary"
                     icon="ic:outline-email"></iconify-icon> Email: {{\App\Models\CompanyDetail::where('id',1)->first()->email1 }}</p>
 
             </div>
 
-
-            {{-- <div class=" col-md-2 mb-3"><br>
-                <ul class="footer-link ">
-                    <li class="mb-2"><a href="{{ route('frontend.about')}}" class=""> <iconify-icon
-                                class="txt-primary" icon="material-symbols:arrow-forward-ios-rounded"></iconify-icon> About</a></li>
-                    <li class="mb-2"><a href="{{ route('frontend.terms')}}" class=""> <iconify-icon class="txt-primary" icon="material-symbols:arrow-forward-ios-rounded"></iconify-icon> T&C</a></li>
-                    <li class="mb-2"><a href="{{ route('frontend.privacy') }}" class=""> <iconify-icon
-                                class="txt-primary" icon="material-symbols:arrow-forward-ios-rounded"></iconify-icon> Privacy policy</a></li>
-                </ul>
-            </div>
-            <div class=" col-md-2 mb-3"><br>
-                <ul class="footer-link ">
-                    <li class="mb-2"><a href="{{ route('homepage')}}" class=""> 
-                        <iconify-icon class="txt-primary" icon="material-symbols:arrow-forward-ios-rounded"></iconify-icon> Home</a></li>
-                    <li class="mb-2"><a href="#howwework" class=""> <iconify-icon
-                                class="txt-primary" icon="material-symbols:arrow-forward-ios-rounded"></iconify-icon> How we works</a></li>
-                    <li class="mb-2"><a href="{{ route('frontend.faqs')}}" class=""> <iconify-icon
-                                class="txt-primary" icon="material-symbols:arrow-forward-ios-rounded"></iconify-icon> FAQs</a>
-                    </li>
-                </ul>
-            </div> --}}
-
-            {{-- <div class="col-md-4 mb-3">
-                
-                <div class="row">
-                    <div class="col-12">
-
-                        <div class="col-md-6">
-                            <p>Fill out the form below and we’ll get back to you as soon as we can.</p>
-                        </div>
-    
-                        <div class="col-md-6">
-                            <p>Fill out the form below and we’ll get back to you as soon as we can.</p>
-                        </div>
-                    </div>
-
-
-                </div>
-
-
-            </div> --}}
-
             <div class="col-md-4 mb-3">
                 
-                    <div class="row">
+                <div class="row">
 
-                      <div class="col">
-                            <ul class="footer-link ">
-                                <li class="mb-2"><a href="{{ route('frontend.about')}}" class=""> <iconify-icon class="txt-primary" icon="material-symbols:arrow-forward-ios-rounded"></iconify-icon> About</a></li>
-                                <li class="mb-2"><a href="{{ route('frontend.terms')}}" class=""> <iconify-icon class="txt-primary" icon="material-symbols:arrow-forward-ios-rounded"></iconify-icon> T&C</a></li>
-                                <li class="mb-2"><a href="{{ route('frontend.privacy') }}" class=""> <iconify-icon class="txt-primary" icon="material-symbols:arrow-forward-ios-rounded"></iconify-icon> Privacy policy</a></li>
-                            </ul>
-                      </div>
-
-                      <div class="col">
+                    <div class="col">
                         <ul class="footer-link ">
-                            <li class="mb-2"><a href="{{ route('homepage')}}" class=""> 
-                                <iconify-icon class="txt-primary" icon="material-symbols:arrow-forward-ios-rounded"></iconify-icon> Home</a></li>
-                            <li class="mb-2"><a href="#howwework"><iconify-icon class="txt-primary" icon="material-symbols:arrow-forward-ios-rounded"></iconify-icon> How we works</a></li>
-                            <li class="mb-2"><a href="{{ route('frontend.faqs')}}" class=""> <iconify-icon class="txt-primary" icon="material-symbols:arrow-forward-ios-rounded"></iconify-icon> FAQs</a>
-                            </li>
+                            <li class="mb-2"><a href="{{ route('frontend.about')}}" class=""> <iconify-icon class="txt-primary" icon="material-symbols:arrow-forward-ios-rounded"></iconify-icon> About</a></li>
+                            <li class="mb-2"><a href="{{ route('frontend.terms')}}" class=""> <iconify-icon class="txt-primary" icon="material-symbols:arrow-forward-ios-rounded"></iconify-icon> T&C</a></li>
+                            <li class="mb-2"><a href="{{ route('frontend.privacy') }}" class=""> <iconify-icon class="txt-primary" icon="material-symbols:arrow-forward-ios-rounded"></iconify-icon> Privacy policy</a></li>
                         </ul>
-                      </div>
-                      
                     </div>
+
+                    <div class="col">
+                    <ul class="footer-link ">
+                        <li class="mb-2"><a href="{{ route('homepage')}}" class=""> 
+                            <iconify-icon class="txt-primary" icon="material-symbols:arrow-forward-ios-rounded"></iconify-icon> Home</a></li>
+                        <li class="mb-2"><a href="#howwework"><iconify-icon class="txt-primary" icon="material-symbols:arrow-forward-ios-rounded"></iconify-icon> How we works</a></li>
+                        <li class="mb-2"><a href="{{ route('frontend.faqs')}}" class=""> <iconify-icon class="txt-primary" icon="material-symbols:arrow-forward-ios-rounded"></iconify-icon> FAQs</a>
+                        </li>
+                    </ul>
+                    </div>
+                    
+                </div>
 
 
             </div>
@@ -84,7 +42,7 @@
 
             <div class=" col-md-4 mb-3">
                 <h4 class="txt-primary fw-bold mb-3 darkerGrotesque-semibold">About</h4>
-                <p class="mb-1 darkerGrotesque-semibold ">
+                <p class="mb-1 darkerGrotesque-semibold " style="font-size: 20px;font-family: Roboto-Regular;color: #4E4B44;">
                     {{\App\Models\CompanyDetail::where('id',1)->first()->footer_content }}
                 </p>
             </div>
