@@ -1,3 +1,11 @@
+<style>
+    @media (max-width: 768px) {
+        .footermenudiv {
+            margin-top: 0px !important;
+        }
+    }
+</style>
+
 <footer class="pt-3">
     <div class="container">
         <div class="row py-4 fs-5">
@@ -13,7 +21,7 @@
 
             <div class="col-md-4">
                 
-                <div class="row mt-5">
+                <div class="row mt-5 footermenudiv">
 
                     <div class="col">
                         <ul class="footer-link ">
