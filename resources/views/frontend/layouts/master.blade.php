@@ -32,11 +32,11 @@
     <script src="{{ asset('front/js/app.js')}}"></script>
     
     <script>
-        for (var i = 0; i < document.links.length; i++) {
-            if (document.links[i].href === document.URL) {
-                document.links[i].className = 'nav-link current';
-            }
-        }
+        // for (var i = 0; i < document.links.length; i++) {
+        //     if (document.links[i].href === document.URL) {
+        //         document.links[i].className = 'nav-link current';
+        //     }
+        // }
     </script>
 
 @yield('script')
