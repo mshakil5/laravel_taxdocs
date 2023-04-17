@@ -71,6 +71,8 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/invoice-delete/{id}', [InvoiceController::class, 'delete']);
     Route::post('/invoice-paid-status', [InvoiceController::class, 'paidInvoice']);
     Route::post('/invoice-sent-email', [InvoiceController::class, 'invoiceSendEmail'])->name('user.invoicesendemail');
+    Route::get('/invoice-edit/{id}', [InvoiceController::class, 'invoiceEdit']);
+    Route::post('/invoice-update', [InvoiceController::class, 'invoiceUpdate']);
 
     
     Route::post('/invoice-store-as-pdf', [InvoiceController::class, 'invoicePdfStore']);

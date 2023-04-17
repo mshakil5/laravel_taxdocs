@@ -145,7 +145,7 @@ class InvoiceController extends BaseController
             $data->message_on_invoice = $request->message_on_invoice;
             $data->subtotal = $request->subtotal;
             $data->total = $request->total;
-            $data->vat = $request->vat;
+            $data->vat = $request->totalvat;
             $data->discount = $request->discount;
             $data->invoiceid = date('his');
             $data->company_name = Auth::user()->name;
@@ -174,7 +174,9 @@ class InvoiceController extends BaseController
                     $invdtl->quantity = $item['quantity'];
                     $invdtl->unit_rate = $item['unit_rate'];
                     $invdtl->amount = $item['amount'];
-                    $invdtl->vat = $item['vat'];
+                    if ($item['vat'] != "") {
+                        $invdtl->vat = $item['vat'];
+                    }
                     $invdtl->created_by = Auth::user()->id;
                     $invdtl->save();
 
@@ -191,6 +193,103 @@ class InvoiceController extends BaseController
             return response()->json(['success'=>false,'response'=> 'Server Error!!'], 404);
         }
 
+        
+    }
+
+    public function invoiceEdit($id)
+    {
+        $data = Invoice::with('invoicedetail')->where('id',$id)->first();
+        if($data == null){
+            $data = 'Data Not Found';
+        }
+        $responseArray = [
+            'status'=>'ok',
+            'data'=>$data
+        ]; 
+        return response()->json($responseArray,200);
+    }
+
+    public function invoiceUpdate(Request $request)
+    {
+
+        if(empty($request->new_user_id)){
+            $success['message'] = 'Please select an user!!';
+            return response()->json(['success'=>false,'response'=> $success], 203);
+        }
+
+        $newuserinfo = NewUser::where('id',$request->new_user_id)->first();
+        $invdata = Invoice::find($request->dataid);
+        $invdata->user_name = $request->new_user_id;
+        if (isset(Auth::user()->photo)) {
+            $invdata->image = Auth::user()->photo;
+        }else{
+            $invdata->image = "default.png";
+        }
+        
+        $invdata->user_id = Auth::user()->id;
+        $invdata->firm_id = Auth::user()->firm_id;
+        $invdata->email = $newuserinfo->email;
+        $invdata->new_user_id = $request->new_user_id;
+        $invdata->billing_address = $newuserinfo->address;
+        $invdata->post_code = $newuserinfo->post_code;
+        $invdata->name = $newuserinfo->name;
+        $invdata->invoice_date = $request->invoice_date;
+        $invdata->message_on_invoice = $request->message_on_invoice;
+        $invdata->subtotal = $request->subtotal;
+        $invdata->total = $request->total;
+        $invdata->vat = $request->totalvat;
+        $invdata->discount = $request->discount;
+        $invdata->company_name = Auth::user()->name;
+        $invdata->company_surname = Auth::user()->surname;
+        $invdata->company_bname = Auth::user()->bname;
+        $invdata->company_house_number = Auth::user()->house_number;
+        $invdata->company_vatno = Auth::user()->reg_number;
+        $invdata->company_email = Auth::user()->email;
+        $invdata->company_tell_no = Auth::user()->phone;
+        $invdata->company_street_name = Auth::user()->street_name;
+        $invdata->company_post_code = Auth::user()->postcode;
+        $invdata->company_town = Auth::user()->town;
+        $invdata->acct_no = Auth::user()->bank_acc_number;
+        $invdata->bank = Auth::user()->bank_name;
+        $invdata->short_code = Auth::user()->bank_acc_sort_code;
+        $invdata->updated_by = Auth::user()->id;
+        if($invdata->save()){
+            $invoicedetails = json_decode($request->invoicedetails, true);   
+                foreach ($invoicedetails as $key => $item)
+                {
+                    if(isset($item['invdtlid'])){
+                        $invdtl = InvoiceDetail::findOrFail($item['invdtlid']);
+                        $invdtl->invoice_id = $invdata->id;
+                        $invdtl->user_id = Auth::user()->id;
+                        $invdtl->description = $item['description'];
+                        $invdtl->quantity = $item['quantity'];
+                        $invdtl->unit_rate = $item['unit_rate'];
+                        $invdtl->amount = $item['amount'];
+                        if ($item['vat'] != "") {
+                            $invdtl->vat = $item['vat'];
+                        }
+                        $invdtl->updated_by = Auth::user()->id;
+                        $invdtl->save();
+                    } else {
+                        $invdtl = new InvoiceDetail;
+                        $invdtl->invoice_id = $invdata->id;
+                        $invdtl->user_id = Auth::user()->id;
+                        $invdtl->description = $item['description'];
+                        $invdtl->quantity = $item['quantity'];
+                        $invdtl->unit_rate = $item['unit_rate'];
+                        $invdtl->amount = $item['amount'];
+                        if ($item['vat'] != "") {
+                            $invdtl->vat = $item['vat'];
+                        }
+                        $invdtl->created_by = Auth::user()->id;
+                        $invdtl->save();
+                    }
+                }
+            $invoice = Invoice::with('invoicedetail')->where('id',$invdata->id)->first();
+            $success['message'] = 'Invoice Updated successfully';
+            $success['invoice'] = $invoice;
+            return response()->json(['success'=>true,'response'=> $success], 200);
+        }
         
     }
 
