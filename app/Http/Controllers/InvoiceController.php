@@ -392,7 +392,6 @@ class InvoiceController extends Controller
         $invdata->total = $request->totalamount;
         $invdata->vat = $request->totalvat;
         $invdata->discount = $request->discount;
-        $invdata->invoiceid = date('Ymd-his');
         $invdata->company_name = Auth::user()->name;
         $invdata->company_surname = Auth::user()->surname;
         $invdata->company_bname = Auth::user()->bname;
