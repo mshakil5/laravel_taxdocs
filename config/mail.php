@@ -45,6 +45,15 @@ return [
             'auth_mode' => null,
         ],
 
+        'transport' => [
+            'stream' => [
+                'ssl' => [
+                    'allow_self_signed' => true,
+                    'verify_peer' => false,
+                ],
+            ],
+        ],
+
         'ses' => [
             'transport' => 'ses',
         ],
