@@ -57,6 +57,9 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/get-new-users', [UserController::class, 'getUserDetails']);
     Route::get('/new-user/{id}', [UserController::class, 'newUserDelete']);
 
+    // deactive account
+    Route::post('/deactive-account', [UserController::class, 'deactiveAccount']);
+
 
     // payroll
     Route::get('/payroll', [PayrollController::class, 'index'])->name('user.payroll');

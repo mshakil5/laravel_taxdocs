@@ -321,4 +321,22 @@ class UserController extends BaseController
             return response()->json(['success'=>false,'message'=>'Server Failed']);
         }
     }
+
+    // account deactive
+    public function deactiveAccount(Request $request)
+    {
+        
+        $data = User::find(Auth::user()->id);
+        $data->status = "0";
+        if($data->save()){
+            $responseArray = [
+                'status'=>'Account Deactive Successfully.'
+            ]; 
+            return response()->json($responseArray,200);
+        }else{
+            return response()->json(['success'=>false,'message'=>'Server Failed']);
+        }
+        
+        
+    }
 }
