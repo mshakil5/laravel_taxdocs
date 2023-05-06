@@ -124,17 +124,16 @@
 
                                         <div class="row mt-2">
                                             <div class="col-md-6">
-                                                <label><small>Business Name</small></label>
-                                                <input type="text" class="form-control" id="ubname" name="ubname" placeholder="Business Name" value="{{ Auth::user()->bname }}">
+                                                <label><small>Town</small></label>
+                                                <input type="text" class="form-control" id="utown" name="utown" placeholder="Town" value="{{ Auth::user()->town }}">
                                             </div>
-                                            
                                             <div class="col-md-6">
-                                                <label><small>Vat Registration Number</small></label>
-                                                <input type="text" class="form-control" id="reg_number" name="reg_number" placeholder="Registration Number" value="{{ Auth::user()->reg_number }}">
+                                                <label><small>Post Code</small></label>
+                                                <input type="text" class="form-control" id="upostcode" name="upostcode" value="{{ Auth::user()->postcode }}" placeholder="Post Code">
                                             </div>
-
-                                            
                                         </div>
+
+                                        
 
                                         <div class="row mt-2">
                                             <div class="col-md-6" style="display:none">
@@ -185,17 +184,20 @@
                                             </div>
                                         </div>
 
-                                        
                                         <div class="row mt-2">
                                             <div class="col-md-6">
-                                                <label><small>Town</small></label>
-                                                <input type="text" class="form-control" id="utown" name="utown" placeholder="Town" value="{{ Auth::user()->town }}">
+                                                <label><small>Business Name</small></label>
+                                                <input type="text" class="form-control" id="ubname" name="ubname" placeholder="Business Name" value="{{ Auth::user()->bname }}">
                                             </div>
+                                            
                                             <div class="col-md-6">
-                                                <label><small>Post Code</small></label>
-                                                <input type="text" class="form-control" id="upostcode" name="upostcode" value="{{ Auth::user()->postcode }}" placeholder="Post Code">
+                                                <label><small>Vat Registration Number</small></label>
+                                                <input type="text" class="form-control" id="reg_number" name="reg_number" placeholder="Registration Number" value="{{ Auth::user()->reg_number }}">
                                             </div>
                                         </div>
+
+                                        
+                                        
 
                                         
                                         <div class="row mt-2"  style="display:none">
