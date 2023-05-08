@@ -218,7 +218,7 @@
                                             <th>Number of Document</th>
                                             <th>Document Processed</th>
                                             <th>Report</th>
-                                            <th>Image</th>
+                                            <th>Invoice Image</th>
                                             <th>Paid Invoice</th>
                                             <th>Payroll</th>
                                             <th>Status</th>

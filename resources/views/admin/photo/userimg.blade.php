@@ -283,7 +283,8 @@
                                     <th style="text-align: center">Amount</th>
                                     <th style="text-align: center">Vat</th>
                                     <th style="text-align: center">Net</th>
-                                    <th style="text-align: center">Action</th>
+                                    <th style="text-align: center">Add/Edit</th>
+                                    <th style="text-align: center">Delete</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -317,6 +318,8 @@
                                                 <td style="text-align: center"></td>
                                                 <td style="text-align: center">
                                                     <a id="addBtn" rid="{{$data->id}}" uid="{{$data->user_id}}" img="<iframe src='{{asset('images/'.$data->image)}}' width='100%' height='500px'></iframe>"><i class="fa fa-plus" style="color: #21f34f;font-size:16px;"></i></a>
+                                                </td>
+                                                <td style="text-align: center">
                                                     <a id="deleteBtn" rid="{{$data->id}}"><i class="fa fa-trash-o" style="color: red;font-size:16px;"></i></a>
                                                 </td>
                                             </tr>
@@ -353,8 +356,11 @@
                                                     @if ($data->status == 0)
                                                         <a id="addBtn" rid="{{$data->id}}" uid="{{$data->user_id}}" img="<iframe src='{{asset('images/'.$data->image)}}' width='100%' height='500px'></iframe>"><i class="fa fa-plus" style="color: #21f34f;font-size:16px;"></i></a>
                                                     @else
-                                                        <a id="EditBtn" rid="{{$data->account->id}}" img="<iframe src='{{asset('images/'.$data->image)}}' width='100%' height='500px'></iframe>"><i class="fa fa-edit" style="color: #2196f3;font-size:16px;"></i></a>
+                                                        <a id="EditBtn" rid="{{$data->account->id}}" img="<iframe src='{{asset('images/'.$data->image)}}' width='100%' height='500px'></iframe>"><i class="fa fa-plus" style="color: #21f34f;font-size:16px;"></i></a>
                                                     @endif
+                                                </td>
+                                                <td style="text-align: center">
+                                                    
                                                 </td>
                                             </tr>
                                         @endif

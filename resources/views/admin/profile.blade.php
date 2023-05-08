@@ -6,7 +6,7 @@
       <div class="col-md-3">
         <div class="tile p-0">
           <ul class="nav flex-column nav-tabs user-tabs">
-            <li class="nav-item"><a class="nav-link active" href="#user-image" data-toggle="tab">Image</a></li>
+            <li class="nav-item"><a class="nav-link active" href="#user-image" data-toggle="tab">Profile Picture</a></li>
             <li class="nav-item"><a class="nav-link" href="#user-details" data-toggle="tab">User Details</a></li>
             <li class="nav-item"><a class="nav-link" href="#user-password" data-toggle="tab">Change Password</a></li>
 
@@ -18,7 +18,7 @@
             {{-- image tab --}}
             <div class="tab-pane active" id="user-image">
               <div class="tile user-settings">
-                <h4 class="line-head">User Image</h4>
+                <h4 class="line-head">Profile Picture</h4>
                 <div class="ermsg"></div>
                 <form>
                   <div class="row">
@@ -65,8 +65,12 @@
                   <div class="row">
                     <div class="col-md-6">
                       <input id="profileid" value="{{$profile_data->id}}" type="hidden">
-                      <label>Full Name</label>
+                      <label>Business Name</label>
                       <input class="form-control" id="name" value="{{$profile_data->name}}" type="text">
+                    </div>
+                    <div class="col-md-6">
+                      <label>Business Contact Number</label>
+                      <input class="form-control" id="about" value="{{$profile_data->about}}" type="text">
                     </div>
                     <div class="col-md-6">
                       <label>Email</label>
@@ -88,10 +92,6 @@
                     <div class="col-md-6">
                       <label>Postal Code</label>
                       <input class="form-control" id="postal_code" value="{{$profile_data->postal_code}}" type="text">
-                    </div>
-                    <div class="col-md-6">
-                      <label>About</label>
-                      <input class="form-control" id="about" value="{{$profile_data->about}}" type="text">
                     </div>
                     <div class="col-md-6">
                       <label>Address</label>
