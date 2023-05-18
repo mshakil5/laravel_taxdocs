@@ -73,7 +73,7 @@
                             <input class="form-control" type="number" id="bank_account_number" name="bank_account_number"  value="{{ old('bank_account_number') }}" placeholder="Bank account number" required> 
                           </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-6" style="display: none">
                           <div class="form-group">
                             <input class="form-control" type="number" id="bank_account_code" name="bank_account_code" placeholder="Bank account sort-code"   value="{{ old('bank_account_code') }}" required> 
                           </div>
