@@ -166,7 +166,7 @@
     <div class="container-fluid">
         <div class="row mb-5"> 
             <div class="title">
-                Our Plan
+                Our Service Plan
             </div> 
         </div>
         <br> 
@@ -178,7 +178,7 @@
                             <div class="text-center border-bottom">
                                 <a href="{{route('register')}}" style="text-decoration: none"><h3 class="txt-primary fw-bold">Individual Plan</h3></a>
                                  
-                                 <h4 class="txt-secondary fw-bold mb-3">£5.95/Month</h4>
+                                 {{-- <h4 class="txt-secondary fw-bold mb-3">£5.95/Month</h4> --}}
                             </div>
                             <div class="planContent pt-4 text-center">
                                 @foreach (\App\Models\Option::where('plan','1')->get() as $item)
@@ -192,7 +192,7 @@
                             <div class="text-center border-bottom">
                                 <a href="{{route('register')}}" style="text-decoration: none"><h3 class="txt-primary fw-bold">Standard Business Plan</h3>
                                 </a>
-                                 <h4 class="txt-secondary fw-bold mb-3">£10.95/Month</h4>
+                                 {{-- <h4 class="txt-secondary fw-bold mb-3">£10.95/Month</h4> --}}
                             </div>
                             <div class="planContent pt-4 text-center">
                                 
@@ -210,7 +210,7 @@
                                 <a href="{{route('register')}}" style="text-decoration: none"><h3 class="txt-primary fw-bold">Premier Business Plan</h3>
                                 </a>
                                  
-                                 <h4 class="txt-secondary fw-bold mb-3">£15.95/Month</h4>
+                                 {{-- <h4 class="txt-secondary fw-bold mb-3">£15.95/Month</h4> --}}
                             </div>
                             <div class="planContent pt-4 text-center">
 

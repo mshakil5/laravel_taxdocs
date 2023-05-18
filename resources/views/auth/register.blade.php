@@ -60,10 +60,10 @@
                         <div class="col-lg-6">
                           <div class="form-group">
                             <select name="sub_plan" id="sub_plan" class="form-control" required>
-                              <option value="">Subscription Plan</option>
-                              <option value="1">Individual Plan £5.95</option>
-                              <option value="2">Standard Business Plan £10.95</option>
-                              <option value="2">Premier Business Plan £15.95</option>
+                              <option value="">Our Service Plan</option>
+                              <option value="1">Individual Plan</option>
+                              <option value="2">Standard Business Plan</option>
+                              <option value="2">Premier Business Plan</option>
                             </select>
                           </div>
                         </div>
