@@ -77,21 +77,21 @@ class RegisterController extends Controller
             'bname' => $data['bname'],
             'house_number' => $data['house_number'],
             'town' => $data['town'],
-            'bank_acc_number' => $data['bank_account_number'],
+            // 'bank_acc_number' => $data['bank_account_number'],
             'surname' => $data['surname'],
-            'accountant_name' => $data['accountant_name'],
+            // 'accountant_name' => $data['accountant_name'],
             'street_name' => $data['street'],
             'postcode' => $data['postcode'],
             'subscription_plan' => $data['sub_plan'],
             'bank_acc_sort_code' => $data['bank_account_code'],
         ]);
 
-        $bankdlt = new BankAccountDetail;
-        $bankdlt->user_id = $user->id;
-        $bankdlt->bank_acc_number = $data['bank_account_number'];
-        $bankdlt->bank_acc_sort_code = $data['bank_account_code'];
-        $bankdlt->status = "1";
-        $bankdlt->save();
+        // $bankdlt = new BankAccountDetail;
+        // $bankdlt->user_id = $user->id;
+        // $bankdlt->bank_acc_number = $data['bank_account_number'];
+        // $bankdlt->bank_acc_sort_code = $data['bank_account_code'];
+        // $bankdlt->status = "1";
+        // $bankdlt->save();
         return $user;
     }
 }
