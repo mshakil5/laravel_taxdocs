@@ -217,12 +217,12 @@
                                             <div class="col-md-6">
                                                 <label><small>Account Name</small></label>
                                                 <input type="text" class="form-control" id="bank_name" name="bank_name" value="{{ Auth::user()->bank_name }}" @if (Auth::user()->bank_name)
-                                                readonly
-                                                @endif >
+                                                readonly @endif >
                                             </div>
                                             <div class="col-md-6">
                                                 <label><small>Account Number</small></label>
-                                                <input type="text" class="form-control" id="bank_acc_number" name="bank_acc_number" value="{{ Auth::user()->bank_acc_number }}" readonly>
+                                                <input type="text" class="form-control" id="bank_acc_number" name="bank_acc_number" value="{{ Auth::user()->bank_acc_number }}"  @if (Auth::user()->bank_acc_number)
+                                                readonly @endif >
                                             </div>
                                         </div>
 
@@ -230,7 +230,8 @@
                                             
                                             <div class="col-md-6">
                                                 <label><small>Sort Code</small></label>
-                                                <input type="text" class="form-control" id="bank_acc_sort_code" name="bank_acc_sort_code" value="{{ Auth::user()->bank_acc_sort_code }}" readonly>
+                                                <input type="text" class="form-control" id="bank_acc_sort_code" name="bank_acc_sort_code" value="{{ Auth::user()->bank_acc_sort_code }}"  @if (Auth::user()->bank_acc_sort_code)
+                                                readonly @endif >
                                             </div>
                                             
                                         </div>

@@ -79,11 +79,11 @@ class RegisterController extends Controller
             'town' => $data['town'],
             // 'bank_acc_number' => $data['bank_account_number'],
             'surname' => $data['surname'],
-            // 'accountant_name' => $data['accountant_name'],
+            'accountant_name' => $data['accountant_name'],
             'street_name' => $data['street'],
             'postcode' => $data['postcode'],
             'subscription_plan' => $data['sub_plan'],
-            'bank_acc_sort_code' => $data['bank_account_code'],
+            // 'bank_acc_sort_code' => $data['bank_account_code'],
         ]);
 
         // $bankdlt = new BankAccountDetail;

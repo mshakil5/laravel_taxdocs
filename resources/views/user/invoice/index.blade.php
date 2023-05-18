@@ -69,7 +69,7 @@
                                       <td style="text-align: center">{{ $data->billing_address }}</td>
                                       <td style="text-align: center">{{ $data->total }}</td>
                                       <td style="text-align: center">
-                                        <button class="text-decoration-none bg-success text-white py-1 px-3 rounded mb-1 d-block text-center invoice-send-mail"  data-id="{{$data->id}}"> <small>Send Email</small> </button>
+                                        {{-- <button class="text-decoration-none bg-success text-white py-1 px-3 rounded mb-1 d-block text-center invoice-send-mail"  data-id="{{$data->id}}"> <small>Send Email</small> </button> --}}
                                       </td>
                                       <td style="text-align: center">
 
