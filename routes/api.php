@@ -60,6 +60,9 @@ Route::group(['middleware' => ['auth:api']], function () {
     // deactive account
     Route::post('/deactive-account', [UserController::class, 'deactiveAccount']);
 
+    
+    Route::get('/get-business-plan', [UserController::class, 'getBusinessPlan'])->name('businessplan');
+
 
     // payroll
     Route::get('/payroll', [PayrollController::class, 'index'])->name('user.payroll');

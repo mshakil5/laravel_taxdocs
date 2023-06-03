@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Admin\ContactMailController; 
+use App\Http\Controllers\Admin\CompanyDetailController; 
 use App\Http\Controllers\Admin\GalleryController; 
 use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\AdminController;
@@ -47,6 +48,7 @@ Route::group(['prefix' =>'admin/', 'middleware' => ['auth', 'is_admin']], functi
     //agent registration end
     //company details
     Route::resource('company-detail','App\Http\Controllers\Admin\CompanyDetailController');
+    Route::get('active-business-plan', [CompanyDetailController::class, 'activeBusinessPlan']);
 
     // photo
     Route::get('/photo', [ImageController::class, 'index'])->name('admin.photo');

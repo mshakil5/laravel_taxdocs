@@ -188,4 +188,26 @@ class CompanyDetailController extends Controller
     {
         //
     }
+
+    public function activeBusinessPlan(Request $request)
+    {
+        $user = CompanyDetail::find($request->id);
+        $user->business_plan = $request->status;
+        $user->save();
+
+        if($request->status==1){
+            $user = CompanyDetail::find($request->id);
+            $user->business_plan = $request->status;
+            $user->save();
+            $message ="<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Active Successfully.</b></div>";
+            return response()->json(['status'=> 300,'message'=>$message]);
+        }else{
+            $user = CompanyDetail::find($request->id);
+            $user->business_plan = $request->status;
+            $user->save();
+            $message ="<div class='alert alert-danger'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Inactive Successfully.</b></div>";
+            return response()->json(['status'=> 303,'message'=>$message]);
+        }
+
+    }
 }

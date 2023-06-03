@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
 use App\Models\User;
 use App\Models\NewUser;
+use App\Models\CompanyDetail;
 use App\Models\BankAccountDetail;
 Use Image;
 use Illuminate\Support\Facades\Auth;
@@ -250,6 +251,26 @@ class UserController extends BaseController
                 return response()->json(['success'=>false,'response'=> 'Something went wrong!'], 404);
             }
         
+    }
+
+    public function getBusinessPlan()
+    {
+        $data = CompanyDetail::where('id', '=', 1)->first()->business_plan;
+        
+        if ($data == 1) {
+            $responseArray = [
+                'data'=>true
+            ]; 
+        } elseif($data == 0) {
+            $responseArray = [
+                'data'=>false
+            ]; 
+        }else{
+            $responseArray = [
+                'data'=>'Data Not Found'
+            ]; 
+        }
+        return response()->json($responseArray,200);
     }
 
     public function getNewUser()

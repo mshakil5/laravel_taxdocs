@@ -130,6 +130,15 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="business_plan">Business Plan</label>
+                              <div class="toggle-flip">
+                                  <label>
+                                      <input type="checkbox" class="toggle-class" data-id="{{$company->id}}" {{ $company->business_plan ? 'checked' : '' }}><span class="flip-indecator" data-toggle-on="Active" data-toggle-off="Inactive"></span>
+                              </label>
+                            </div>
+                        </div>
+
+                      <div class="form-group">
                           <label for="footer_link">Footer Link</label>
                           <input type="text" id="footer_link" value="@if (!empty($company->footer_link)){{$company->footer_link}}@endif" name="footer_link" class="form-control">
                       </div>
@@ -145,7 +154,6 @@
                       <label for="website">Website</label>
                       <input type="text" id="website" value="@if (!empty($company->website)){{$company->website}}@endif" name="website" class="form-control">
                     </div>
-
 
                     <div class="form-group">
                       <label for="footer_content">Footer Content</label>
@@ -195,6 +203,35 @@
 @endsection
 @section('script')
     <script>
+
+$(function() {
+      $('.toggle-class').change(function() {
+        var url = "{{URL::to('/admin/active-business-plan')}}";
+          var status = $(this).prop('checked') == true ? 1 : 0;
+          var id = $(this).data('id');
+           console.log(status);
+          $.ajax({
+              type: "GET",
+              dataType: "json",
+              url: url,
+              data: {'status': status, 'id': id},
+              success: function(d){
+                // console.log(data.success)
+                if (d.status == 303) {
+                        warning("Deactive Successfully!!");
+                    }else if(d.status == 300){
+                        success("Active Successfully!!");
+                        // window.setTimeout(function(){location.reload()},2000)
+                    }
+                },
+                error: function (d) {
+                    console.log(d);
+                }
+          });
+      })
+})
+
+
         $(document).ready(function () {
 
             //header for csrf-token is must in laravel
