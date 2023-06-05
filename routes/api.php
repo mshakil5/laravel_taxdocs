@@ -28,6 +28,9 @@ use App\Http\Controllers\Api\InvoiceController;
 Route::post('signup', [RegisterController::class, 'register']);
 Route::post('login', [RegisterController::class, 'login']);
 
+
+Route::get('/get-business-plan', [UserController::class, 'getBusinessPlan'])->name('businessplan');
+
 Route::group(['middleware' => ['auth:api']], function () {
 
     // user information
@@ -61,7 +64,6 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/deactive-account', [UserController::class, 'deactiveAccount']);
 
     
-    Route::get('/get-business-plan', [UserController::class, 'getBusinessPlan'])->name('businessplan');
 
 
     // payroll
