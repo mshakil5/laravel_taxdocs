@@ -21,6 +21,17 @@ class RegisterController extends BaseController
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
+            'phone' => 'required',
+            'bname' => 'required|unique:users,bname',
+            'house_number' => 'required',
+            'town' => 'required',
+            'bank_acc_number' => 'required',
+            'accountant_name' => 'required',
+            'surname' => 'required',
+            'bank_acc_sort_code' => 'required',
+            'street_name' => 'required',
+            'postcode' => 'required',
+            'subscription_plan' => 'required',
             'password' => 'required',
             'c_password' => 'required|same:password',
         ]);
