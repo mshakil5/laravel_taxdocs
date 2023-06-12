@@ -162,7 +162,7 @@
 
 {{-- new section start  --}}
 
-<section class="bleesed default">
+<section class="bleesed default" style="display: none">
     <div class="container-fluid">
         <div class="row mb-5"> 
             <div class="title">
