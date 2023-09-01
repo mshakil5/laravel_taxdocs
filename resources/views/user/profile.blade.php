@@ -83,14 +83,14 @@
                                                 @php
                                                     $accname = \App\Models\User::where('id', Auth::user()->firm_id)->first()->name;
                                                 @endphp
-                                                <div class="col-md-12">
+                                                <div class="col-md-12" style="display:none">
                                                     <label><small>Accountant Name</small></label>
                                                     <input type="text" class="form-control"  value="{{ $accname }}" readonly>
                                                 </div>
                                             @else
 
                                             
-                                                <div class="col-md-12">
+                                                <div class="col-md-12" style="display:none">
                                                     <label><small>Accountant Name</small></label>
                                                     <input type="text" class="form-control" id="accountant_name" name="accountant_name" value="{{ Auth::user()->accountant_name }}">
                                                 </div>

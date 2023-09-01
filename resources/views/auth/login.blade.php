@@ -138,9 +138,9 @@
                             <div class="d-flex flex-column">
                               <p class="m-0"><a href="#" id="flip-btn" class="forgot forget_password_link txt-primary fs-6 fw-bold">Forgot Password ?</a></p>
                                <p class="text-end"> 
-                                  <a href="{{ route('register')}}" class="signup  ms-2  txt-primary fs-6 fw-bold">
+                                  {{-- <a href="{{ route('register')}}" class="signup  ms-2  txt-primary fs-6 fw-bold">
                                     Sign up 
-                                  </a>
+                                  </a> --}}
                               </p>
                             </div>
                         </div>

@@ -102,7 +102,7 @@
                             </div>
                             <p class="txt-theme mb-4">{!! \App\Models\Master::where('id','4')->first()->description !!}</p>
                             <div>
-                                <a href="{{ route('register')}}" class="btn-theme bg-secondary">Open an account</a>
+                                {{-- <a href="{{ route('register')}}" class="btn-theme bg-secondary">Open an account</a> --}}
                                 <a href="#howwework" class="btn-theme bg-primary">How it works</a>
                             </div>
                         </div>
@@ -149,7 +149,7 @@
                         <p class="theme-para">
                             {!! $work->description !!}
                         </p>
-                        <a href="{{ route('register')}}" class="btn-theme bg-primary btn-line">Get started</a>
+                        {{-- <a href="{{ route('register')}}" class="btn-theme bg-primary btn-line">Get started</a> --}}
                     </div>
                 </div>
             </div>
