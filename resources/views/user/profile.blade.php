@@ -39,7 +39,7 @@
                   <button class="nav-link active" id="transactionOut-tab" data-bs-toggle="tab" data-bs-target="#nav-transactionOut" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Business Logo</button>
                   <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-transcationIn" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Details</button>
                   <button class="nav-link" id="nav-password-tab" data-bs-toggle="tab" data-bs-target="#nav-password" type="button" role="tab" aria-controls="nav-password" aria-selected="false">Change Password</button>
-                  <button class="nav-link" id="nav-bank-tab" data-bs-toggle="tab" data-bs-target="#nav-bank" type="button" role="tab" aria-controls="nav-password" aria-selected="false">Bank Details</button>
+                  {{-- <button class="nav-link" id="nav-bank-tab" data-bs-toggle="tab" data-bs-target="#nav-bank" type="button" role="tab" aria-controls="nav-password" aria-selected="false">Bank Details</button> --}}
 
                 </div>
               </nav>
@@ -213,7 +213,7 @@
 
                                         
 
-                                        <div class="row mt-2">
+                                        <div class="row mt-2" style="display:none">
                                             <div class="col-md-6">
                                                 <label><small>Account Name</small></label>
                                                 <input type="text" class="form-control" id="bank_name" name="bank_name" value="{{ Auth::user()->bank_name }}" @if (Auth::user()->bank_name)
@@ -226,7 +226,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="row mt-2">
+                                        <div class="row mt-2" style="display:none">
                                             
                                             <div class="col-md-6">
                                                 <label><small>Sort Code</small></label>
@@ -297,7 +297,7 @@
                   </div>
                 </div>
                 
-                <div class="tab-pane fade" id="nav-bank" role="tabpanel" aria-labelledby="nav-bank-tab">
+                {{-- <div class="tab-pane fade" id="nav-bank" role="tabpanel" aria-labelledby="nav-bank-tab">
                     <div class="row my-2">
                       <div class="col-md-12 ">
                           <div class="row mx-auto">
@@ -347,7 +347,6 @@
                                                                 </div>
                                                             </div>
                                                         </a>
-                                                        {{-- <a id="deleteBtn" rid="{{$bank->id}}"><i class="fa fa-trash-o" style="color: red;font-size:16px;"></i></a> --}}
                                                             
                                                         @endif
                                                     </td>
@@ -392,7 +391,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                </div> --}}
 
               
               </div>
