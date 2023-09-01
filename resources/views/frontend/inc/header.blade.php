@@ -18,9 +18,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('frontend.contact')}}">Contact </a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" href="{{route('register')}}">Open an account</a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a class="nav-link fw-bold" href="{{route('login')}}">Log in</a>
                         </li>
