@@ -13,7 +13,7 @@
                 <a href="{{ route('homepage')}}">
                     <img src="{{ asset('images/company/'.\App\Models\CompanyDetail::where('id',1)->first()->header_logo)}}" width="200px">
                 </a>
-                <p class="my-3 lh-1"  style="font-size: 19px;font-family: DarkerGrotesque-regular;color: #4E4B44; font-weight:bold">Company registration number <b>987788888</b>  in England and Wales </p>
+                <p class="my-3 lh-1"  style="font-size: 19px;font-family: DarkerGrotesque-regular;color: #4E4B44; font-weight:bold">Company registration number <b>12989858</b>  in England and Wales </p>
                 <p class="mb-1 darkerGrotesque-semibold " style="font-size: 19px;font-family: DarkerGrotesque-regular;color: #4E4B44; font-weight:bold"><iconify-icon class="txt-primary"
                     icon="ic:outline-email"></iconify-icon> Email: {{\App\Models\CompanyDetail::where('id',1)->first()->email1 }}</p>
 

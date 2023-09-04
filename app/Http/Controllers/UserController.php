@@ -125,7 +125,7 @@ class UserController extends Controller
     }
 
     public function changeUserPassword(Request $request)
-        {
+    {
 
             if(empty($request->opassword)){
                 $message ="<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Please fill \"Old Password\" field..!</b></div>";
@@ -173,7 +173,7 @@ class UserController extends Controller
             return response()->json(['status'=> 303,'message'=>$message]);
              }
 
-        }
+    }
 
 
     public function bankaccountstore(Request $request)
