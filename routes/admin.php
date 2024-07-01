@@ -20,6 +20,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\WorkController;
 use App\Http\Controllers\OptionController;
 use App\Http\Controllers\MasterController;
+use App\Http\Controllers\Admin\MailContentController;
+use App\Http\Controllers\Admin\EmailController;
 
 
 
@@ -61,6 +63,14 @@ Route::group(['prefix' =>'admin/', 'middleware' => ['auth', 'is_admin']], functi
     Route::get('/contact-mail', [ContactMailController::class, 'index'])->name('admin.contact-mail');
     Route::get('/contact-mail/{id}/edit', [ContactMailController::class, 'edit']);
     Route::put('/contact-mail/{id}', [ContactMailController::class, 'update'])->name('admin.contact.update');
+
+    // mail content
+    Route::get('/mail-content', [MailContentController::class, 'index'])->name('admin.mail-content');
+    Route::get('/mail-content/{id}/edit', [MailContentController::class, 'edit']);
+    Route::put('/mail-content/{id}', [MailContentController::class, 'update']);
+
+    // mail send to  user
+    Route::post('/send-mail/{id}', [EmailController::class, 'sendMail'])->name('send.mail');
     
     Route::get('new-customer', [UserController::class, 'getNotAssignCustomer'])->name('notassigncustomer');
     // notification

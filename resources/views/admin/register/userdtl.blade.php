@@ -37,6 +37,11 @@
                         <td>Business Name</td>
                         <td>{{ $data->bname }}</td>
                     </tr> 
+
+                    <tr>
+                        <td>Email</td>
+                        <td>{{ $data->email }}</td>
+                    </tr> 
                     {{-- <tr>
                         <td>Business Address</td>
                         <td>{{ $data->baddress }}</td>

@@ -11,6 +11,37 @@
         padding: 8px;
     }
     tr:nth-child(even){background-color: #f2f2f2}
+
+    .loader-container {
+        position: fixed;
+        z-index: 999;
+        background-color: rgba(255, 255, 255, 0.7);
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+    }
+
+    .loader {
+        border: 5px solid #f3f3f3; 
+        border-top: 5px solid #3498db; 
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -25px; 
+        margin-left: -25px; 
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
 </style>
 
 
@@ -198,6 +229,9 @@
 
         <div id="contentContainer">
 
+            <div class="loader-container">
+                <div class="loader"></div>
+            </div>
 
             <div class="row">
                 <div class="col-md-12">
@@ -217,6 +251,7 @@
                                             <th>Business Name</th>
                                             <th>Number of Document</th>
                                             <th>Document Processed</th>
+                                            <th>Mail</th>
                                             <th>Report</th>
                                             <th>Invoice Image</th>
                                             <th>Paid Invoice</th>
@@ -240,6 +275,10 @@
                                                     <td>{{$account->bname}}</td>
                                                     <td>{{$imgcount}}</td>
                                                     <td>{{$notcalimgcount}}</td>
+                                                    <td>
+                                                        <a class="btn btn-primary btn-sm text-white send-mail-btn" data-id="{{ $account->id }}">Mail</a>
+                                                    </td>
+
                                                     <td>
                                                         <a class="btn btn-success btn-sm text-white" href="{{route('admin.report',encrypt($account->id))}}"> Report</a>
                                                     </td>
@@ -556,5 +595,49 @@ $(document).ready(function() {
             $("#user").addClass('active');
         });
     </script>
+    
+<script>
+    $(document).ready(function() {
+        $('.send-mail-btn').click(function() {
+            var accountId = $(this).data('id');
+            sendMail(accountId);
+        });
+
+        function sendMail(accountId) {
+            showLoader();
+
+            $.ajax({
+                url: '{{ route("send.mail", "") }}/' + accountId,
+                method: 'POST',
+                data: { accountId: accountId },
+                success: function(response) {
+                    hideLoader();
+                    showSuccessMessage("Mail sent successfully!!");
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                    hideLoader();
+                    showErrorMessage("Error sending mail. Please try again.");
+                }
+            });
+        }
+
+        function showLoader() {
+            $('.loader-container').show();
+        }
+
+        function hideLoader() {
+            $('.loader-container').hide();
+        }
+
+        function showSuccessMessage(message) {
+            toastr.success(message);
+        }
+
+        function showErrorMessage(message) {
+            toastr.error(message);
+        }
+    });
+</script>
 
 @endsection

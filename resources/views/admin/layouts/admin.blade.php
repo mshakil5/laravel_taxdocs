@@ -32,6 +32,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.bootstrap.min.css"> --}}
     
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.3.4/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     {{-- <style src="{{asset('admin/css')}}/buttons.dataTables.min.css"></style> --}}
   </head>
   <body class="app sidebar-mini">
@@ -160,6 +161,13 @@
         </li> --}}
         @if(Auth::user()->is_type == '1')
         <li><a class="app-menu__item" href="{{route('admin.contact-mail')}}" id="email"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Mail</span></a></li>
+        <li>
+          <a class="app-menu__item" href="{{ route('admin.mail-content') }}" id="email">
+              <i class="app-menu__icon fa fa-pie-chart"></i>
+              <span class="app-menu__label">Mail Content</span>
+          </a>
+      </li>
+
         <li class="treeview" id="fsettings"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Frontend Settings</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
             <li><a class="treeview-item" href="{{url('admin/sliders')}}" id="slider"><i class="icon fa fa-circle-o"></i> Slider Image</a></li>
@@ -263,6 +271,7 @@
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.html5.min.js"></script> 
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.print.min.js"></script> 
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.colVis.min.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 {{-- <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>  --}}
 
 

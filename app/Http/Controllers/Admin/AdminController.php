@@ -9,6 +9,8 @@ use Illuminate\support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Admin\Validator;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\UserCreatedMail;
 
 class AdminController extends Controller
 {
@@ -543,15 +545,20 @@ class AdminController extends Controller
             $account->agent_assign = $request->assign;
             $account->contact_person = $request->contact_person;
             $account->blandnumber = $request->blandnumber;
-            $account->password = Hash::make($request->input('password'));
+            // $account->password = Hash::make($request->input('password'));
+            $account->password = Hash::make('123456');
             $account->save();
+
+             $firm = User::find($request->firm_id);
+
+             Mail::to($account->email)->send(new UserCreatedMail($account, $firm));
+             Mail::to($firm->email)->send(new UserCreatedMail($account, $firm));
 
             $message ="<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>User Account Created Successfully.</b></div>";
 
             return response()->json(['status'=> 300,'message'=>$message]);
         }catch (\Exception $e){
-            return response()->json(['status'=> 303,'message'=>'Server Error!!']);
-
+            return response()->json(['status'=> 303,'message'=>'Server Error: '.$e->getMessage()]);
         }
     }
 
